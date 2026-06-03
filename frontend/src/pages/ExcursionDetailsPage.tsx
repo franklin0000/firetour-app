@@ -169,7 +169,7 @@ export default function ExcursionDetailsPage() {
   useEffect(() => {
     const fetchTourDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/tours/${id}`);
+        const response = await fetch(`/api/tours/${id}`);
         if (!response.ok) throw new Error("Tour not found");
         const data = await response.json();
         setTour(data);

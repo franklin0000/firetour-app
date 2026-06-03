@@ -190,7 +190,7 @@ export default function TravelpayoutsPage() {
     try {
       const cabinParam = flightCabin === 'Business' || flightCabin === 'First' ? 'Business' : 'Economy';
       const returnDateParam = tripType === 'round' && returnDate ? `&returnDate=${returnDate}` : '';
-      const response = await fetch(`http://localhost:5000/api/flights/search?origin=${origin}&destination=${destination}&departDate=${departDate}${returnDateParam}&adults=${flightAdults}&cabin=${cabinParam}`);
+      const response = await fetch(`/api/flights/search?origin=${origin}&destination=${destination}&departDate=${departDate}${returnDateParam}&adults=${flightAdults}&cabin=${cabinParam}`);
       const data = await response.json();
       
       clearInterval(progressInterval);
@@ -248,7 +248,7 @@ export default function TravelpayoutsPage() {
     }, 150);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/hotels/search?destination=${encodeURIComponent(hotelDestination)}&checkIn=${checkIn}&checkOut=${checkOut}&guests=${hotelGuests}`);
+      const response = await fetch(`/api/hotels/search?destination=${encodeURIComponent(hotelDestination)}&checkIn=${checkIn}&checkOut=${checkOut}&guests=${hotelGuests}`);
       const data = await response.json();
 
       clearInterval(progressInterval);
@@ -306,7 +306,7 @@ export default function TravelpayoutsPage() {
 
     try {
       const dropoffParam = sameCarDropoff ? carPickupLocation : carDropoffLocation;
-      const response = await fetch(`http://localhost:5000/api/cars/search?pickup=${encodeURIComponent(carPickupLocation)}&dropoff=${encodeURIComponent(dropoffParam)}&pickupDate=${carPickupDate}&dropoffDate=${carDropoffDate}&age=${carAge}`);
+      const response = await fetch(`/api/cars/search?pickup=${encodeURIComponent(carPickupLocation)}&dropoff=${encodeURIComponent(dropoffParam)}&pickupDate=${carPickupDate}&dropoffDate=${carDropoffDate}&age=${carAge}`);
       const data = await response.json();
 
       clearInterval(progressInterval);
@@ -364,7 +364,7 @@ export default function TravelpayoutsPage() {
     }, 150);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/flights/search?origin=${originCode}&destination=PUJ&departDate=${departDate}&returnDate=${returnDate}&adults=1&cabin=Economy`);
+      const response = await fetch(`/api/flights/search?origin=${originCode}&destination=PUJ&departDate=${departDate}&returnDate=${returnDate}&adults=1&cabin=Economy`);
       const data = await response.json();
       
       clearInterval(progressInterval);

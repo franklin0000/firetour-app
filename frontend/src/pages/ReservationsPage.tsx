@@ -19,7 +19,7 @@ export default function ReservationsPage() {
 
     const fetchReservationsList = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/reservations?email=${encodeURIComponent(user.email)}`);
+        const response = await fetch(`/api/reservations?email=${encodeURIComponent(user.email)}`);
         
         if (!response.ok) {
           if (response.status === 401) {

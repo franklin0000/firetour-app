@@ -8,7 +8,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/tours?limit=50')
+    fetch('/api/tours?limit=50')
       .then(res => res.json())
       .then(data => {
         setTours(data.tours || []);
@@ -20,7 +20,7 @@ export default function AdminPage() {
     if (!editingTour) return;
     
     try {
-      const res = await fetch(`http://localhost:5000/api/tours/${editingTour.id}`, {
+      const res = await fetch(`/api/tours/${editingTour.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editingTour)
@@ -135,7 +135,7 @@ export default function AdminPage() {
                           formData.append('image', file);
                           
                           try {
-                            const res = await fetch('http://localhost:5000/api/upload', {
+                            const res = await fetch('/api/upload', {
                               method: 'POST',
                               body: formData
                             });

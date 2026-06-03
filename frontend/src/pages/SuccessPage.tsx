@@ -19,7 +19,7 @@ export default function SuccessPage() {
     const fallbackMetadata = pendingCheckoutStr ? JSON.parse(pendingCheckoutStr) : {};
     
     // Llamar al backend para verificar el pago y registrar la reservación
-    fetch('http://localhost:5000/api/payment/verify-and-book', {
+    fetch('/api/payment/verify-and-book', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 

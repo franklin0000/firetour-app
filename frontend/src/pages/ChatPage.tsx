@@ -14,7 +14,7 @@ export default function ChatPage() {
   // 1. Fetch chat history logs
   const fetchChatHistory = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/chat');
+      const response = await fetch('/api/chat');
       const data = await response.json();
       setMessages(data);
     } catch (err) {
@@ -54,7 +54,7 @@ export default function ChatPage() {
     setInputText('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

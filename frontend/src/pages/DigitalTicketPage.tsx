@@ -17,7 +17,7 @@ export default function DigitalTicketPage() {
     if (!reservation) {
       const fetchTicketDetails = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/reservations`);
+          const response = await fetch(`/api/reservations`);
           const list: Reservation[] = await response.json();
           const match = list.find(r => r.id === parseInt(id || ''));
           if (match) {

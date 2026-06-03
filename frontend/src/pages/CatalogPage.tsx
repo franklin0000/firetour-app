@@ -32,7 +32,7 @@ export default function CatalogPage() {
   const fetchTours = async (pageNum: number, reset: boolean = false) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/tours?page=${pageNum}&limit=4&category=${category}&query=${searchQuery}`);
+      const response = await fetch(`/api/tours?page=${pageNum}&limit=4&category=${category}&query=${searchQuery}`);
       const data = await response.json();
       
       if (reset) {

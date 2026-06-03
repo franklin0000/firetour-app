@@ -20,7 +20,7 @@ export default function AuthPage() {
   const fetchUserReservations = async (email: string) => {
     setLoadingReservations(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/reservations?email=${encodeURIComponent(email)}`);
+      const response = await fetch(`/api/reservations?email=${encodeURIComponent(email)}`);
       if (response.ok) {
         const data = await response.json();
         setUserReservations(data);
@@ -52,7 +52,7 @@ export default function AuthPage() {
     setLoading(true);
     setError('');
 
-    const url = isLogin ? 'http://localhost:5000/api/auth/login' : 'http://localhost:5000/api/auth/register';
+    const url = isLogin ? '/api/auth/login' : '/api/auth/register';
     const body = isLogin ? { email, password } : { name, email, password };
 
     try {

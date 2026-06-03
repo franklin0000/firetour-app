@@ -447,7 +447,7 @@ export default function CheckoutPage() {
     }
 
     // Solicitar el PaymentIntent inmediatamente
-    fetch('http://localhost:5000/api/payment/create-payment-intent', {
+    fetch('/api/payment/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

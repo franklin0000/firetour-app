@@ -6,8 +6,18 @@ const database = require('./database');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS and JSON parsing
-app.use(cors());
+// Enable CORS for all origins including custom domain
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://firetour-app-node.onrender.com',
+    'https://firetourdr.com',
+    'https://www.firetourdr.com'
+  ],
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // -------------------------------------------------------------
@@ -858,10 +868,16 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Fallo Interno del Servidor. Inténtalo más tarde." });
 });
 
-// Serve frontend static files in production
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// Serve frontend static files in production (including /tours/mass images)
+const distPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(distPath));
+
+// Explicit route for tour images in case they are not bundled
+app.use('/tours', express.static(path.join(distPath, 'tours')));
+
+// SPA catch-all — must be LAST
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 // Start listening

@@ -106,21 +106,23 @@ app.put('/api/tours/:id', (req, res) => {
 });
 
 // 3. Create Stripe Payment Intent
-// If Stripe API key is provided in env, it will use it. Otherwise, it will safely return a mock intent secret!
 const stripeKey = process.env.STRIPE_SECRET_KEY || "sk_test_mock_key_fire_tour_dr";
 const stripe = require('stripe')(stripeKey);
 
 app.post('/api/payment/create-payment-intent', async (req, res) => {
   try {
-    const { amount, tourId, email } = req.body;
+    const { 
+      amount, tourId, email, customerName, phone, date, guests, 
+      tourName, tourImage, balanceDue, hotelName, roomNumber 
+    } = req.body;
 
     if (!amount || !tourId) {
-      return res.status(400).json({ error: "Faltan campos obligatorios." });
+      return res.status(400).json({ error: "Faltan campos obligatorios para generar la intención de pago." });
     }
 
     console.log(`[Stripe Checkout] Creating Payment Intent for Tour ID: ${tourId}, Amount: $${amount / 100}`);
 
-    // If using dummy key, return a mock success secret
+    // Si la clave es mock, devolvemos un mock clientSecret
     if (stripeKey.includes('mock')) {
       return res.json({
         clientSecret: "pi_mock_intent_secret_" + Math.random().toString(36).substring(2, 15),
@@ -131,7 +133,20 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
-      metadata: { tourId: String(tourId), email: email || 'guest@firetour.dr' },
+      metadata: { 
+        tourId: String(tourId), 
+        email: email || 'guest@firetour.dr',
+        customerName: customerName || '',
+        phone: phone || '',
+        date: date || '',
+        guests: String(guests || 1),
+        tourName: tourName || '',
+        tourImage: tourImage || '',
+        balanceDue: String(balanceDue || 0),
+        hotelName: hotelName || '',
+        roomNumber: roomNumber || ''
+      },
+      // Habilitar TODOS los métodos de pago configurados en el Dashboard de Stripe (incluyendo Crypto)
       automatic_payment_methods: { enabled: true }
     });
 
@@ -141,12 +156,82 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
     });
   } catch (err) {
     console.error("[Stripe Error] Payment Intent creation failed: ", err.message);
-    // Fallback gracefully to mock so the application NEVER crashes in local environment!
     res.json({
       clientSecret: "pi_mock_intent_secret_fallback_" + Math.random().toString(36).substring(2, 15),
       isMock: true,
       warning: "Fallback to mock due to Stripe API error: " + err.message
     });
+  }
+});
+
+// 3.1 Verify and Book (Para Redirecciones de Pago Cripto / Apple Pay)
+app.post('/api/payment/verify-and-book', async (req, res) => {
+  try {
+    const { payment_intent } = req.body;
+
+    if (!payment_intent) {
+      return res.status(400).json({ error: "No se proporcionó el payment_intent de Stripe." });
+    }
+
+    console.log(`[Stripe Verify] Validating payment intent: ${payment_intent}`);
+
+    // Si es un mock, lo aceptamos directamente (para entorno de desarrollo/fallback)
+    if (payment_intent.includes('mock')) {
+      // Usaremos metadata mock enviada desde el front
+      const metadata = req.body.fallbackMetadata || {};
+      const mockRes = database.addReservation({
+        tourId: parseInt(metadata.tourId) || 0,
+        tourName: metadata.tourName || "Reserva de Prueba Local",
+        tourImage: metadata.tourImage || "",
+        customerName: metadata.customerName || "Invitado (Test Local)",
+        email: metadata.email || "test@firetour.dr",
+        phone: metadata.phone || "",
+        date: metadata.date || new Date().toISOString().split('T')[0],
+        guests: parseInt(metadata.guests) || 1,
+        amountPaid: req.body.fallbackAmount || 0,
+        paymentMethod: 'Test Local Mock',
+        status: 'Confirmado',
+        hotelName: metadata.hotelName || '',
+        roomNumber: metadata.roomNumber || ''
+      });
+      return res.json({ success: true, reservation: mockRes });
+    }
+
+    // Entorno Real: Verificamos en Stripe
+    const intent = await stripe.paymentIntents.retrieve(payment_intent);
+
+    if (intent.status !== 'succeeded') {
+      return res.status(400).json({ error: "El pago no se ha completado correctamente en Stripe." });
+    }
+
+    // Extraemos toda la metadata que inyectamos al crear el PaymentIntent
+    const { 
+      tourId, tourName, tourImage, customerName, email, phone, 
+      date, guests, hotelName, roomNumber 
+    } = intent.metadata;
+
+    const reservation = database.addReservation({
+      tourId: parseInt(tourId),
+      tourName: tourName || "Reserva Segura vía Stripe",
+      tourImage: tourImage || "",
+      customerName: customerName || "Invitado",
+      email: email || "reservas@firetour.dr",
+      phone: phone || "",
+      date: date || new Date().toISOString().split('T')[0],
+      guests: parseInt(guests) || 1,
+      amountPaid: intent.amount / 100, // Lo volvemos a dólares
+      paymentMethod: intent.payment_method_types ? (intent.payment_method_types.includes('crypto') ? 'Criptomonedas Seguras' : 'Stripe Seguro') : 'Stripe Seguro',
+      status: 'Confirmado',
+      hotelName: hotelName || '',
+      roomNumber: roomNumber || ''
+    });
+
+    console.log(`[Stripe Verify] Validated successfully! Created Booking: ${reservation.ticketCode}`);
+    res.json({ success: true, reservation });
+
+  } catch (err) {
+    console.error("[Stripe Verify Error] ", err.message);
+    res.status(500).json({ error: "Error interno al verificar el pago." });
   }
 });
 

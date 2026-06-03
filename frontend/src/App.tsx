@@ -12,6 +12,8 @@ import FireTourLanding from './pages/FireTourLanding';
 import AdminPage from './pages/AdminPage';
 import AuthPage from './pages/AuthPage';
 
+import SuccessPage from './pages/SuccessPage';
+
 // Sticky Top Header Navigation component - Floating Pill Style
 function Header() {
   const location = useLocation();
@@ -130,6 +132,7 @@ export default function App() {
               <Route path="/" element={<CatalogPage />} />
               <Route path="/excursion/:id" element={<ExcursionDetailsPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/success" element={<SuccessPage />} />
               <Route path="/ticket/:id" element={<DigitalTicketPage />} />
               <Route path="/reservations" element={<ReservationsPage />} />
               <Route path="/auth" element={<AuthPage />} />

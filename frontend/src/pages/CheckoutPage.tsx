@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CreditCard, Calendar, Users, ShieldCheck, Mail, Phone, User, Loader, ArrowLeft, Lock, MapPin } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 // Inicializar Stripe con la clave pública de Producción (Live)
 const stripePromise = loadStripe('pk_live_51Te0ecBFxtpxngws3onLiw40h7f4S3qqSOwpsxVsGFUoVGiOXDKLkQJuZQ15Xya8m70TNS1AVic0ubfNjZz1yEag00VLTzGSMP');
 
-function CheckoutForm({ checkoutData }: { checkoutData: any }) {
+function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clientSecret: string }) {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -47,80 +47,53 @@ function CheckoutForm({ checkoutData }: { checkoutData: any }) {
     setErrorMessage('');
 
     try {
-      // 1. Obtener Payment Intent desde nuestro Backend (Node.js)
-      const payResponse = await fetch('http://localhost:5000/api/payment/create-payment-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: checkoutData.depositToPay * 100, // Stripe usa centavos, cobrar solo el depósito
-          tourId: checkoutData.tourId,
-          email
-        })
-      });
+      // Guardar los datos del formulario localmente para recuperarlos en la SuccessPage
+      // en caso de que el método de pago (ej. Criptomonedas) redirija al usuario
+      const pendingCheckout = {
+        tourId: checkoutData.tourId,
+        tourName: checkoutData.tourName,
+        tourImage: checkoutData.tourImage,
+        customerName,
+        email,
+        phone,
+        date: checkoutData.date,
+        guests: checkoutData.adults + checkoutData.children,
+        amountPaid: checkoutData.depositToPay,
+        balanceDue: checkoutData.balanceDue,
+        hotelName,
+        roomNumber
+      };
+      localStorage.setItem('pendingCheckout', JSON.stringify(pendingCheckout));
 
-      const payData = await payResponse.json();
-
-      if (!payResponse.ok) {
-        throw new Error(payData.error || "Error al conectar con la pasarela del banco.");
+      if (clientSecret.includes('mock')) {
+        // Modo simulador local
+        console.warn("[Simulador Stripe] Ejecutando redirección mock...");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        navigate(`/success?payment_intent=${clientSecret}`);
+        return;
       }
 
-      // 2. Ejecutar la Transacción Real vía Stripe
-      const cardElement = elements.getElement(CardElement);
-      let paymentSuccess = false;
-
-      if (payData.isMock) {
-        // Fallback local si no hay clave secreta configurada en el backend
-        console.warn("[Simulador Stripe] Ejecutando pago local sin API real...");
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        paymentSuccess = true;
-      } else {
-        // Procesamiento en Vivo Criptográfico de Stripe
-        const { error, paymentIntent } = await stripe.confirmCardPayment(payData.clientSecret, {
-          payment_method: {
-            card: cardElement!,
+      // Procesamiento de Pago con Elements
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/success`,
+          payment_method_data: {
             billing_details: {
               name: customerName,
               email: email,
               phone: phone,
-            },
-          },
-        });
-
-        if (error) {
-          throw new Error(error.message);
-        } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-          paymentSuccess = true;
+            }
+          }
         }
-      }
+      });
 
-      // 3. Registrar la Reserva Definitiva en la Base de Datos
-      if (paymentSuccess) {
-        const resResponse = await fetch('http://localhost:5000/api/reservations', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            tourId: checkoutData.tourId,
-            tourName: checkoutData.tourName,
-            tourImage: checkoutData.tourImage,
-            customerName,
-            email,
-            phone,
-            date: checkoutData.date,
-            guests: checkoutData.adults + checkoutData.children,
-            amountPaid: checkoutData.depositToPay,
-            balanceDue: checkoutData.balanceDue,
-            paymentMethod: "Stripe Secure Card",
-            hotelName,
-            roomNumber
-          })
-        });
-
-        if (!resResponse.ok) throw new Error("No se pudo registrar la reserva en la base de datos.");
-        const reservation = await resResponse.json();
-
-        setLoading(false);
-        // 4. Emisión del Ticket Digital con QR
-        navigate(`/ticket/${reservation.id}`, { state: { reservation } });
+      if (error) {
+        if (error.type === "card_error" || error.type === "validation_error") {
+          throw new Error(error.message);
+        } else {
+          throw new Error("Ocurrió un error inesperado al procesar tu pago.");
+        }
       }
 
     } catch (err: any) {
@@ -130,21 +103,16 @@ function CheckoutForm({ checkoutData }: { checkoutData: any }) {
     }
   };
 
-  const cardStyle = {
+  const paymentElementOptions = {
+    layout: "tabs" as const,
     style: {
-      base: {
-        color: "#ffffff",
-        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        iconColor: "#0ea5e9", // Cyan icon
-        "::placeholder": {
-          color: "#4b5563"
-        }
-      },
-      invalid: {
-        color: "#ef4444",
-        iconColor: "#ef4444"
+      theme: 'night',
+      variables: {
+        colorPrimary: '#0ea5e9',
+        colorBackground: '#08131d',
+        colorText: '#ffffff',
+        colorDanger: '#ef4444',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
       }
     }
   };
@@ -318,10 +286,10 @@ function CheckoutForm({ checkoutData }: { checkoutData: any }) {
                   </div>
                 </div>
 
-                {/* Stripe CardElement IFrame */}
+                {/* Stripe PaymentElement IFrame */}
                 <div className="flex flex-col gap-4">
                   <div className="bg-[#08131d] p-4 rounded-xl border border-outline focus-within:border-cyan hover:border-white/20 transition duration-300 shadow-inner">
-                    <CardElement options={cardStyle} />
+                    <PaymentElement id="payment-element" options={paymentElementOptions as any} />
                   </div>
                   
                   {/* Error Messaging */}
@@ -468,18 +436,55 @@ function CheckoutForm({ checkoutData }: { checkoutData: any }) {
 export default function CheckoutPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [clientSecret, setClientSecret] = useState('');
   
   const checkoutData = (location.state as any)?.checkoutData || (location.state as any);
 
   useEffect(() => {
-    if (!checkoutData) navigate('/');
+    if (!checkoutData) {
+      navigate('/');
+      return;
+    }
+
+    // Solicitar el PaymentIntent inmediatamente
+    fetch('http://localhost:5000/api/payment/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: checkoutData.depositToPay * 100, // centavos
+        tourId: checkoutData.tourId,
+        email: 'pending@checkout.com'
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.clientSecret) {
+          setClientSecret(data.clientSecret);
+        }
+      })
+      .catch(console.error);
   }, [checkoutData, navigate]);
 
-  if (!checkoutData) return null;
+  if (!checkoutData || !clientSecret) {
+    return (
+      <div className="min-h-screen bg-bgDark flex items-center justify-center">
+        <Loader className="w-10 h-10 text-cyan animate-spin" />
+      </div>
+    );
+  }
+
+  const appearance = {
+    theme: 'night' as const,
+    variables: {
+      colorPrimary: '#0ea5e9',
+      colorBackground: '#08131d',
+      colorText: '#ffffff',
+    },
+  };
 
   return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm checkoutData={checkoutData} />
+    <Elements stripe={stripePromise} options={{ clientSecret, appearance }}>
+      <CheckoutForm checkoutData={checkoutData} clientSecret={clientSecret} />
     </Elements>
   );
 }

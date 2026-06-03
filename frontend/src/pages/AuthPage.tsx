@@ -74,7 +74,11 @@ export default function AuthPage() {
       fetchUserReservations(data.email);
       
       if (returnUrl !== '/') {
-        navigate(returnUrl === '/checkout' ? -1 : returnUrl);
+        if (returnUrl === '/checkout') {
+          navigate(-1);
+        } else {
+          navigate(returnUrl);
+        }
       }
       setLoading(false);
     } catch (err) {

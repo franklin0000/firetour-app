@@ -43,7 +43,7 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
     return res.status(400).json({ error: "No se proporcionó ningún archivo." });
   }
   // Provide absolute URL for the uploaded image
-  const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+  const imageUrl = `/uploads/${req.file.filename}`;
   res.json({ imageUrl });
 });
 

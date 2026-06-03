@@ -1,0 +1,16 @@
+{
+  "name": "fire-tour-dr-backend",
+  "version": "1.0.0",
+  "description": "Express REST API backend for Fire Tour DR excursions.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "dev": "node --env-file=.env server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^2.1.1",
+    "stripe": "^14.25.0"
+  }
+}

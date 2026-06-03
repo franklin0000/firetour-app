@@ -4,10 +4,11 @@
   "description": "Full-stack excursions platform for Fire Tour DR (React + Express).",
   "scripts": {
     "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+    "build": "npm run install:all && npm run build --prefix frontend",
+    "start": "node backend/server.js",
     "backend": "npm start --prefix backend",
     "frontend": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
-    "start": "concurrently \"npm run backend\" \"npm run frontend\""
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "dependencies": {
     "concurrently": "^8.2.2"

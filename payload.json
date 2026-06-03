@@ -1,0 +1,15 @@
+{
+  "type": "web_service",
+  "name": "firetour-app-live",
+  "ownerId": "tea-d6m6m8fgi27c738c4d90",
+  "repo": "https://github.com/franklin0000/firetour-app",
+  "autoDeploy": "yes",
+  "branch": "main",
+  "serviceDetails": {
+    "env": "node",
+    "envSpecificDetails": {
+      "buildCommand": "npm install && npm run build",
+      "startCommand": "npm start"
+    }
+  }
+}

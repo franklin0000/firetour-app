@@ -47,6 +47,26 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
   res.json({ imageUrl });
 });
 
+// Sync Upload Endpoint (keeps original filename)
+const syncStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadsDir);
+  },
+  filename: function (req, file, cb) {
+    // Uses the filename provided in the request body, or falls back to originalname
+    cb(null, req.body.exactFilename || file.originalname);
+  }
+});
+const syncUpload = multer({ storage: syncStorage });
+
+app.post('/api/sync-upload', syncUpload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No se proporcionó ningún archivo." });
+  }
+  const imageUrl = `/uploads/${req.file.filename}`;
+  res.json({ imageUrl });
+});
+
 // -------------------------------------------------------------
 // REST API ROUTES
 // -------------------------------------------------------------

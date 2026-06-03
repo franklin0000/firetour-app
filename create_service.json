@@ -1,0 +1,17 @@
+{
+  "autoDeploy": "yes",
+  "branch": "main",
+  "name": "firetour-app-node",
+  "ownerId": "tea-d6m6m8fgi27c738c4d90",
+  "repo": "https://github.com/franklin0000/firetour-app",
+  "type": "web_service",
+  "serviceDetails": {
+    "env": "node",
+    "envSpecificDetails": {
+      "buildCommand": "npm run build",
+      "startCommand": "npm start"
+    },
+    "plan": "starter",
+    "region": "oregon"
+  }
+}

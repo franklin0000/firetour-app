@@ -9,3 +9,7 @@ services:
         value: production
       - key: PORT
         value: 10000
+    disk:
+      name: media-uploads
+      mountPath: /opt/render/project/src/backend/uploads
+      sizeGB: 50

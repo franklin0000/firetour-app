@@ -2,6 +2,7 @@ name = "firetour-app"
 account_id = "14d5bbb1254b43e1fd81de0a6279a9c6"
 compatibility_date = "2024-09-23"
 main = "worker.js"
+workers_dev = true
 
 [assets]
 directory = "./frontend/dist"
@@ -9,9 +10,9 @@ not_found_handling = "single-page-application"
 binding = "ASSETS"
 
 [[routes]]
-pattern = "firetourdr.com/*"
+pattern = "firetourdr.com"
 custom_domain = true
 
 [[routes]]
-pattern = "www.firetourdr.com/*"
+pattern = "www.firetourdr.com"
 custom_domain = true

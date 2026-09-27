@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
+import AdSenseBanner from '../components/AdSenseBanner';
 
 export default function CatalogPage() {
   const navigate = useNavigate();
@@ -329,6 +330,9 @@ export default function CatalogPage() {
             </div>
           </div>
         </div>
+
+        {/* AdSense Placement */}
+        <AdSenseBanner className="max-w-4xl mx-auto my-6" />
 
         {/* Grid List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">

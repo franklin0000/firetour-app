@@ -23,6 +23,14 @@ export default {
     }
 
     const url = new URL(request.url);
+
+    // 0. Explicit /ads.txt for Google AdSense verification
+    if (url.pathname === '/ads.txt') {
+      return new Response("google.com, pub-4522283034841677, DIRECT, f08c47fec0942fa0\n", {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      });
+    }
+
     const allTours = database.tours || [];
 
     // 1. Get tours (with pagination, category and search filtering)

@@ -1,7 +1,97 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // Bypass local Windows SSL certificate revocation checks
+const path = require('path');
+if (process.loadEnvFile) {
+  try {
+    process.loadEnvFile(path.join(__dirname, '.env'));
+    console.log('[ENV] Environment variables loaded from .env');
+  } catch (e) {
+    console.warn('[ENV] Could not load .env file:', e.message);
+  }
+}
 const express = require('express');
 const cors = require('cors');
 const database = require('./database');
+const nodemailer = require('nodemailer');
+
+// -------------------------------------------------------
+// EMAIL NOTIFIER SETUP (Yandex SMTP)
+// -------------------------------------------------------
+const ADMIN_BOOKING_EMAIL = 'booking.inf@firetourdr.com';
+const ADMIN_SENDER_EMAIL = process.env.SMTP_USER || 'familiafabian@yandex.com';
+const ADMIN_SENDER_PASS = process.env.SMTP_PASS || 'Chulo02@';
+
+const mailer = nodemailer.createTransport({
+  host: 'smtp.yandex.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: ADMIN_SENDER_EMAIL,
+    pass: ADMIN_SENDER_PASS
+  }
+});
+
+async function sendBookingNotification(reservation) {
+  const bookingDate = new Date(reservation.createdAt || Date.now()).toLocaleString('es-DO', { timeZone: 'America/Santo_Domingo', dateStyle: 'full', timeStyle: 'short' });
+
+  const htmlBody = `
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0f; color: #fff; border-radius: 16px; overflow: hidden; border: 1px solid #1e293b;">
+    <div style="background: linear-gradient(135deg, #06b6d4, #3b82f6); padding: 32px; text-align: center;">
+      <h1 style="margin: 0; font-size: 28px; font-weight: 900; letter-spacing: -1px;">🔥 NUEVA RESERVA</h1>
+      <p style="margin: 8px 0 0; opacity: 0.9; font-size: 14px;">Fire Tour DR · Sistema de Reservaciones</p>
+    </div>
+    <div style="padding: 32px;">
+      <div style="background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+        <h2 style="margin: 0 0 16px; color: #06b6d4; font-size: 16px; text-transform: uppercase; letter-spacing: 2px;">🎟️ Código de Ticket</h2>
+        <p style="margin: 0; font-size: 32px; font-weight: 900; color: #fff; letter-spacing: 4px;">${reservation.ticketCode}</p>
+      </div>
+
+      <div style="background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+        <h2 style="margin: 0 0 16px; color: #06b6d4; font-size: 16px; text-transform: uppercase; letter-spacing: 2px;">🏖️ Excursión Reservada</h2>
+        <p style="margin: 0; font-size: 18px; font-weight: 700; color: #fff;">${reservation.tourName}</p>
+        <p style="margin: 8px 0 0; color: #94a3b8; font-size: 14px;">ID Excursión: #${reservation.tourId}</p>
+      </div>
+
+      <div style="background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+        <h2 style="margin: 0 0 16px; color: #10b981; font-size: 16px; text-transform: uppercase; letter-spacing: 2px;">👤 Datos del Cliente</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 6px 0; color: #94a3b8; width: 140px;">Nombre:</td><td style="color: #fff; font-weight: 700;">${reservation.customerName}</td></tr>
+          <tr><td style="padding: 6px 0; color: #94a3b8;">Email:</td><td style="color: #fff;">${reservation.email}</td></tr>
+          <tr><td style="padding: 6px 0; color: #94a3b8;">Teléfono:</td><td style="color: #fff;">${reservation.phone || 'No proporcionado'}</td></tr>
+          <tr><td style="padding: 6px 0; color: #94a3b8;">Personas:</td><td style="color: #fff; font-weight: 700;">${reservation.guests} persona(s)</td></tr>
+          <tr><td style="padding: 6px 0; color: #94a3b8;">Fecha del Tour:</td><td style="color: #fff; font-weight: 700;">${reservation.date}</td></tr>
+        </table>
+      </div>
+
+      <div style="background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+        <h2 style="margin: 0 0 16px; color: #f59e0b; font-size: 16px; text-transform: uppercase; letter-spacing: 2px;">🏨 Hotel de Recogida</h2>
+        <p style="margin: 0; font-size: 16px; color: #fff; font-weight: 700;">${reservation.hotelName || 'No especificado'}</p>
+        <p style="margin: 8px 0 0; color: #94a3b8;">Habitación: ${reservation.roomNumber || 'No especificada'}</p>
+      </div>
+
+      <div style="background: linear-gradient(135deg, #065f46, #047857); border-radius: 12px; padding: 20px;">
+        <h2 style="margin: 0 0 8px; color: #6ee7b7; font-size: 16px; text-transform: uppercase; letter-spacing: 2px;">💵 Pago Recibido</h2>
+        <p style="margin: 0; font-size: 36px; font-weight: 900; color: #fff;">$${reservation.amountPaid} USD</p>
+        <p style="margin: 8px 0 0; color: #6ee7b7; font-size: 13px;">Método: ${reservation.paymentMethod} · Estado: ${reservation.status}</p>
+      </div>
+    </div>
+    <div style="background: #1e293b; padding: 20px; text-align: center; font-size: 12px; color: #64748b;">
+      Reserva recibida el ${bookingDate} · Fire Tour DR Booking System
+    </div>
+  </div>
+  `;
+
+  try {
+    await mailer.sendMail({
+      from: `"Fire Tour DR Bookings" <${ADMIN_SENDER_EMAIL}>`,
+      to: ADMIN_BOOKING_EMAIL,
+      subject: `🔥 Nueva Reserva: ${reservation.tourName} | ${reservation.customerName} | ${reservation.ticketCode}`,
+      html: htmlBody
+    });
+    console.log(`[Email] Booking notification sent to ${ADMIN_BOOKING_EMAIL} for ticket ${reservation.ticketCode}`);
+  } catch (err) {
+    console.error(`[Email Error] Could not send booking notification:`, err.message);
+  }
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,7 +114,6 @@ app.use(express.json());
 // FILE UPLOAD SETUP
 // -------------------------------------------------------------
 const multer = require('multer');
-const path = require('path');
 const fs = require('fs');
 
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -137,6 +226,7 @@ app.put('/api/tours/:id', (req, res) => {
 
 // 3. Create Stripe Payment Intent
 const stripeKey = process.env.STRIPE_SECRET_KEY || "sk_test_mock_key_fire_tour_dr";
+console.log(`[Stripe Init] Initialized with key prefix: ${stripeKey.substring(0, 7)}...`);
 const stripe = require('stripe')(stripeKey);
 
 app.post('/api/payment/create-payment-intent', async (req, res) => {
@@ -150,18 +240,18 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
       return res.status(400).json({ error: "Faltan campos obligatorios para generar la intención de pago." });
     }
 
-    console.log(`[Stripe Checkout] Creating Payment Intent for Tour ID: ${tourId}, Amount: $${amount / 100}`);
+    console.log(`[Stripe Checkout] Creating Payment Intent for Tour ID: ${tourId}, Amount: $${(amount / 100).toFixed(2)} USD`);
 
-    // Si la clave es mock, devolvemos un mock clientSecret
+    // Si la clave es un mock de prueba explícito
     if (stripeKey.includes('mock')) {
       return res.json({
-        clientSecret: "pi_mock_intent_secret_" + Math.random().toString(36).substring(2, 15),
+        clientSecret: "mock_intent_secret_" + Math.random().toString(36).substring(2, 15),
         isMock: true
       });
     }
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount,
+      amount: Math.round(Number(amount)),
       currency: 'usd',
       metadata: { 
         tourId: String(tourId), 
@@ -176,20 +266,20 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
         hotelName: hotelName || '',
         roomNumber: roomNumber || ''
       },
-      // Habilitar TODOS los métodos de pago configurados en el Dashboard de Stripe (incluyendo Crypto)
       automatic_payment_methods: { enabled: true }
     });
 
+    console.log(`[Stripe Success] PaymentIntent created: ${paymentIntent.id}`);
     res.json({
       clientSecret: paymentIntent.client_secret,
       isMock: false
     });
   } catch (err) {
     console.error("[Stripe Error] Payment Intent creation failed: ", err.message);
-    res.json({
-      clientSecret: "pi_mock_intent_secret_fallback_" + Math.random().toString(36).substring(2, 15),
-      isMock: true,
-      warning: "Fallback to mock due to Stripe API error: " + err.message
+    res.status(500).json({
+      error: "Error al generar la sesión de pago de Stripe: " + err.message,
+      clientSecret: null,
+      isMock: false
     });
   }
 });
@@ -339,6 +429,10 @@ app.post('/api/reservations', (req, res) => {
   });
 
   console.log(`[API Reservations] New Booking Created! Code: ${reservation.ticketCode}`);
+
+  // Send email notification to admin
+  sendBookingNotification(reservation);
+
   res.status(201).json(reservation);
 });
 
@@ -353,7 +447,7 @@ app.get('/api/reservations', (req, res) => {
   }
 
   // Admin exception (for the admin panel)
-  if (email === 'admin@firetourdr.com') {
+  if (email === 'familiafabian@yandex.com') {
     return res.json(allReservations);
   }
 

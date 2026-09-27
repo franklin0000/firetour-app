@@ -1,0 +1,11 @@
+﻿**/node_modules
+**/node_modules/**
+scraper/**
+scratch/**
+_design_archive/**
+**/*.mp4
+**/*.mkv
+**/*.webm
+**/*.mov
+**/*.avi
+**/.git/**

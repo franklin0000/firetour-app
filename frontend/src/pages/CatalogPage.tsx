@@ -248,10 +248,15 @@ export default function CatalogPage() {
             {/* Categories */}
             <div className="flex gap-2 overflow-x-auto w-full sm:w-auto pb-1 scrollbar-hide">
               {[
-                { id: 'all', label: 'Todas' },
+                { id: 'all', label: '🔥 Todas' },
+                { id: 'saona', label: '🏝️ Isla Saona' },
+                { id: 'buggy', label: '🏎️ Buggies 4x4' },
+                { id: 'parasail', label: '🪂 Parasailing' },
+                { id: 'transfer', label: '🚐 Traslados PUJ' },
+                { id: 'water', label: '⛵ Catamarán' },
                 { id: 'adventure', label: '🌋 Aventura' },
-                { id: 'water', label: '⛵ Agua' },
-                { id: 'relax', label: '🌴 Relax' }
+                { id: 'nightlife', label: '🎉 Coco Bongo & Noche' },
+                { id: 'relax', label: '🌴 Ecoturismo' }
               ].map(cat => (
                 <button
                   key={cat.id}
@@ -296,7 +301,11 @@ export default function CatalogPage() {
                   }}
                 />
                 <span className={`absolute top-4 right-4 z-20 text-[10px] font-black tracking-widest uppercase font-display px-4 py-2 rounded-full border backdrop-blur-md shadow-lg ${
-                  tour.id === 1 ? 'bg-secondary/90 text-white border-white/20' : 'bg-black/60 text-cyan border-white/10'
+                  tour.id === 1 ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white border-amber-300/40 shadow-glow' :
+                  tour.id === 2 ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white border-red-400/40 shadow-glow' :
+                  tour.id === 3 ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-300/40 shadow-glow' :
+                  tour.id === 4 ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white border-emerald-400/40 shadow-glow' :
+                  'bg-black/60 text-cyan border-white/10'
                 }`}>
                   {tour.badge}
                 </span>

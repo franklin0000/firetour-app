@@ -47,7 +47,7 @@ function ExcursionDetailsSkeleton() {
 // Highly customized contextual mock reviews generated dynamically based on the tour name and tags
 const getReviewsForTour = (tourName: string, tag: string) => {
   const normalizedTag = tag.toLowerCase();
-  if (normalizedTag === 'water') {
+  if (normalizedTag === 'water' || normalizedTag === 'saona' || normalizedTag === 'parasail') {
     return [
       {
         name: "Sofía Martínez",
@@ -74,7 +74,7 @@ const getReviewsForTour = (tourName: string, tag: string) => {
         helpfulCount: 8
       }
     ];
-  } else if (normalizedTag === 'adventure') {
+  } else if (normalizedTag === 'adventure' || normalizedTag === 'buggy') {
     return [
       {
         name: "Carlos Gómez",
@@ -99,6 +99,33 @@ const getReviewsForTour = (tourName: string, tag: string) => {
         date: "Hace 3 semanas",
         comment: "Una experiencia salvaje y divertida. La degustación de café y cacao orgánico en el rancho típico dominicano fue una grata sorpresa, riquísima. Una excelente manera de ver el verdadero campo dominicano. El Buggy 4x4 garantizado por Fire Tour DR andaba al 100%.",
         helpfulCount: 11
+      }
+    ];
+  } else if (normalizedTag === 'transfer') {
+    return [
+      {
+        name: "David Rodríguez",
+        avatarBg: "from-emerald-500 to-teal-600",
+        rating: 5,
+        date: "Hace 2 días",
+        comment: `¡Puntualidad y comodidad inmejorables! Nuestro chofer nos estaba esperando con un cartel con nuestro nombre justo a la salida del aeropuerto PUJ. La van impecable, con aire acondicionado frío y agua mineral. Cero esperas ni estrés. El mejor servicio de traslado en Punta Cana.`,
+        helpfulCount: 29
+      },
+      {
+        name: "Sarah Jenkins",
+        avatarBg: "from-blue-500 to-indigo-600",
+        rating: 5,
+        date: "Hace 1 semana",
+        comment: "Outstanding airport transfer service! Our flight was delayed by 45 minutes, but the driver tracked our flight and was right there waiting for us with a warm smile. Clean luxury vehicle and very safe driving to our resort. Will always book with Fire Tour DR!",
+        helpfulCount: 17
+      },
+      {
+        name: "Luis Fernando M.",
+        avatarBg: "from-cyan-500 to-blue-500",
+        rating: 5,
+        date: "Hace 3 semanas",
+        comment: "Excelente servicio de ida y vuelta. Confirmación inmediata, comunicación transparente por WhatsApp y vehículos modernos y seguros. Ideal si viajas con familia o mucho equipaje.",
+        helpfulCount: 14
       }
     ];
   } else {

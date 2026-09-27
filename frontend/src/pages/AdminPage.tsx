@@ -1,24 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type } from 'lucide-react';
+import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag } from 'lucide-react';
 import { Tour } from '../types';
 
+interface Reservation {
+  id: number;
+  ticketCode: string;
+  tourId: number;
+  tourName: string;
+  tourImage: string;
+  customerName: string;
+  email: string;
+  phone: string;
+  date: string;
+  guests: number;
+  amountPaid: number;
+  paymentMethod: string;
+  status: string;
+  hotelName: string;
+  roomNumber: string;
+  createdAt: string;
+}
+
+type AdminTab = 'reservations' | 'tours';
+
 export default function AdminPage() {
+  const [activeTab, setActiveTab] = useState<AdminTab>('reservations');
+
+  // Reservations state
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [resLoading, setResLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
+
+  // Tours state
   const [tours, setTours] = useState<Tour[]>([]);
   const [editingTour, setEditingTour] = useState<Tour | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [toursLoading, setToursLoading] = useState(true);
 
+  const userEmail = (() => { try { const u = localStorage.getItem('user'); return u ? JSON.parse(u).email : ''; } catch { return ''; } })();
+
+  // Fetch reservations
+  const fetchReservations = () => {
+    setResLoading(true);
+    fetch(`/api/reservations?email=${encodeURIComponent(userEmail)}`)
+      .then(res => res.json())
+      .then(data => {
+        const sorted = Array.isArray(data) ? data.sort((a: Reservation, b: Reservation) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        ) : [];
+        setReservations(sorted);
+        setResLoading(false);
+      })
+      .catch(() => setResLoading(false));
+  };
+
+  // Fetch tours
   useEffect(() => {
-    fetch('/api/tours?limit=50')
+    fetch('/api/tours?limit=200')
       .then(res => res.json())
       .then(data => {
         setTours(data.tours || []);
-        setLoading(false);
+        setToursLoading(false);
       });
   }, []);
 
-  const handleSave = async () => {
+  useEffect(() => {
+    if (activeTab === 'reservations') fetchReservations();
+  }, [activeTab]);
+
+  const handleSaveTour = async () => {
     if (!editingTour) return;
-    
     try {
       const res = await fetch(`/api/tours/${editingTour.id}`, {
         method: 'PUT',
@@ -26,179 +78,413 @@ export default function AdminPage() {
         body: JSON.stringify(editingTour)
       });
       const updatedTour = await res.json();
-      
       setTours(tours.map(t => t.id === updatedTour.id ? updatedTour : t));
       setEditingTour(null);
-      alert("¡Excursión actualizada correctamente!");
     } catch (err) {
-      alert("Error al guardar los cambios.");
+      alert('Error al guardar los cambios.');
     }
   };
 
-  if (loading) return <div className="text-white text-center mt-20">Cargando panel...</div>;
+  // Filter reservations
+  const filtered = reservations.filter(r => {
+    const q = searchQuery.toLowerCase();
+    const matchesSearch = !q ||
+      r.customerName.toLowerCase().includes(q) ||
+      r.email.toLowerCase().includes(q) ||
+      r.ticketCode.toLowerCase().includes(q) ||
+      r.tourName.toLowerCase().includes(q) ||
+      r.hotelName.toLowerCase().includes(q);
+    const matchesStatus = statusFilter === 'all' || r.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
+  const totalRevenue = filtered.reduce((sum, r) => sum + (r.amountPaid || 0), 0);
+  const totalGuests = filtered.reduce((sum, r) => sum + (r.guests || 0), 0);
+
+  const statusColor = (status: string) => {
+    if (status === 'Confirmado') return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+    if (status === 'Pendiente') return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+    return 'bg-red-500/20 text-red-400 border-red-500/30';
+  };
+
+  const formatDate = (iso: string) => {
+    if (!iso) return '—';
+    try {
+      return new Date(iso).toLocaleString('es-DO', {
+        day: '2-digit', month: 'short', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', hour12: true
+      });
+    } catch { return iso; }
+  };
 
   return (
-    <div className="min-h-screen bg-bgDark p-6 md:p-12 relative z-10 pt-24">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight mb-8">
-          🛠️ Panel de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan to-blue-500">Administración</span>
-        </h1>
-        <p className="text-gray-400 text-sm md:text-base font-bold mb-12 max-w-2xl">
-          Modifica los detalles, precios y fotografías de tus excursiones en tiempo real. Todos los cambios se reflejarán instantáneamente en el catálogo público.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tours.map(tour => (
-            <div key={tour.id} className="bg-surface/30 backdrop-blur-md border border-outline rounded-3xl p-5 flex flex-col gap-4 hover:border-cyan/50 transition duration-300">
-              <div className="relative h-40">
-                <img src={tour.image} alt={tour.name} className="w-full h-full object-cover rounded-2xl" />
-                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg text-xs font-bold text-white border border-outline">
-                  ID: {tour.id}
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-white text-sm font-black uppercase leading-tight">{tour.name}</h3>
-                <p className="text-cyan font-black text-lg mt-1">${tour.price} USD</p>
-              </div>
-              
-              <button 
-                onClick={() => setEditingTour(tour)}
-                className="mt-auto bg-white/5 hover:bg-cyan/20 hover:text-cyan text-white border border-outline hover:border-cyan/50 rounded-xl py-3 flex justify-center items-center gap-2 transition duration-300 font-bold uppercase tracking-widest text-[10px]"
-              >
-                <Pencil className="w-4 h-4" /> Editar Excursión
-              </button>
-            </div>
-          ))}
+    <div className="min-h-screen bg-bgDark p-4 md:p-8 relative z-10 pt-24">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
+            🛠️ Panel de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Administración</span>
+          </h1>
+          <p className="text-gray-400 text-sm mt-2">Fire Tour DR · Gestión completa de reservas y excursiones</p>
         </div>
 
-        {editingTour && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-            <div className="bg-surface border border-outline rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8 relative shadow-[0_0_50px_rgba(6,182,212,0.15)] animate-fadeIn">
-              <button 
-                onClick={() => setEditingTour(null)}
-                className="absolute top-6 right-6 text-gray-400 hover:text-white transition"
+        {/* Tabs */}
+        <div className="flex gap-2 mb-8 border-b border-white/10 pb-0">
+          <button
+            onClick={() => setActiveTab('reservations')}
+            className={`px-6 py-3 text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'reservations' ? 'bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
+          >
+            <TicketCheck className="w-4 h-4" /> Reservaciones
+            <span className="bg-cyan-500/30 text-cyan-300 text-xs px-2 py-0.5 rounded-full">{reservations.length}</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('tours')}
+            className={`px-6 py-3 text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'tours' ? 'bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
+          >
+            <ShoppingBag className="w-4 h-4" /> Excursiones
+            <span className="bg-cyan-500/30 text-cyan-300 text-xs px-2 py-0.5 rounded-full">{tours.length}</span>
+          </button>
+        </div>
+
+        {/* ===== RESERVACIONES TAB ===== */}
+        {activeTab === 'reservations' && (
+          <div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {[
+                { label: 'Total Reservas', value: reservations.length, icon: '🎟️', color: 'from-cyan-600 to-blue-700' },
+                { label: 'Ingresos Totales', value: `$${reservations.reduce((s, r) => s + r.amountPaid, 0).toLocaleString()} USD`, icon: '💵', color: 'from-emerald-600 to-green-700' },
+                { label: 'Clientes Totales', value: reservations.reduce((s, r) => s + r.guests, 0), icon: '👥', color: 'from-violet-600 to-purple-700' },
+                { label: 'Confirmadas', value: reservations.filter(r => r.status === 'Confirmado').length, icon: '✅', color: 'from-amber-600 to-orange-700' },
+              ].map((stat, i) => (
+                <div key={i} className={`bg-gradient-to-br ${stat.color} rounded-2xl p-4 border border-white/10`}>
+                  <div className="text-2xl mb-1">{stat.icon}</div>
+                  <div className="text-white font-black text-xl">{stat.value}</div>
+                  <div className="text-white/70 text-xs font-bold uppercase tracking-wider mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Filters */}
+            <div className="flex flex-col md:flex-row gap-3 mb-5">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Buscar por nombre, email, código de ticket, hotel..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-400 transition placeholder-gray-500"
+                />
+              </div>
+              <div className="relative">
+                <select
+                  value={statusFilter}
+                  onChange={e => setStatusFilter(e.target.value)}
+                  className="appearance-none pl-4 pr-10 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-cyan-400 transition cursor-pointer"
+                >
+                  <option value="all" className="bg-gray-900">Todos los estados</option>
+                  <option value="Confirmado" className="bg-gray-900">✅ Confirmado</option>
+                  <option value="Pendiente" className="bg-gray-900">⏳ Pendiente</option>
+                  <option value="Cancelado" className="bg-gray-900">❌ Cancelado</option>
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+              </div>
+              <button
+                onClick={fetchReservations}
+                className="px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-white transition flex items-center gap-2 text-sm font-bold"
               >
-                <X className="w-6 h-6" />
+                <RefreshCw className="w-4 h-4" /> Actualizar
               </button>
-              
-              <h2 className="text-xl md:text-2xl font-black text-white mb-6 uppercase tracking-tight">Editando #{editingTour.id}</h2>
-              
-              <div className="space-y-5">
-                <div>
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
-                    <Type className="w-3.5 h-3.5 text-cyan" /> Título de la excursión
-                  </label>
-                  <input 
-                    type="text" 
-                    value={editingTour.name}
-                    onChange={(e) => setEditingTour({...editingTour, name: e.target.value})}
-                    className="w-full bg-bgDark border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan transition font-bold"
-                  />
-                </div>
+            </div>
 
-                <div>
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
-                    <DollarSign className="w-3.5 h-3.5 text-emerald-400" /> Precio (USD)
-                  </label>
-                  <input 
-                    type="number" 
-                    value={editingTour.price}
-                    onChange={(e) => setEditingTour({...editingTour, price: parseFloat(e.target.value)})}
-                    className="w-full bg-bgDark border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition font-black text-lg"
-                  />
-                </div>
+            {/* Results count */}
+            {searchQuery || statusFilter !== 'all' ? (
+              <p className="text-gray-500 text-xs mb-4">
+                Mostrando <span className="text-cyan-400 font-bold">{filtered.length}</span> de {reservations.length} reservas
+                {totalRevenue > 0 && <> · Ingresos filtrados: <span className="text-emerald-400 font-bold">${totalRevenue.toLocaleString()} USD</span></>}
+                {totalGuests > 0 && <> · Personas: <span className="text-violet-400 font-bold">{totalGuests}</span></>}
+              </p>
+            ) : null}
 
-                <div>
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
-                    <ImageIcon className="w-3.5 h-3.5 text-amber-400" /> Fotografía
-                  </label>
-                  <div className="flex gap-2 mb-3">
-                    <input 
-                      type="text" 
-                      placeholder="URL de la imagen"
-                      value={editingTour.image}
-                      onChange={(e) => setEditingTour({...editingTour, image: e.target.value})}
-                      className="flex-1 bg-bgDark border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition text-sm"
-                    />
-                    <label className="bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl px-4 flex items-center justify-center cursor-pointer transition">
-                      <span className="text-xs uppercase tracking-widest">Subir</span>
-                      <input 
-                        type="file" 
-                        accept="image/*"
-                        className="hidden"
-                        onChange={async (e) => {
-                          const file = e.target.files?.[0];
-                          if (!file) return;
-                          
-                          const formData = new FormData();
-                          formData.append('image', file);
-                          
-                          try {
-                            const res = await fetch('/api/upload', {
-                              method: 'POST',
-                              body: formData
-                            });
-                            const data = await res.json();
-                            if (data.imageUrl) {
-                              setEditingTour({...editingTour, image: data.imageUrl});
-                            }
-                          } catch (err) {
-                            alert("Error al subir la imagen");
-                          }
-                        }}
-                      />
-                    </label>
-                  </div>
-                  {editingTour.image && (
-                    <div className="mt-3 relative h-32 rounded-xl overflow-hidden border border-outline/50 group">
-                      <img src={editingTour.image} alt="Preview" className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button 
-                          onClick={() => setEditingTour({...editingTour, image: ''})}
-                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest shadow-lg"
-                        >
-                          Borrar Foto
-                        </button>
+            {resLoading ? (
+              <div className="flex items-center justify-center h-48 text-gray-400">
+                <RefreshCw className="animate-spin mr-2 w-5 h-5" /> Cargando reservaciones...
+              </div>
+            ) : filtered.length === 0 ? (
+              <div className="text-center py-20 text-gray-500">
+                <TicketCheck className="w-12 h-12 mx-auto mb-4 opacity-30" />
+                <p className="font-bold">No se encontraron reservaciones</p>
+                <p className="text-sm mt-1">Intenta cambiar los filtros de búsqueda</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {filtered.map(r => (
+                  <div
+                    key={r.id}
+                    onClick={() => setSelectedReservation(r)}
+                    className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/30 rounded-2xl p-4 md:p-5 cursor-pointer transition-all duration-200 group"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center gap-4">
+                      {/* Tour image */}
+                      <div className="w-full md:w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                        {r.tourImage ? (
+                          <img src={r.tourImage} alt={r.tourName} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full bg-white/10 flex items-center justify-center text-2xl">🏖️</div>
+                        )}
+                      </div>
+
+                      {/* Main info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+                          <div>
+                            <span className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-lg border ${statusColor(r.status)} mr-2`}>
+                              {r.status}
+                            </span>
+                            <span className="text-xs font-mono text-cyan-400 font-bold">{r.ticketCode}</span>
+                          </div>
+                          <span className="text-emerald-400 font-black text-lg">${r.amountPaid} USD</span>
+                        </div>
+                        <p className="text-white font-bold text-sm truncate mb-1">{r.tourName}</p>
+                        <div className="flex flex-wrap gap-3 text-xs text-gray-400">
+                          <span className="flex items-center gap-1"><Users className="w-3 h-3" />{r.customerName}</span>
+                          <span className="flex items-center gap-1"><Mail className="w-3 h-3" />{r.email}</span>
+                          <span className="flex items-center gap-1"><CalendarDays className="w-3 h-3" />{r.date}</span>
+                          <span className="flex items-center gap-1"><Users className="w-3 h-3" />{r.guests} persona{r.guests !== 1 ? 's' : ''}</span>
+                          {r.hotelName && <span className="flex items-center gap-1"><Hotel className="w-3 h-3" />{r.hotelName}</span>}
+                        </div>
+                      </div>
+
+                      <div className="text-gray-600 group-hover:text-cyan-400 transition text-xs hidden md:block">
+                        {formatDate(r.createdAt)} →
                       </div>
                     </div>
-                  )}
-                </div>
-
-                <div>
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
-                    <Edit3 className="w-3.5 h-3.5 text-secondary" /> Descripción Detallada
-                  </label>
-                  <textarea 
-                    value={editingTour.desc}
-                    onChange={(e) => setEditingTour({...editingTour, desc: e.target.value})}
-                    rows={4}
-                    className="w-full bg-bgDark border border-outline rounded-xl px-4 py-3 text-white focus:outline-none focus:border-secondary transition resize-none text-sm leading-relaxed"
-                  />
-                </div>
-
+                  </div>
+                ))}
               </div>
-
-              <div className="mt-8 flex justify-end gap-3 border-t border-outline/30 pt-6">
-                <button 
-                  onClick={() => setEditingTour(null)}
-                  className="px-6 py-3 rounded-xl border border-outline text-white text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition"
-                >
-                  Cancelar
-                </button>
-                <button 
-                  onClick={handleSave}
-                  className="px-6 py-3 rounded-xl bg-cyan text-white text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:bg-cyan-600 transition shadow-lg shadow-cyan/20"
-                >
-                  <Save className="w-4 h-4" /> Guardar Cambios
-                </button>
-              </div>
-
-            </div>
+            )}
           </div>
         )}
 
+        {/* ===== TOURS TAB ===== */}
+        {activeTab === 'tours' && (
+          <div>
+            {toursLoading ? (
+              <div className="flex items-center justify-center h-48 text-gray-400">
+                <RefreshCw className="animate-spin mr-2 w-5 h-5" /> Cargando excursiones...
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {tours.map(tour => (
+                  <div key={tour.id} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex flex-col gap-4 hover:border-cyan-500/40 transition duration-300">
+                    <div className="relative h-36">
+                      <img src={tour.image} alt={tour.name} className="w-full h-full object-cover rounded-xl" />
+                      <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-md px-2 py-1 rounded-lg text-xs font-bold text-white border border-white/20">
+                        ID: {tour.id}
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-white text-sm font-black uppercase leading-tight line-clamp-2">{tour.name}</h3>
+                      <p className="text-cyan-400 font-black text-lg mt-1">${tour.price} USD</p>
+                    </div>
+                    <button
+                      onClick={() => setEditingTour(tour)}
+                      className="bg-white/5 hover:bg-cyan-500/20 hover:text-cyan-400 text-white border border-white/10 hover:border-cyan-500/50 rounded-xl py-2.5 flex justify-center items-center gap-2 transition duration-300 font-bold uppercase tracking-widest text-[10px]"
+                    >
+                      <Pencil className="w-3.5 h-3.5" /> Editar Excursión
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
+
+      {/* ===== RESERVATION DETAIL MODAL ===== */}
+      {selectedReservation && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4" onClick={() => setSelectedReservation(null)}>
+          <div
+            className="bg-gray-950 border border-white/10 rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="bg-gradient-to-r from-cyan-600 to-blue-700 p-6 rounded-t-3xl relative">
+              <button onClick={() => setSelectedReservation(null)} className="absolute top-4 right-4 text-white/70 hover:text-white transition">
+                <X className="w-5 h-5" />
+              </button>
+              <p className="text-white/80 text-xs font-bold uppercase tracking-widest mb-1">Detalle de Reserva</p>
+              <h2 className="text-white font-black text-2xl tracking-tight">{selectedReservation.ticketCode}</h2>
+              <span className={`inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full border mt-2 ${statusColor(selectedReservation.status)}`}>
+                {selectedReservation.status}
+              </span>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {/* Tour */}
+              <div className="flex gap-3 bg-white/5 rounded-2xl p-4">
+                <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                  {selectedReservation.tourImage ? (
+                    <img src={selectedReservation.tourImage} alt="" className="w-full h-full object-cover" />
+                  ) : <div className="w-full h-full bg-white/10 flex items-center justify-center text-2xl">🏖️</div>}
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">Excursión</p>
+                  <p className="text-white font-bold text-sm">{selectedReservation.tourName}</p>
+                  <p className="text-gray-500 text-xs mt-0.5">ID: #{selectedReservation.tourId}</p>
+                </div>
+              </div>
+
+              {/* Customer */}
+              <div className="bg-white/5 rounded-2xl p-4 space-y-2">
+                <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-3">👤 Datos del Cliente</p>
+                {[
+                  { icon: <Users className="w-4 h-4 text-cyan-400" />, label: 'Nombre', value: selectedReservation.customerName },
+                  { icon: <Mail className="w-4 h-4 text-blue-400" />, label: 'Email', value: selectedReservation.email },
+                  { icon: <Phone className="w-4 h-4 text-green-400" />, label: 'Teléfono', value: selectedReservation.phone || '—' },
+                  { icon: <CalendarDays className="w-4 h-4 text-violet-400" />, label: 'Fecha del Tour', value: selectedReservation.date },
+                  { icon: <Users className="w-4 h-4 text-amber-400" />, label: 'Personas', value: `${selectedReservation.guests} persona${selectedReservation.guests !== 1 ? 's' : ''}` },
+                ].map((row, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    {row.icon}
+                    <span className="text-gray-500 text-xs w-24">{row.label}:</span>
+                    <span className="text-white text-sm font-semibold">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Hotel */}
+              <div className="bg-white/5 rounded-2xl p-4 space-y-2">
+                <p className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-3">🏨 Hotel de Recogida</p>
+                <div className="flex items-center gap-3">
+                  <Hotel className="w-4 h-4 text-amber-400" />
+                  <span className="text-gray-500 text-xs w-24">Hotel:</span>
+                  <span className="text-white text-sm font-semibold">{selectedReservation.hotelName || '—'}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Hash className="w-4 h-4 text-amber-300" />
+                  <span className="text-gray-500 text-xs w-24">Habitación:</span>
+                  <span className="text-white text-sm font-semibold">{selectedReservation.roomNumber || '—'}</span>
+                </div>
+              </div>
+
+              {/* Payment */}
+              <div className="bg-gradient-to-r from-emerald-900/60 to-green-900/60 border border-emerald-500/20 rounded-2xl p-4">
+                <p className="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">💵 Información de Pago</p>
+                <p className="text-white font-black text-3xl">${selectedReservation.amountPaid} USD</p>
+                <div className="flex items-center gap-3 mt-2">
+                  <CreditCard className="w-4 h-4 text-emerald-400" />
+                  <span className="text-gray-400 text-sm">{selectedReservation.paymentMethod}</span>
+                </div>
+              </div>
+
+              {/* Timestamp */}
+              <div className="flex items-center gap-2 text-gray-600 text-xs">
+                <Clock className="w-3.5 h-3.5" />
+                <span>Reserva creada: {formatDate(selectedReservation.createdAt)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== TOUR EDIT MODAL ===== */}
+      {editingTour && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+          <div className="bg-gray-950 border border-white/10 rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8 relative shadow-2xl">
+            <button onClick={() => setEditingTour(null)} className="absolute top-6 right-6 text-gray-400 hover:text-white transition">
+              <X className="w-6 h-6" />
+            </button>
+            <h2 className="text-xl md:text-2xl font-black text-white mb-6 uppercase tracking-tight">Editando #{editingTour.id}</h2>
+            <div className="space-y-5">
+              <div>
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
+                  <Type className="w-3.5 h-3.5 text-cyan-400" /> Título de la excursión
+                </label>
+                <input
+                  type="text"
+                  value={editingTour.name}
+                  onChange={e => setEditingTour({ ...editingTour, name: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition font-bold"
+                />
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
+                  <DollarSign className="w-3.5 h-3.5 text-emerald-400" /> Precio (USD)
+                </label>
+                <input
+                  type="number"
+                  value={editingTour.price}
+                  onChange={e => setEditingTour({ ...editingTour, price: parseFloat(e.target.value) })}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 transition font-black text-lg"
+                />
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" /> Fotografía
+                </label>
+                <div className="flex gap-2 mb-3">
+                  <input
+                    type="text"
+                    placeholder="URL de la imagen"
+                    value={editingTour.image}
+                    onChange={e => setEditingTour({ ...editingTour, image: e.target.value })}
+                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition text-sm"
+                  />
+                  <label className="bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl px-4 flex items-center justify-center cursor-pointer transition">
+                    <span className="text-xs uppercase tracking-widest">Subir</span>
+                    <input
+                      type="file" accept="image/*" className="hidden"
+                      onChange={async e => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        const formData = new FormData();
+                        formData.append('image', file);
+                        try {
+                          const res = await fetch('/api/upload', { method: 'POST', body: formData });
+                          const data = await res.json();
+                          if (data.imageUrl) setEditingTour({ ...editingTour, image: data.imageUrl });
+                        } catch { alert('Error al subir la imagen'); }
+                      }}
+                    />
+                  </label>
+                </div>
+                {editingTour.image && (
+                  <div className="mt-3 relative h-32 rounded-xl overflow-hidden border border-white/10 group">
+                    <img src={editingTour.image} alt="Preview" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                      <button onClick={() => setEditingTour({ ...editingTour, image: '' })} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest">
+                        Borrar Foto
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div>
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-2">
+                  <Edit3 className="w-3.5 h-3.5 text-violet-400" /> Descripción Detallada
+                </label>
+                <textarea
+                  value={editingTour.desc}
+                  onChange={e => setEditingTour({ ...editingTour, desc: e.target.value })}
+                  rows={4}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-400 transition resize-none text-sm leading-relaxed"
+                />
+              </div>
+            </div>
+            <div className="mt-8 flex justify-end gap-3 border-t border-white/10 pt-6">
+              <button onClick={() => setEditingTour(null)} className="px-6 py-3 rounded-xl border border-white/10 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition">
+                Cancelar
+              </button>
+              <button onClick={handleSaveTour} className="px-6 py-3 rounded-xl bg-cyan-500 text-white text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:bg-cyan-600 transition shadow-lg shadow-cyan-500/20">
+                <Save className="w-4 h-4" /> Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

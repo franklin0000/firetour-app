@@ -16,3 +16,4 @@ backend/*.sqlite
 server/*.sqlite
 backend/uploads/
 server/uploads/
+.playwright-mcp/

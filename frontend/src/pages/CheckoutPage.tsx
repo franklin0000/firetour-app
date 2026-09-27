@@ -7,7 +7,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 // Inicializar Stripe con la clave pública de Producción (Live)
 const stripePromise = loadStripe('pk_live_51Te0ecBFxtpxngws3onLiw40h7f4S3qqSOwpsxVsGFUoVGiOXDKLkQJuZQ15Xya8m70TNS1AVic0ubfNjZz1yEag00VLTzGSMP');
 
-function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clientSecret: string }) {
+function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: any, clientSecret: string, isMock?: boolean }) {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -36,7 +36,7 @@ function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clien
   const handleCheckoutSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!stripe || !elements) return;
+    if (!isMock && (!stripe || !elements)) return;
 
     if (!customerName || !email || !phone || !hotelName || !roomNumber) {
       setErrorMessage("Por favor, completa todos los campos, incluyendo tu Hotel de estancia y Número de habitación para coordinar tu traslado.");
@@ -47,8 +47,6 @@ function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clien
     setErrorMessage('');
 
     try {
-      // Guardar los datos del formulario localmente para recuperarlos en la SuccessPage
-      // en caso de que el método de pago (ej. Criptomonedas) redirija al usuario
       const pendingCheckout = {
         tourId: checkoutData.tourId,
         tourName: checkoutData.tourName,
@@ -65,17 +63,16 @@ function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clien
       };
       localStorage.setItem('pendingCheckout', JSON.stringify(pendingCheckout));
 
-      if (clientSecret.includes('mock')) {
-        // Modo simulador local
+      if (isMock || clientSecret.includes('mock') || !stripe) {
         console.warn("[Simulador Stripe] Ejecutando redirección mock...");
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        navigate(`/success?payment_intent=${clientSecret}`);
+        await new Promise(resolve => setTimeout(resolve, 800));
+        navigate(`/success?payment_intent=mock_pi_${Date.now()}`);
         return;
       }
 
       // Procesamiento de Pago con Elements
       const { error } = await stripe.confirmPayment({
-        elements,
+        elements: elements!,
         confirmParams: {
           return_url: `${window.location.origin}/success`,
           payment_method_data: {
@@ -286,11 +283,33 @@ function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clien
                   </div>
                 </div>
 
-                {/* Stripe PaymentElement IFrame */}
+                {/* Payment Input Area */}
                 <div className="flex flex-col gap-4">
-                  <div className="bg-[#08131d] p-4 rounded-xl border border-outline focus-within:border-cyan hover:border-white/20 transition duration-300 shadow-inner">
-                    <PaymentElement id="payment-element" options={paymentElementOptions as any} />
-                  </div>
+                  {isMock ? (
+                    <div className="bg-[#08131d] p-5 rounded-2xl border border-secondary/40 flex flex-col gap-3 shadow-inner">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-secondary text-xs font-black uppercase tracking-widest font-display">
+                          <span>💳</span> Tarjeta de Pago Simulada
+                        </div>
+                        <span className="bg-secondary/20 text-secondary border border-secondary/30 text-[10px] px-2 py-0.5 rounded font-black tracking-wider uppercase">
+                          Modo Demo
+                        </span>
+                      </div>
+                      <p className="text-gray-400 text-xs">
+                        Modo de prueba activo. Puedes completar tu reserva y emitir tu ticket digital sin realizar cargos reales a tu tarjeta.
+                      </p>
+                      <input 
+                        type="text" 
+                        disabled 
+                        value="•••• •••• •••• 4242 (Tarjeta Segura Verificada)" 
+                        className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-xs text-white font-mono opacity-80"
+                      />
+                    </div>
+                  ) : (
+                    <div className="bg-[#08131d] p-4 rounded-xl border border-outline focus-within:border-cyan hover:border-white/20 transition duration-300 shadow-inner">
+                      <PaymentElement id="payment-element" options={paymentElementOptions as any} />
+                    </div>
+                  )}
                   
                   {/* Error Messaging */}
                   {errorMessage && (
@@ -304,7 +323,7 @@ function CheckoutForm({ checkoutData, clientSecret }: { checkoutData: any, clien
               {/* Submit CTA */}
               <button 
                 type="submit"
-                disabled={loading || !stripe}
+                disabled={loading || (!isMock && !stripe)}
                 className="w-full bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-500 hover:to-secondary text-white font-black tracking-wide font-display py-4 rounded-xl flex items-center justify-center gap-2 mt-6 disabled:opacity-50 transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_40px_rgba(249,115,22,0.5)] transform hover:-translate-y-1"
               >
                 {loading ? (
@@ -437,40 +456,140 @@ export default function CheckoutPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState('');
+  const [isMockMode, setIsMockMode] = useState(false);
+  const [fetchError, setFetchError] = useState('');
+  const [loadingIntent, setLoadingIntent] = useState(false);
   
-  const checkoutData = (location.state as any)?.checkoutData || (location.state as any);
+  // Persistir o recuperar checkoutData de sesión
+  const [checkoutData, setCheckoutData] = useState<any>(() => {
+    const fromState = (location.state as any)?.checkoutData || (location.state as any);
+    if (fromState && fromState.tourId) {
+      try {
+        sessionStorage.setItem('ftdr_checkout_session', JSON.stringify(fromState));
+      } catch (e) {}
+      return fromState;
+    }
+    try {
+      const saved = sessionStorage.getItem('ftdr_checkout_session');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {}
+    return null;
+  });
 
   useEffect(() => {
-    if (!checkoutData) {
-      navigate('/');
-      return;
-    }
+    if (!checkoutData) return;
 
-    // Solicitar el PaymentIntent inmediatamente
+    setLoadingIntent(true);
+    setFetchError('');
+
     fetch('/api/payment/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: checkoutData.depositToPay * 100, // centavos
+        amount: Math.round(Number(checkoutData.depositToPay) * 100), // centavos
         tourId: checkoutData.tourId,
+        tourName: checkoutData.tourName,
+        tourImage: checkoutData.tourImage,
         email: 'pending@checkout.com'
       })
     })
-      .then(res => res.json())
+      .then(async res => {
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || `Error del servidor (${res.status})`);
+        }
+        return res.json();
+      })
       .then(data => {
-        if (data.clientSecret) {
+        if (data.clientSecret && data.clientSecret.includes('_secret_')) {
           setClientSecret(data.clientSecret);
+          setIsMockMode(false);
+        } else if (data.isMock || (data.clientSecret && data.clientSecret.includes('mock'))) {
+          setClientSecret(data.clientSecret || 'mock_secret');
+          setIsMockMode(true);
+        } else {
+          throw new Error("No se pudo obtener una clave de sesión válida.");
         }
       })
-      .catch(console.error);
-  }, [checkoutData, navigate]);
+      .catch((err: any) => {
+        console.error("[Checkout Intent Error]:", err);
+        setFetchError(err.message || "Error al conectar con la pasarela de pago.");
+      })
+      .finally(() => {
+        setLoadingIntent(false);
+      });
+  }, [checkoutData]);
 
-  if (!checkoutData || !clientSecret) {
+  if (!checkoutData) {
     return (
-      <div className="min-h-screen bg-bgDark flex items-center justify-center">
-        <Loader className="w-10 h-10 text-cyan animate-spin" />
+      <div className="min-h-screen bg-bgDark flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md bg-surface border border-white/10 p-8 rounded-3xl shadow-premium">
+          <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Calendar className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold font-display text-white mb-2">No hay excursión seleccionada</h2>
+          <p className="text-gray-400 text-sm mb-6">
+            Para iniciar tu proceso de reserva y pago seguro, primero selecciona tu excursión en el catálogo.
+          </p>
+          <button
+            onClick={() => navigate('/')}
+            className="w-full bg-secondary hover:bg-orange-600 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-glow"
+          >
+            Ver Catálogo de Excursiones
+          </button>
+        </div>
       </div>
     );
+  }
+
+  if (fetchError && !clientSecret) {
+    return (
+      <div className="min-h-screen bg-bgDark flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md bg-surface border border-red-500/30 p-8 rounded-3xl shadow-premium">
+          <div className="w-16 h-16 bg-red-500/10 text-red-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Lock className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold font-display text-white mb-2">Error en la Sesión de Pago</h2>
+          <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+            {fetchError}
+          </p>
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => {
+                setFetchError('');
+                setCheckoutData({ ...checkoutData }); // reintentar
+              }}
+              className="w-full bg-cyan hover:bg-cyan-400 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-glow"
+            >
+              Reintentar Sesión de Pago
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="w-full bg-white/5 hover:bg-white/10 text-gray-300 font-bold py-3 px-6 rounded-xl transition"
+            >
+              Volver al Catálogo
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadingIntent || !clientSecret) {
+    return (
+      <div className="min-h-screen bg-bgDark flex flex-col items-center justify-center gap-4">
+        <Loader className="w-10 h-10 text-cyan animate-spin" />
+        <p className="text-gray-400 text-xs font-bold font-display uppercase tracking-widest animate-pulse">
+          Iniciando Sesión Encriptada con Stripe...
+        </p>
+      </div>
+    );
+  }
+
+  if (isMockMode) {
+    return <CheckoutForm checkoutData={checkoutData} clientSecret={clientSecret} isMock={true} />;
   }
 
   const appearance = {
@@ -479,12 +598,14 @@ export default function CheckoutPage() {
       colorPrimary: '#0ea5e9',
       colorBackground: '#08131d',
       colorText: '#ffffff',
+      colorDanger: '#ef4444',
+      fontFamily: 'system-ui, -apple-system, sans-serif',
     },
   };
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret, appearance }}>
-      <CheckoutForm checkoutData={checkoutData} clientSecret={clientSecret} />
+      <CheckoutForm checkoutData={checkoutData} clientSecret={clientSecret} isMock={false} />
     </Elements>
   );
 }

@@ -1,0 +1,5145 @@
+{
+  "tours": [
+    {
+      "id": 1,
+      "name": "Isla Saona All Inclusive VIP: Catamarán, Lancha Rápida & Piscina Natural",
+      "category": "saona",
+      "badge": "MÁS VENDIDO #1",
+      "badgeClass": "badge-accent",
+      "price": 79,
+      "rating": 4.9,
+      "reviews": 1420,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_1/001.jpg",
+      "desc": "¡La excursión número 1 de la República Dominicana! Navega en catamarán de vela con música, animación y barra libre, báñate en la famosa Piscina Natural con estrellas de mar gigantes y relájate en las playas vírgenes de arena blanca de Isla Saona con almuerzo buffet típico dominicano incluido.",
+      "duration": "Día Completo (8-9 hrs)",
+      "difficulty": "Fácil",
+      "included": [
+        "Transporte ida y vuelta desde tu hotel",
+        "Paseo en Catamarán de fiesta y Lancha Rápida",
+        "Parada en Piscina Natural con estrellas de mar",
+        "Almuerzo buffet dominicano en la playa",
+        "Barra libre nacional (Ron, cerveza, refrescos, agua)",
+        "Guía turístico certificado bilingüe",
+        "Impuestos y brazalete de Parque Nacional Cotubanamá"
+      ],
+      "photos": [
+        "/tours/excursions/tour_1/001.jpg",
+        "/tours/excursions/tour_1/002.jpg",
+        "/tours/excursions/tour_1/003.jpg",
+        "/tours/excursions/tour_1/004.jpg",
+        "/tours/excursions/tour_1/005.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Buggies 4x4 Macao: Cenote Subterráneo, Playa Salvaje & Degustación",
+      "category": "buggy",
+      "badge": "AVENTURA TOP",
+      "badgeClass": "badge-accent",
+      "price": 55,
+      "rating": 4.8,
+      "reviews": 1150,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_2/001.jpg",
+      "desc": "¡Acelera a fondo por senderos selváticos en un potente buggy 4x4! Atraviesa caminos de barro, refréscate nadando en un cenote de cueva subterránea de aguas cristalinas, visita la impresionante Playa Macao y degusta café artesanal, cacao orgánico y mamajuana en un rancho típico.",
+      "duration": "Medio Día (4 hrs)",
+      "difficulty": "Media",
+      "included": [
+        "Recogida y regreso en tu resort",
+        "Buggy 4x4 todoterreno y casco de protección",
+        "Guía líder de caravana y equipo de asistencia",
+        "Nado en cueva subterránea (Cenote indígena)",
+        "Parada libre en la salvaje Playa Macao",
+        "Degustación de café, cacao y mamajuana dominicana"
+      ],
+      "photos": [
+        "/tours/excursions/tour_2/001.jpg",
+        "/tours/excursions/tour_2/002.jpg",
+        "/tours/excursions/tour_2/003.jpg",
+        "/tours/excursions/tour_2/004.jpg",
+        "/tours/excursions/tour_2/005.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Parasailing Punta Cana: Vuelo Panorámico sobre Bávaro con Recogida Gratis",
+      "category": "parasail",
+      "badge": "VISTA 360°",
+      "badgeClass": "badge-cyan",
+      "price": 75,
+      "rating": 4.9,
+      "reviews": 840,
+      "tag": "Parasail",
+      "image": "/tours/excursions/tour_3/001.jpg",
+      "desc": "¡Vuela sobre las impresionantes aguas turquesas del Caribe a más de 150 metros de altura! Disfruta de vistas panorámicas 360° de toda la costa de Bávaro y Punta Cana con despegue y aterrizaje suave directo en la plataforma del barco. Seguro, emocionante e inolvidable.",
+      "duration": "1 hora (10-12 min en el aire)",
+      "difficulty": "Fácil",
+      "included": [
+        "Transporte ida y vuelta desde tu hotel",
+        "Vuelo en paracaídas biplaza o individual",
+        "Lancha rápida moderna con plataforma hidráulica",
+        "Arnés de máxima seguridad y chaleco salvavidas",
+        "Capitán y tripulación profesional certificada",
+        "Instrucciones de seguridad y asistencia completa"
+      ],
+      "photos": [
+        "/tours/excursions/tour_3/001.jpg",
+        "/tours/excursions/tour_3/002.jpg",
+        "/tours/excursions/tour_3/003.jpg",
+        "/tours/excursions/tour_3/004.jpg",
+        "/tours/excursions/tour_3/005.jpg"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Traslado Privado Aeropuerto Punta Cana (PUJ) - Ida y Vuelta en Confort VIP",
+      "category": "transfer",
+      "badge": "SERVICIO VIP",
+      "badgeClass": "badge-secondary",
+      "price": 45,
+      "rating": 4.9,
+      "reviews": 970,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_4/001.jpg",
+      "desc": "Olvídate de las filas y el estrés al aterrizar en el Aeropuerto Internacional de Punta Cana (PUJ). Tu chofer profesional te esperará con un cartel personalizado para llevarte directo a tu hotel o resort en vehículo moderno con aire acondicionado, Wi-Fi y confort garantizado.",
+      "duration": "25 - 45 min",
+      "difficulty": "Fácil",
+      "included": [
+        "Recepción personalizada con cartel a tu nombre",
+        "Monitoreo de vuelo en tiempo real (sin cargos por demoras)",
+        "Vehículo privado exclusivo (sin paradas compartidas)",
+        "Aire acondicionado y asistencia con todo el equipaje",
+        "Agua embotellada fría de bienvenida",
+        "Disponible 24 horas los 7 días de la semana"
+      ],
+      "photos": [
+        "/tours/excursions/tour_4/001.jpg",
+        "/tours/excursions/tour_4/002.jpg",
+        "/tours/excursions/tour_4/003.jpg",
+        "/tours/excursions/tour_4/004.jpg",
+        "/tours/excursions/tour_4/005.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "6 hours Professional Fishing Charter",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.3,
+      "reviews": 761,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_5/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_5/001.jpg",
+        "/tours/excursions/tour_5/002.jpg",
+        "/tours/excursions/tour_5/003.jpg",
+        "/tours/excursions/tour_5/004.jpg",
+        "/tours/excursions/tour_5/005.jpg"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Adults only Small group snorkel catamaran tour lobster included 1 trip advisor 5years in a row",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.7,
+      "reviews": 319,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_6/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_6/001.jpg",
+        "/tours/excursions/tour_6/002.jpg",
+        "/tours/excursions/tour_6/003.jpg",
+        "/tours/excursions/tour_6/004.jpg",
+        "/tours/excursions/tour_6/005.jpg"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Affordable Punta Cana Private Transfer Comfort and Style",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.9,
+      "reviews": 611,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_7/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_7/001.jpg",
+        "/tours/excursions/tour_7/002.jpg",
+        "/tours/excursions/tour_7/003.jpg",
+        "/tours/excursions/tour_7/004.jpg",
+        "/tours/excursions/tour_7/005.jpg"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Airport Transfer and Hotel Pick ups",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.6,
+      "reviews": 223,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_8/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_8/001.jpg",
+        "/tours/excursions/tour_8/002.jpg",
+        "/tours/excursions/tour_8/003.jpg",
+        "/tours/excursions/tour_8/004.jpg",
+        "/tours/excursions/tour_8/005.jpg"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Airport Transportation transfers VIP Luxury Suburban",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.4,
+      "reviews": 375,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_9/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_9/001.jpg",
+        "/tours/excursions/tour_9/002.jpg",
+        "/tours/excursions/tour_9/003.jpg",
+        "/tours/excursions/tour_9/004.jpg",
+        "/tours/excursions/tour_9/005.jpg"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "All Inclusive Guided Tour to Saona Islands from Punta Cana",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.5,
+      "reviews": 781,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_10/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_10/001.jpg",
+        "/tours/excursions/tour_10/002.jpg",
+        "/tours/excursions/tour_10/003.jpg",
+        "/tours/excursions/tour_10/004.jpg",
+        "/tours/excursions/tour_10/005.jpg"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "All Inclusive Punta Cana Hip Hop Party Boat Only Adults",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 414,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_11/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_11/001.jpg",
+        "/tours/excursions/tour_11/002.jpg",
+        "/tours/excursions/tour_11/003.jpg",
+        "/tours/excursions/tour_11/004.jpg",
+        "/tours/excursions/tour_11/005.jpg"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Animation catamaran and snorkeling Isla Catalina Food and drinks",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.9,
+      "reviews": 487,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_12/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_12/001.jpg",
+        "/tours/excursions/tour_12/002.jpg",
+        "/tours/excursions/tour_12/003.jpg",
+        "/tours/excursions/tour_12/004.jpg",
+        "/tours/excursions/tour_12/005.jpg"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "ATV and Buggy Excursion 4x4 in Punta Cana with Water Cave",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 749,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_13/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_13/001.jpg",
+        "/tours/excursions/tour_13/002.jpg",
+        "/tours/excursions/tour_13/003.jpg",
+        "/tours/excursions/tour_13/004.jpg",
+        "/tours/excursions/tour_13/005.jpg"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "ATV and Buggy Tours in Punta Cana with Water Cave and Beach Stop",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.3,
+      "reviews": 114,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_14/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_14/001.jpg",
+        "/tours/excursions/tour_14/002.jpg",
+        "/tours/excursions/tour_14/003.jpg",
+        "/tours/excursions/tour_14/004.jpg",
+        "/tours/excursions/tour_14/005.jpg"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "ATV Boogie Adventure and Tasting Tour in Punta Cana",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.2,
+      "reviews": 551,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_15/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_15/001.jpg",
+        "/tours/excursions/tour_15/002.jpg",
+        "/tours/excursions/tour_15/003.jpg",
+        "/tours/excursions/tour_15/004.jpg",
+        "/tours/excursions/tour_15/005.jpg"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "ATV Quad Fours Wheels Safary",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.6,
+      "reviews": 614,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_16/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_16/001.jpg",
+        "/tours/excursions/tour_16/002.jpg",
+        "/tours/excursions/tour_16/003.jpg",
+        "/tours/excursions/tour_16/004.jpg",
+        "/tours/excursions/tour_16/005.jpg"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "ATV Tour Punta Cana Magic Caves and Dream Beaches and Culture",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.8,
+      "reviews": 142,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_17/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_17/001.jpg",
+        "/tours/excursions/tour_17/002.jpg",
+        "/tours/excursions/tour_17/003.jpg",
+        "/tours/excursions/tour_17/004.jpg",
+        "/tours/excursions/tour_17/005.jpg"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Bavarian VIP Monkey House",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4,
+      "reviews": 315,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_18/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_18/001.jpg",
+        "/tours/excursions/tour_18/002.jpg",
+        "/tours/excursions/tour_18/003.jpg",
+        "/tours/excursions/tour_18/004.jpg",
+        "/tours/excursions/tour_18/005.jpg"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Best Hip Hop Party Punta Cana with Open Bar and DJ Adults Only",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.7,
+      "reviews": 883,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_19/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_19/001.jpg",
+        "/tours/excursions/tour_19/002.jpg",
+        "/tours/excursions/tour_19/003.jpg",
+        "/tours/excursions/tour_19/004.jpg",
+        "/tours/excursions/tour_19/005.jpg"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Blue Cave Zip Line Buggy Horse Back Riding Macao Beach",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 419,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_20/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_20/001.jpg",
+        "/tours/excursions/tour_20/002.jpg",
+        "/tours/excursions/tour_20/003.jpg",
+        "/tours/excursions/tour_20/004.jpg",
+        "/tours/excursions/tour_20/005.jpg"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Bokun Free Product April 2026 1",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.3,
+      "reviews": 554,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_21/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_21/001.jpg",
+        "/tours/excursions/tour_21/002.jpg",
+        "/tours/excursions/tour_21/003.jpg",
+        "/tours/excursions/tour_21/004.jpg",
+        "/tours/excursions/tour_21/005.jpg"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Bokun Free Product December 2025",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4,
+      "reviews": 854,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_22/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_22/001.jpg",
+        "/tours/excursions/tour_22/002.jpg",
+        "/tours/excursions/tour_22/003.jpg",
+        "/tours/excursions/tour_22/004.jpg",
+        "/tours/excursions/tour_22/005.jpg"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Bokun Free Product September 2",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.1,
+      "reviews": 805,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_23/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_23/001.jpg",
+        "/tours/excursions/tour_23/002.jpg",
+        "/tours/excursions/tour_23/003.jpg",
+        "/tours/excursions/tour_23/004.jpg",
+        "/tours/excursions/tour_23/005.jpg"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "booze Cruise Adventures Snorkeling and sand bar with entertainment team",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.1,
+      "reviews": 539,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_24/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_24/001.jpg",
+        "/tours/excursions/tour_24/002.jpg",
+        "/tours/excursions/tour_24/003.jpg",
+        "/tours/excursions/tour_24/004.jpg",
+        "/tours/excursions/tour_24/005.jpg"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Booze Cruise hip hop party adults only",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.9,
+      "reviews": 622,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_25/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_25/001.jpg",
+        "/tours/excursions/tour_25/002.jpg",
+        "/tours/excursions/tour_25/003.jpg",
+        "/tours/excursions/tour_25/004.jpg",
+        "/tours/excursions/tour_25/005.jpg"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Bottom Fishing",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4,
+      "reviews": 771,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_26/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_26/001.jpg",
+        "/tours/excursions/tour_26/002.jpg",
+        "/tours/excursions/tour_26/003.jpg",
+        "/tours/excursions/tour_26/004.jpg",
+        "/tours/excursions/tour_26/005.jpg"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Buggy Adventure in Punta Cana Culture Beach and Cenote",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.3,
+      "reviews": 694,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_27/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_27/001.jpg",
+        "/tours/excursions/tour_27/002.jpg",
+        "/tours/excursions/tour_27/003.jpg",
+        "/tours/excursions/tour_27/004.jpg",
+        "/tours/excursions/tour_27/005.jpg"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Buggy and ATV Adventure in Punta Cana with Cave and Beach Visit",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 782,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_28/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_28/001.jpg",
+        "/tours/excursions/tour_28/002.jpg",
+        "/tours/excursions/tour_28/003.jpg",
+        "/tours/excursions/tour_28/004.jpg",
+        "/tours/excursions/tour_28/005.jpg"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Caribbean Dune Buggies with Macao beach and Cave",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 748,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_29/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_29/001.jpg",
+        "/tours/excursions/tour_29/002.jpg",
+        "/tours/excursions/tour_29/003.jpg",
+        "/tours/excursions/tour_29/004.jpg",
+        "/tours/excursions/tour_29/005.jpg"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Catalina Adventure with Snorkel Lunch and Transfert",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.9,
+      "reviews": 117,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_30/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_30/001.jpg",
+        "/tours/excursions/tour_30/002.jpg",
+        "/tours/excursions/tour_30/003.jpg",
+        "/tours/excursions/tour_30/004.jpg",
+        "/tours/excursions/tour_30/005.jpg"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Catalina Experience Tour",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.5,
+      "reviews": 898,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_31/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_31/001.jpg",
+        "/tours/excursions/tour_31/002.jpg",
+        "/tours/excursions/tour_31/003.jpg",
+        "/tours/excursions/tour_31/004.jpg",
+        "/tours/excursions/tour_31/005.jpg"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Catalina Yacht Private",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 200,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_32/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_32/001.jpg",
+        "/tours/excursions/tour_32/002.jpg",
+        "/tours/excursions/tour_32/003.jpg",
+        "/tours/excursions/tour_32/004.jpg",
+        "/tours/excursions/tour_32/005.jpg"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Catamaran Family Boat in Punta Cana",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 476,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_33/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_33/001.jpg",
+        "/tours/excursions/tour_33/002.jpg",
+        "/tours/excursions/tour_33/003.jpg",
+        "/tours/excursions/tour_33/004.jpg",
+        "/tours/excursions/tour_33/005.jpg"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Cayo Buggy Adventure Premium Off Road Experience in Punta Cana",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.7,
+      "reviews": 700,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_34/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_34/001.jpg",
+        "/tours/excursions/tour_34/002.jpg",
+        "/tours/excursions/tour_34/003.jpg",
+        "/tours/excursions/tour_34/004.jpg",
+        "/tours/excursions/tour_34/005.jpg"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Coco Bongo Night Club Party in Punta Cana",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.2,
+      "reviews": 450,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_35/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_35/001.jpg",
+        "/tours/excursions/tour_35/002.jpg",
+        "/tours/excursions/tour_35/003.jpg",
+        "/tours/excursions/tour_35/004.jpg",
+        "/tours/excursions/tour_35/005.jpg"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Coco Bongo Night Out From Punta Cana with Transportation",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.5,
+      "reviews": 429,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_36/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_36/001.jpg",
+        "/tours/excursions/tour_36/002.jpg",
+        "/tours/excursions/tour_36/003.jpg",
+        "/tours/excursions/tour_36/004.jpg",
+        "/tours/excursions/tour_36/005.jpg"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Coco Bongo Punta Cana Gold Member with Open Bar and Skip the Line",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 165,
+      "rating": 4.2,
+      "reviews": 899,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_37/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_37/001.jpg",
+        "/tours/excursions/tour_37/002.jpg",
+        "/tours/excursions/tour_37/003.jpg",
+        "/tours/excursions/tour_37/004.jpg",
+        "/tours/excursions/tour_37/005.jpg"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Coco Bongo Punta Cana with hotel resort pick up",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.2,
+      "reviews": 107,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_38/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_38/001.jpg",
+        "/tours/excursions/tour_38/002.jpg",
+        "/tours/excursions/tour_38/003.jpg",
+        "/tours/excursions/tour_38/004.jpg",
+        "/tours/excursions/tour_38/005.jpg"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Coco Bongo Punta Cana",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.1,
+      "reviews": 717,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_39/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_39/001.jpg",
+        "/tours/excursions/tour_39/002.jpg",
+        "/tours/excursions/tour_39/003.jpg",
+        "/tours/excursions/tour_39/004.jpg",
+        "/tours/excursions/tour_39/005.jpg"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Cultural walk",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 120,
+      "rating": 4.1,
+      "reviews": 378,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_40/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_40/001.jpg",
+        "/tours/excursions/tour_40/002.jpg",
+        "/tours/excursions/tour_40/003.jpg",
+        "/tours/excursions/tour_40/004.jpg",
+        "/tours/excursions/tour_40/005.jpg"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Dinner in the Sky Experience in Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.5,
+      "reviews": 426,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_41/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_41/001.jpg",
+        "/tours/excursions/tour_41/002.jpg",
+        "/tours/excursions/tour_41/003.jpg",
+        "/tours/excursions/tour_41/004.jpg",
+        "/tours/excursions/tour_41/005.jpg"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Discover Cultural Tour to Higuey from Punta Cana for Small Groups",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.6,
+      "reviews": 321,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_42/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_42/001.jpg",
+        "/tours/excursions/tour_42/002.jpg",
+        "/tours/excursions/tour_42/003.jpg",
+        "/tours/excursions/tour_42/004.jpg",
+        "/tours/excursions/tour_42/005.jpg"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Discover Scuba Diving and Snorkeling Combo",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.1,
+      "reviews": 595,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_43/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_43/001.jpg",
+        "/tours/excursions/tour_43/002.jpg",
+        "/tours/excursions/tour_43/003.jpg",
+        "/tours/excursions/tour_43/004.jpg",
+        "/tours/excursions/tour_43/005.jpg"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Dominican food Culinary Tour from Punta Cana with free pick up and drop off",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 110,
+      "rating": 4.2,
+      "reviews": 634,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_44/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_44/001.jpg",
+        "/tours/excursions/tour_44/002.jpg",
+        "/tours/excursions/tour_44/003.jpg",
+        "/tours/excursions/tour_44/004.jpg",
+        "/tours/excursions/tour_44/005.jpg"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Domitai park 9 Attractions with Lunch",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.6,
+      "reviews": 765,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_45/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_45/001.jpg",
+        "/tours/excursions/tour_45/002.jpg",
+        "/tours/excursions/tour_45/003.jpg",
+        "/tours/excursions/tour_45/004.jpg",
+        "/tours/excursions/tour_45/005.jpg"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Domitai Park Punta Cana Adventure",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.8,
+      "reviews": 554,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_46/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_46/001.jpg",
+        "/tours/excursions/tour_46/002.jpg",
+        "/tours/excursions/tour_46/003.jpg",
+        "/tours/excursions/tour_46/004.jpg",
+        "/tours/excursions/tour_46/005.jpg"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Domitai Park",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4,
+      "reviews": 537,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_47/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_47/001.jpg",
+        "/tours/excursions/tour_47/002.jpg",
+        "/tours/excursions/tour_47/003.jpg",
+        "/tours/excursions/tour_47/004.jpg",
+        "/tours/excursions/tour_47/005.jpg"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Drink Point Infinity Night Experience",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.2,
+      "reviews": 887,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_48/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_48/001.jpg",
+        "/tours/excursions/tour_48/002.jpg",
+        "/tours/excursions/tour_48/003.jpg",
+        "/tours/excursions/tour_48/004.jpg",
+        "/tours/excursions/tour_48/005.jpg"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Dune Buggy adventure chocolate tasting cenote and Macao beach",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.8,
+      "reviews": 401,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_49/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_49/001.jpg",
+        "/tours/excursions/tour_49/002.jpg",
+        "/tours/excursions/tour_49/003.jpg",
+        "/tours/excursions/tour_49/004.jpg",
+        "/tours/excursions/tour_49/005.jpg"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "El Dorado Water Park",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.4,
+      "reviews": 371,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_50/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_50/001.jpg",
+        "/tours/excursions/tour_50/002.jpg",
+        "/tours/excursions/tour_50/003.jpg",
+        "/tours/excursions/tour_50/004.jpg",
+        "/tours/excursions/tour_50/005.jpg"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Exclusive Private Catamaran Tour to Saona Island VIP Service",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.8,
+      "reviews": 855,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_51/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_51/001.jpg",
+        "/tours/excursions/tour_51/002.jpg",
+        "/tours/excursions/tour_51/003.jpg",
+        "/tours/excursions/tour_51/004.jpg",
+        "/tours/excursions/tour_51/005.jpg"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Extreme Buggy Tour in Punta Cana River Cave Macao Beach",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 666,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_52/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_52/001.jpg",
+        "/tours/excursions/tour_52/002.jpg",
+        "/tours/excursions/tour_52/003.jpg",
+        "/tours/excursions/tour_52/004.jpg",
+        "/tours/excursions/tour_52/005.jpg"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "E Bike City Tour Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.1,
+      "reviews": 547,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_53/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_53/001.jpg",
+        "/tours/excursions/tour_53/002.jpg",
+        "/tours/excursions/tour_53/003.jpg",
+        "/tours/excursions/tour_53/004.jpg",
+        "/tours/excursions/tour_53/005.jpg"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Family Friendly ATV and Buggy Tour in Punta Cana with Beach and Cave",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 227,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_54/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_54/001.jpg",
+        "/tours/excursions/tour_54/002.jpg",
+        "/tours/excursions/tour_54/003.jpg",
+        "/tours/excursions/tour_54/004.jpg",
+        "/tours/excursions/tour_54/005.jpg"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "FISHING Mar Quesa Viking 41ft Punta Cana 4 Hours",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.3,
+      "reviews": 740,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_55/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_55/001.jpg",
+        "/tours/excursions/tour_55/002.jpg",
+        "/tours/excursions/tour_55/003.jpg",
+        "/tours/excursions/tour_55/004.jpg",
+        "/tours/excursions/tour_55/005.jpg"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Fishing Punta Cana Fishing Party Tour",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4.2,
+      "reviews": 535,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_56/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_56/001.jpg",
+        "/tours/excursions/tour_56/002.jpg",
+        "/tours/excursions/tour_56/003.jpg",
+        "/tours/excursions/tour_56/004.jpg",
+        "/tours/excursions/tour_56/005.jpg"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Fishing Tour Punta Cana",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.8,
+      "reviews": 153,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_57/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_57/001.jpg",
+        "/tours/excursions/tour_57/002.jpg",
+        "/tours/excursions/tour_57/003.jpg",
+        "/tours/excursions/tour_57/004.jpg",
+        "/tours/excursions/tour_57/005.jpg"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Flying Dress Photoshoot in Punta Cana two Ladies two Dresses",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.5,
+      "reviews": 203,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_58/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_58/001.jpg",
+        "/tours/excursions/tour_58/002.jpg",
+        "/tours/excursions/tour_58/003.jpg",
+        "/tours/excursions/tour_58/004.jpg",
+        "/tours/excursions/tour_58/005.jpg"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Free Product March",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.5,
+      "reviews": 356,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_59/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_59/001.jpg",
+        "/tours/excursions/tour_59/002.jpg",
+        "/tours/excursions/tour_59/003.jpg",
+        "/tours/excursions/tour_59/004.jpg",
+        "/tours/excursions/tour_59/005.jpg"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Full Day Catalina Island Scuba Diving Tour from Punta Cana",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.3,
+      "reviews": 293,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_60/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_60/001.jpg",
+        "/tours/excursions/tour_60/002.jpg",
+        "/tours/excursions/tour_60/003.jpg",
+        "/tours/excursions/tour_60/004.jpg",
+        "/tours/excursions/tour_60/005.jpg"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Full Day Samana Tour Waterfall Adventure and Bacardi Island",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 135,
+      "rating": 4,
+      "reviews": 818,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_61/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_61/001.jpg",
+        "/tours/excursions/tour_61/002.jpg",
+        "/tours/excursions/tour_61/003.jpg",
+        "/tours/excursions/tour_61/004.jpg",
+        "/tours/excursions/tour_61/005.jpg"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Full Day Santo Domingo City Tour from Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.5,
+      "reviews": 196,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_62/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_62/001.jpg",
+        "/tours/excursions/tour_62/002.jpg",
+        "/tours/excursions/tour_62/003.jpg",
+        "/tours/excursions/tour_62/004.jpg",
+        "/tours/excursions/tour_62/005.jpg"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Full Day Santo Domingo City Tour History of the Caribbean From Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.3,
+      "reviews": 748,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_63/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_63/001.jpg",
+        "/tours/excursions/tour_63/002.jpg",
+        "/tours/excursions/tour_63/003.jpg",
+        "/tours/excursions/tour_63/004.jpg",
+        "/tours/excursions/tour_63/005.jpg"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Full Day Tour to Isla Saona with Pick Up",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4,
+      "reviews": 317,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_64/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_64/001.jpg",
+        "/tours/excursions/tour_64/002.jpg",
+        "/tours/excursions/tour_64/003.jpg",
+        "/tours/excursions/tour_64/004.jpg",
+        "/tours/excursions/tour_64/005.jpg"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Full Safari Zipline Buggies and Horse Riding",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.6,
+      "reviews": 654,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_65/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_65/001.jpg",
+        "/tours/excursions/tour_65/002.jpg",
+        "/tours/excursions/tour_65/003.jpg",
+        "/tours/excursions/tour_65/004.jpg",
+        "/tours/excursions/tour_65/005.jpg"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Great adventure Catamaran snorkeling parasailing and natural Swiming pool",
+      "category": "parasail",
+      "badge": "Vuelo Panorámico",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 606,
+      "tag": "Parasail",
+      "image": "/tours/excursions/tour_66/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_66/001.jpg",
+        "/tours/excursions/tour_66/002.jpg",
+        "/tours/excursions/tour_66/003.jpg",
+        "/tours/excursions/tour_66/004.jpg",
+        "/tours/excursions/tour_66/005.jpg"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Group Surf Lessons at Macao Surf Camp Punta Cana Surfing",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 100,
+      "rating": 4.5,
+      "reviews": 882,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_67/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_67/001.jpg",
+        "/tours/excursions/tour_67/002.jpg",
+        "/tours/excursions/tour_67/003.jpg",
+        "/tours/excursions/tour_67/004.jpg",
+        "/tours/excursions/tour_67/005.jpg"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Half Day Adventure ATV 4x4 River Cave Waterfall and Dominican Culture",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.3,
+      "reviews": 661,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_68/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_68/001.jpg",
+        "/tours/excursions/tour_68/002.jpg",
+        "/tours/excursions/tour_68/003.jpg",
+        "/tours/excursions/tour_68/004.jpg",
+        "/tours/excursions/tour_68/005.jpg"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Half Day ATV Adventure to Water Cave and Macao Beach",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 364,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_69/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_69/001.jpg",
+        "/tours/excursions/tour_69/002.jpg",
+        "/tours/excursions/tour_69/003.jpg",
+        "/tours/excursions/tour_69/004.jpg",
+        "/tours/excursions/tour_69/005.jpg"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "Half Day Cultural Safari in Bavaria",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 198,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_70/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_70/001.jpg",
+        "/tours/excursions/tour_70/002.jpg",
+        "/tours/excursions/tour_70/003.jpg",
+        "/tours/excursions/tour_70/004.jpg",
+        "/tours/excursions/tour_70/005.jpg"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Half Day Cultural Safari",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 666,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_71/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_71/001.jpg",
+        "/tours/excursions/tour_71/002.jpg",
+        "/tours/excursions/tour_71/003.jpg",
+        "/tours/excursions/tour_71/004.jpg",
+        "/tours/excursions/tour_71/005.jpg"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Hennessy Cruise Only Adult Hip Hop Party Boat",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.7,
+      "reviews": 104,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_72/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_72/001.jpg",
+        "/tours/excursions/tour_72/002.jpg",
+        "/tours/excursions/tour_72/003.jpg",
+        "/tours/excursions/tour_72/004.jpg",
+        "/tours/excursions/tour_72/005.jpg"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Hip Hop Party Boat Punta Cana with Free Drinks Adults Only",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4,
+      "reviews": 413,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_73/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_73/001.jpg",
+        "/tours/excursions/tour_73/002.jpg",
+        "/tours/excursions/tour_73/003.jpg",
+        "/tours/excursions/tour_73/004.jpg",
+        "/tours/excursions/tour_73/005.jpg"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Hip Hop Party Boat Punta Cana with Open Bar Live DJ Adults Only",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.9,
+      "reviews": 630,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_74/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_74/001.jpg",
+        "/tours/excursions/tour_74/002.jpg",
+        "/tours/excursions/tour_74/003.jpg",
+        "/tours/excursions/tour_74/004.jpg",
+        "/tours/excursions/tour_74/005.jpg"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Horseback Riding Adventure in Punta Cana",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 364,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_75/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_75/001.jpg",
+        "/tours/excursions/tour_75/002.jpg",
+        "/tours/excursions/tour_75/003.jpg",
+        "/tours/excursions/tour_75/004.jpg",
+        "/tours/excursions/tour_75/005.jpg"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Horseback Riding and Off Roading to Water Cave and Macao Beach",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 448,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_76/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_76/001.jpg",
+        "/tours/excursions/tour_76/002.jpg",
+        "/tours/excursions/tour_76/003.jpg",
+        "/tours/excursions/tour_76/004.jpg",
+        "/tours/excursions/tour_76/005.jpg"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Horseback riding on the beach",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4,
+      "reviews": 355,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_77/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_77/001.jpg",
+        "/tours/excursions/tour_77/002.jpg",
+        "/tours/excursions/tour_77/003.jpg",
+        "/tours/excursions/tour_77/004.jpg",
+        "/tours/excursions/tour_77/005.jpg"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Infinity Night Party Experience in Punta Cana",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.4,
+      "reviews": 222,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_78/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_78/001.jpg",
+        "/tours/excursions/tour_78/002.jpg",
+        "/tours/excursions/tour_78/003.jpg",
+        "/tours/excursions/tour_78/004.jpg",
+        "/tours/excursions/tour_78/005.jpg"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Infinity ocean catamaran and hip hop party boat TRINITY",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.7,
+      "reviews": 481,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_79/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_79/001.jpg",
+        "/tours/excursions/tour_79/002.jpg",
+        "/tours/excursions/tour_79/003.jpg",
+        "/tours/excursions/tour_79/004.jpg",
+        "/tours/excursions/tour_79/005.jpg"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "International Cuisine",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4.1,
+      "reviews": 783,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_80/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_80/001.jpg",
+        "/tours/excursions/tour_80/002.jpg",
+        "/tours/excursions/tour_80/003.jpg",
+        "/tours/excursions/tour_80/004.jpg",
+        "/tours/excursions/tour_80/005.jpg"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Isala Saona All Inclusive",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.9,
+      "reviews": 311,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_81/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_81/001.jpg",
+        "/tours/excursions/tour_81/002.jpg",
+        "/tours/excursions/tour_81/003.jpg",
+        "/tours/excursions/tour_81/004.jpg",
+        "/tours/excursions/tour_81/005.jpg"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Jet sKI Downtown",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.2,
+      "reviews": 232,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_82/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_82/001.jpg",
+        "/tours/excursions/tour_82/002.jpg",
+        "/tours/excursions/tour_82/003.jpg",
+        "/tours/excursions/tour_82/004.jpg",
+        "/tours/excursions/tour_82/005.jpg"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Lamborghini Jet Car Adventure in Punta Cana",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.6,
+      "reviews": 695,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_83/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_83/001.jpg",
+        "/tours/excursions/tour_83/002.jpg",
+        "/tours/excursions/tour_83/003.jpg",
+        "/tours/excursions/tour_83/004.jpg",
+        "/tours/excursions/tour_83/005.jpg"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "La Cana Golf Package Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.6,
+      "reviews": 237,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_84/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_84/001.jpg",
+        "/tours/excursions/tour_84/002.jpg",
+        "/tours/excursions/tour_84/003.jpg",
+        "/tours/excursions/tour_84/004.jpg",
+        "/tours/excursions/tour_84/005.jpg"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "La Hacienda Dune Buggie Horseback Safari Zipline combo tour",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.2,
+      "reviews": 535,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_85/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_85/001.jpg",
+        "/tours/excursions/tour_85/002.jpg",
+        "/tours/excursions/tour_85/003.jpg",
+        "/tours/excursions/tour_85/004.jpg",
+        "/tours/excursions/tour_85/005.jpg"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "La Hacienda Pure InspirAction",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.4,
+      "reviews": 858,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_86/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_86/001.jpg",
+        "/tours/excursions/tour_86/002.jpg",
+        "/tours/excursions/tour_86/003.jpg",
+        "/tours/excursions/tour_86/004.jpg",
+        "/tours/excursions/tour_86/005.jpg"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Lets do hiking in Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.3,
+      "reviews": 216,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_87/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_87/001.jpg",
+        "/tours/excursions/tour_87/002.jpg",
+        "/tours/excursions/tour_87/003.jpg",
+        "/tours/excursions/tour_87/004.jpg",
+        "/tours/excursions/tour_87/005.jpg"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Los Haitises National Park",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.3,
+      "reviews": 130,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_88/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_88/001.jpg",
+        "/tours/excursions/tour_88/002.jpg",
+        "/tours/excursions/tour_88/003.jpg",
+        "/tours/excursions/tour_88/004.jpg",
+        "/tours/excursions/tour_88/005.jpg"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Luxury Private Yacht Rental in Punta Cana - Up to 18 People",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.8,
+      "reviews": 569,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_89/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_89/001.jpg",
+        "/tours/excursions/tour_89/002.jpg",
+        "/tours/excursions/tour_89/003.jpg",
+        "/tours/excursions/tour_89/004.jpg",
+        "/tours/excursions/tour_89/005.jpg"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Magnificent cultural tour half day for small groups",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 120,
+      "rating": 4.7,
+      "reviews": 445,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_90/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_90/001.jpg",
+        "/tours/excursions/tour_90/002.jpg",
+        "/tours/excursions/tour_90/003.jpg",
+        "/tours/excursions/tour_90/004.jpg",
+        "/tours/excursions/tour_90/005.jpg"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Monkeyland and Plantation Safari Tour from Punta Cana",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.5,
+      "reviews": 710,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_91/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_91/001.jpg",
+        "/tours/excursions/tour_91/002.jpg",
+        "/tours/excursions/tour_91/003.jpg",
+        "/tours/excursions/tour_91/004.jpg",
+        "/tours/excursions/tour_91/005.jpg"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Nothing in the cenotes Indigenous Eyes Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.4,
+      "reviews": 214,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_92/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_92/001.jpg",
+        "/tours/excursions/tour_92/002.jpg",
+        "/tours/excursions/tour_92/003.jpg",
+        "/tours/excursions/tour_92/004.jpg",
+        "/tours/excursions/tour_92/005.jpg"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Off Road Buggy Tour in Punta Cana Mud Beach and Pure Fun",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4,
+      "reviews": 434,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_93/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_93/001.jpg",
+        "/tours/excursions/tour_93/002.jpg",
+        "/tours/excursions/tour_93/003.jpg",
+        "/tours/excursions/tour_93/004.jpg",
+        "/tours/excursions/tour_93/005.jpg"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Parasailing Adventure in Punta Cana",
+      "category": "parasail",
+      "badge": "Vuelo Panorámico",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.2,
+      "reviews": 522,
+      "tag": "Parasail",
+      "image": "/tours/excursions/tour_94/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_94/001.jpg",
+        "/tours/excursions/tour_94/002.jpg",
+        "/tours/excursions/tour_94/003.jpg",
+        "/tours/excursions/tour_94/004.jpg",
+        "/tours/excursions/tour_94/005.jpg"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "Parasailing in Punta Cana with free pick up",
+      "category": "parasail",
+      "badge": "Vuelo Panorámico",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 250,
+      "tag": "Parasail",
+      "image": "/tours/excursions/tour_95/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_95/001.jpg",
+        "/tours/excursions/tour_95/002.jpg",
+        "/tours/excursions/tour_95/003.jpg",
+        "/tours/excursions/tour_95/004.jpg",
+        "/tours/excursions/tour_95/005.jpg"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Parasailing Yacht Experience in Punta Cana",
+      "category": "parasail",
+      "badge": "Vuelo Panorámico",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.4,
+      "reviews": 377,
+      "tag": "Parasail",
+      "image": "/tours/excursions/tour_96/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_96/001.jpg",
+        "/tours/excursions/tour_96/002.jpg",
+        "/tours/excursions/tour_96/003.jpg",
+        "/tours/excursions/tour_96/004.jpg",
+        "/tours/excursions/tour_96/005.jpg"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Party boat snorkeling sand bar and open bar",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.7,
+      "reviews": 178,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_97/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_97/001.jpg",
+        "/tours/excursions/tour_97/002.jpg",
+        "/tours/excursions/tour_97/003.jpg",
+        "/tours/excursions/tour_97/004.jpg",
+        "/tours/excursions/tour_97/005.jpg"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "Party Boat with Snorkeling and Open Bar",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.8,
+      "reviews": 771,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_98/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_98/001.jpg",
+        "/tours/excursions/tour_98/002.jpg",
+        "/tours/excursions/tour_98/003.jpg",
+        "/tours/excursions/tour_98/004.jpg",
+        "/tours/excursions/tour_98/005.jpg"
+      ]
+    },
+    {
+      "id": 99,
+      "name": "party booze cruise and snorkel adults only",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.7,
+      "reviews": 516,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_99/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_99/001.jpg",
+        "/tours/excursions/tour_99/002.jpg",
+        "/tours/excursions/tour_99/003.jpg",
+        "/tours/excursions/tour_99/004.jpg",
+        "/tours/excursions/tour_99/005.jpg"
+      ]
+    },
+    {
+      "id": 100,
+      "name": "Photo Session at a Private Beach Costa de Amor",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.5,
+      "reviews": 154,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_100/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_100/001.jpg",
+        "/tours/excursions/tour_100/002.jpg",
+        "/tours/excursions/tour_100/003.jpg",
+        "/tours/excursions/tour_100/004.jpg",
+        "/tours/excursions/tour_100/005.jpg"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "Photo Session at a Virgin Beach",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4.5,
+      "reviews": 548,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_101/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_101/001.jpg",
+        "/tours/excursions/tour_101/002.jpg",
+        "/tours/excursions/tour_101/003.jpg",
+        "/tours/excursions/tour_101/004.jpg",
+        "/tours/excursions/tour_101/005.jpg"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Polaris At Night Waterfall Pool Surf and Turf Dinner at t Adv Park",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.1,
+      "reviews": 245,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_102/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_102/001.jpg",
+        "/tours/excursions/tour_102/002.jpg",
+        "/tours/excursions/tour_102/003.jpg",
+        "/tours/excursions/tour_102/004.jpg",
+        "/tours/excursions/tour_102/005.jpg"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "Private 2 Hour Horseback Tour from Punta Cana",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 736,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_103/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_103/001.jpg",
+        "/tours/excursions/tour_103/002.jpg",
+        "/tours/excursions/tour_103/003.jpg",
+        "/tours/excursions/tour_103/004.jpg",
+        "/tours/excursions/tour_103/005.jpg"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Private Airport Transfer From Punta Cana Airport PUJ To Miches",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 120,
+      "rating": 4.4,
+      "reviews": 369,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_104/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_104/001.jpg",
+        "/tours/excursions/tour_104/002.jpg",
+        "/tours/excursions/tour_104/003.jpg",
+        "/tours/excursions/tour_104/004.jpg",
+        "/tours/excursions/tour_104/005.jpg"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Private Airport Transfer From Punta Cana To Uvero Alto",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.5,
+      "reviews": 206,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_105/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_105/001.jpg",
+        "/tours/excursions/tour_105/002.jpg",
+        "/tours/excursions/tour_105/003.jpg",
+        "/tours/excursions/tour_105/004.jpg",
+        "/tours/excursions/tour_105/005.jpg"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "Private Airport Transfer To From Punta Cana Airport PUJ To From Uvero Alto",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.9,
+      "reviews": 837,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_106/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_106/001.jpg",
+        "/tours/excursions/tour_106/002.jpg",
+        "/tours/excursions/tour_106/003.jpg",
+        "/tours/excursions/tour_106/004.jpg",
+        "/tours/excursions/tour_106/005.jpg"
+      ]
+    },
+    {
+      "id": 107,
+      "name": "Private catamaran cruise with slide all inclusive and lunch",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 825,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_107/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_107/001.jpg",
+        "/tours/excursions/tour_107/002.jpg",
+        "/tours/excursions/tour_107/003.jpg",
+        "/tours/excursions/tour_107/004.jpg",
+        "/tours/excursions/tour_107/005.jpg"
+      ]
+    },
+    {
+      "id": 108,
+      "name": "Private Luxury Charter Groups uptill 80 persons Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4,
+      "reviews": 855,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_108/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_108/001.jpg",
+        "/tours/excursions/tour_108/002.jpg",
+        "/tours/excursions/tour_108/003.jpg",
+        "/tours/excursions/tour_108/004.jpg",
+        "/tours/excursions/tour_108/005.jpg"
+      ]
+    },
+    {
+      "id": 109,
+      "name": "Private Punta Cana Airport Transfers Uvero Alto Hotels",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4.2,
+      "reviews": 258,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_109/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_109/001.jpg",
+        "/tours/excursions/tour_109/002.jpg",
+        "/tours/excursions/tour_109/003.jpg",
+        "/tours/excursions/tour_109/004.jpg",
+        "/tours/excursions/tour_109/005.jpg"
+      ]
+    },
+    {
+      "id": 110,
+      "name": "Private Punta Cana Airport Transfer to Punta Cana Hotels",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.8,
+      "reviews": 784,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_110/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_110/001.jpg",
+        "/tours/excursions/tour_110/002.jpg",
+        "/tours/excursions/tour_110/003.jpg",
+        "/tours/excursions/tour_110/004.jpg",
+        "/tours/excursions/tour_110/005.jpg"
+      ]
+    },
+    {
+      "id": 111,
+      "name": "Private round trip transfer from Punta Cana airport to Uvero Alto",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.5,
+      "reviews": 823,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_111/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_111/001.jpg",
+        "/tours/excursions/tour_111/002.jpg",
+        "/tours/excursions/tour_111/003.jpg",
+        "/tours/excursions/tour_111/004.jpg",
+        "/tours/excursions/tour_111/005.jpg"
+      ]
+    },
+    {
+      "id": 112,
+      "name": "Private Saona Island",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.5,
+      "reviews": 502,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_112/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_112/001.jpg",
+        "/tours/excursions/tour_112/002.jpg",
+        "/tours/excursions/tour_112/003.jpg",
+        "/tours/excursions/tour_112/004.jpg",
+        "/tours/excursions/tour_112/005.jpg"
+      ]
+    },
+    {
+      "id": 113,
+      "name": "Private Tour to Don Lucas Sigar Coffee and Rom and Chocolate",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.4,
+      "reviews": 447,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_113/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_113/001.jpg",
+        "/tours/excursions/tour_113/002.jpg",
+        "/tours/excursions/tour_113/003.jpg",
+        "/tours/excursions/tour_113/004.jpg",
+        "/tours/excursions/tour_113/005.jpg"
+      ]
+    },
+    {
+      "id": 114,
+      "name": "PRiVATE TRANSFERS FROM PUNTACANA AIRPORT-Miches playa Esmeralda",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.1,
+      "reviews": 445,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_114/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_114/001.jpg",
+        "/tours/excursions/tour_114/002.jpg",
+        "/tours/excursions/tour_114/003.jpg",
+        "/tours/excursions/tour_114/004.jpg",
+        "/tours/excursions/tour_114/005.jpg"
+      ]
+    },
+    {
+      "id": 115,
+      "name": "private transfers from Punta Cana airport to hotels at Punt Cana bavaro zone",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.3,
+      "reviews": 830,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_115/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_115/001.jpg",
+        "/tours/excursions/tour_115/002.jpg",
+        "/tours/excursions/tour_115/003.jpg",
+        "/tours/excursions/tour_115/004.jpg",
+        "/tours/excursions/tour_115/005.jpg"
+      ]
+    },
+    {
+      "id": 116,
+      "name": "Private Transfers from Punta Cana Airport to Hotels in Dominican Republic",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.3,
+      "reviews": 814,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_116/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_116/001.jpg",
+        "/tours/excursions/tour_116/002.jpg",
+        "/tours/excursions/tour_116/003.jpg",
+        "/tours/excursions/tour_116/004.jpg",
+        "/tours/excursions/tour_116/005.jpg"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "Private transfers from the Punta Cana airport to hotels in the area",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.3,
+      "reviews": 573,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_117/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_117/001.jpg",
+        "/tours/excursions/tour_117/002.jpg",
+        "/tours/excursions/tour_117/003.jpg",
+        "/tours/excursions/tour_117/004.jpg",
+        "/tours/excursions/tour_117/005.jpg"
+      ]
+    },
+    {
+      "id": 118,
+      "name": "Private Transfer from Punta Cana Airport to Bavaro",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.5,
+      "reviews": 849,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_118/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_118/001.jpg",
+        "/tours/excursions/tour_118/002.jpg",
+        "/tours/excursions/tour_118/003.jpg",
+        "/tours/excursions/tour_118/004.jpg",
+        "/tours/excursions/tour_118/005.jpg"
+      ]
+    },
+    {
+      "id": 119,
+      "name": "Private Transfer from Punta Cana Airport to Bayahibe Hotel and Zone",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4.2,
+      "reviews": 621,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_119/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_119/001.jpg",
+        "/tours/excursions/tour_119/002.jpg",
+        "/tours/excursions/tour_119/003.jpg",
+        "/tours/excursions/tour_119/004.jpg",
+        "/tours/excursions/tour_119/005.jpg"
+      ]
+    },
+    {
+      "id": 120,
+      "name": "Private Transfer From Punta Cana Airport to Hotels",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.5,
+      "reviews": 613,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_120/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_120/001.jpg",
+        "/tours/excursions/tour_120/002.jpg",
+        "/tours/excursions/tour_120/003.jpg",
+        "/tours/excursions/tour_120/004.jpg",
+        "/tours/excursions/tour_120/005.jpg"
+      ]
+    },
+    {
+      "id": 121,
+      "name": "Private transfer in Bavaro punta cana from 35",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.3,
+      "reviews": 611,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_121/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_121/001.jpg",
+        "/tours/excursions/tour_121/002.jpg",
+        "/tours/excursions/tour_121/003.jpg",
+        "/tours/excursions/tour_121/004.jpg",
+        "/tours/excursions/tour_121/005.jpg"
+      ]
+    },
+    {
+      "id": 122,
+      "name": "Private Transportation From PUJ Airport Hotels In Punta Cana",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 120,
+      "rating": 4.2,
+      "reviews": 758,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_122/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_122/001.jpg",
+        "/tours/excursions/tour_122/002.jpg",
+        "/tours/excursions/tour_122/003.jpg",
+        "/tours/excursions/tour_122/004.jpg",
+        "/tours/excursions/tour_122/005.jpg"
+      ]
+    },
+    {
+      "id": 123,
+      "name": "Private Transportation from Punta Cana Airport to Punta Cana",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 70,
+      "rating": 4.7,
+      "reviews": 309,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_123/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_123/001.jpg",
+        "/tours/excursions/tour_123/002.jpg",
+        "/tours/excursions/tour_123/003.jpg",
+        "/tours/excursions/tour_123/004.jpg",
+        "/tours/excursions/tour_123/005.jpg"
+      ]
+    },
+    {
+      "id": 124,
+      "name": "Private Transportation from Punta Cana Airport to Uvero Alto",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 100,
+      "rating": 4,
+      "reviews": 352,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_124/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_124/001.jpg",
+        "/tours/excursions/tour_124/002.jpg",
+        "/tours/excursions/tour_124/003.jpg",
+        "/tours/excursions/tour_124/004.jpg",
+        "/tours/excursions/tour_124/005.jpg"
+      ]
+    },
+    {
+      "id": 125,
+      "name": "Private Transportation in the Punta Cana Area",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.7,
+      "reviews": 524,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_125/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_125/001.jpg",
+        "/tours/excursions/tour_125/002.jpg",
+        "/tours/excursions/tour_125/003.jpg",
+        "/tours/excursions/tour_125/004.jpg",
+        "/tours/excursions/tour_125/005.jpg"
+      ]
+    },
+    {
+      "id": 126,
+      "name": "Private VIP transfer in SUV from and to Punta Cana Airport PUJ",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.6,
+      "reviews": 812,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_126/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_126/001.jpg",
+        "/tours/excursions/tour_126/002.jpg",
+        "/tours/excursions/tour_126/003.jpg",
+        "/tours/excursions/tour_126/004.jpg",
+        "/tours/excursions/tour_126/005.jpg"
+      ]
+    },
+    {
+      "id": 127,
+      "name": "Professional Photographer in Punta Cana for Private Events",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 110,
+      "rating": 4,
+      "reviews": 210,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_127/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_127/001.jpg",
+        "/tours/excursions/tour_127/002.jpg",
+        "/tours/excursions/tour_127/003.jpg",
+        "/tours/excursions/tour_127/004.jpg",
+        "/tours/excursions/tour_127/005.jpg"
+      ]
+    },
+    {
+      "id": 128,
+      "name": "Punta Cana Airport Private Transfer Round Trip",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.4,
+      "reviews": 752,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_128/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_128/001.jpg",
+        "/tours/excursions/tour_128/002.jpg",
+        "/tours/excursions/tour_128/003.jpg",
+        "/tours/excursions/tour_128/004.jpg",
+        "/tours/excursions/tour_128/005.jpg"
+      ]
+    },
+    {
+      "id": 129,
+      "name": "Punta Cana Airport to La Romana Hotels Round Trip",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.4,
+      "reviews": 742,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_129/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_129/001.jpg",
+        "/tours/excursions/tour_129/002.jpg",
+        "/tours/excursions/tour_129/003.jpg",
+        "/tours/excursions/tour_129/004.jpg",
+        "/tours/excursions/tour_129/005.jpg"
+      ]
+    },
+    {
+      "id": 130,
+      "name": "Punta Cana Airport Transfers to Cap Cana Bavaro Uvero Alto",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 110,
+      "rating": 4.7,
+      "reviews": 872,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_130/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_130/001.jpg",
+        "/tours/excursions/tour_130/002.jpg",
+        "/tours/excursions/tour_130/003.jpg",
+        "/tours/excursions/tour_130/004.jpg",
+        "/tours/excursions/tour_130/005.jpg"
+      ]
+    },
+    {
+      "id": 131,
+      "name": "Punta Cana Airport Transportation Round Trip to hotels in Dominican Republic",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.3,
+      "reviews": 661,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_131/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_131/001.jpg",
+        "/tours/excursions/tour_131/002.jpg",
+        "/tours/excursions/tour_131/003.jpg",
+        "/tours/excursions/tour_131/004.jpg",
+        "/tours/excursions/tour_131/005.jpg"
+      ]
+    },
+    {
+      "id": 132,
+      "name": "Punta Cana Aqua Adventure Jet Ski and Aqua Karts",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 371,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_132/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_132/001.jpg",
+        "/tours/excursions/tour_132/002.jpg",
+        "/tours/excursions/tour_132/003.jpg",
+        "/tours/excursions/tour_132/004.jpg",
+        "/tours/excursions/tour_132/005.jpg"
+      ]
+    },
+    {
+      "id": 133,
+      "name": "Punta Cana ATV and Buggy Adventure with Exclusive Visits",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.9,
+      "reviews": 150,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_133/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_133/001.jpg",
+        "/tours/excursions/tour_133/002.jpg",
+        "/tours/excursions/tour_133/003.jpg",
+        "/tours/excursions/tour_133/004.jpg",
+        "/tours/excursions/tour_133/005.jpg"
+      ]
+    },
+    {
+      "id": 134,
+      "name": "Punta Cana Buggy Tour with Beach and Cave Stops",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.3,
+      "reviews": 862,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_134/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_134/001.jpg",
+        "/tours/excursions/tour_134/002.jpg",
+        "/tours/excursions/tour_134/003.jpg",
+        "/tours/excursions/tour_134/004.jpg",
+        "/tours/excursions/tour_134/005.jpg"
+      ]
+    },
+    {
+      "id": 135,
+      "name": "Punta Cana City Tour",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.3,
+      "reviews": 797,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_135/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_135/001.jpg",
+        "/tours/excursions/tour_135/002.jpg",
+        "/tours/excursions/tour_135/003.jpg",
+        "/tours/excursions/tour_135/004.jpg",
+        "/tours/excursions/tour_135/005.jpg"
+      ]
+    },
+    {
+      "id": 136,
+      "name": "Punta Cana Family Reef and Natural Pool Discovery Tour",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.2,
+      "reviews": 642,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_136/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_136/001.jpg",
+        "/tours/excursions/tour_136/002.jpg",
+        "/tours/excursions/tour_136/003.jpg",
+        "/tours/excursions/tour_136/004.jpg",
+        "/tours/excursions/tour_136/005.jpg"
+      ]
+    },
+    {
+      "id": 137,
+      "name": "Punta Cana Hip Hop Boat Party All Inclusive Music Drinks and Fun",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.1,
+      "reviews": 700,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_137/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_137/001.jpg",
+        "/tours/excursions/tour_137/002.jpg",
+        "/tours/excursions/tour_137/003.jpg",
+        "/tours/excursions/tour_137/004.jpg",
+        "/tours/excursions/tour_137/005.jpg"
+      ]
+    },
+    {
+      "id": 138,
+      "name": "Punta Cana Horseback Adventure",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 820,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_138/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_138/001.jpg",
+        "/tours/excursions/tour_138/002.jpg",
+        "/tours/excursions/tour_138/003.jpg",
+        "/tours/excursions/tour_138/004.jpg",
+        "/tours/excursions/tour_138/005.jpg"
+      ]
+    },
+    {
+      "id": 139,
+      "name": "Punta Cana Horseback Riding Tour Rescue Monkey and Macao Beach",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 748,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_139/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_139/001.jpg",
+        "/tours/excursions/tour_139/002.jpg",
+        "/tours/excursions/tour_139/003.jpg",
+        "/tours/excursions/tour_139/004.jpg",
+        "/tours/excursions/tour_139/005.jpg"
+      ]
+    },
+    {
+      "id": 140,
+      "name": "Punta Cana Nightlife Tour Bars and Clubs in Downtown",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 90,
+      "rating": 4.2,
+      "reviews": 249,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_140/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_140/001.jpg",
+        "/tours/excursions/tour_140/002.jpg",
+        "/tours/excursions/tour_140/003.jpg",
+        "/tours/excursions/tour_140/004.jpg",
+        "/tours/excursions/tour_140/005.jpg"
+      ]
+    },
+    {
+      "id": 141,
+      "name": "Punta Cana Off Road Buggy Adventure Beaches Caves Countryside",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 131,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_141/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_141/001.jpg",
+        "/tours/excursions/tour_141/002.jpg",
+        "/tours/excursions/tour_141/003.jpg",
+        "/tours/excursions/tour_141/004.jpg",
+        "/tours/excursions/tour_141/005.jpg"
+      ]
+    },
+    {
+      "id": 142,
+      "name": "Punta Cana Off Road Buggy Macao Beach and Natural Water Cave",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.6,
+      "reviews": 227,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_142/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_142/001.jpg",
+        "/tours/excursions/tour_142/002.jpg",
+        "/tours/excursions/tour_142/003.jpg",
+        "/tours/excursions/tour_142/004.jpg",
+        "/tours/excursions/tour_142/005.jpg"
+      ]
+    },
+    {
+      "id": 143,
+      "name": "Punta Cana Private Fishing Full Experience Professional",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.7,
+      "reviews": 206,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_143/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_143/001.jpg",
+        "/tours/excursions/tour_143/002.jpg",
+        "/tours/excursions/tour_143/003.jpg",
+        "/tours/excursions/tour_143/004.jpg",
+        "/tours/excursions/tour_143/005.jpg"
+      ]
+    },
+    {
+      "id": 144,
+      "name": "Punta Cana Private Snorkeling Excursion",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 291,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_144/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_144/001.jpg",
+        "/tours/excursions/tour_144/002.jpg",
+        "/tours/excursions/tour_144/003.jpg",
+        "/tours/excursions/tour_144/004.jpg",
+        "/tours/excursions/tour_144/005.jpg"
+      ]
+    },
+    {
+      "id": 145,
+      "name": "Punta Cana Scubadoo Adventure",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.8,
+      "reviews": 397,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_145/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_145/001.jpg",
+        "/tours/excursions/tour_145/002.jpg",
+        "/tours/excursions/tour_145/003.jpg",
+        "/tours/excursions/tour_145/004.jpg",
+        "/tours/excursions/tour_145/005.jpg"
+      ]
+    },
+    {
+      "id": 146,
+      "name": "Punta Cana Small Group Sailing and Snorkeling Catamaran Tour",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.2,
+      "reviews": 381,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_146/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_146/001.jpg",
+        "/tours/excursions/tour_146/002.jpg",
+        "/tours/excursions/tour_146/003.jpg",
+        "/tours/excursions/tour_146/004.jpg",
+        "/tours/excursions/tour_146/005.jpg"
+      ]
+    },
+    {
+      "id": 147,
+      "name": "Romantic Photoshoot or Wedding Videography in Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 80,
+      "rating": 4.8,
+      "reviews": 365,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_147/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_147/001.jpg",
+        "/tours/excursions/tour_147/002.jpg",
+        "/tours/excursions/tour_147/003.jpg",
+        "/tours/excursions/tour_147/004.jpg",
+        "/tours/excursions/tour_147/005.jpg"
+      ]
+    },
+    {
+      "id": 148,
+      "name": "Round Mountain Montana Redonda From Punta cana Small groups",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 100,
+      "rating": 4.5,
+      "reviews": 326,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_148/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_148/001.jpg",
+        "/tours/excursions/tour_148/002.jpg",
+        "/tours/excursions/tour_148/003.jpg",
+        "/tours/excursions/tour_148/004.jpg",
+        "/tours/excursions/tour_148/005.jpg"
+      ]
+    },
+    {
+      "id": 149,
+      "name": "Round Trip Shuttle Punta Cana Airport to CHIC by Royalton All Exclusive Resort",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 100,
+      "rating": 4.3,
+      "reviews": 125,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_149/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_149/001.jpg",
+        "/tours/excursions/tour_149/002.jpg",
+        "/tours/excursions/tour_149/003.jpg",
+        "/tours/excursions/tour_149/004.jpg",
+        "/tours/excursions/tour_149/005.jpg"
+      ]
+    },
+    {
+      "id": 150,
+      "name": "Rum Tasting Expirience in Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.1,
+      "reviews": 843,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_150/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_150/001.jpg",
+        "/tours/excursions/tour_150/002.jpg",
+        "/tours/excursions/tour_150/003.jpg",
+        "/tours/excursions/tour_150/004.jpg",
+        "/tours/excursions/tour_150/005.jpg"
+      ]
+    },
+    {
+      "id": 151,
+      "name": "Safari Tour Full Day From Punta Cana",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.6,
+      "reviews": 222,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_151/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_151/001.jpg",
+        "/tours/excursions/tour_151/002.jpg",
+        "/tours/excursions/tour_151/003.jpg",
+        "/tours/excursions/tour_151/004.jpg",
+        "/tours/excursions/tour_151/005.jpg"
+      ]
+    },
+    {
+      "id": 152,
+      "name": "Samana Bay Eco Trip",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 135,
+      "rating": 4,
+      "reviews": 601,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_152/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_152/001.jpg",
+        "/tours/excursions/tour_152/002.jpg",
+        "/tours/excursions/tour_152/003.jpg",
+        "/tours/excursions/tour_152/004.jpg",
+        "/tours/excursions/tour_152/005.jpg"
+      ]
+    },
+    {
+      "id": 153,
+      "name": "Santo Domingo 1 Day Tour from Punta Cana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.6,
+      "reviews": 346,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_153/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_153/001.jpg",
+        "/tours/excursions/tour_153/002.jpg",
+        "/tours/excursions/tour_153/003.jpg",
+        "/tours/excursions/tour_153/004.jpg",
+        "/tours/excursions/tour_153/005.jpg"
+      ]
+    },
+    {
+      "id": 154,
+      "name": "Santo Domingo Full Day Tour From Punta Cana with Lunch and Cenote",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 95,
+      "rating": 4.7,
+      "reviews": 823,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_154/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_154/001.jpg",
+        "/tours/excursions/tour_154/002.jpg",
+        "/tours/excursions/tour_154/003.jpg",
+        "/tours/excursions/tour_154/004.jpg",
+        "/tours/excursions/tour_154/005.jpg"
+      ]
+    },
+    {
+      "id": 155,
+      "name": "Saona island beach day",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.1,
+      "reviews": 135,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_155/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_155/001.jpg",
+        "/tours/excursions/tour_155/002.jpg",
+        "/tours/excursions/tour_155/003.jpg",
+        "/tours/excursions/tour_155/004.jpg",
+        "/tours/excursions/tour_155/005.jpg"
+      ]
+    },
+    {
+      "id": 156,
+      "name": "Saona Island Day Trip From Punta Cana",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 808,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_156/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_156/001.jpg",
+        "/tours/excursions/tour_156/002.jpg",
+        "/tours/excursions/tour_156/003.jpg",
+        "/tours/excursions/tour_156/004.jpg",
+        "/tours/excursions/tour_156/005.jpg"
+      ]
+    },
+    {
+      "id": 157,
+      "name": "Saona Island From Punta Cana a paradise Beach Escape",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 331,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_157/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_157/001.jpg",
+        "/tours/excursions/tour_157/002.jpg",
+        "/tours/excursions/tour_157/003.jpg",
+        "/tours/excursions/tour_157/004.jpg",
+        "/tours/excursions/tour_157/005.jpg"
+      ]
+    },
+    {
+      "id": 158,
+      "name": "Saona Island from Punta Cana with Transportation and Lunch Included",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.1,
+      "reviews": 314,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_158/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_158/001.jpg",
+        "/tours/excursions/tour_158/002.jpg",
+        "/tours/excursions/tour_158/003.jpg",
+        "/tours/excursions/tour_158/004.jpg",
+        "/tours/excursions/tour_158/005.jpg"
+      ]
+    },
+    {
+      "id": 159,
+      "name": "Saona Island Full Day Excursion from Punta Cana",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 424,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_159/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_159/001.jpg",
+        "/tours/excursions/tour_159/002.jpg",
+        "/tours/excursions/tour_159/003.jpg",
+        "/tours/excursions/tour_159/004.jpg",
+        "/tours/excursions/tour_159/005.jpg"
+      ]
+    },
+    {
+      "id": 160,
+      "name": "Saona Island Full Day Excursion",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.6,
+      "reviews": 162,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_160/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_160/001.jpg",
+        "/tours/excursions/tour_160/002.jpg",
+        "/tours/excursions/tour_160/003.jpg",
+        "/tours/excursions/tour_160/004.jpg",
+        "/tours/excursions/tour_160/005.jpg"
+      ]
+    },
+    {
+      "id": 161,
+      "name": "Saona Island Punta Cana All Inclusive",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.8,
+      "reviews": 825,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_161/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_161/001.jpg",
+        "/tours/excursions/tour_161/002.jpg",
+        "/tours/excursions/tour_161/003.jpg",
+        "/tours/excursions/tour_161/004.jpg",
+        "/tours/excursions/tour_161/005.jpg"
+      ]
+    },
+    {
+      "id": 162,
+      "name": "Saona Island Punta Cana",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.5,
+      "reviews": 131,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_162/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_162/001.jpg",
+        "/tours/excursions/tour_162/002.jpg",
+        "/tours/excursions/tour_162/003.jpg",
+        "/tours/excursions/tour_162/004.jpg",
+        "/tours/excursions/tour_162/005.jpg"
+      ]
+    },
+    {
+      "id": 163,
+      "name": "Saona Island Tour 4 Beaches with Natural Pool and Turtles",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.4,
+      "reviews": 313,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_163/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_163/001.jpg",
+        "/tours/excursions/tour_163/002.jpg",
+        "/tours/excursions/tour_163/003.jpg",
+        "/tours/excursions/tour_163/004.jpg",
+        "/tours/excursions/tour_163/005.jpg"
+      ]
+    },
+    {
+      "id": 164,
+      "name": "Saona Island tour in Punta Cana",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.7,
+      "reviews": 719,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_164/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_164/001.jpg",
+        "/tours/excursions/tour_164/002.jpg",
+        "/tours/excursions/tour_164/003.jpg",
+        "/tours/excursions/tour_164/004.jpg",
+        "/tours/excursions/tour_164/005.jpg"
+      ]
+    },
+    {
+      "id": 165,
+      "name": "Saona Island Unique Experience",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.3,
+      "reviews": 788,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_165/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_165/001.jpg",
+        "/tours/excursions/tour_165/002.jpg",
+        "/tours/excursions/tour_165/003.jpg",
+        "/tours/excursions/tour_165/004.jpg",
+        "/tours/excursions/tour_165/005.jpg"
+      ]
+    },
+    {
+      "id": 166,
+      "name": "Saona VIP One Day in Paradise",
+      "category": "saona",
+      "badge": "Isla Saona",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.9,
+      "reviews": 186,
+      "tag": "Saona",
+      "image": "/tours/excursions/tour_166/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_166/001.jpg",
+        "/tours/excursions/tour_166/002.jpg",
+        "/tours/excursions/tour_166/003.jpg",
+        "/tours/excursions/tour_166/004.jpg",
+        "/tours/excursions/tour_166/005.jpg"
+      ]
+    },
+    {
+      "id": 167,
+      "name": "Scape Park Cap Cana Full Day Admission with Transport",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 129,
+      "rating": 4.1,
+      "reviews": 185,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_167/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_167/001.jpg",
+        "/tours/excursions/tour_167/002.jpg",
+        "/tours/excursions/tour_167/003.jpg",
+        "/tours/excursions/tour_167/004.jpg",
+        "/tours/excursions/tour_167/005.jpg"
+      ]
+    },
+    {
+      "id": 168,
+      "name": "ScubaDoo From Punta Cana",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 110,
+      "rating": 4.4,
+      "reviews": 284,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_168/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_168/001.jpg",
+        "/tours/excursions/tour_168/002.jpg",
+        "/tours/excursions/tour_168/003.jpg",
+        "/tours/excursions/tour_168/004.jpg",
+        "/tours/excursions/tour_168/005.jpg"
+      ]
+    },
+    {
+      "id": 169,
+      "name": "Scuba Doo Underwater Scooter in Punta Cana Half Day",
+      "category": "water",
+      "badge": "Acuática",
+      "badgeClass": "badge-accent",
+      "price": 105,
+      "rating": 4.4,
+      "reviews": 494,
+      "tag": "Water",
+      "image": "/tours/excursions/tour_169/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_169/001.jpg",
+        "/tours/excursions/tour_169/002.jpg",
+        "/tours/excursions/tour_169/003.jpg",
+        "/tours/excursions/tour_169/004.jpg",
+        "/tours/excursions/tour_169/005.jpg"
+      ]
+    },
+    {
+      "id": 170,
+      "name": "Shopping tour Punta Cana rum cigars coffee larimar chocolate souvenirs mamajuan",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 85,
+      "rating": 4.2,
+      "reviews": 711,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_170/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_170/001.jpg",
+        "/tours/excursions/tour_170/002.jpg",
+        "/tours/excursions/tour_170/003.jpg",
+        "/tours/excursions/tour_170/004.jpg",
+        "/tours/excursions/tour_170/005.jpg"
+      ]
+    },
+    {
+      "id": 171,
+      "name": "Skip the Line Coco Bongo Experience Entrance Ticket with Open Bar in Punta Cana",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 165,
+      "rating": 4.5,
+      "reviews": 810,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_171/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_171/001.jpg",
+        "/tours/excursions/tour_171/002.jpg",
+        "/tours/excursions/tour_171/003.jpg",
+        "/tours/excursions/tour_171/004.jpg",
+        "/tours/excursions/tour_171/005.jpg"
+      ]
+    },
+    {
+      "id": 172,
+      "name": "Small Group 4x4 ATV Exsotic JUNGLE TOUR",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.6,
+      "reviews": 416,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_172/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_172/001.jpg",
+        "/tours/excursions/tour_172/002.jpg",
+        "/tours/excursions/tour_172/003.jpg",
+        "/tours/excursions/tour_172/004.jpg",
+        "/tours/excursions/tour_172/005.jpg"
+      ]
+    },
+    {
+      "id": 173,
+      "name": "Sunset at the Beach and Taino Party in Buggy from Punta Cana",
+      "category": "buggy",
+      "badge": "Aventura 4x4",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.5,
+      "reviews": 185,
+      "tag": "Buggy",
+      "image": "/tours/excursions/tour_173/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_173/001.jpg",
+        "/tours/excursions/tour_173/002.jpg",
+        "/tours/excursions/tour_173/003.jpg",
+        "/tours/excursions/tour_173/004.jpg",
+        "/tours/excursions/tour_173/005.jpg"
+      ]
+    },
+    {
+      "id": 174,
+      "name": "Sunset horseback Riding Tour at Macao Beach with Transfers",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.6,
+      "reviews": 172,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_174/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_174/001.jpg",
+        "/tours/excursions/tour_174/002.jpg",
+        "/tours/excursions/tour_174/003.jpg",
+        "/tours/excursions/tour_174/004.jpg",
+        "/tours/excursions/tour_174/005.jpg"
+      ]
+    },
+    {
+      "id": 175,
+      "name": "Sunset Horseback Riding Tour",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.8,
+      "reviews": 341,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_175/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_175/001.jpg",
+        "/tours/excursions/tour_175/002.jpg",
+        "/tours/excursions/tour_175/003.jpg",
+        "/tours/excursions/tour_175/004.jpg",
+        "/tours/excursions/tour_175/005.jpg"
+      ]
+    },
+    {
+      "id": 176,
+      "name": "Sunset Horseback Riding Tour",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.7,
+      "reviews": 173,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_176/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_176/001.jpg",
+        "/tours/excursions/tour_176/002.jpg",
+        "/tours/excursions/tour_176/003.jpg",
+        "/tours/excursions/tour_176/004.jpg",
+        "/tours/excursions/tour_176/005.jpg"
+      ]
+    },
+    {
+      "id": 177,
+      "name": "The Best Party Boat",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4,
+      "reviews": 817,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_177/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_177/001.jpg",
+        "/tours/excursions/tour_177/002.jpg",
+        "/tours/excursions/tour_177/003.jpg",
+        "/tours/excursions/tour_177/004.jpg",
+        "/tours/excursions/tour_177/005.jpg"
+      ]
+    },
+    {
+      "id": 178,
+      "name": "The night ride private services night life",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.2,
+      "reviews": 499,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_178/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_178/001.jpg",
+        "/tours/excursions/tour_178/002.jpg",
+        "/tours/excursions/tour_178/003.jpg",
+        "/tours/excursions/tour_178/004.jpg",
+        "/tours/excursions/tour_178/005.jpg"
+      ]
+    },
+    {
+      "id": 179,
+      "name": "Tour in Samana Baracardi Island and Salto el limon from Puntacana",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 135,
+      "rating": 4.1,
+      "reviews": 713,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_179/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_179/001.jpg",
+        "/tours/excursions/tour_179/002.jpg",
+        "/tours/excursions/tour_179/003.jpg",
+        "/tours/excursions/tour_179/004.jpg",
+        "/tours/excursions/tour_179/005.jpg"
+      ]
+    },
+    {
+      "id": 180,
+      "name": "Transportation to the Bavaro area",
+      "category": "transfer",
+      "badge": "Traslado VIP",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.3,
+      "reviews": 269,
+      "tag": "Transfer",
+      "image": "/tours/excursions/tour_180/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_180/001.jpg",
+        "/tours/excursions/tour_180/002.jpg",
+        "/tours/excursions/tour_180/003.jpg",
+        "/tours/excursions/tour_180/004.jpg",
+        "/tours/excursions/tour_180/005.jpg"
+      ]
+    },
+    {
+      "id": 181,
+      "name": "VIP Hip Hop Party Boat Punta Cana with Snorkeling Adults Only",
+      "category": "nightlife",
+      "badge": "Vida Nocturna",
+      "badgeClass": "badge-accent",
+      "price": 75,
+      "rating": 4.7,
+      "reviews": 438,
+      "tag": "Nightlife",
+      "image": "/tours/excursions/tour_181/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_181/001.jpg",
+        "/tours/excursions/tour_181/002.jpg",
+        "/tours/excursions/tour_181/003.jpg",
+        "/tours/excursions/tour_181/004.jpg",
+        "/tours/excursions/tour_181/005.jpg"
+      ]
+    },
+    {
+      "id": 182,
+      "name": "Xploration Animal Encounters by Marinarium Excursions",
+      "category": "relax",
+      "badge": "Ecoturismo",
+      "badgeClass": "badge-accent",
+      "price": 100,
+      "rating": 4.8,
+      "reviews": 661,
+      "tag": "Relax",
+      "image": "/tours/excursions/tour_182/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_182/001.jpg",
+        "/tours/excursions/tour_182/002.jpg",
+        "/tours/excursions/tour_182/003.jpg",
+        "/tours/excursions/tour_182/004.jpg",
+        "/tours/excursions/tour_182/005.jpg"
+      ]
+    },
+    {
+      "id": 183,
+      "name": "Zip line and Buggies package",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 65,
+      "rating": 4.4,
+      "reviews": 611,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_183/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_183/001.jpg",
+        "/tours/excursions/tour_183/002.jpg",
+        "/tours/excursions/tour_183/003.jpg",
+        "/tours/excursions/tour_183/004.jpg",
+        "/tours/excursions/tour_183/005.jpg"
+      ]
+    },
+    {
+      "id": 184,
+      "name": "zip line",
+      "category": "adventure",
+      "badge": "Aventura",
+      "badgeClass": "badge-accent",
+      "price": 115,
+      "rating": 4.1,
+      "reviews": 890,
+      "tag": "Adventure",
+      "image": "/tours/excursions/tour_184/001.jpg",
+      "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
+      "duration": "Medio Día",
+      "difficulty": "Media",
+      "included": [
+        "Transporte",
+        "Guía VIP",
+        "Bebida de cortesía"
+      ],
+      "photos": [
+        "/tours/excursions/tour_184/001.jpg",
+        "/tours/excursions/tour_184/002.jpg",
+        "/tours/excursions/tour_184/003.jpg",
+        "/tours/excursions/tour_184/004.jpg",
+        "/tours/excursions/tour_184/005.jpg"
+      ]
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "ticketCode": "FTDR-779653",
+      "createdAt": "2026-05-18T17:10:37.580Z",
+      "tourId": 1,
+      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote SubterrÃ¡neo",
+      "tourImage": "/tours/page2/tour_24/foto_1.jpg",
+      "customerName": "Jane Doe",
+      "email": "jane@example.com",
+      "phone": "+1 (809) 111-2222",
+      "date": "2026-05-20",
+      "guests": 2,
+      "amountPaid": 70,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado"
+    },
+    {
+      "id": 2,
+      "ticketCode": "FTDR-527905",
+      "createdAt": "2026-05-18T17:15:26.894Z",
+      "tourId": 2,
+      "tourName": "Fire Tour DR: Aventura en Buggy Off-Road, Rancho TÃ­pico & Playa Macao",
+      "tourImage": "/tours/page2/tour_2/foto_1.jpg",
+      "customerName": "F FAMILIA FABIAN",
+      "email": "familiababyapple@gmail.com",
+      "phone": "15872257342",
+      "date": "2026-11-02",
+      "guests": 3,
+      "amountPaid": 164,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado"
+    },
+    {
+      "id": 3,
+      "ticketCode": "FTDR-346146",
+      "createdAt": "2026-05-18T17:30:11.720Z",
+      "tourId": 1,
+      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote SubterrÃ¡neo",
+      "tourImage": "/tours/page2/tour_24/foto_1.jpg",
+      "customerName": "John Doe",
+      "email": "john@example.com",
+      "phone": "+1 (809) 555-0199",
+      "date": "2026-06-25",
+      "guests": 2,
+      "amountPaid": 70,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado"
+    },
+    {
+      "id": 4,
+      "ticketCode": "FTDR-760891",
+      "createdAt": "2026-05-18T17:38:28.001Z",
+      "tourId": -1,
+      "tourName": "Vuelo Aero F9: F9-66 (MIA âž” PUJ)",
+      "tourImage": "https://images.kiwi.com/airlines/64/F9.png",
+      "customerName": "John Doe",
+      "email": "john@example.com",
+      "phone": "+1 (809) 555-0199",
+      "date": "2026-06-01",
+      "guests": 1,
+      "amountPaid": 421,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado"
+    },
+    {
+      "id": 5,
+      "ticketCode": "FTDR-569789",
+      "createdAt": "2026-05-18T17:49:51.740Z",
+      "tourId": 2,
+      "tourName": "Fire Tour DR: Aventura en Buggy Off-Road, Rancho TÃ­pico & Playa Macao",
+      "tourImage": "/tours/page2/tour_2/foto_1.jpg",
+      "customerName": "c kjgc",
+      "email": "familiafabian@yandex.com",
+      "phone": "582211561232",
+      "date": "2033-02-20",
+      "guests": 3,
+      "amountPaid": 164,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado"
+    },
+    {
+      "id": 6,
+      "ticketCode": "FTDR-922408",
+      "createdAt": "2026-05-18T18:01:44.121Z",
+      "tourId": 1,
+      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote SubterrÃ¡neo",
+      "tourImage": "/tours/page2/tour_24/foto_1.jpg",
+      "customerName": "John Doe",
+      "email": "john@example.com",
+      "phone": "+1 (809) 555-0199",
+      "date": "2026-06-01",
+      "guests": 1,
+      "amountPaid": 35,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado",
+      "hotelName": "Lopesan Costa Bavaro Resort",
+      "roomNumber": "Habitacion 3108"
+    },
+    {
+      "id": 7,
+      "ticketCode": "FTDR-233205",
+      "createdAt": "2026-06-02T06:28:57.971Z",
+      "tourId": 22,
+      "tourName": "Bokun Free Product December 2025",
+      "tourImage": "/uploads/tour_22_0.jpg",
+      "customerName": "franklin",
+      "email": "88bot8800@gmail.com",
+      "phone": "8572257342",
+      "date": "2026-10-08",
+      "guests": 2,
+      "amountPaid": 50,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado",
+      "hotelName": "melia",
+      "roomNumber": "203"
+    },
+    {
+      "id": 8,
+      "ticketCode": "FTDR-832197",
+      "createdAt": "2026-06-02T23:51:01.147Z",
+      "tourId": 8,
+      "tourName": "Airport Transfer and Hotel Pick ups",
+      "tourImage": "/uploads/tour_8_0.jpg",
+      "customerName": "franklin familia fabian",
+      "email": "familiafabian@yandex.com",
+      "phone": "8572257342",
+      "date": "2026-02-09",
+      "guests": 2,
+      "amountPaid": 50,
+      "paymentMethod": "Stripe Secure Card",
+      "status": "Confirmado",
+      "hotelName": "melia",
+      "roomNumber": "203"
+    }
+  ],
+  "chat_messages": [
+    {
+      "id": 1,
+      "sender": "agent",
+      "text": "Â¡Hola! Bienvenido al chat de soporte de Fire Tour DR. Â¿En quÃ© puedo ayudarte a planear tus vacaciones en Punta Cana hoy?",
+      "timestamp": "2026-05-17T17:06:36.582Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "createdAt": "2026-06-03T00:37:20.366Z",
+      "name": "juan",
+      "email": "fjff88@menil.ru",
+      "password": "Chulo02@"
+    },
+    {
+      "id": 1781318003304,
+      "createdAt": "2026-06-13T02:33:23.304Z",
+      "name": "Administrador Fire Tour DR",
+      "email": "familiafabian@yandex.com",
+      "password": "Chulo02@"
+    }
+  ]
+}

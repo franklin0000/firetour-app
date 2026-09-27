@@ -197,11 +197,30 @@ export default function ExcursionDetailsPage() {
     const fetchTourDetails = async () => {
       try {
         const response = await fetch(`/api/tours/${id}?_t=${Date.now()}`, { cache: 'no-store' });
-        if (!response.ok) throw new Error("Tour not found");
-        const data = await response.json();
-        setTour(data);
+        const contentType = response.headers.get('content-type') || '';
+        if (response.ok && contentType.includes('application/json')) {
+          const data = await response.json();
+          if (data && data.name) {
+            setTour(data);
+            return;
+          }
+        }
+        throw new Error("API returned non-JSON response");
       } catch (err) {
-        console.error("Error loading tour details: ", err);
+        console.warn("Falling back to static tours.json for tour ID:", id, err);
+        try {
+          const staticRes = await fetch(`/data/tours.json?_t=${Date.now()}`);
+          if (staticRes.ok) {
+            const staticData = await staticRes.json();
+            const found = (staticData.tours || []).find((t: Tour) => String(t.id) === String(id));
+            if (found) {
+              setTour(found);
+              return;
+            }
+          }
+        } catch (staticErr) {
+          console.error("Static tour fallback failed:", staticErr);
+        }
       } finally {
         setLoading(false);
       }

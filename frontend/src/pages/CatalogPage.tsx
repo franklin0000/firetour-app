@@ -28,21 +28,77 @@ export default function CatalogPage() {
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
 
-  // 1. Fetch tours from backend paginated endpoint
+  // 1. Fetch tours from backend paginated endpoint with fallback to static CDN tours.json
   const fetchTours = async (pageNum: number, reset: boolean = false) => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/tours?page=${pageNum}&limit=4&category=${category}&query=${searchQuery}&_t=${Date.now()}`, { cache: 'no-store' });
-      const data = await response.json();
-      
-      if (reset) {
-        setTours(data.tours);
-      } else {
-        setTours(prev => [...prev, ...data.tours]);
+      let fetchedTours: Tour[] = [];
+      let moreAvailable = false;
+
+      const response = await fetch(`/api/tours?page=${pageNum}&limit=4&category=${category}&query=${encodeURIComponent(searchQuery)}&_t=${Date.now()}`, { cache: 'no-store' });
+      const contentType = response.headers.get('content-type') || '';
+
+      if (response.ok && contentType.includes('application/json')) {
+        const data = await response.json();
+        if (Array.isArray(data.tours) && data.tours.length > 0) {
+          fetchedTours = data.tours;
+          moreAvailable = Boolean(data.hasMore);
+        }
       }
-      setHasMore(data.hasMore);
+
+      // If API didn't return tours (e.g. static CDN deployment fallback)
+      if (fetchedTours.length === 0) {
+        const staticRes = await fetch(`/data/tours.json?_t=${Date.now()}`);
+        if (staticRes.ok) {
+          const staticData = await staticRes.json();
+          let all: Tour[] = staticData.tours || [];
+          if (category !== 'all') {
+            const cat = category.toLowerCase();
+            all = all.filter(t => (t.category && t.category.toLowerCase() === cat) || (t.tag && t.tag.toLowerCase() === cat));
+          }
+          if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase().trim();
+            all = all.filter(t => (t.name && t.name.toLowerCase().includes(q)) || (t.desc && t.desc.toLowerCase().includes(q)));
+          }
+          const start = (pageNum - 1) * 4;
+          fetchedTours = all.slice(start, start + 4);
+          moreAvailable = start + 4 < all.length;
+        }
+      }
+
+      if (reset) {
+        setTours(fetchedTours);
+      } else {
+        setTours(prev => [...prev, ...fetchedTours]);
+      }
+      setHasMore(moreAvailable);
     } catch (err) {
-      console.error("Error fetching tours: ", err);
+      console.error("Error fetching tours, trying static fallback: ", err);
+      try {
+        const staticRes = await fetch(`/data/tours.json?_t=${Date.now()}`);
+        if (staticRes.ok) {
+          const staticData = await staticRes.json();
+          let all: Tour[] = staticData.tours || [];
+          if (category !== 'all') {
+            const cat = category.toLowerCase();
+            all = all.filter(t => (t.category && t.category.toLowerCase() === cat) || (t.tag && t.tag.toLowerCase() === cat));
+          }
+          if (searchQuery.trim()) {
+            const q = searchQuery.toLowerCase().trim();
+            all = all.filter(t => (t.name && t.name.toLowerCase().includes(q)) || (t.desc && t.desc.toLowerCase().includes(q)));
+          }
+          const start = (pageNum - 1) * 4;
+          const fallbackTours = all.slice(start, start + 4);
+          if (reset) {
+            setTours(fallbackTours);
+          } else {
+            setTours(prev => [...prev, ...fallbackTours]);
+          }
+          setHasMore(start + 4 < all.length);
+        }
+      } catch (fallbackErr) {
+        console.error("Critical: Could not load fallback tours:", fallbackErr);
+      }
     } finally {
       setLoading(false);
     }

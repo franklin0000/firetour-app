@@ -7,3 +7,11 @@ main = "worker.js"
 directory = "./frontend/dist"
 not_found_handling = "single-page-application"
 binding = "ASSETS"
+
+[[routes]]
+pattern = "firetourdr.com/*"
+custom_domain = true
+
+[[routes]]
+pattern = "www.firetourdr.com/*"
+custom_domain = true

@@ -13,6 +13,7 @@ import AdminPage from './pages/AdminPage';
 import AuthPage from './pages/AuthPage';
 
 import SuccessPage from './pages/SuccessPage';
+import ResortLandingPage from './pages/ResortLandingPage';
 
 // Sticky Top Header Navigation component - Floating Pill Style
 function Header() {
@@ -110,6 +111,39 @@ function Footer() {
       <div className="flex items-center gap-1.5 text-cyan font-bold bg-primary/20 border border-outline rounded-full px-3 py-1 mt-2">
         <ShieldCheck className="w-4 h-4" /> Pagos Asegurados vía Stripe
       </div>
+
+      {/* Programmatic Resort Links for SEO Crawlers */}
+      <div className="max-w-4xl border-t border-white/5 pt-6 mt-4">
+        <p className="text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-wider">
+          Excursiones con Recogida en Hoteles y Resorts de Punta Cana:
+        </p>
+        <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-[11px] text-gray-500">
+          <Link to="/hoteles/hard-rock-hotel-punta-cana" className="hover:text-secondary transition-colors">Hard Rock Hotel</Link>
+          <span>•</span>
+          <Link to="/hoteles/riu-republica" className="hover:text-secondary transition-colors">Riu Republica</Link>
+          <span>•</span>
+          <Link to="/hoteles/riu-palace-punta-cana" className="hover:text-secondary transition-colors">Riu Palace</Link>
+          <span>•</span>
+          <Link to="/hoteles/barcelo-bavaro-palace" className="hover:text-secondary transition-colors">Barceló Bávaro</Link>
+          <span>•</span>
+          <Link to="/hoteles/grand-palladium-punta-cana" className="hover:text-secondary transition-colors">Grand Palladium</Link>
+          <span>•</span>
+          <Link to="/hoteles/bahia-principe-bavaro" className="hover:text-secondary transition-colors">Bahía Príncipe</Link>
+          <span>•</span>
+          <Link to="/hoteles/iberostar-grand-bavaro" className="hover:text-secondary transition-colors">Iberostar Bávaro</Link>
+          <span>•</span>
+          <Link to="/hoteles/secrets-royal-beach" className="hover:text-secondary transition-colors">Secrets Royal Beach</Link>
+          <span>•</span>
+          <Link to="/hoteles/lopesan-costa-bavaro" className="hover:text-secondary transition-colors">Lopesan Costa Bávaro</Link>
+          <span>•</span>
+          <Link to="/hoteles/dreams-onyx-punta-cana" className="hover:text-secondary transition-colors">Dreams Onyx</Link>
+          <span>•</span>
+          <Link to="/hoteles/majestic-elegance-punta-cana" className="hover:text-secondary transition-colors">Majestic Elegance</Link>
+          <span>•</span>
+          <Link to="/hoteles/hyatt-ziva-cap-cana" className="hover:text-secondary transition-colors">Hyatt Ziva Cap Cana</Link>
+        </div>
+      </div>
+
       <p className="mt-4 text-[10px]">© {new Date().getFullYear()} Fire Tour DR. Todos los derechos reservados.</p>
     </footer>
   );
@@ -131,6 +165,8 @@ export default function App() {
             <Routes>
               <Route path="/" element={<CatalogPage />} />
               <Route path="/excursion/:id" element={<ExcursionDetailsPage />} />
+              <Route path="/hoteles/:hotelSlug" element={<ResortLandingPage />} />
+              <Route path="/excursiones-desde/:hotelSlug" element={<ResortLandingPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/ticket/:id" element={<DigitalTicketPage />} />

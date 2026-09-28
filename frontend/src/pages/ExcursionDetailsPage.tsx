@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
+import { trackViewContent } from '../utils/analytics';
 
 // Returns an array of photos for a specific tour
 const getTourPhotos = (tour: Tour): string[] => {
@@ -202,6 +203,7 @@ export default function ExcursionDetailsPage() {
           const data = await response.json();
           if (data && data.name) {
             setTour(data);
+            trackViewContent(data);
             return;
           }
         }
@@ -215,6 +217,7 @@ export default function ExcursionDetailsPage() {
             const found = (staticData.tours || []).find((t: Tour) => String(t.id) === String(id));
             if (found) {
               setTour(found);
+              trackViewContent(found);
               return;
             }
           }
@@ -268,11 +271,16 @@ export default function ExcursionDetailsPage() {
   const photos = getTourPhotos(tour);
   const reviewsPool = getReviewsForTour(tour.name, tour.tag);
 
-  // Price calculations
+  // Price calculations & Group Viral Discount (6th passenger 100% FREE!)
+  const totalGuests = adults + children;
+  const isGroupDiscountActive = totalGuests >= 6;
   const priceAdults = tour.price * adults;
   const priceChildren = Math.round(tour.price * 0.6) * children; // Children get 40% discount!
-  const totalPrice = priceAdults + priceChildren;
-  const depositToPay = (adults + children) * 25;
+  const subtotalPrice = priceAdults + priceChildren;
+  const freeGuestDiscount = isGroupDiscountActive ? tour.price : 0;
+  const totalPrice = Math.max(0, subtotalPrice - freeGuestDiscount);
+  const payingGuests = isGroupDiscountActive ? Math.max(1, totalGuests - 1) : totalGuests;
+  const depositToPay = payingGuests * 25;
   const balanceDue = totalPrice - depositToPay;
 
   const handleProceedToCheckout = () => {
@@ -290,6 +298,9 @@ export default function ExcursionDetailsPage() {
         date,
         adults,
         children,
+        subtotalPrice,
+        freeGuestDiscount,
+        isGroupDiscountActive,
         totalPrice,
         depositToPay,
         balanceDue
@@ -729,12 +740,39 @@ export default function ExcursionDetailsPage() {
 
             
             {/* Price display */}
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-4">
               <span className="text-gray-400 text-[10px] font-black uppercase tracking-wider">Precio por Adulto</span>
               <span className="text-secondary text-2xl font-black font-display flex items-baseline gap-1">
                 ${tour.price} <span className="text-xs text-gray-400 font-bold">USD</span>
               </span>
             </div>
+
+            {/* VIRAL GROUP OFFER BANNER */}
+            {isGroupDiscountActive ? (
+              <div className="bg-gradient-to-r from-emerald-500/20 via-teal-500/10 to-transparent border border-emerald-500/40 rounded-2xl p-3.5 mb-5 flex items-start gap-2.5 shadow-[0_0_20px_rgba(16,185,129,0.15)] animate-pulse">
+                <Sparkles className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-emerald-400 font-display block">
+                    ¡Beneficio Grupal Aplicado!
+                  </span>
+                  <p className="text-xs text-gray-200 mt-0.5 leading-snug">
+                    El 6to pasajero viaja <b>100% GRATIS</b>. Ahorraste <b className="text-emerald-400">-${freeGuestDiscount} USD</b>.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-secondary/10 border border-secondary/20 rounded-2xl p-3 mb-5 flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm">🔥</span>
+                  <span className="text-gray-300 text-[11px]">
+                    ¿Grupo de 6+? <b>El 6to va GRATIS</b>
+                  </span>
+                </div>
+                <span className="text-[10px] text-secondary font-bold font-display uppercase tracking-wider bg-secondary/15 px-2 py-0.5 rounded-full">
+                  +{6 - totalGuests} más
+                </span>
+              </div>
+            )}
 
             {/* Inputs grid */}
             <div className="flex flex-col gap-4">
@@ -817,9 +855,15 @@ export default function ExcursionDetailsPage() {
             {/* Strict itemized bill breakdowns */}
             <div className="bg-bgDark/80 border border-outline/50 rounded-2xl p-4 mt-6 flex flex-col gap-2 text-xs font-display">
               <div className="flex justify-between items-center text-gray-400">
-                <span>Precio Total de la Excursión</span>
-                <span className="text-white font-bold">${totalPrice} USD</span>
+                <span>Subtotal Excursión</span>
+                <span className="text-white font-bold">${subtotalPrice} USD</span>
               </div>
+              {isGroupDiscountActive && (
+                <div className="flex justify-between items-center text-emerald-400 font-bold bg-emerald-500/10 px-2 py-1 rounded-md">
+                  <span>🎉 6to Pasajero 100% Gratis</span>
+                  <span>-${freeGuestDiscount} USD</span>
+                </div>
+              )}
               <div className="flex justify-between items-center text-gray-400">
                 <span>Cargos de Gestión e Impuestos</span>
                 <span className="text-emerald-400 font-extrabold uppercase text-[9px] tracking-wide">Gratis / Incluidos</span>
@@ -827,7 +871,9 @@ export default function ExcursionDetailsPage() {
               
               <div className="border-t border-outline/50 my-2 pt-3 flex flex-col gap-2 font-display">
                 <div className="flex justify-between items-center">
-                  <span className="text-white font-bold text-sm">Depósito a Pagar Ahora ($25 x Persona)</span>
+                  <span className="text-white font-bold text-sm">
+                    Depósito Hoy ({payingGuests} {payingGuests === 1 ? 'persona' : 'personas'})
+                  </span>
                   <span className="text-secondary text-2xl font-black tracking-tight">${depositToPay} <span className="text-[10px] text-gray-500 font-normal">USD</span></span>
                 </div>
                 <div className="flex justify-between items-center mt-2 px-3 py-2 bg-secondary/10 rounded-lg border border-secondary/20">

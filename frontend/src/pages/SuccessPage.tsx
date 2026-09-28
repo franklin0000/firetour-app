@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Loader, CheckCircle } from 'lucide-react';
+import { trackPurchase } from '../utils/analytics';
 
 export default function SuccessPage() {
   const [searchParams] = useSearchParams();
@@ -32,6 +33,11 @@ export default function SuccessPage() {
     .then(data => {
       if (data.success && data.reservation) {
         localStorage.removeItem('pendingCheckout');
+        trackPurchase({
+          id: data.reservation.id || paymentIntent,
+          amount: Number(fallbackMetadata.amountPaid) || Number(data.reservation.amountPaid) || 25,
+          tourName: fallbackMetadata.tourName || data.reservation.tourName || 'Excursion'
+        });
         setStatus('¡Pago completado con éxito!');
         setTimeout(() => {
           navigate(`/ticket/${data.reservation.id}`, { state: { reservation: data.reservation } });

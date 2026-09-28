@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CreditCard, Calendar, Users, ShieldCheck, Mail, Phone, User, Loader, ArrowLeft, Lock, MapPin } from 'lucide-react';
+import { CreditCard, Calendar, Users, ShieldCheck, Mail, Phone, User, Loader, ArrowLeft, Lock, MapPin, Tag, Sparkles, CheckCircle2 } from 'lucide-react';
+import { trackInitiateCheckout } from '../utils/analytics';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
@@ -20,6 +21,55 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showAuthGate, setShowAuthGate] = useState(true);
+
+  // Coupon & Group Discount Engine
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(() => {
+    return checkoutData.isGroupDiscountActive ? 'GRUPO6_GRATIS' : null;
+  });
+  const [couponDiscount, setCouponDiscount] = useState<number>(() => {
+    return Number(checkoutData.freeGuestDiscount) || 0;
+  });
+  const [couponFeedback, setCouponFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(() => {
+    if (checkoutData.isGroupDiscountActive) {
+      return { type: 'success', message: `¡Beneficio Grupal: 6to pasajero 100% GRATIS (-$${checkoutData.freeGuestDiscount} USD)!` };
+    }
+    return null;
+  });
+
+  const handleApplyCoupon = (e: React.FormEvent) => {
+    e.preventDefault();
+    const clean = couponCode.trim().toUpperCase();
+    if (!clean) return;
+
+    if (clean === 'VIP5') {
+      const discount = Math.round(Number(checkoutData.totalPrice || 100) * 0.05);
+      setAppliedCoupon('VIP5');
+      setCouponDiscount(discount);
+      setCouponFeedback({ type: 'success', message: `¡Cupón VIP5 aplicado! Ahorras -$${discount} USD (5% OFF).` });
+    } else if (clean === 'PUNTACANA10') {
+      const discount = Math.round(Number(checkoutData.totalPrice || 100) * 0.10);
+      setAppliedCoupon('PUNTACANA10');
+      setCouponDiscount(discount);
+      setCouponFeedback({ type: 'success', message: `¡Cupón PUNTACANA10 aplicado! Ahorras -$${discount} USD (10% OFF).` });
+    } else if (clean === 'GRUPOFREE') {
+      const guests = Number(checkoutData.adults || 0) + Number(checkoutData.children || 0);
+      if (guests < 4) {
+        setCouponFeedback({ type: 'error', message: 'El cupón GRUPOFREE requiere un mínimo de 4 personas en la reserva.' });
+        return;
+      }
+      const discount = Number(checkoutData.tourPrice || 79);
+      setAppliedCoupon('GRUPOFREE');
+      setCouponDiscount(discount);
+      setCouponFeedback({ type: 'success', message: `¡Cupón GRUPOFREE aplicado! 1 Pasajero 100% gratis (-$${discount} USD).` });
+    } else {
+      setCouponFeedback({ type: 'error', message: 'Código de cupón inválido o no reconocido.' });
+    }
+  };
+
+  const extraDiscount = appliedCoupon && appliedCoupon !== 'GRUPO6_GRATIS' ? couponDiscount : 0;
+  const currentTotal = Math.max(0, Number(checkoutData.totalPrice) - extraDiscount);
+  const currentBalanceDue = Math.max(0, Number(checkoutData.balanceDue) - extraDiscount);
 
   useEffect(() => {
     const userStr = localStorage.getItem('user');
@@ -57,7 +107,9 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
         date: checkoutData.date,
         guests: checkoutData.adults + checkoutData.children,
         amountPaid: checkoutData.depositToPay,
-        balanceDue: checkoutData.balanceDue,
+        balanceDue: currentBalanceDue,
+        couponApplied: appliedCoupon,
+        couponDiscount: couponDiscount,
         hotelName,
         roomNumber
       };
@@ -332,7 +384,7 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
                   </>
                 ) : (
                   <>
-                    Pagar Reserva Segura (${checkoutData.totalPrice} USD)
+                    Pagar Depósito de Reserva (${checkoutData.depositToPay} USD)
                   </>
                 )}
               </button>
@@ -396,19 +448,73 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
               </div>
             </div>
 
-            {/* Calculations Breakdown */}
-            <div className="flex flex-col gap-2.5 pt-3">
-              {checkoutData.isCustom ? (
-                <div className="flex justify-between items-center text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-                  <span>Precio Total</span>
-                  <span>${checkoutData.totalPrice} USD</span>
-                </div>
-              ) : (
-                <div className="flex justify-between items-center text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-                  <span>Precio Total Excursión</span>
-                  <span>${checkoutData.totalPrice} USD</span>
+                        {/* Promo Code / Coupon Section */}
+            <div className="py-3 border-b border-outline/30 flex flex-col gap-2.5">
+              <label className="text-gray-400 text-[10px] font-black uppercase tracking-widest font-display flex items-center justify-between">
+                <span className="flex items-center gap-1.5 text-cyan">
+                  <Tag className="w-3.5 h-3.5" /> ¿Tienes un Cupón de Descuento?
+                </span>
+                {appliedCoupon && (
+                  <span className="text-emerald-400 text-[9px] font-bold">Activo</span>
+                )}
+              </label>
+
+              <form onSubmit={handleApplyCoupon} className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Ej. VIP5, PUNTACANA10"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  className="flex-1 bg-[#08131d] border border-outline focus:border-cyan rounded-xl py-2 px-3 text-xs uppercase font-mono tracking-wider focus:outline-none text-white"
+                />
+                <button
+                  type="submit"
+                  className="bg-cyan/20 hover:bg-cyan/30 border border-cyan/40 text-cyan text-xs font-bold font-display uppercase tracking-wider px-3.5 py-2 rounded-xl transition"
+                >
+                  Aplicar
+                </button>
+              </form>
+
+              {couponFeedback && (
+                <div className={`text-[11px] p-2 rounded-lg font-bold flex items-center gap-1.5 ${
+                  couponFeedback.type === 'success' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                }`}>
+                  {couponFeedback.type === 'success' ? <Sparkles className="w-3.5 h-3.5 flex-shrink-0" /> : '⚠️'}
+                  <span>{couponFeedback.message}</span>
                 </div>
               )}
+
+              {/* Quick Coupon Chips */}
+              {!appliedCoupon && (
+                <div className="flex items-center gap-1.5 text-[9px] text-gray-500">
+                  <span>Sugerencias:</span>
+                  <button type="button" onClick={() => { setCouponCode('VIP5'); }} className="bg-white/5 hover:bg-white/10 px-2 py-0.5 rounded text-gray-400 font-mono">VIP5 (-5%)</button>
+                  <button type="button" onClick={() => { setCouponCode('PUNTACANA10'); }} className="bg-white/5 hover:bg-white/10 px-2 py-0.5 rounded text-gray-400 font-mono">PUNTACANA10 (-10%)</button>
+                </div>
+              )}
+            </div>
+
+            {/* Calculations Breakdown */}
+            <div className="flex flex-col gap-2.5 pt-3">
+              <div className="flex justify-between items-center text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                <span>Precio Regular</span>
+                <span>${checkoutData.subtotalPrice || checkoutData.totalPrice} USD</span>
+              </div>
+
+              {checkoutData.isGroupDiscountActive && (
+                <div className="flex justify-between items-center text-[11px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-2.5 py-1 rounded-md">
+                  <span className="flex items-center gap-1"><Sparkles className="w-3 h-3" /> 6to Pasajero Gratis</span>
+                  <span>-${checkoutData.freeGuestDiscount} USD</span>
+                </div>
+              )}
+
+              {appliedCoupon && appliedCoupon !== 'GRUPO6_GRATIS' && (
+                <div className="flex justify-between items-center text-[11px] font-bold text-cyan uppercase tracking-widest bg-cyan/10 px-2.5 py-1 rounded-md">
+                  <span className="flex items-center gap-1"><Tag className="w-3 h-3" /> Cupón {appliedCoupon}</span>
+                  <span>-${couponDiscount} USD</span>
+                </div>
+              )}
+
               <div className="flex justify-between items-center text-[11px] font-bold text-gray-400 uppercase tracking-widest">
                 <span>Cargos e Impuestos</span>
                 <span className="text-cyan bg-cyan/10 px-2 py-0.5 rounded text-[10px]">INCLUIDOS</span>
@@ -422,7 +528,7 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
                 </div>
                 <div className="flex justify-between items-center mt-3 pt-3 border-t border-white/10 relative z-10">
                   <span className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">A pagar en efectivo el día del tour:</span>
-                  <span className="text-white text-sm font-black">${checkoutData.balanceDue} USD</span>
+                  <span className="text-white text-sm font-black">${currentBalanceDue} USD</span>
                 </div>
               </div>
             </div>
@@ -480,7 +586,12 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!checkoutData) return;
-
+    trackInitiateCheckout({
+      tourName: checkoutData.tourName || 'Excursion',
+      tourId: checkoutData.tourId || 1,
+      totalPrice: Number(checkoutData.totalPrice) || 0,
+      guests: (Number(checkoutData.adults) || 1) + (Number(checkoutData.children) || 0)
+    });
     setLoadingIntent(true);
     setFetchError('');
 

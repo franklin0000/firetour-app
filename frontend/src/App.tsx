@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle } from 'lucide-react';
+import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User } from 'lucide-react';
 import CatalogPage from './pages/CatalogPage';
 import ExcursionDetailsPage from './pages/ExcursionDetailsPage';
 import CheckoutPage from './pages/CheckoutPage';
@@ -21,8 +21,8 @@ function Header() {
   const path = location.pathname;
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 pointer-events-none">
-      <header className="pointer-events-auto bg-black/40 backdrop-blur-xl border border-white/10 rounded-full py-3 px-6 md:px-8 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/60 hover:border-white/20">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-6 px-2 sm:px-4 pointer-events-none">
+      <header className="pointer-events-auto bg-black/70 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-3 px-3 sm:px-8 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/85 hover:border-white/20">
         <Link to="/" className="flex items-center gap-2 group">
           <span className="text-2xl group-hover:scale-110 transition-transform duration-300">🔥</span>
           <div className="hidden sm:block">
@@ -149,13 +149,76 @@ function Footer() {
   );
 }
 
+
+// Mobile Bottom Navigation Bar (Persistent Thumb Navigation)
+function MobileBottomNav() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  return (
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 pointer-events-none pb-safe">
+      <div className="pointer-events-auto bg-black/90 backdrop-blur-2xl border-t border-white/10 px-3 py-2 flex items-center justify-around shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
+        <Link 
+          to="/" 
+          className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
+            path === '/' ? 'text-secondary' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          <Compass className="w-5 h-5" />
+          <span className="text-[10px] font-bold font-display uppercase tracking-wider">Tours</span>
+        </Link>
+
+        <a 
+          href="/#catalogo-tours" 
+          className="flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl text-gray-400 hover:text-white transition"
+        >
+          <Hotel className="w-5 h-5 text-cyan" />
+          <span className="text-[10px] font-bold font-display uppercase tracking-wider text-cyan">Hoteles</span>
+        </a>
+
+        <a 
+          href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20excursiones" 
+          target="_blank" 
+          rel="noreferrer"
+          className="flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl text-[#25D366] hover:scale-105 transition"
+        >
+          <div className="w-8 h-8 rounded-full bg-[#25D366] text-black flex items-center justify-center -mt-3 shadow-[0_0_15px_rgba(37,211,102,0.6)]">
+            <MessageCircle className="w-5 h-5 fill-black" />
+          </div>
+          <span className="text-[10px] font-black font-display uppercase tracking-wider text-[#25D366]">Chat</span>
+        </a>
+
+        <Link 
+          to="/reservations" 
+          className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
+            path === '/reservations' ? 'text-secondary' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          <Calendar className="w-5 h-5" />
+          <span className="text-[10px] font-bold font-display uppercase tracking-wider">Tickets</span>
+        </Link>
+
+        <Link 
+          to="/auth" 
+          className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
+            path === '/auth' ? 'text-cyan' : 'text-gray-400 hover:text-white'
+          }`}
+        >
+          <User className="w-5 h-5" />
+          <span className="text-[10px] font-bold font-display uppercase tracking-wider">Cuenta</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 import SmoothScroll from './components/SmoothScroll';
 
 export default function App() {
   return (
     <SmoothScroll>
       <BrowserRouter>
-        <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pt-24">
+        <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pt-16 sm:pt-24 pb-16 md:pb-0 overflow-x-hidden">
           
           {/* Navigation */}
           <Header />
@@ -181,6 +244,9 @@ export default function App() {
 
           {/* Global Footer */}
           <Footer />
+
+          {/* Mobile Bottom Navigation */}
+          <MobileBottomNav />
 
         </div>
       </BrowserRouter>

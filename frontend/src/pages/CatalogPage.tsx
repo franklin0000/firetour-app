@@ -174,7 +174,58 @@ export default function CatalogPage() {
       {/* ============================================================= */}
       {/* 🎬 FRAMER MOTION PARALLAX HEADER                             */}
       {/* ============================================================= */}
-      <section className="relative h-[250vh] w-full z-10">
+            {/* 📱 MOBILE HERO (< md): Responsive 1-screen viewport without 250vh empty space */}
+      <section className="relative min-h-[520px] h-[85vh] w-full flex flex-col justify-center items-center text-center px-4 overflow-hidden md:hidden z-10 pt-16">
+        <div className="absolute inset-0 bg-black/55 z-0 pointer-events-none" />
+        
+        <div className="relative z-10 max-w-sm flex flex-col items-center">
+          <span className="text-secondary font-black text-[10px] uppercase tracking-[0.25em] font-display bg-secondary/15 px-4 py-1.5 rounded-full border border-secondary/30 backdrop-blur-xl shadow-glow mb-4 inline-block">
+            🔥 PUNTA CANA ADVENTURES
+          </span>
+
+          <h1 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-white leading-[1.05] drop-shadow-2xl">
+            DESCUBRE EL <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">
+              PARAÍSO
+            </span>
+          </h1>
+
+          <p className="text-gray-300 text-xs sm:text-sm mt-3 leading-relaxed max-w-xs">
+            Excursiones oficiales en Punta Cana. Isla Saona VIP, Buggies Macao y Parasailing con recogida directa en tu resort.
+          </p>
+
+          <div className="flex flex-col w-full gap-2.5 mt-6">
+            <a
+              href="#catalogo-tours"
+              className="w-full bg-gradient-to-r from-secondary to-orange-500 text-white font-black font-display uppercase tracking-wider text-xs py-3.5 rounded-xl shadow-glow flex items-center justify-center gap-2"
+            >
+              Ver Excursiones y Precios <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <a
+              href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20estoy%20en%20Punta%20Cana%20y%20quiero%20informaci%C3%B3n"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] font-bold font-display uppercase tracking-wider text-xs py-3 rounded-xl flex items-center justify-center gap-2"
+            >
+              <span className="text-base">💬</span> WhatsApp Atención 24/7
+            </a>
+          </div>
+
+          <div className="mt-5 flex items-center gap-3 text-[10px] text-gray-400">
+            <span>⭐ 4.9/5 (1,420 reseñas)</span>
+            <span>•</span>
+            <span className="text-emerald-400">✓ Cancelación Gratis</span>
+          </div>
+
+          <a href="#catalogo-tours" className="mt-4 text-secondary animate-bounce text-xl">
+            ↓
+          </a>
+        </div>
+      </section>
+
+      {/* 🖥️ DESKTOP PARALLAX HEADER (>= md) */}
+      <section className="relative h-[250vh] w-full z-10 hidden md:block">
         
         {/* Full-bleed video player pinned in background */}
         <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
@@ -258,7 +309,7 @@ export default function CatalogPage() {
       {/* ============================================================= */}
       {/* 📅 EXCURSIONS CATALOG CONTAINER (Interactive & Infinite)     */}
       {/* ============================================================= */}
-      <div className="relative bg-black/60 backdrop-blur-[50px] py-20 px-4 md:px-8 max-w-7xl mx-auto z-20 -mt-20 rounded-t-[3rem] border-t border-white/10 shadow-[0_-30px_100px_rgba(0,0,0,0.8)]">
+      <div className="relative bg-black/60 backdrop-blur-[50px] py-8 md:py-20 px-3 md:px-8 max-w-7xl mx-auto z-20 md:-mt-20 rounded-t-[2rem] md:rounded-t-[3rem] border-t border-white/10 shadow-[0_-30px_100px_rgba(0,0,0,0.8)]">
         
         {/* 🔥 VIRAL GROUP PROMO BANNER & RESORT SELECTOR */}
         <div className="flex flex-col gap-6 mb-12">

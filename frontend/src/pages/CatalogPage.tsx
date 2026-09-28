@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader } from 'lucide-react';
+import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader, Sparkles, Hotel, Tag, ChevronRight } from 'lucide-react';
+import { RESORTS_DATA, getResortBySlug } from '../data/resorts';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
 import AdSenseBanner from '../components/AdSenseBanner';
@@ -13,6 +14,7 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedHotel, setSelectedHotel] = useState('');
   
   // Framer Motion Scroll Drivers
   const { scrollY } = useScroll();
@@ -132,8 +134,9 @@ export default function CatalogPage() {
     return () => window.removeEventListener('scroll', handleInfiniteScroll);
   }, [hasMore, loading]);
 
-  // Force autoplay execution
+  // Force autoplay execution & reset document title
   useEffect(() => {
+    document.title = 'Fire Tour DR - Excursiones Premium en Punta Cana | Mejores Tours y Traslados';
     const playVideos = () => {
       if (video1Ref.current) video1Ref.current.play().catch(() => {});
       if (video2Ref.current) video2Ref.current.play().catch(() => {});
@@ -257,6 +260,114 @@ export default function CatalogPage() {
       {/* ============================================================= */}
       <div className="relative bg-black/60 backdrop-blur-[50px] py-20 px-4 md:px-8 max-w-7xl mx-auto z-20 -mt-20 rounded-t-[3rem] border-t border-white/10 shadow-[0_-30px_100px_rgba(0,0,0,0.8)]">
         
+        {/* 🔥 VIRAL GROUP PROMO BANNER & RESORT SELECTOR */}
+        <div className="flex flex-col gap-6 mb-12">
+          
+          {/* Banner Oferta Viral Grupal */}
+          <div className="bg-gradient-to-r from-secondary/25 via-orange-950/40 to-black/80 border-2 border-secondary/50 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_0_40px_rgba(249,115,22,0.25)] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-secondary/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="flex items-start gap-4 relative z-10">
+              <div className="w-14 h-14 rounded-2xl bg-secondary/20 border border-secondary/40 flex items-center justify-center flex-shrink-0 text-2xl shadow-inner">
+                🔥
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full">
+                    OFERTA VIRAL
+                  </span>
+                  <span className="text-secondary text-xs font-bold font-display uppercase tracking-wider flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 animate-spin" /> Tiempo Limitado
+                  </span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-black font-display text-white mt-1.5 leading-tight">
+                  ¡Si reservas para 5 personas, la 6ta viaja 100% GRATIS!
+                </h3>
+                <p className="text-gray-300 text-xs md:text-sm mt-1 max-w-2xl leading-relaxed">
+                  Aplica automáticamente en el checkout para Isla Saona VIP, Buggies Macao y Parasail. Ahorro de hasta -$79 USD por grupo. Usa el código <b className="text-white font-mono bg-white/10 px-2 py-0.5 rounded">GRUPOFREE</b> o <b className="text-white font-mono bg-white/10 px-2 py-0.5 rounded">VIP5</b>.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto relative z-10 flex-shrink-0">
+              <a
+                href="#catalogo-tours"
+                className="bg-secondary hover:bg-orange-600 text-white font-black font-display uppercase tracking-wider text-xs py-3.5 px-6 rounded-xl transition text-center shadow-glow flex items-center justify-center gap-2"
+              >
+                Ver Excursiones <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Selector Interactivo de Hotel de Recogida */}
+          <div className="bg-surface/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-premium flex flex-col md:flex-row items-center justify-between gap-5">
+            <div className="flex items-center gap-3.5 w-full md:w-auto">
+              <div className="w-12 h-12 rounded-2xl bg-cyan/10 border border-cyan/20 flex items-center justify-center text-cyan flex-shrink-0">
+                <Hotel className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-bold text-white font-display text-sm md:text-base flex items-center gap-2">
+                  <span>¿En qué Resort te hospedas?</span>
+                  <span className="text-[10px] text-cyan font-bold bg-cyan/10 px-2 py-0.5 rounded-full border border-cyan/20">Recogida Incluida</span>
+                </h4>
+                <p className="text-gray-400 text-xs mt-0.5">
+                  Consulta el horario exacto de recogida en tu lobby y ahorra hasta un 50% vs mostrador del hotel.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+              <select
+                value={selectedHotel}
+                onChange={(e) => setSelectedHotel(e.target.value)}
+                className="bg-[#08131d] border border-outline focus:border-cyan text-white text-xs font-semibold py-3 px-4 rounded-xl focus:outline-none w-full sm:w-64 cursor-pointer"
+              >
+                <option value="">Selecciona tu Resort...</option>
+                {RESORTS_DATA.map(r => (
+                  <option key={r.slug} value={r.slug}>{r.name}</option>
+                ))}
+              </select>
+
+              {selectedHotel && (
+                <button
+                  type="button"
+                  onClick={() => navigate(`/hoteles/${selectedHotel}`)}
+                  className="w-full sm:w-auto bg-cyan hover:bg-cyan-400 text-black font-black font-display uppercase tracking-wider text-xs py-3 px-5 rounded-xl transition flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                >
+                  Ver Horario y Ahorro <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Banner Desplegado cuando se selecciona hotel */}
+          {selectedHotel && (() => {
+            const resInfo = getResortBySlug(selectedHotel);
+            if (!resInfo) return null;
+            return (
+              <div className="bg-[#08131d]/90 border border-cyan/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 animate-fadeIn">
+                <div className="flex items-center gap-3 text-xs">
+                  <span className="text-cyan font-bold">📍 {resInfo.name}</span>
+                  <span className="text-gray-400">• Recogida Saona: <b className="text-white">{resInfo.pickupTimeSaona}</b></span>
+                  <span className="text-gray-400">• Buggies: <b className="text-white">{resInfo.pickupTimeBuggies.split('/')[0]}</b></span>
+                  <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                    Ahorras ${resInfo.hotelLobbyPriceSaona - 79} USD/persona
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => navigate(`/hoteles/${resInfo.slug}`)}
+                  className="text-cyan hover:text-white font-bold text-xs underline font-display flex items-center gap-1"
+                >
+                  Ver Detalles de tu Lobby →
+                </button>
+              </div>
+            );
+          })()}
+
+        </div>
+
+        <div id="catalogo-tours" />
+
         {/* Value Pitch */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-surface border border-outline p-6 rounded-2xl flex items-start gap-4">

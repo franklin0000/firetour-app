@@ -93,7 +93,7 @@ export default {
         return jsonResponse({ error: 'Faltan parámetros obligatorios de búsqueda (origin, destination, departDate).' }, 400);
       }
 
-      const defaultToken = ['duffel', 'test', 'TTN_onG1IZFXrWTJCKnIFO0yVuFJ8OQDcmMeSe407MG'].join('_');
+      const defaultToken = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
       const duffelToken = env.DUFFEL_API_KEY || defaultToken;
       const marker = '443038';
 
@@ -236,7 +236,7 @@ export default {
         return jsonResponse({ error: 'Faltan parámetros obligatorios (destination, checkIn, checkOut).' }, 400);
       }
 
-      const defaultToken = ['duffel', 'test', 'TTN_onG1IZFXrWTJCKnIFO0yVuFJ8OQDcmMeSe407MG'].join('_');
+      const defaultToken = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
       const duffelToken = env.DUFFEL_API_KEY || defaultToken;
       const marker = '443038';
       const checkInDate = new Date(checkIn);
@@ -435,7 +435,7 @@ export default {
       }
 
       const marker = '443038';
-      const defaultToken = ['duffel', 'test', 'TTN_onG1IZFXrWTJCKnIFO0yVuFJ8OQDcmMeSe407MG'].join('_');
+      const defaultToken = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
       const duffelToken = env.DUFFEL_API_KEY || defaultToken;
       const pDate = new Date(pickupDate);
       const dDate = new Date(dropoffDate);

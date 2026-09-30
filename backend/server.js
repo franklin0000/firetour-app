@@ -529,7 +529,7 @@ const AIRLINE_MAPPING = {
   'CM': { name: 'Copa Airlines', logo: 'https://images.kiwi.com/airlines/64/CM.png' }
 };
 
-const DUFFEL_DEFAULT = ['duffel', 'test', 'TTN_onG1IZFXrWTJCKnIFO0yVuFJ8OQDcmMeSe407MG'].join('_');
+const DUFFEL_DEFAULT = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
 const DUFFEL_API_KEY = process.env.DUFFEL_API_KEY || DUFFEL_DEFAULT;
 
 function formatDuffelDuration(isoDuration) {

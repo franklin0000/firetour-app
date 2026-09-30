@@ -163,6 +163,22 @@ export default function TravelpayoutsPage() {
     };
   }, [isLoadingFrame]);
 
+  // Helper para consultar el motor Duffel API con fallback directo al Worker
+  const queryFlightSearch = async (searchQuery: string) => {
+    try {
+      const localRes = await fetch(`/api/flights/search?${searchQuery}`);
+      if (localRes.ok) {
+        const data = await localRes.json();
+        if (data && data.success) return data;
+      }
+    } catch (e) {
+      // Continuar al endpoint directo de Cloudflare Workers
+    }
+    
+    const workerRes = await fetch(`https://firetour-app.familiafabian.workers.dev/api/flights/search?${searchQuery}`);
+    return await workerRes.json();
+  };
+
   // ==========================================
   // DISPARADORES DE CONSULTA BACKEND
   // ==========================================
@@ -178,7 +194,7 @@ export default function TravelpayoutsPage() {
     setIframeUrl('loading_only');
     
     setProgressWidth(0);
-    setLoadingMessage(loadingMessages[0]);
+    setLoadingMessage("Consultando disponibilidad y tarifas en vivo con Duffel API...");
     
     const progressInterval = setInterval(() => {
       setProgressWidth(prev => {
@@ -190,17 +206,18 @@ export default function TravelpayoutsPage() {
     try {
       const cabinParam = flightCabin === 'Business' || flightCabin === 'First' ? 'Business' : 'Economy';
       const returnDateParam = tripType === 'round' && returnDate ? `&returnDate=${returnDate}` : '';
-      const response = await fetch(`/api/flights/search?origin=${origin}&destination=${destination}&departDate=${departDate}${returnDateParam}&adults=${flightAdults}&cabin=${cabinParam}`);
-      const data = await response.json();
+      const queryString = `origin=${origin}&destination=${destination}&departDate=${departDate}${returnDateParam}&adults=${flightAdults}&cabin=${cabinParam}`;
+      
+      const data = await queryFlightSearch(queryString);
       
       clearInterval(progressInterval);
       setProgressWidth(100);
       
       setTimeout(() => {
-        if (data.success) {
+        if (data && data.success) {
           setFlightResults(data.flights);
         } else {
-          setSearchError(data.error || 'No se encontraron vuelos disponibles en esta ruta.');
+          setSearchError(data?.error || 'No se encontraron vuelos disponibles en esta ruta.');
         }
         setIsLoadingFrame(false);
         setIframeUrl(null);
@@ -364,17 +381,17 @@ export default function TravelpayoutsPage() {
     }, 150);
 
     try {
-      const response = await fetch(`/api/flights/search?origin=${originCode}&destination=PUJ&departDate=${departDate}&returnDate=${returnDate}&adults=1&cabin=Economy`);
-      const data = await response.json();
+      const queryString = `origin=${originCode}&destination=PUJ&departDate=${departDate}&returnDate=${returnDate}&adults=1&cabin=Economy`;
+      const data = await queryFlightSearch(queryString);
       
       clearInterval(progressInterval);
       setProgressWidth(100);
       
       setTimeout(() => {
-        if (data.success) {
+        if (data && data.success) {
           setFlightResults(data.flights);
         } else {
-          setSearchError(data.error || 'No se encontraron vuelos.');
+          setSearchError(data?.error || 'No se encontraron vuelos.');
         }
         setIsLoadingFrame(false);
         setIframeUrl(null);
@@ -658,29 +675,36 @@ export default function TravelpayoutsPage() {
                   )}
 
                   {/* Trip Type Selector (Ida y vuelta / Solo ida) */}
-                  <div className="flex items-center gap-4 mb-1">
-                    <button
-                      type="button"
-                      onClick={() => setTripType('round')}
-                      className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition ${
-                        tripType === 'round'
-                          ? 'bg-secondary/15 text-secondary border-secondary/35'
-                          : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
-                      }`}
-                    >
-                      Ida y Vuelta
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTripType('oneway')}
-                      className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition ${
-                        tripType === 'oneway'
-                          ? 'bg-secondary/15 text-secondary border-secondary/35'
-                          : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
-                      }`}
-                    >
-                      Solo Ida
-                    </button>
+                  <div className="flex items-center justify-between gap-4 mb-1">
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setTripType('round')}
+                        className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition ${
+                          tripType === 'round'
+                            ? 'bg-secondary/15 text-secondary border-secondary/35'
+                            : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
+                        }`}
+                      >
+                        Ida y Vuelta
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTripType('oneway')}
+                        className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition ${
+                          tripType === 'oneway'
+                            ? 'bg-secondary/15 text-secondary border-secondary/35'
+                            : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
+                        }`}
+                      >
+                        Solo Ida
+                      </button>
+                    </div>
+
+                    <div className="hidden sm:flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider text-emerald-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Duffel API Conectada
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -983,7 +1007,7 @@ export default function TravelpayoutsPage() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-outline/35 pb-5 mb-6 gap-4">
                     <div>
                       <span className="bg-emerald-500/10 text-emerald-400 text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border border-emerald-500/20 inline-flex items-center gap-1.5 mb-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Tarifas Disponibles En-Sitio
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Tarifas en Tiempo Real · Conexión Duffel API
                       </span>
                       <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight">
                         ✈️ Vuelos Encontrados: {origin} ➔ {destination}
@@ -1126,7 +1150,7 @@ export default function TravelpayoutsPage() {
                             {/* Precio y Reserva */}
                             <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-1/3">
                               <div className="text-left md:text-right">
-                                <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Ida por persona</p>
+                                <p className="text-[8px] text-emerald-400 font-bold uppercase tracking-wider">{flight.provider || 'Duffel Live API'}</p>
                                 <p className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400 text-xl font-black tracking-tight mt-0.5">
                                   ${flight.price} USD
                                 </p>

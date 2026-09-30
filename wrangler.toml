@@ -9,6 +9,10 @@ directory = "./frontend/dist"
 not_found_handling = "single-page-application"
 binding = "ASSETS"
 
+[[kv_namespaces]]
+binding = "FIRETOUR_DB"
+id = "b53084ae5a6146039f3d8e6ea8584d2c"
+
 [[routes]]
 pattern = "firetourdr.com"
 custom_domain = true
@@ -16,3 +20,4 @@ custom_domain = true
 [[routes]]
 pattern = "www.firetourdr.com"
 custom_domain = true
+

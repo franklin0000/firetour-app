@@ -42,12 +42,12 @@ function Header() {
             <span className="hidden sm:inline">Tours</span>
           </Link>
           <Link 
-            to="/travelpayouts" 
+            to="/vuelos" 
             className={`flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 ${
-              path === '/travelpayouts' ? 'text-secondary' : 'text-gray-400 hover:text-white'
+              path === '/vuelos' || path === '/travelpayouts' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
             }`}
           >
-            <Plane className={`w-4 h-4 ${path === '/travelpayouts' ? 'text-cyan' : ''}`} /> 
+            <Plane className={`w-4 h-4 ${path === '/vuelos' || path === '/travelpayouts' ? 'text-cyan' : ''}`} /> 
             <span className="hidden sm:inline">Vuelos</span>
           </Link>
 
@@ -168,13 +168,15 @@ function MobileBottomNav() {
           <span className="text-[10px] font-bold font-display uppercase tracking-wider">Tours</span>
         </Link>
 
-        <a 
-          href="/#catalogo-tours" 
-          className="flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl text-gray-400 hover:text-white transition"
+        <Link 
+          to="/vuelos" 
+          className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
+            path === '/vuelos' || path === '/travelpayouts' ? 'text-secondary' : 'text-gray-400 hover:text-white'
+          }`}
         >
-          <Hotel className="w-5 h-5 text-cyan" />
-          <span className="text-[10px] font-bold font-display uppercase tracking-wider text-cyan">Hoteles</span>
-        </a>
+          <Plane className="w-5 h-5 text-cyan" />
+          <span className="text-[10px] font-bold font-display uppercase tracking-wider text-cyan">Vuelos</span>
+        </Link>
 
         <a 
           href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20excursiones" 
@@ -201,7 +203,7 @@ function MobileBottomNav() {
         <Link 
           to="/auth" 
           className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
-            path === '/auth' ? 'text-cyan' : 'text-gray-400 hover:text-white'
+            path === '/auth' || path === '/cuenta' ? 'text-cyan' : 'text-gray-400 hover:text-white'
           }`}
         >
           <User className="w-5 h-5" />
@@ -235,10 +237,11 @@ export default function App() {
               <Route path="/ticket/:id" element={<DigitalTicketPage />} />
               <Route path="/reservations" element={<ReservationsPage />} />
               <Route path="/auth" element={<AuthPage />} />
+              <Route path="/cuenta" element={<AuthPage />} />
               <Route path="/chat" element={<ChatPage />} />
-              <Route path="/travelpayouts" element={<TravelpayoutsPage />} />
-              <Route path="/travel" element={<Navigate to="/travelpayouts" replace />} />
-              <Route path="/vuelos" element={<Navigate to="/travelpayouts" replace />} />
+              <Route path="/vuelos" element={<TravelpayoutsPage />} />
+              <Route path="/travelpayouts" element={<Navigate to="/vuelos" replace />} />
+              <Route path="/travel" element={<Navigate to="/vuelos" replace />} />
               <Route path="/admin-secreto-123" element={<AdminPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

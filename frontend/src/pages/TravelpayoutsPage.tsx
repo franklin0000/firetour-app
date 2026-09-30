@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Plane, Hotel, Calendar, Users, Compass, ShieldCheck, Sparkles, MapPin, ArrowRight, Star, RefreshCw, Lock, Car, Check, Plus, Trash2 } from 'lucide-react';
+import { Plane, Hotel, Calendar, Users, Compass, ShieldCheck, Sparkles, MapPin, ArrowRight, Star, RefreshCw, Lock, Car, Check, Plus, Trash2, X, CheckCircle2, Ticket } from 'lucide-react';
 import ModernDatePicker from '../components/ModernDatePicker';
-
-// =========================================================================
-// CONFIGURACIÓN DE AFILIADO DE TRAVELPAYOUTS
-// =========================================================================
-const TRAVELPAYOUTS_MARKER = '443038';
-const TRAVELPAYOUTS_WHITE_LABEL_URL: string = ''; // Ej: 'https://vuelos.firetourdr.com'
 
 // =========================================================================
 // CONSTANTES DE SUGERENCIAS DE SKYSCANNER
@@ -168,6 +162,97 @@ export default function TravelpayoutsPage() {
   const [hasSearchedFlights, setHasSearchedFlights] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
 
+  // Estados para Modal de Reserva Directa de Vuelos (Duffel API)
+  const [selectedFlightForBooking, setSelectedFlightForBooking] = useState<any | null>(null);
+  const [bookingPassenger, setBookingPassenger] = useState({
+    title: 'Mr',
+    firstName: '',
+    lastName: '',
+    birthDate: '1995-05-15',
+    gender: 'm',
+    email: '',
+    phone: '',
+    documentId: ''
+  });
+  const [isSubmittingFlightBooking, setIsSubmittingFlightBooking] = useState(false);
+  const [flightBookingSuccess, setFlightBookingSuccess] = useState<any | null>(null);
+  const [flightBookingError, setFlightBookingError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const uStr = localStorage.getItem('user');
+      if (uStr) {
+        const u = JSON.parse(uStr);
+        setBookingPassenger(prev => ({
+          ...prev,
+          email: u.email || '',
+          firstName: u.name ? u.name.split(' ')[0] : '',
+          lastName: u.name ? u.name.split(' ').slice(1).join(' ') : ''
+        }));
+      }
+    } catch (e) {}
+  }, []);
+
+  const handleConfirmFlightBooking = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedFlightForBooking) return;
+    setIsSubmittingFlightBooking(true);
+    setFlightBookingError(null);
+
+    try {
+      const res = await fetch('/api/flights/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          offerId: selectedFlightForBooking.offerId,
+          passengerIds: selectedFlightForBooking.passengerIds,
+          passengers: [
+            {
+              title: bookingPassenger.title,
+              firstName: bookingPassenger.firstName,
+              lastName: bookingPassenger.lastName,
+              birthDate: bookingPassenger.birthDate,
+              gender: bookingPassenger.gender,
+              email: bookingPassenger.email,
+              phone: bookingPassenger.phone,
+              documentId: bookingPassenger.documentId
+            }
+          ],
+          flight: {
+            airline: selectedFlightForBooking.airline,
+            logo: selectedFlightForBooking.logo,
+            flightNumber: selectedFlightForBooking.flightNumber,
+            origin: selectedFlightForBooking.origin,
+            destination: selectedFlightForBooking.destination,
+            departureTime: selectedFlightForBooking.departureTime,
+            arrivalTime: selectedFlightForBooking.arrivalTime,
+            departureDate: selectedFlightForBooking.departureDate,
+            duration: selectedFlightForBooking.duration,
+            stops: selectedFlightForBooking.stops,
+            price: selectedFlightForBooking.price,
+            cabin: flightCabin,
+            legs: selectedFlightForBooking.legs
+          },
+          contact: {
+            email: bookingPassenger.email,
+            phone: bookingPassenger.phone
+          }
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'No se pudo completar la reserva del vuelo.');
+      }
+
+      setFlightBookingSuccess(data.booking);
+    } catch (err: any) {
+      setFlightBookingError(err.message || 'Error al conectar con la pasarela de reservas.');
+    } finally {
+      setIsSubmittingFlightBooking(false);
+    }
+  };
+
   const [hotelResults, setHotelResults] = useState<any[]>([]);
   const [isSearchingHotels, setIsSearchingHotels] = useState(false);
   const [hasSearchedHotels, setHasSearchedHotels] = useState(false);
@@ -215,20 +300,10 @@ export default function TravelpayoutsPage() {
     };
   }, [isLoadingFrame]);
 
-  // Helper para consultar el motor Duffel API con fallback directo al Worker
+  // Helper para consultar el motor de vuelos de forma limpia y directa
   const queryFlightSearch = async (searchQuery: string) => {
-    try {
-      const localRes = await fetch(`/api/flights/search?${searchQuery}`);
-      if (localRes.ok) {
-        const data = await localRes.json();
-        if (data && data.success) return data;
-      }
-    } catch (e) {
-      // Continuar al endpoint directo de Cloudflare Workers
-    }
-    
-    const workerRes = await fetch(`https://firetour-app.familiafabian.workers.dev/api/flights/search?${searchQuery}`);
-    return await workerRes.json();
+    const res = await fetch(`/api/flights/search?${searchQuery}`);
+    return await res.json();
   };
 
   // ==========================================
@@ -307,36 +382,16 @@ export default function TravelpayoutsPage() {
     }
   };
 
-  // Helper para consultar el motor de Hoteles con fallback directo al Worker
+  // Helper para consultar el motor de Hoteles
   const queryHotelSearch = async (searchQuery: string) => {
-    try {
-      const localRes = await fetch(`/api/hotels/search?${searchQuery}`);
-      if (localRes.ok) {
-        const data = await localRes.json();
-        if (data && data.success) return data;
-      }
-    } catch (e) {
-      // Continuar al endpoint directo de Cloudflare Workers
-    }
-    
-    const workerRes = await fetch(`https://firetour-app.familiafabian.workers.dev/api/hotels/search?${searchQuery}`);
-    return await workerRes.json();
+    const res = await fetch(`/api/hotels/search?${searchQuery}`);
+    return await res.json();
   };
 
-  // Helper para consultar el motor de Rent a Car con fallback directo al Worker
+  // Helper para consultar el motor de Rent a Car
   const queryCarSearch = async (searchQuery: string) => {
-    try {
-      const localRes = await fetch(`/api/cars/search?${searchQuery}`);
-      if (localRes.ok) {
-        const data = await localRes.json();
-        if (data && data.success) return data;
-      }
-    } catch (e) {
-      // Continuar al endpoint directo de Cloudflare Workers
-    }
-    
-    const workerRes = await fetch(`https://firetour-app.familiafabian.workers.dev/api/cars/search?${searchQuery}`);
-    return await workerRes.json();
+    const res = await fetch(`/api/cars/search?${searchQuery}`);
+    return await res.json();
   };
 
   const handleHotelSearch = async (e: React.FormEvent) => {
@@ -514,7 +569,7 @@ export default function TravelpayoutsPage() {
 
   // Disparar redirección para reservas de resorts
   const handleResortSearch = (resortName: string) => {
-    const baseSearchUrl = `search?location=${encodeURIComponent(resortName)}&checkIn=${checkIn}&checkOut=${checkOut}&adults=2&marker=${TRAVELPAYOUTS_MARKER}&locale=es`;
+    const baseSearchUrl = `search?location=${encodeURIComponent(resortName)}&checkIn=${checkIn}&checkOut=${checkOut}&adults=2&locale=es`;
     const searchUrl = `https://hotellook.com/${baseSearchUrl}`;
     
     setIsLoadingFrame(true);
@@ -744,7 +799,7 @@ export default function TravelpayoutsPage() {
                 Buscador de Vuelos <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">Exclusivos</span>
               </h1>
               <p className="text-sm md:text-base text-gray-300 font-medium leading-relaxed max-w-2xl mx-auto tracking-wide">
-                Planifica tu viaje de ensueño al Caribe. Compara precios reales de vuelos globales en tiempo real con total garantía y seguridad.
+                Encuentra y reserva tus vuelos al Caribe y al resto del mundo. Tarifas oficiales en tiempo real con confirmación inmediata y máxima seguridad.
               </p>
             </div>
 
@@ -1383,14 +1438,17 @@ export default function TravelpayoutsPage() {
                                   </p>
                                 </div>
 
-                                <a 
-                                  href={flight.bookingUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="bg-secondary hover:bg-orange-600 text-white font-black text-[10px] uppercase tracking-widest px-6 py-3.5 rounded-xl transition duration-300 flex items-center gap-1 active:scale-95 shadow-md shadow-secondary/15"
+                                <button 
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedFlightForBooking(flight);
+                                    setFlightBookingSuccess(null);
+                                    setFlightBookingError(null);
+                                  }}
+                                  className="bg-secondary hover:bg-orange-600 text-white font-black text-[10px] uppercase tracking-widest px-6 py-3.5 rounded-xl transition duration-300 flex items-center gap-1.5 active:scale-95 shadow-md shadow-secondary/15 hover:scale-[1.02]"
                                 >
-                                  Ver Vuelo ➔
-                                </a>
+                                  Reservar Vuelo ➔
+                                </button>
                               </div>
                             </div>
 
@@ -1471,6 +1529,244 @@ export default function TravelpayoutsPage() {
 
 
 
+          </div>
+        )}
+
+        {/* ==========================================
+            MODAL DE RESERVA DIRECTA DE VUELOS (DUFFEL ENGINE)
+            ========================================== */}
+        {selectedFlightForBooking && (
+          <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
+            <div className="max-w-xl w-full bg-[#0d131f] border border-white/15 rounded-3xl p-6 md:p-8 shadow-2xl relative my-8">
+              
+              {/* Botón Cerrar */}
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedFlightForBooking(null);
+                  setFlightBookingSuccess(null);
+                  setFlightBookingError(null);
+                }}
+                className="absolute top-5 right-5 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {flightBookingSuccess ? (
+                /* Pantalla de Éxito */
+                <div className="text-center py-6 flex flex-col items-center gap-4">
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                    <CheckCircle2 className="w-9 h-9" />
+                  </div>
+                  <h3 className="text-2xl font-black uppercase text-white tracking-tight">
+                    ¡Reserva de Vuelo Confirmada!
+                  </h3>
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4 w-full text-left flex flex-col gap-2">
+                    <div className="flex items-center justify-between border-b border-white/10 pb-2">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-gray-400">Localizador PNR / Reserva:</span>
+                      <span className="text-lg font-black text-cyan tracking-wider">{flightBookingSuccess.ticketCode}</span>
+                    </div>
+                    <div className="text-xs text-gray-300">
+                      <p><span className="text-gray-500 font-bold uppercase text-[10px]">Itinerario:</span> {flightBookingSuccess.tourName}</p>
+                      <p><span className="text-gray-500 font-bold uppercase text-[10px]">Titular:</span> {flightBookingSuccess.customerName}</p>
+                      <p><span className="text-gray-500 font-bold uppercase text-[10px]">Correo:</span> {flightBookingSuccess.email}</p>
+                      <p><span className="text-gray-500 font-bold uppercase text-[10px]">Total:</span> <strong className="text-secondary">${flightBookingSuccess.amountPaid} USD</strong></p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 leading-relaxed max-w-md">
+                    Tu reserva ha sido registrada en el sistema oficial de Fire Tour DR. Te enviamos la confirmación oficial a tu correo electrónico.
+                  </p>
+                  <div className="flex gap-3 w-full mt-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedFlightForBooking(null);
+                        setFlightBookingSuccess(null);
+                        window.location.href = '/cuenta';
+                      }}
+                      className="flex-1 bg-cyan hover:bg-cyan-400 text-black font-black uppercase tracking-wider text-xs py-3.5 rounded-xl transition"
+                    >
+                      Ver en Mi Cuenta
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedFlightForBooking(null);
+                        setFlightBookingSuccess(null);
+                      }}
+                      className="px-6 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl transition"
+                    >
+                      Cerrar
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* Formulario de Pasajero y Confirmación */
+                <form onSubmit={handleConfirmFlightBooking} className="flex flex-col gap-5">
+                  <div>
+                    <span className="bg-secondary/10 text-secondary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-secondary/25 inline-flex items-center gap-1.5 mb-2">
+                      <Ticket className="w-3.5 h-3.5" /> Reserva Oficial Fire Tour DR
+                    </span>
+                    <h3 className="text-2xl font-black uppercase tracking-tight text-white">
+                      Confirmar Reserva de Vuelo
+                    </h3>
+                  </div>
+
+                  {/* Resumen del Vuelo */}
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={selectedFlightForBooking.logo} 
+                        alt={selectedFlightForBooking.airline} 
+                        className="w-10 h-10 rounded-xl bg-white/10 p-1 object-contain"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.kiwi.com/airlines/64/AA.png';
+                        }}
+                      />
+                      <div>
+                        <p className="text-xs font-black uppercase text-white">{selectedFlightForBooking.airline}</p>
+                        <p className="text-[10px] text-gray-400">{selectedFlightForBooking.origin} ➔ {selectedFlightForBooking.destination} • {selectedFlightForBooking.departureTime}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-[9px] text-gray-400 uppercase font-bold block">Tarifa Oficial</span>
+                      <span className="text-xl font-black text-secondary">${selectedFlightForBooking.price} USD</span>
+                    </div>
+                  </div>
+
+                  {flightBookingError && (
+                    <div className="bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl p-3 text-xs font-bold text-center">
+                      ⚠️ {flightBookingError}
+                    </div>
+                  )}
+
+                  {/* Campos del Pasajero Principal */}
+                  <div className="flex flex-col gap-3.5">
+                    <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest border-b border-white/10 pb-1.5">
+                      Datos del Pasajero Principal
+                    </p>
+
+                    <div className="grid grid-cols-3 gap-2.5">
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Trato</label>
+                        <select
+                          value={bookingPassenger.title}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, title: e.target.value })}
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan"
+                        >
+                          <option value="Mr">Sr.</option>
+                          <option value="Mrs">Sra.</option>
+                          <option value="Miss">Srta.</option>
+                        </select>
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Nombre *</label>
+                        <input
+                          type="text"
+                          required
+                          value={bookingPassenger.firstName}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, firstName: e.target.value })}
+                          placeholder="Ej: Franklin"
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan font-bold"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Apellido *</label>
+                        <input
+                          type="text"
+                          required
+                          value={bookingPassenger.lastName}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, lastName: e.target.value })}
+                          placeholder="Ej: Fabian"
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan font-bold"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Fecha de Nacimiento *</label>
+                        <input
+                          type="date"
+                          required
+                          value={bookingPassenger.birthDate}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, birthDate: e.target.value })}
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Género *</label>
+                        <select
+                          value={bookingPassenger.gender}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, gender: e.target.value })}
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan"
+                        >
+                          <option value="m">Masculino</option>
+                          <option value="f">Femenino</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Correo Electrónico *</label>
+                        <input
+                          type="email"
+                          required
+                          value={bookingPassenger.email}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, email: e.target.value })}
+                          placeholder="tu@email.com"
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <label className="text-[9px] uppercase font-bold text-gray-400">Teléfono WhatsApp *</label>
+                        <input
+                          type="tel"
+                          required
+                          value={bookingPassenger.phone}
+                          onChange={(e) => setBookingPassenger({ ...bookingPassenger, phone: e.target.value })}
+                          placeholder="+1 809 000 0000"
+                          className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <label className="text-[9px] uppercase font-bold text-gray-400">Documento / Pasaporte (Opcional)</label>
+                      <input
+                        type="text"
+                        value={bookingPassenger.documentId}
+                        onChange={(e) => setBookingPassenger({ ...bookingPassenger, documentId: e.target.value })}
+                        placeholder="Número de Pasaporte o ID"
+                        className="bg-black/50 border border-white/15 rounded-xl py-2.5 px-3 text-xs text-white focus:outline-none focus:border-cyan"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 flex items-center gap-2 text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
+                    <ShieldCheck className="w-4 h-4 flex-shrink-0" /> Emisión oficial garantizada por Fire Tour DR sin cargos ocultos.
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmittingFlightBooking}
+                    className="w-full bg-secondary hover:bg-orange-600 text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl transition duration-300 shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                  >
+                    {isSubmittingFlightBooking ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin" /> Procesando Reserva Oficial...
+                      </>
+                    ) : (
+                      <>
+                        Confirmar Reserva de Vuelo (${selectedFlightForBooking.price} USD) <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+
+            </div>
           </div>
         )}
 

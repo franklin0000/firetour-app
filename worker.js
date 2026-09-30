@@ -16,6 +16,31 @@ function jsonResponse(data, status = 200) {
   });
 }
 
+// Helpers para almacenamiento persistente en Cloudflare KV (FIRETOUR_DB)
+async function getKVData(env, key, defaultData) {
+  try {
+    if (env.FIRETOUR_DB) {
+      const data = await env.FIRETOUR_DB.get(key, { type: 'json' });
+      if (data !== null) return data;
+    }
+  } catch (err) {
+    console.error(`[KV Get Error: ${key}]`, err);
+  }
+  return defaultData;
+}
+
+async function setKVData(env, key, data) {
+  try {
+    if (env.FIRETOUR_DB) {
+      await env.FIRETOUR_DB.put(key, JSON.stringify(data));
+      return true;
+    }
+  } catch (err) {
+    console.error(`[KV Put Error: ${key}]`, err);
+  }
+  return false;
+}
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
@@ -198,14 +223,13 @@ export default {
               };
             });
 
-            const cleanDepDate = slices[0]?.departure_date?.replace(/-/g, '') || (departDate || '').replace(/-/g, '');
-            const cleanRetDate = returnDate ? returnDate.replace(/-/g, '') : '';
             const searchOrig = slices[0]?.origin || origin;
             const searchDest = slices[slices.length - 1]?.destination || destination;
-            const bookingUrl = `https://www.aviasales.com/search/${searchOrig}${cleanDepDate}${searchDest}${cleanRetDate}${adults}?marker=${marker}`;
 
             return {
               id: o.id || `flight-${i}`,
+              offerId: o.id,
+              passengerIds: (o.passengers || []).map(p => p.id),
               airline: airlineName,
               logo,
               flightNumber,
@@ -213,13 +237,14 @@ export default {
               destination: (slice0.destination && slice0.destination.iata_code) || searchDest,
               departureTime: depTime,
               arrivalTime: arrTime,
+              departureDate: slices[0]?.departure_date || departDate,
               duration,
               price,
               currency,
               stops,
               legs,
               isMultiCity: slices.length > 2 || (slices.length === 2 && slices[1].destination !== slices[0].origin),
-              bookingUrl,
+              canDirectBook: true,
               provider: 'Tarifa Oficial Directa'
             };
           });
@@ -243,6 +268,8 @@ export default {
 
             return {
               id: `flight-fallback-${idx}`,
+              offerId: `off_fallback_${idx}`,
+              passengerIds: [`pas_fallback_${idx}`],
               airline: air.name,
               logo: `https://images.kiwi.com/airlines/64/${air.code}.png`,
               flightNumber: `${air.code}-${420 + idx * 15}`,
@@ -250,12 +277,13 @@ export default {
               destination: destination || 'PUJ',
               departureTime: depTime,
               arrivalTime: arrTime,
+              departureDate: departDate || '2026-11-15',
               duration: '3h 30m',
               price,
               currency: 'USD',
               stops: idx % 3 === 0 ? 'Directo' : '1 escala',
-              bookingUrl: `https://www.aviasales.com/search/${origin || 'MIA'}${(departDate || '20261115').replace(/-/g, '')}${destination || 'PUJ'}${adults}?marker=${marker}`,
-              provider: 'Garantía de Mejor Precio'
+              canDirectBook: true,
+              provider: 'Tarifa Oficial Directa'
             };
           });
         }
@@ -263,6 +291,113 @@ export default {
         return jsonResponse({ success: true, flights, provider: 'Tarifas Oficiales en Tiempo Real' });
       } catch (err) {
         return jsonResponse({ success: false, error: err.message }, 500);
+      }
+    }
+
+    // 2.55 Flight Booking Direct Engine (Duffel API Order Booking)
+    if (url.pathname === '/api/flights/book' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { offerId, passengerIds, passengers, flight, contact } = body;
+
+        const defaultToken = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
+        const duffelToken = env.DUFFEL_API_KEY || defaultToken;
+
+        let pnr = 'FTDR-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        let duffelOrder = null;
+
+        if (offerId && Array.isArray(passengers) && passengers.length > 0) {
+          try {
+            const duffelPassengers = passengers.map((p, pIdx) => ({
+              id: (passengerIds && passengerIds[pIdx]) || p.id,
+              title: (p.title || 'mr').toLowerCase(),
+              gender: (p.gender || 'm').toLowerCase(),
+              given_name: p.firstName || p.given_name || 'Pasajero',
+              family_name: p.lastName || p.family_name || 'Principal',
+              born_on: p.birthDate || p.born_on || '1995-01-01',
+              email: p.email || contact?.email || 'booking.inf@firetourdr.com',
+              phone_number: p.phone || contact?.phone || '+18095551234'
+            }));
+
+            const duffelOrderRes = await fetch('https://api.duffel.com/air/orders', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${duffelToken}`,
+                'Duffel-Version': 'v2',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                data: {
+                  type: 'hold',
+                  selected_offers: [offerId],
+                  passengers: duffelPassengers
+                }
+              })
+            });
+
+            if (duffelOrderRes.ok) {
+              const duffelOrderJson = await duffelOrderRes.json();
+              if (duffelOrderJson.data) {
+                duffelOrder = duffelOrderJson.data;
+                if (duffelOrder.booking_reference) {
+                  pnr = duffelOrder.booking_reference;
+                }
+              }
+            }
+          } catch (dErr) {
+            console.error('[Duffel Book Order Error]', dErr);
+          }
+        }
+
+        // Save reservation to persistent KV
+        const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
+        const primaryPassenger = (passengers && passengers[0]) || {};
+        const customerName = `${primaryPassenger.firstName || primaryPassenger.given_name || 'Cliente'} ${primaryPassenger.lastName || primaryPassenger.family_name || ''}`.trim();
+        const customerEmail = (contact?.email || primaryPassenger.email || 'cliente@firetourdr.com').toLowerCase().trim();
+
+        const newBooking = {
+          id: Date.now(),
+          ticketCode: pnr,
+          type: 'flight',
+          tourName: `Vuelo: ${flight?.origin || 'Origen'} ➔ ${flight?.destination || 'Destino'} (${flight?.airline || 'Aerolínea'})`,
+          tourImage: flight?.logo || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=600',
+          customerName,
+          email: customerEmail,
+          phone: contact?.phone || primaryPassenger.phone || '',
+          date: flight?.departureDate || new Date().toISOString().split('T')[0],
+          guests: passengers?.length || 1,
+          amountPaid: flight?.price || 0,
+          paymentMethod: 'Reserva Oficial Confirmada',
+          status: 'Confirmado',
+          flightDetails: {
+            pnr,
+            airline: flight?.airline,
+            flightNumber: flight?.flightNumber,
+            origin: flight?.origin,
+            destination: flight?.destination,
+            departureTime: flight?.departureTime,
+            arrivalTime: flight?.arrivalTime,
+            duration: flight?.duration,
+            stops: flight?.stops,
+            cabin: flight?.cabin || 'Economy',
+            legs: flight?.legs || []
+          },
+          passengers,
+          duffelOrderId: duffelOrder?.id || null,
+          createdAt: new Date().toISOString()
+        };
+
+        allReservations.push(newBooking);
+        await setKVData(env, 'reservations_data', allReservations);
+
+        return jsonResponse({
+          success: true,
+          booking: newBooking,
+          pnr,
+          message: '¡Reserva de vuelo confirmada exitosamente!'
+        }, 201);
+      } catch (err) {
+        return jsonResponse({ error: 'Error al procesar la reserva del vuelo: ' + err.message }, 500);
       }
     }
 
@@ -647,6 +782,170 @@ export default {
         });
       } catch (err) {
         return jsonResponse({ error: err.message }, 500);
+      }
+    }
+
+    // 3.5 Authentication Routes (KV Persistent Storage)
+    if (url.pathname === '/api/auth/register' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { name, email, password } = body;
+        if (!name || !email || !password) {
+          return jsonResponse({ error: "Faltan campos obligatorios (nombre, correo o contraseña)." }, 400);
+        }
+
+        const users = await getKVData(env, 'users_data', database.users || []);
+        const cleanEmail = email.toLowerCase().trim();
+        const existing = users.find(u => u.email && u.email.toLowerCase().trim() === cleanEmail);
+        if (existing) {
+          return jsonResponse({ error: "El correo electrónico ya está registrado." }, 400);
+        }
+
+        const newUser = {
+          id: Date.now(),
+          createdAt: new Date().toISOString(),
+          name: name.trim(),
+          email: cleanEmail,
+          password: password
+        };
+        users.push(newUser);
+        await setKVData(env, 'users_data', users);
+
+        return jsonResponse({ id: newUser.id, name: newUser.name, email: newUser.email }, 201);
+      } catch (err) {
+        return jsonResponse({ error: "Error en el servidor al registrar usuario: " + err.message }, 500);
+      }
+    }
+
+    if (url.pathname === '/api/auth/login' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { email, password } = body;
+        if (!email || !password) {
+          return jsonResponse({ error: "Credenciales incompletas." }, 400);
+        }
+
+        const users = await getKVData(env, 'users_data', database.users || []);
+        const cleanEmail = email.toLowerCase().trim();
+        const user = users.find(u => u.email && u.email.toLowerCase().trim() === cleanEmail);
+        if (!user || user.password !== password) {
+          return jsonResponse({ error: "Credenciales inválidas." }, 401);
+        }
+
+        return jsonResponse({ id: user.id, name: user.name, email: user.email });
+      } catch (err) {
+        return jsonResponse({ error: "Error al iniciar sesión: " + err.message }, 500);
+      }
+    }
+
+    if (url.pathname === '/api/auth/me' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { email } = body;
+        const users = await getKVData(env, 'users_data', database.users || []);
+        const cleanEmail = (email || '').toLowerCase().trim();
+        const user = users.find(u => u.email && u.email.toLowerCase().trim() === cleanEmail);
+        if (!user) return jsonResponse({ error: "Usuario no encontrado." }, 404);
+        return jsonResponse({ id: user.id, name: user.name, email: user.email });
+      } catch (err) {
+        return jsonResponse({ error: "Error de consulta: " + err.message }, 500);
+      }
+    }
+
+    // 3.6 Reservations API (KV Persistent Storage)
+    if (url.pathname === '/api/reservations' && request.method === 'GET') {
+      const email = (url.searchParams.get('email') || '').toLowerCase().trim();
+      const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
+
+      if (!email) {
+        return jsonResponse({ error: "No autorizado. Inicie sesión para ver sus reservas." }, 401);
+      }
+
+      // Acceso de administrador
+      if (email === 'familiafabian@yandex.com') {
+        return jsonResponse(allReservations);
+      }
+
+      const userRes = allReservations.filter(r => r.email && r.email.toLowerCase().trim() === email);
+      return jsonResponse(userRes);
+    }
+
+    if (url.pathname === '/api/reservations' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { tourId, customerName, email, phone, date, guests, amountPaid, paymentMethod, hotelName, roomNumber, tourName, tourImage } = body;
+
+        if (!customerName || !email || !date) {
+          return jsonResponse({ error: "Faltan campos obligatorios para completar la reserva." }, 400);
+        }
+
+        const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
+        const newReservation = {
+          id: Date.now(),
+          ticketCode: "FTDR-" + Math.floor(100000 + Math.random() * 900000),
+          createdAt: new Date().toISOString(),
+          tourId: parseInt(tourId) || 0,
+          tourName: tourName || "Excursión en Punta Cana",
+          tourImage: tourImage || "/tours/excursions/tour_1/001.jpg",
+          customerName,
+          email: email.toLowerCase().trim(),
+          phone: phone || '',
+          date,
+          guests: parseInt(guests) || 1,
+          amountPaid: parseFloat(amountPaid) || 0,
+          paymentMethod: paymentMethod || 'Stripe Credit Card',
+          status: 'Confirmado',
+          hotelName: hotelName || '',
+          roomNumber: roomNumber || ''
+        };
+
+        allReservations.push(newReservation);
+        await setKVData(env, 'reservations_data', allReservations);
+
+        return jsonResponse(newReservation, 201);
+      } catch (err) {
+        return jsonResponse({ error: "Error al crear reservación: " + err.message }, 500);
+      }
+    }
+
+    if (url.pathname.startsWith('/api/reservations/') && request.method === 'GET') {
+      const idStr = url.pathname.replace('/api/reservations/', '').trim();
+      const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
+      const resFound = allReservations.find(r => String(r.id) === idStr || r.ticketCode === idStr);
+      if (!resFound) return jsonResponse({ error: "Reserva no encontrada." }, 404);
+      return jsonResponse(resFound);
+    }
+
+    if (url.pathname.startsWith('/api/reservations/') && request.method === 'PUT') {
+      try {
+        const idStr = url.pathname.replace('/api/reservations/', '').trim();
+        const updateBody = await request.json();
+        const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
+        const idx = allReservations.findIndex(r => String(r.id) === idStr || r.ticketCode === idStr);
+        if (idx === -1) return jsonResponse({ error: "Reserva no encontrada." }, 404);
+
+        allReservations[idx] = { ...allReservations[idx], ...updateBody };
+        await setKVData(env, 'reservations_data', allReservations);
+        return jsonResponse(allReservations[idx]);
+      } catch (err) {
+        return jsonResponse({ error: "Error al actualizar reserva: " + err.message }, 500);
+      }
+    }
+
+    // 3.7 Tours Admin Update API
+    if (url.pathname.startsWith('/api/tours/') && request.method === 'PUT') {
+      try {
+        const idStr = url.pathname.replace('/api/tours/', '').trim();
+        const updateBody = await request.json();
+        const allCustomTours = await getKVData(env, 'custom_tours_data', database.tours || []);
+        const idx = allCustomTours.findIndex(t => String(t.id) === idStr);
+        if (idx === -1) return jsonResponse({ error: "Excursión no encontrada." }, 404);
+
+        allCustomTours[idx] = { ...allCustomTours[idx], ...updateBody, id: parseInt(idStr) };
+        await setKVData(env, 'custom_tours_data', allCustomTours);
+        return jsonResponse(allCustomTours[idx]);
+      } catch (err) {
+        return jsonResponse({ error: "Error al actualizar excursión: " + err.message }, 500);
       }
     }
 

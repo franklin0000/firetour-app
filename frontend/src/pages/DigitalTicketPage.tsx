@@ -14,14 +14,32 @@ export default function DigitalTicketPage() {
   const [loading, setLoading] = useState(!reservation);
 
   useEffect(() => {
-    if (!reservation) {
+    if (!reservation && id) {
       const fetchTicketDetails = async () => {
         try {
-          const response = await fetch(`/api/reservations`);
-          const list: Reservation[] = await response.json();
-          const match = list.find(r => r.id === parseInt(id || ''));
-          if (match) {
-            setReservation(match);
+          // 1. Intento directo por ID o ticketCode
+          const directRes = await fetch(`/api/reservations/${id}`);
+          if (directRes.ok) {
+            const data = await directRes.json();
+            if (data && data.id) {
+              setReservation(data);
+              return;
+            }
+          }
+
+          // 2. Fallback a búsqueda por email del usuario autenticado
+          const savedUser = localStorage.getItem('firetour_user');
+          const userObj = savedUser ? JSON.parse(savedUser) : null;
+          const emailParam = userObj?.email ? `?email=${encodeURIComponent(userObj.email)}` : '';
+          const response = await fetch(`/api/reservations${emailParam}`);
+          if (response.ok) {
+            const list: Reservation[] = await response.json();
+            if (Array.isArray(list)) {
+              const match = list.find(r => String(r.id) === String(id) || r.ticketCode === id);
+              if (match) {
+                setReservation(match);
+              }
+            }
           }
         } catch (err) {
           console.error("Error loading ticket: ", err);

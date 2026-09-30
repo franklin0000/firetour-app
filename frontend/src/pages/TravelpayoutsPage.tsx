@@ -243,6 +243,38 @@ export default function TravelpayoutsPage() {
     }
   };
 
+  // Helper para consultar el motor de Hoteles con fallback directo al Worker
+  const queryHotelSearch = async (searchQuery: string) => {
+    try {
+      const localRes = await fetch(`/api/hotels/search?${searchQuery}`);
+      if (localRes.ok) {
+        const data = await localRes.json();
+        if (data && data.success) return data;
+      }
+    } catch (e) {
+      // Continuar al endpoint directo de Cloudflare Workers
+    }
+    
+    const workerRes = await fetch(`https://firetour-app.familiafabian.workers.dev/api/hotels/search?${searchQuery}`);
+    return await workerRes.json();
+  };
+
+  // Helper para consultar el motor de Rent a Car con fallback directo al Worker
+  const queryCarSearch = async (searchQuery: string) => {
+    try {
+      const localRes = await fetch(`/api/cars/search?${searchQuery}`);
+      if (localRes.ok) {
+        const data = await localRes.json();
+        if (data && data.success) return data;
+      }
+    } catch (e) {
+      // Continuar al endpoint directo de Cloudflare Workers
+    }
+    
+    const workerRes = await fetch(`https://firetour-app.familiafabian.workers.dev/api/cars/search?${searchQuery}`);
+    return await workerRes.json();
+  };
+
   const handleHotelSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!hotelDestination || !checkIn || !checkOut) return;
@@ -265,17 +297,17 @@ export default function TravelpayoutsPage() {
     }, 150);
 
     try {
-      const response = await fetch(`/api/hotels/search?destination=${encodeURIComponent(hotelDestination)}&checkIn=${checkIn}&checkOut=${checkOut}&guests=${hotelGuests}`);
-      const data = await response.json();
+      const queryString = `destination=${encodeURIComponent(hotelDestination)}&checkIn=${checkIn}&checkOut=${checkOut}&guests=${hotelGuests}`;
+      const data = await queryHotelSearch(queryString);
 
       clearInterval(progressInterval);
       setProgressWidth(100);
 
       setTimeout(() => {
-        if (data.success) {
+        if (data && data.success) {
           setHotelResults(data.hotels);
         } else {
-          setHotelSearchError(data.error || 'No se encontraron hoteles disponibles.');
+          setHotelSearchError(data?.error || 'No se encontraron hoteles disponibles.');
         }
         setIsLoadingFrame(false);
         setIframeUrl(null);
@@ -292,7 +324,7 @@ export default function TravelpayoutsPage() {
       clearInterval(progressInterval);
       setProgressWidth(100);
       setTimeout(() => {
-        setHotelSearchError('Error de red al consultar el motor de hoteles. Verifica tu Express server.');
+        setHotelSearchError('Error de red al consultar el motor de hoteles.');
         setIsLoadingFrame(false);
         setIframeUrl(null);
         setIsSearchingHotels(false);
@@ -323,17 +355,17 @@ export default function TravelpayoutsPage() {
 
     try {
       const dropoffParam = sameCarDropoff ? carPickupLocation : carDropoffLocation;
-      const response = await fetch(`/api/cars/search?pickup=${encodeURIComponent(carPickupLocation)}&dropoff=${encodeURIComponent(dropoffParam)}&pickupDate=${carPickupDate}&dropoffDate=${carDropoffDate}&age=${carAge}`);
-      const data = await response.json();
+      const queryString = `pickup=${encodeURIComponent(carPickupLocation)}&dropoff=${encodeURIComponent(dropoffParam)}&pickupDate=${carPickupDate}&dropoffDate=${carDropoffDate}&age=${carAge}`;
+      const data = await queryCarSearch(queryString);
 
       clearInterval(progressInterval);
       setProgressWidth(100);
 
       setTimeout(() => {
-        if (data.success) {
+        if (data && data.success) {
           setCarResults(data.cars);
         } else {
-          setCarSearchError(data.error || 'No se encontraron coches disponibles.');
+          setCarSearchError(data?.error || 'No se encontraron coches disponibles.');
         }
         setIsLoadingFrame(false);
         setIframeUrl(null);
@@ -350,7 +382,7 @@ export default function TravelpayoutsPage() {
       clearInterval(progressInterval);
       setProgressWidth(100);
       setTimeout(() => {
-        setCarSearchError('Error de red al consultar el motor de renta car. Verifica tu Express server.');
+        setCarSearchError('Error de red al consultar el motor de renta car.');
         setIsLoadingFrame(false);
         setIframeUrl(null);
         setIsSearchingCars(false);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Plane, Hotel, Calendar, Users, Compass, ShieldCheck, Sparkles, MapPin, ArrowRight, Star, RefreshCw, Lock, Car, Check } from 'lucide-react';
+import { Plane, Hotel, Calendar, Users, Compass, ShieldCheck, Sparkles, MapPin, ArrowRight, Star, RefreshCw, Lock, Car, Check, Plus, Trash2 } from 'lucide-react';
+import ModernDatePicker from '../components/ModernDatePicker';
 
 // =========================================================================
 // CONFIGURACIÓN DE AFILIADO DE TRAVELPAYOUTS
@@ -42,10 +43,61 @@ export default function TravelpayoutsPage() {
   // ==========================================
   // ESTADOS DE INTERACCIÓN PREMIUM (SKYSCANNER)
   // ==========================================
-  const [tripType, setTripType] = useState<'round' | 'oneway'>('round');
+  const [tripType, setTripType] = useState<'round' | 'oneway' | 'multicity'>('round');
   const [flightAdults, setFlightAdults] = useState(1);
   const [flightChildren, setFlightChildren] = useState(0);
   const [flightCabin, setFlightCabin] = useState<'Economy' | 'Premium' | 'Business' | 'First'>('Economy');
+  
+  // Estado para viajes Multiciudad
+  const [multiCityLegs, setMultiCityLegs] = useState<Array<{ id: string; origin: string; destination: string; date: string }>>([
+    {
+      id: '1',
+      origin: 'MIA',
+      destination: 'PUJ',
+      date: (() => {
+        const d = new Date();
+        d.setDate(d.getDate() + 14);
+        return d.toISOString().split('T')[0];
+      })()
+    },
+    {
+      id: '2',
+      origin: 'PUJ',
+      destination: 'JFK',
+      date: (() => {
+        const d = new Date();
+        d.setDate(d.getDate() + 21);
+        return d.toISOString().split('T')[0];
+      })()
+    }
+  ]);
+  const [multiOriginSuggestIdx, setMultiOriginSuggestIdx] = useState<number | null>(null);
+  const [multiDestSuggestIdx, setMultiDestSuggestIdx] = useState<number | null>(null);
+
+  const handleAddLeg = () => {
+    if (multiCityLegs.length >= 5) return;
+    const lastLeg = multiCityLegs[multiCityLegs.length - 1];
+    const nextDate = new Date(lastLeg.date + 'T00:00:00');
+    nextDate.setDate(nextDate.getDate() + 7);
+    setMultiCityLegs([
+      ...multiCityLegs,
+      {
+        id: String(Date.now()),
+        origin: lastLeg.destination,
+        destination: 'SDQ',
+        date: nextDate.toISOString().split('T')[0]
+      }
+    ]);
+  };
+
+  const handleRemoveLeg = (idx: number) => {
+    if (multiCityLegs.length <= 2) return;
+    setMultiCityLegs(multiCityLegs.filter((_, i) => i !== idx));
+  };
+
+  const handleUpdateLeg = (idx: number, field: 'origin' | 'destination' | 'date', value: string) => {
+    setMultiCityLegs(multiCityLegs.map((leg, i) => i === idx ? { ...leg, [field]: value } : leg));
+  };
   
   // Sugeridores de Autocompletado
   const [showOriginSuggest, setShowOriginSuggest] = useState(false);
@@ -184,7 +236,8 @@ export default function TravelpayoutsPage() {
   // ==========================================
   const handleFlightSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!origin || !destination || !departDate) return;
+    if (tripType !== 'multicity' && (!origin || !destination || !departDate)) return;
+    if (tripType === 'multicity' && multiCityLegs.some(l => !l.origin || !l.destination || !l.date)) return;
     
     setIsSearchingFlights(true);
     setHasSearchedFlights(true);
@@ -194,7 +247,7 @@ export default function TravelpayoutsPage() {
     setIframeUrl('loading_only');
     
     setProgressWidth(0);
-    setLoadingMessage("Consultando disponibilidad y tarifas en vivo con Duffel API...");
+    setLoadingMessage("Consultando disponibilidad y mejores tarifas aéreas en tiempo real...");
     
     const progressInterval = setInterval(() => {
       setProgressWidth(prev => {
@@ -205,8 +258,19 @@ export default function TravelpayoutsPage() {
 
     try {
       const cabinParam = flightCabin === 'Business' || flightCabin === 'First' ? 'Business' : 'Economy';
-      const returnDateParam = tripType === 'round' && returnDate ? `&returnDate=${returnDate}` : '';
-      const queryString = `origin=${origin}&destination=${destination}&departDate=${departDate}${returnDateParam}&adults=${flightAdults}&cabin=${cabinParam}`;
+      let queryString = '';
+
+      if (tripType === 'multicity') {
+        const slicesPayload = multiCityLegs.map(l => ({
+          origin: l.origin.toUpperCase().trim(),
+          destination: l.destination.toUpperCase().trim(),
+          departure_date: l.date
+        }));
+        queryString = `slices=${encodeURIComponent(JSON.stringify(slicesPayload))}&adults=${flightAdults}&cabin=${cabinParam}`;
+      } else {
+        const returnDateParam = tripType === 'round' && returnDate ? `&returnDate=${returnDate}` : '';
+        queryString = `origin=${origin}&destination=${destination}&departDate=${departDate}${returnDateParam}&adults=${flightAdults}&cabin=${cabinParam}`;
+      }
       
       const data = await queryFlightSearch(queryString);
       
@@ -235,7 +299,7 @@ export default function TravelpayoutsPage() {
       clearInterval(progressInterval);
       setProgressWidth(100);
       setTimeout(() => {
-        setSearchError('Error de conexión con el motor de vuelos. Por favor verifica tu servidor Express.');
+        setSearchError('Error de conexión con el motor de vuelos. Por favor reintenta tu búsqueda.');
         setIsLoadingFrame(false);
         setIframeUrl(null);
         setIsSearchingFlights(false);
@@ -679,8 +743,8 @@ export default function TravelpayoutsPage() {
               <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 leading-tight drop-shadow-2xl">
                 Buscador de Vuelos <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">Exclusivos</span>
               </h1>
-              <p className="text-sm md:text-base text-gray-300 font-bold leading-relaxed max-w-2xl mx-auto tracking-wide">
-                Planifica tu viaje de ensueño al Caribe. Compara precios reales de vuelos globales sin salir de nuestro portal seguro.
+              <p className="text-sm md:text-base text-gray-300 font-medium leading-relaxed max-w-2xl mx-auto tracking-wide">
+                Planifica tu viaje de ensueño al Caribe. Compara precios reales de vuelos globales en tiempo real con total garantía y seguridad.
               </p>
             </div>
 
@@ -695,26 +759,28 @@ export default function TravelpayoutsPage() {
                 <form onSubmit={handleFlightSearch} className="flex flex-col gap-5 relative">
                   
                   {/* Shields de Clic Externo para Cerrar Popovers de Sugerencias */}
-                  {(showOriginSuggest || showDestSuggest || showPassengerPopover) && (
+                  {(showOriginSuggest || showDestSuggest || showPassengerPopover || multiOriginSuggestIdx !== null || multiDestSuggestIdx !== null) && (
                     <div 
                       className="fixed inset-0 z-40" 
                       onClick={() => {
                         setShowOriginSuggest(false);
                         setShowDestSuggest(false);
                         setShowPassengerPopover(false);
+                        setMultiOriginSuggestIdx(null);
+                        setMultiDestSuggestIdx(null);
                       }} 
                     />
                   )}
 
-                  {/* Trip Type Selector (Ida y vuelta / Solo ida) */}
-                  <div className="flex items-center justify-between gap-4 mb-1">
-                    <div className="flex items-center gap-3">
+                  {/* Trip Type Selector (Ida y vuelta / Solo ida / Multiciudad) */}
+                  <div className="flex flex-wrap items-center justify-between gap-4 mb-1">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <button
                         type="button"
                         onClick={() => setTripType('round')}
                         className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition ${
                           tripType === 'round'
-                            ? 'bg-secondary/15 text-secondary border-secondary/35'
+                            ? 'bg-secondary/15 text-secondary border-secondary/35 shadow-sm'
                             : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
                         }`}
                       >
@@ -725,163 +791,288 @@ export default function TravelpayoutsPage() {
                         onClick={() => setTripType('oneway')}
                         className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition ${
                           tripType === 'oneway'
-                            ? 'bg-secondary/15 text-secondary border-secondary/35'
+                            ? 'bg-secondary/15 text-secondary border-secondary/35 shadow-sm'
                             : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
                         }`}
                       >
                         Solo Ida
                       </button>
+                      <button
+                        type="button"
+                        onClick={() => setTripType('multicity')}
+                        className={`text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full border transition flex items-center gap-1.5 ${
+                          tripType === 'multicity'
+                            ? 'bg-cyan/15 text-cyan border-cyan/35 shadow-sm'
+                            : 'text-gray-400 border-outline/50 hover:text-white hover:border-white'
+                        }`}
+                      >
+                        <Compass className="w-3 h-3" /> Multiciudades
+                      </button>
                     </div>
 
                     <div className="hidden sm:flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider text-emerald-400">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Duffel API Conectada
+                      Tarifas Oficiales en Tiempo Real
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    
-                    {/* Origen Input con Autocomplete Popover */}
-                    <div className="flex flex-col gap-2 relative">
-                      <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-secondary" /> Origen
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={origin}
-                        onFocus={() => {
-                          setShowOriginSuggest(true);
-                          setShowDestSuggest(false);
-                          setShowPassengerPopover(false);
-                        }}
-                        onChange={(e) => setOrigin(e.target.value.toUpperCase())}
-                        placeholder="MIA"
-                        className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-secondary font-bold z-50"
-                      />
-                      
-                      {showOriginSuggest && (
-                        <div className="absolute top-[72px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-3 shadow-2xl z-50 flex flex-col gap-1.5 animate-fadeIn">
-                          <p className="text-[8px] text-gray-500 font-bold uppercase tracking-wider border-b border-outline/35 pb-1 mb-1">
-                            Aeropuertos Recomendados
-                          </p>
-                          {POPULAR_AIRPORTS.map((airport) => (
-                            <button
-                              key={airport.code}
-                              type="button"
-                              onClick={() => {
-                                setOrigin(airport.code);
-                                setShowOriginSuggest(false);
-                              }}
-                              className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-300 hover:text-white"
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="text-[9px] bg-outline/40 px-1.5 py-0.5 rounded text-gray-400">✈️</span>
-                                <div>
-                                  <p className="leading-tight">{airport.name}</p>
-                                  <p className="text-[8px] text-gray-500">{airport.country}</p>
+                  {/* VISTA MULTICIUDAD: TRAMOS MÚLTIPLES */}
+                  {tripType === 'multicity' ? (
+                    <div className="flex flex-col gap-4">
+                      {multiCityLegs.map((leg, index) => (
+                        <div 
+                          key={leg.id}
+                          className="bg-bgDark/40 border border-outline/50 rounded-2xl p-4 flex flex-col gap-3 relative transition hover:border-secondary/40"
+                        >
+                          <div className="flex items-center justify-between border-b border-outline/25 pb-2">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-secondary flex items-center gap-1.5">
+                              <span className="w-5 h-5 rounded-full bg-secondary/15 text-secondary flex items-center justify-center text-[10px]">
+                                {index + 1}
+                              </span>
+                              Vuelo / Tramo {index + 1}
+                            </span>
+                            {multiCityLegs.length > 2 && (
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveLeg(index)}
+                                className="text-[9px] text-red-400 hover:text-red-300 font-bold uppercase tracking-wider flex items-center gap-1 transition px-2 py-1 rounded-lg hover:bg-red-500/10"
+                              >
+                                <Trash2 className="w-3 h-3" /> Eliminar tramo
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            {/* Origen del tramo */}
+                            <div className="flex flex-col gap-1.5 relative">
+                              <label className="text-[9px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1">
+                                <MapPin className="w-3 h-3 text-secondary" /> Origen
+                              </label>
+                              <input
+                                type="text"
+                                required
+                                value={leg.origin}
+                                onFocus={() => {
+                                  setMultiOriginSuggestIdx(index);
+                                  setMultiDestSuggestIdx(null);
+                                  setShowPassengerPopover(false);
+                                }}
+                                onChange={(e) => handleUpdateLeg(index, 'origin', e.target.value.toUpperCase())}
+                                placeholder="Ej: MIA"
+                                className="bg-bgDark border border-outline rounded-xl py-3 px-3 text-sm text-white focus:outline-none focus:border-secondary font-bold"
+                              />
+                              {multiOriginSuggestIdx === index && (
+                                <div className="absolute top-[68px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-2.5 shadow-2xl z-50 flex flex-col gap-1 max-h-48 overflow-y-auto">
+                                  {POPULAR_AIRPORTS.map((airport) => (
+                                    <button
+                                      key={airport.code}
+                                      type="button"
+                                      onClick={() => {
+                                        handleUpdateLeg(index, 'origin', airport.code);
+                                        setMultiOriginSuggestIdx(null);
+                                      }}
+                                      className="flex items-center justify-between text-left p-1.5 rounded-lg hover:bg-surface/50 text-xs font-bold text-gray-300 hover:text-white"
+                                    >
+                                      <span>{airport.name}</span>
+                                      <span className="text-secondary font-black">{airport.code}</span>
+                                    </button>
+                                  ))}
                                 </div>
-                              </div>
-                              <span className="text-secondary font-black">{airport.code}</span>
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                              )}
+                            </div>
 
-                    {/* Destino Input con Autocomplete Popover */}
-                    <div className="flex flex-col gap-2 relative">
-                      <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
-                        <MapPin className="w-3.5 h-3.5 text-cyan" /> Destino
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={destination}
-                        onFocus={() => {
-                          setShowDestSuggest(true);
-                          setShowOriginSuggest(false);
-                          setShowPassengerPopover(false);
-                        }}
-                        onChange={(e) => setDestination(e.target.value.toUpperCase())}
-                        placeholder="PUJ"
-                        className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-cyan font-bold z-50"
-                      />
-
-                      {showDestSuggest && (
-                        <div className="absolute top-[72px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-3 shadow-2xl z-50 flex flex-col gap-1.5 animate-fadeIn">
-                          <p className="text-[8px] text-gray-500 font-bold uppercase tracking-wider border-b border-outline/35 pb-1 mb-1">
-                            Destinos Dominicanos y Conexiones
-                          </p>
-                          {POPULAR_AIRPORTS.map((airport) => (
-                            <button
-                              key={airport.code}
-                              type="button"
-                              onClick={() => {
-                                setDestination(airport.code);
-                                setShowDestSuggest(false);
-                              }}
-                              className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-300 hover:text-white"
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="text-[9px] bg-outline/40 px-1.5 py-0.5 rounded text-gray-400">✈️</span>
-                                <div>
-                                  <p className="leading-tight">{airport.name}</p>
-                                  <p className="text-[8px] text-gray-500">{airport.country}</p>
+                            {/* Destino del tramo */}
+                            <div className="flex flex-col gap-1.5 relative">
+                              <label className="text-[9px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1">
+                                <MapPin className="w-3 h-3 text-cyan" /> Destino
+                              </label>
+                              <input
+                                type="text"
+                                required
+                                value={leg.destination}
+                                onFocus={() => {
+                                  setMultiDestSuggestIdx(index);
+                                  setMultiOriginSuggestIdx(null);
+                                  setShowPassengerPopover(false);
+                                }}
+                                onChange={(e) => handleUpdateLeg(index, 'destination', e.target.value.toUpperCase())}
+                                placeholder="Ej: PUJ"
+                                className="bg-bgDark border border-outline rounded-xl py-3 px-3 text-sm text-white focus:outline-none focus:border-cyan font-bold"
+                              />
+                              {multiDestSuggestIdx === index && (
+                                <div className="absolute top-[68px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-2.5 shadow-2xl z-50 flex flex-col gap-1 max-h-48 overflow-y-auto">
+                                  {POPULAR_AIRPORTS.map((airport) => (
+                                    <button
+                                      key={airport.code}
+                                      type="button"
+                                      onClick={() => {
+                                        handleUpdateLeg(index, 'destination', airport.code);
+                                        setMultiDestSuggestIdx(null);
+                                      }}
+                                      className="flex items-center justify-between text-left p-1.5 rounded-lg hover:bg-surface/50 text-xs font-bold text-gray-300 hover:text-white"
+                                    >
+                                      <span>{airport.name}</span>
+                                      <span className="text-cyan font-black">{airport.code}</span>
+                                    </button>
+                                  ))}
                                 </div>
-                              </div>
-                              <span className="text-cyan font-black">{airport.code}</span>
-                            </button>
-                          ))}
+                              )}
+                            </div>
+
+                            {/* Fecha del tramo con ModernDatePicker */}
+                            <div>
+                              <ModernDatePicker
+                                label="Fecha del Vuelo"
+                                value={leg.date}
+                                onChange={(newDate) => handleUpdateLeg(index, 'date', newDate)}
+                                minDate={index === 0 ? new Date().toISOString().split('T')[0] : multiCityLegs[index - 1].date}
+                                required
+                              />
+                            </div>
+                          </div>
                         </div>
+                      ))}
+
+                      {/* Botón Añadir otro tramo */}
+                      {multiCityLegs.length < 5 && (
+                        <button
+                          type="button"
+                          onClick={handleAddLeg}
+                          className="self-start text-xs font-bold text-cyan hover:text-white border border-cyan/30 hover:border-cyan/70 px-4 py-2 rounded-xl transition flex items-center gap-1.5 bg-cyan/5 hover:bg-cyan/15 active:scale-95"
+                        >
+                          <Plus className="w-3.5 h-3.5" /> + Añadir otro tramo de vuelo
+                        </button>
                       )}
+                    </div>
+                  ) : (
+                    /* VISTA CLÁSICA: IDA Y VUELTA / SOLO IDA */
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                       
-                      {destination === 'PUJ' && (
-                        <span className="absolute right-3.5 bottom-3.5 bg-cyan/10 text-cyan text-[7px] font-black uppercase px-1.5 py-0.5 rounded border border-cyan/20 pointer-events-none">
-                          Punta Cana
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Fecha Salida Input */}
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-gray-400" /> Salida
-                      </label>
-                      <input
-                        type="date"
-                        required
-                        value={departDate}
-                        onChange={(e) => setDepartDate(e.target.value)}
-                        className="bg-bgDark border border-outline rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-secondary font-bold"
-                      />
-                    </div>
-
-                    {/* Fecha Regreso Input (Opcional - Condicionado a TripType) */}
-                    <div className="flex flex-col gap-2 relative">
-                      <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-gray-400" /> Vuelta
-                      </label>
-                      <div className="relative">
+                      {/* Origen Input con Autocomplete Popover */}
+                      <div className="flex flex-col gap-2 relative">
+                        <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
+                          <MapPin className="w-3.5 h-3.5 text-secondary" /> Origen
+                        </label>
                         <input
-                          type="date"
-                          required={tripType === 'round'}
-                          disabled={tripType === 'oneway'}
-                          value={tripType === 'oneway' ? '' : returnDate}
-                          onChange={(e) => setReturnDate(e.target.value)}
-                          className={`bg-bgDark border border-outline rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-secondary font-bold w-full ${
-                            tripType === 'oneway' ? 'opacity-35 cursor-not-allowed bg-surface/10' : ''
-                          }`}
+                          type="text"
+                          required
+                          value={origin}
+                          onFocus={() => {
+                            setShowOriginSuggest(true);
+                            setShowDestSuggest(false);
+                            setShowPassengerPopover(false);
+                          }}
+                          onChange={(e) => setOrigin(e.target.value.toUpperCase())}
+                          placeholder="MIA"
+                          className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-secondary font-bold z-50"
                         />
-                        {tripType === 'oneway' && (
-                          <div className="absolute inset-y-0 right-3 flex items-center justify-center text-gray-500 pointer-events-none">
-                            <Lock className="w-3.5 h-3.5 text-gray-600" />
+                        
+                        {showOriginSuggest && (
+                          <div className="absolute top-[72px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-3 shadow-2xl z-50 flex flex-col gap-1.5 animate-fadeIn">
+                            <p className="text-[8px] text-gray-500 font-bold uppercase tracking-wider border-b border-outline/35 pb-1 mb-1">
+                              Aeropuertos Recomendados
+                            </p>
+                            {POPULAR_AIRPORTS.map((airport) => (
+                              <button
+                                key={airport.code}
+                                type="button"
+                                onClick={() => {
+                                  setOrigin(airport.code);
+                                  setShowOriginSuggest(false);
+                                }}
+                                className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-300 hover:text-white"
+                              >
+                                <div className="flex items-center gap-2">
+                                  <span className="text-[9px] bg-outline/40 px-1.5 py-0.5 rounded text-gray-400">✈️</span>
+                                  <div>
+                                    <p className="leading-tight">{airport.name}</p>
+                                    <p className="text-[8px] text-gray-500">{airport.country}</p>
+                                  </div>
+                                </div>
+                                <span className="text-secondary font-black">{airport.code}</span>
+                              </button>
+                            ))}
                           </div>
                         )}
                       </div>
-                    </div>
 
-                  </div>
+                      {/* Destino Input con Autocomplete Popover */}
+                      <div className="flex flex-col gap-2 relative">
+                        <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
+                          <MapPin className="w-3.5 h-3.5 text-cyan" /> Destino
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={destination}
+                          onFocus={() => {
+                            setShowDestSuggest(true);
+                            setShowOriginSuggest(false);
+                            setShowPassengerPopover(false);
+                          }}
+                          onChange={(e) => setDestination(e.target.value.toUpperCase())}
+                          placeholder="PUJ"
+                          className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-cyan font-bold z-50"
+                        />
+
+                        {showDestSuggest && (
+                          <div className="absolute top-[72px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-3 shadow-2xl z-50 flex flex-col gap-1.5 animate-fadeIn">
+                            <p className="text-[8px] text-gray-500 font-bold uppercase tracking-wider border-b border-outline/35 pb-1 mb-1">
+                              Destinos Dominicanos y Conexiones
+                            </p>
+                            {POPULAR_AIRPORTS.map((airport) => (
+                              <button
+                                key={airport.code}
+                                type="button"
+                                onClick={() => {
+                                  setDestination(airport.code);
+                                  setShowDestSuggest(false);
+                                }}
+                                className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-300 hover:text-white"
+                              >
+                                <div className="flex items-center gap-2">
+                                  <span className="text-[9px] bg-outline/40 px-1.5 py-0.5 rounded text-gray-400">✈️</span>
+                                  <div>
+                                    <p className="leading-tight">{airport.name}</p>
+                                    <p className="text-[8px] text-gray-500">{airport.country}</p>
+                                  </div>
+                                </div>
+                                <span className="text-cyan font-black">{airport.code}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {destination === 'PUJ' && (
+                          <span className="absolute right-3.5 bottom-3.5 bg-cyan/10 text-cyan text-[7px] font-black uppercase px-1.5 py-0.5 rounded border border-cyan/20 pointer-events-none">
+                            Punta Cana
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Fecha Salida con ModernDatePicker */}
+                      <ModernDatePicker
+                        label="Salida"
+                        value={departDate}
+                        onChange={setDepartDate}
+                        minDate={new Date().toISOString().split('T')[0]}
+                        colorTheme="secondary"
+                        required
+                      />
+
+                      {/* Fecha Regreso con ModernDatePicker */}
+                      <ModernDatePicker
+                        label="Vuelta"
+                        value={tripType === 'oneway' ? '' : returnDate}
+                        onChange={setReturnDate}
+                        minDate={departDate}
+                        disabled={tripType === 'oneway'}
+                        colorTheme="cyan"
+                        required={tripType === 'round'}
+                      />
+
+                    </div>
+                  )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline/30 pt-4">
                     
@@ -1039,13 +1230,16 @@ export default function TravelpayoutsPage() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-outline/35 pb-5 mb-6 gap-4">
                     <div>
                       <span className="bg-emerald-500/10 text-emerald-400 text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border border-emerald-500/20 inline-flex items-center gap-1.5 mb-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Tarifas en Tiempo Real · Conexión Duffel API
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" /> Tarifas en Tiempo Real · Disponibilidad Oficial Verificada
                       </span>
                       <h2 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight">
-                        ✈️ Vuelos Encontrados: {origin} ➔ {destination}
+                        ✈️ Vuelos Encontrados: {tripType === 'multicity' ? `${multiCityLegs.map(l => l.origin).join(' ➔ ')} ➔ ${multiCityLegs[multiCityLegs.length - 1].destination}` : `${origin} ➔ ${destination}`}
                       </h2>
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-1">
-                        Ida: {departDate} {tripType === 'round' && returnDate ? `| Vuelta: ${returnDate}` : ''} | {flightAdults + flightChildren} {flightAdults + flightChildren === 1 ? 'Pasajero' : 'Pasajeros'} | Clase: {flightCabin}
+                        {tripType === 'multicity' 
+                          ? `${multiCityLegs.length} Tramos Seleccionados | ${flightAdults + flightChildren} ${flightAdults + flightChildren === 1 ? 'Pasajero' : 'Pasajeros'} | Clase: ${flightCabin}`
+                          : `Ida: ${departDate} ${tripType === 'round' && returnDate ? `| Vuelta: ${returnDate}` : ''} | ${flightAdults + flightChildren} ${flightAdults + flightChildren === 1 ? 'Pasajero' : 'Pasajeros'} | Clase: ${flightCabin}`
+                        }
                       </p>
                     </div>
                     
@@ -1136,67 +1330,88 @@ export default function TravelpayoutsPage() {
                         {processedFlights.map((flight) => (
                           <div 
                             key={flight.id} 
-                            className="border border-outline/40 hover:border-secondary/45 bg-bgDark/20 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 flex flex-col md:flex-row items-center justify-between gap-6"
+                            className="border border-outline/40 hover:border-secondary/45 bg-bgDark/20 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 flex flex-col gap-4"
                           >
-                            {/* Aerolínea */}
-                            <div className="flex items-center gap-4 w-full md:w-1/4">
-                              <img 
-                                src={flight.logo} 
-                                alt={flight.airline} 
-                                className="w-10 h-10 rounded-xl object-contain bg-white/5 border border-outline/35 p-1"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = 'https://images.kiwi.com/airlines/64/AA.png';
-                                }}
-                              />
-                              <div>
-                                <p className="text-white text-xs font-black uppercase tracking-wide leading-tight">{flight.airline}</p>
-                                <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.flightNumber}</p>
-                              </div>
-                            </div>
-
-                            {/* Horarios e Itinerario */}
-                            <div className="flex items-center justify-between md:justify-center gap-6 w-full md:w-2/5 border-y md:border-y-0 border-outline/20 py-3 md:py-0">
-                              <div className="text-right">
-                                <p className="text-white text-sm font-black tracking-tight">{flight.departureTime}</p>
-                                <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.origin}</p>
-                              </div>
-
-                              <div className="flex-1 flex flex-col items-center relative max-w-[120px]">
-                                <span className="text-[8px] text-gray-500 font-bold uppercase tracking-widest mb-1">{flight.duration}</span>
-                                <div className="w-full h-0.5 bg-outline/50 relative flex items-center justify-center">
-                                  <div className="absolute w-1.5 h-1.5 rounded-full bg-cyan" />
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full">
+                              {/* Aerolínea */}
+                              <div className="flex items-center gap-4 w-full md:w-1/4">
+                                <img 
+                                  src={flight.logo} 
+                                  alt={flight.airline} 
+                                  className="w-10 h-10 rounded-xl object-contain bg-white/5 border border-outline/35 p-1"
+                                  onError={(e) => {
+                                    (e.target as HTMLImageElement).src = 'https://images.kiwi.com/airlines/64/AA.png';
+                                  }}
+                                />
+                                <div>
+                                  <p className="text-white text-xs font-black uppercase tracking-wide leading-tight">{flight.airline}</p>
+                                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.flightNumber}</p>
                                 </div>
-                                <span className={`text-[8px] font-black uppercase tracking-wider mt-1 px-1.5 py-0.5 rounded ${
-                                  flight.stops === 'Directo' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
-                                }`}>
-                                  {flight.stops}
-                                </span>
                               </div>
 
-                              <div className="text-left">
-                                <p className="text-white text-sm font-black tracking-tight">{flight.arrivalTime}</p>
-                                <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.destination}</p>
+                              {/* Horarios e Itinerario Principal */}
+                              <div className="flex items-center justify-between md:justify-center gap-6 w-full md:w-2/5 border-y md:border-y-0 border-outline/20 py-3 md:py-0">
+                                <div className="text-right">
+                                  <p className="text-white text-sm font-black tracking-tight">{flight.departureTime}</p>
+                                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.origin}</p>
+                                </div>
+
+                                <div className="flex-1 flex flex-col items-center relative max-w-[120px]">
+                                  <span className="text-[8px] text-gray-500 font-bold uppercase tracking-widest mb-1">{flight.duration}</span>
+                                  <div className="w-full h-0.5 bg-outline/50 relative flex items-center justify-center">
+                                    <div className="absolute w-1.5 h-1.5 rounded-full bg-cyan" />
+                                  </div>
+                                  <span className={`text-[8px] font-black uppercase tracking-wider mt-1 px-1.5 py-0.5 rounded ${
+                                    flight.stops === 'Directo' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
+                                  }`}>
+                                    {flight.stops}
+                                  </span>
+                                </div>
+
+                                <div className="text-left">
+                                  <p className="text-white text-sm font-black tracking-tight">{flight.arrivalTime}</p>
+                                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.destination}</p>
+                                </div>
+                              </div>
+
+                              {/* Precio y Reserva */}
+                              <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-1/3">
+                                <div className="text-left md:text-right">
+                                  <p className="text-[8px] text-emerald-400 font-bold uppercase tracking-wider">{flight.provider || 'Tarifa Oficial Directa'}</p>
+                                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400 text-xl font-black tracking-tight mt-0.5">
+                                    ${flight.price} USD
+                                  </p>
+                                </div>
+
+                                <a 
+                                  href={flight.bookingUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="bg-secondary hover:bg-orange-600 text-white font-black text-[10px] uppercase tracking-widest px-6 py-3.5 rounded-xl transition duration-300 flex items-center gap-1 active:scale-95 shadow-md shadow-secondary/15"
+                                >
+                                  Ver Vuelo ➔
+                                </a>
                               </div>
                             </div>
 
-                            {/* Precio y Reserva */}
-                            <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-1/3">
-                              <div className="text-left md:text-right">
-                                <p className="text-[8px] text-emerald-400 font-bold uppercase tracking-wider">{flight.provider || 'Duffel Live API'}</p>
-                                <p className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400 text-xl font-black tracking-tight mt-0.5">
-                                  ${flight.price} USD
+                            {/* Desglose de tramos para Multiciudad si aplica */}
+                            {flight.legs && flight.legs.length > 1 && (
+                              <div className="w-full flex flex-col gap-2 pt-3 border-t border-white/5">
+                                <p className="text-[9px] text-gray-400 font-black uppercase tracking-wider">
+                                  Detalle de los {flight.legs.length} Tramos del Itinerario:
                                 </p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  {flight.legs.map((leg: any, lIdx: number) => (
+                                    <div key={lIdx} className="flex items-center justify-between text-[11px] text-gray-300 bg-bgDark/40 border border-outline/30 px-3 py-2 rounded-xl">
+                                      <span className="font-bold text-secondary text-[9px] uppercase tracking-wider">Tramo {lIdx + 1}</span>
+                                      <span className="font-bold text-white">{leg.origin} ➔ {leg.destination}</span>
+                                      <span className="text-gray-400 text-[10px]">{leg.departureTime} - {leg.arrivalTime} ({leg.duration})</span>
+                                      <span className="text-[9px] text-cyan font-bold bg-cyan/10 px-1.5 py-0.5 rounded border border-cyan/20">{leg.stops}</span>
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
-
-                              <a 
-                                href={flight.bookingUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-secondary hover:bg-orange-600 text-white font-black text-[10px] uppercase tracking-widest px-6 py-3.5 rounded-xl transition duration-300 flex items-center gap-1 active:scale-95 shadow-md shadow-secondary/15"
-                              >
-                                Ver Vuelo ➔
-                              </a>
-                            </div>
+                            )}
 
                           </div>
                         ))}

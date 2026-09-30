@@ -237,6 +237,8 @@ export default function App() {
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/travelpayouts" element={<TravelpayoutsPage />} />
+              <Route path="/travel" element={<Navigate to="/travelpayouts" replace />} />
+              <Route path="/vuelos" element={<Navigate to="/travelpayouts" replace />} />
               <Route path="/admin-secreto-123" element={<AdminPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

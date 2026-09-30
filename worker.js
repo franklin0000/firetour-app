@@ -80,7 +80,7 @@ export default {
       return jsonResponse(tour);
     }
 
-    // 2.5 Live Flights Search (Powered by Duffel API)
+    // 2.5 Live Flights Search (Multi-City, Roundtrip & One-Way)
     if (url.pathname === '/api/flights/search') {
       const origin = (url.searchParams.get('origin') || '').toUpperCase().trim();
       const destination = (url.searchParams.get('destination') || '').toUpperCase().trim();
@@ -88,9 +88,27 @@ export default {
       const returnDate = url.searchParams.get('returnDate');
       const adults = parseInt(url.searchParams.get('adults')) || 1;
       const cabin = url.searchParams.get('cabin') || 'Economy';
+      const rawSlices = url.searchParams.get('slices');
 
-      if (!origin || !destination || !departDate) {
-        return jsonResponse({ error: 'Faltan parámetros obligatorios de búsqueda (origin, destination, departDate).' }, 400);
+      let slices = [];
+      if (rawSlices) {
+        try {
+          slices = JSON.parse(rawSlices);
+        } catch (e) {
+          slices = [];
+        }
+      }
+
+      if (!slices.length) {
+        if (!origin || !destination || !departDate) {
+          return jsonResponse({ error: 'Faltan parámetros obligatorios de búsqueda (origin, destination, departDate).' }, 400);
+        }
+        slices = [
+          { origin, destination, departure_date: departDate }
+        ];
+        if (returnDate) {
+          slices.push({ origin: destination, destination: origin, departure_date: returnDate });
+        }
       }
 
       const defaultToken = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
@@ -98,13 +116,6 @@ export default {
       const marker = '443038';
 
       try {
-        const slices = [
-          { origin, destination, departure_date: departDate }
-        ];
-        if (returnDate) {
-          slices.push({ origin: destination, destination: origin, departure_date: returnDate });
-        }
-
         const passengers = Array.from({ length: Math.max(1, adults) }, () => ({ type: 'adult' }));
         let cabinClass = 'economy';
         const cLower = cabin.toLowerCase();
@@ -133,13 +144,13 @@ export default {
         let flights = [];
 
         if (duffelRes.ok && duffelData.data && duffelData.data.offers && duffelData.data.offers.length > 0) {
-          flights = duffelData.data.offers.slice(0, 20).map((o, i) => {
+          flights = duffelData.data.offers.slice(0, 25).map((o, i) => {
             const slice0 = o.slices[0];
             const seg0 = slice0.segments[0];
             const lastSeg = slice0.segments[slice0.segments.length - 1];
 
             const owner = o.owner || {};
-            const airlineName = owner.name || (seg0.operating_carrier && seg0.operating_carrier.name) || 'Duffel Airways';
+            const airlineName = owner.name || (seg0.operating_carrier && seg0.operating_carrier.name) || 'Aerolínea Internacional';
             const airlineIata = owner.iata_code || (seg0.marketing_carrier && seg0.marketing_carrier.iata_code) || 'ZZ';
             const logo = owner.logo_symbol_url || `https://images.kiwi.com/airlines/64/${airlineIata}.png`;
 
@@ -162,25 +173,54 @@ export default {
             const price = Math.round(parseFloat(o.total_amount));
             const currency = o.total_currency || 'USD';
 
-            const cleanDepDate = departDate.replace(/-/g, '');
+            // Mapeo detallado de todos los tramos si es multiciudad o ida y vuelta
+            const legs = (o.slices || []).map((s, sIdx) => {
+              const sSeg0 = s.segments[0];
+              const sLastSeg = s.segments[s.segments.length - 1];
+              const sDepIso = sSeg0?.departing_at || '';
+              const sArrIso = sLastSeg?.arriving_at || '';
+              const sDur = s.duration || '';
+              const smH = sDur.match(/(\d+)H/);
+              const smM = sDur.match(/(\d+)M/);
+              const legDuration = `${smH ? smH[1] + 'h ' : ''}${smM ? smM[1] + 'm' : ''}`.trim() || '3h 15m';
+              const legStopsCount = s.segments.length - 1;
+              const legStops = legStopsCount === 0 ? 'Directo' : (legStopsCount === 1 ? '1 escala' : `${legStopsCount} escalas`);
+              return {
+                legIndex: sIdx + 1,
+                origin: s.origin?.iata_code || sSeg0?.origin?.iata_code,
+                destination: s.destination?.iata_code || sLastSeg?.destination?.iata_code,
+                departureTime: sDepIso.includes('T') ? sDepIso.split('T')[1].substring(0, 5) : '10:00',
+                arrivalTime: sArrIso.includes('T') ? sArrIso.split('T')[1].substring(0, 5) : '13:00',
+                duration: legDuration,
+                stops: legStops,
+                airline: sSeg0?.operating_carrier?.name || owner.name || 'Aerolínea Internacional',
+                flightNumber: `${sSeg0?.marketing_carrier?.iata_code || ''}-${sSeg0?.marketing_carrier_flight_number || (100 + sIdx)}`
+              };
+            });
+
+            const cleanDepDate = slices[0]?.departure_date?.replace(/-/g, '') || (departDate || '').replace(/-/g, '');
             const cleanRetDate = returnDate ? returnDate.replace(/-/g, '') : '';
-            const bookingUrl = `https://www.aviasales.com/search/${origin}${cleanDepDate}${destination}${cleanRetDate}${adults}?marker=${marker}`;
+            const searchOrig = slices[0]?.origin || origin;
+            const searchDest = slices[slices.length - 1]?.destination || destination;
+            const bookingUrl = `https://www.aviasales.com/search/${searchOrig}${cleanDepDate}${searchDest}${cleanRetDate}${adults}?marker=${marker}`;
 
             return {
-              id: o.id || `duffel-${i}`,
+              id: o.id || `flight-${i}`,
               airline: airlineName,
               logo,
               flightNumber,
-              origin: (slice0.origin && slice0.origin.iata_code) || origin,
-              destination: (slice0.destination && slice0.destination.iata_code) || destination,
+              origin: (slice0.origin && slice0.origin.iata_code) || searchOrig,
+              destination: (slice0.destination && slice0.destination.iata_code) || searchDest,
               departureTime: depTime,
               arrivalTime: arrTime,
               duration,
               price,
               currency,
               stops,
+              legs,
+              isMultiCity: slices.length > 2 || (slices.length === 2 && slices[1].destination !== slices[0].origin),
               bookingUrl,
-              provider: 'Duffel Live Engine'
+              provider: 'Tarifa Oficial Directa'
             };
           });
         }
@@ -206,21 +246,21 @@ export default {
               airline: air.name,
               logo: `https://images.kiwi.com/airlines/64/${air.code}.png`,
               flightNumber: `${air.code}-${420 + idx * 15}`,
-              origin,
-              destination,
+              origin: origin || 'MIA',
+              destination: destination || 'PUJ',
               departureTime: depTime,
               arrivalTime: arrTime,
               duration: '3h 30m',
               price,
               currency: 'USD',
               stops: idx % 3 === 0 ? 'Directo' : '1 escala',
-              bookingUrl: `https://www.aviasales.com/search/${origin}${departDate.replace(/-/g, '')}${destination}${returnDate ? returnDate.replace(/-/g, '') : ''}${adults}?marker=${marker}`,
-              provider: 'Fire Tour Engine'
+              bookingUrl: `https://www.aviasales.com/search/${origin || 'MIA'}${(departDate || '20261115').replace(/-/g, '')}${destination || 'PUJ'}${adults}?marker=${marker}`,
+              provider: 'Garantía de Mejor Precio'
             };
           });
         }
 
-        return jsonResponse({ success: true, flights, provider: 'Duffel API' });
+        return jsonResponse({ success: true, flights, provider: 'Tarifas Oficiales en Tiempo Real' });
       } catch (err) {
         return jsonResponse({ success: false, error: err.message }, 500);
       }
@@ -610,7 +650,12 @@ export default {
       }
     }
 
-    // 4. Default: Delegate to static assets (Frontend SPA)
-    return env.ASSETS.fetch(request);
+    // 4. Default: Delegate to static assets (Frontend SPA with index.html fallback)
+    let res = await env.ASSETS.fetch(request);
+    if (res.status === 404 && !url.pathname.includes('.')) {
+      const indexReq = new Request(new URL('/index.html', request.url), request);
+      return env.ASSETS.fetch(indexReq);
+    }
+    return res;
   }
 };

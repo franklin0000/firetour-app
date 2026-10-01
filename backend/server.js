@@ -251,6 +251,189 @@ app.post('/api/sync-upload', syncUpload.single('image'), (req, res) => {
 // REST API ROUTES
 // -------------------------------------------------------------
 
+// -------------------------------------------------------------
+// REVIEWS & TESTIMONIALS API
+// -------------------------------------------------------------
+
+// 1. Get Reviews (Filtered by tourId or all)
+app.get('/api/reviews', (req, res) => {
+  try {
+    const tourId = req.query.tourId;
+    const reviews = database.getReviews(tourId);
+    res.json({ success: true, reviews });
+  } catch (err) {
+    console.error('[Get Reviews Error]', err);
+    res.status(500).json({ success: false, error: 'Error al consultar las reseñas.' });
+  }
+});
+
+// 2. Submit New Customer Review
+app.post('/api/reviews', (req, res) => {
+  try {
+    const { name, rating, comment, tourId, tourName, email, country } = req.body;
+    if (!name || !name.trim()) {
+      return res.status(400).json({ success: false, error: 'Por favor ingresa tu nombre.' });
+    }
+    if (!rating || rating < 1 || rating > 5) {
+      return res.status(400).json({ success: false, error: 'Por favor califica de 1 a 5 estrellas.' });
+    }
+    if (!comment || comment.trim().length < 5) {
+      return res.status(400).json({ success: false, error: 'Tu comentario debe tener al menos 5 caracteres.' });
+    }
+
+    const review = database.addReview({
+      name,
+      rating: parseInt(rating),
+      comment,
+      tourId,
+      tourName,
+      email,
+      country
+    });
+
+    console.log(`[Review] New review added by "${review.name}" for "${review.tourName}" (Rating: ${review.rating}★)`);
+    res.json({ success: true, review });
+  } catch (err) {
+    console.error('[Add Review Error]', err);
+    res.status(500).json({ success: false, error: 'Error al publicar la reseña.' });
+  }
+});
+
+// 3. Vote Review Helpful
+app.post('/api/reviews/:id/vote', (req, res) => {
+  try {
+    const { id } = req.params;
+    const review = database.voteReviewHelpful(id);
+    if (!review) {
+      return res.status(404).json({ success: false, error: 'Reseña no encontrada.' });
+    }
+    res.json({ success: true, helpfulCount: review.helpfulCount });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Error al registrar el voto.' });
+  }
+});
+
+// -------------------------------------------------------------
+// PARTNER / PROVEEDORES TOUR OPERATORS API
+// -------------------------------------------------------------
+
+// Submit Partner Excursion Application
+app.post('/api/partner/apply', async (req, res) => {
+  try {
+    const {
+      companyName,
+      contactName,
+      phone,
+      email,
+      location,
+      tourTitle,
+      category,
+      description,
+      duration,
+      priceAdult,
+      priceChild,
+      capacity,
+      included,
+      photos
+    } = req.body;
+
+    if (!contactName || !contactName.trim()) {
+      return res.status(400).json({ success: false, error: 'Por favor proporciona el nombre de la persona de contacto.' });
+    }
+    if (!phone && !email) {
+      return res.status(400).json({ success: false, error: 'Por favor proporciona un número de teléfono / WhatsApp o correo de contacto.' });
+    }
+    if (!tourTitle || !tourTitle.trim()) {
+      return res.status(400).json({ success: false, error: 'Por favor indica el título de la excursión que deseas promocionar.' });
+    }
+    if (!priceAdult || priceAdult <= 0) {
+      return res.status(400).json({ success: false, error: 'Por favor indica un precio por adulto válido en USD.' });
+    }
+
+    const application = database.addPartnerApplication({
+      companyName,
+      contactName,
+      phone,
+      email,
+      location,
+      tourTitle,
+      category,
+      description,
+      duration,
+      priceAdult,
+      priceChild,
+      capacity,
+      included,
+      photos
+    });
+
+    console.log(`[Partner Application] New proposal from "${application.companyName}" (${application.contactName}): "${application.tourTitle}" - $${application.priceAdult} USD`);
+
+    // Send email notification to Fire Tour DR Admin
+    const emailHtml = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a192f; color: #fff; padding: 24px; border-radius: 16px; border: 1px solid #1e293b;">
+        <h2 style="color: #f97316; margin-top: 0;">🔥 Nueva Propuesta de Excursión de Proveedor</h2>
+        <p style="color: #94a3b8;">Un nuevo operador o guía local desea vender y promover sus excursiones en Fire Tour DR.</p>
+        
+        <div style="background: #1e293b; padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+          <h3 style="color: #38bdf8; margin: 0 0 10px;">📋 Datos del Proveedor</h3>
+          <p><strong>Empresa / Operador:</strong> ${application.companyName}</p>
+          <p><strong>Contacto:</strong> ${application.contactName}</p>
+          <p><strong>WhatsApp / Tel:</strong> ${application.phone}</p>
+          <p><strong>Email:</strong> ${application.email || 'No especificado'}</p>
+          <p><strong>Ubicación:</strong> ${application.location}</p>
+        </div>
+
+        <div style="background: #1e293b; padding: 18px; border-radius: 12px; margin-bottom: 20px;">
+          <h3 style="color: #f97316; margin: 0 0 10px;">🌴 Datos de la Excursión</h3>
+          <p><strong>Título:</strong> ${application.tourTitle}</p>
+          <p><strong>Categoría:</strong> ${application.category}</p>
+          <p><strong>Duración:</strong> ${application.duration}</p>
+          <p><strong>Precio Adulto:</strong> $${application.priceAdult} USD</p>
+          <p><strong>Precio Niños:</strong> ${application.priceChild ? '$' + application.priceChild + ' USD' : 'N/A'}</p>
+          <p><strong>Capacidad:</strong> ${application.capacity}</p>
+          <p><strong>Descripción:</strong></p>
+          <p style="white-space: pre-wrap; color: #cbd5e1; background: #0b1320; padding: 12px; border-radius: 8px;">${application.description}</p>
+          <p><strong>Incluye:</strong> ${Array.isArray(application.included) ? application.included.join(', ') : application.included}</p>
+        </div>
+
+        <p style="font-size: 12px; color: #64748b;">ID de Propuesta: ${application.id} · Fecha: ${application.createdAt}</p>
+      </div>
+    `;
+
+    try {
+      await mailer.sendMail({
+        from: `"Fire Tour DR Proveedores" <${ADMIN_SENDER_EMAIL}>`,
+        to: ADMIN_BOOKING_EMAIL,
+        subject: `🌴 [NUEVO PROVEEDOR] ${application.companyName}: ${application.tourTitle}`,
+        html: emailHtml
+      });
+      console.log(`[Email] Partner application sent to ${ADMIN_BOOKING_EMAIL}`);
+    } catch (mailErr) {
+      console.warn('[Partner Email Notice]', mailErr.message);
+    }
+
+    res.json({
+      success: true,
+      message: '¡Tu propuesta ha sido enviada con éxito! Nuestro equipo de operaciones la revisará y te contactará en breve.',
+      applicationId: application.id
+    });
+  } catch (err) {
+    console.error('[Partner Apply Error]', err);
+    res.status(500).json({ success: false, error: 'Error al enviar la propuesta de excursión.' });
+  }
+});
+
+// Admin Get Partner Applications
+app.get('/api/partner/applications', (req, res) => {
+  try {
+    const apps = database.getPartnerApplications();
+    res.json({ success: true, applications: apps });
+  } catch (err) {
+    res.status(500).json({ success: false, error: 'Error al obtener propuestas de proveedores.' });
+  }
+});
+
 // 1. Get Paginated Tours (Supporting Infinite Scroll)
 app.get('/api/tours', (req, res, next) => {
 

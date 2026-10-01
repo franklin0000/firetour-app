@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User } from 'lucide-react';
+import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User, Star, Building2 } from 'lucide-react';
 import CatalogPage from './pages/CatalogPage';
 import ExcursionDetailsPage from './pages/ExcursionDetailsPage';
 import CheckoutPage from './pages/CheckoutPage';
@@ -11,6 +11,8 @@ import TravelpayoutsPage from './pages/TravelpayoutsPage';
 import FireTourLanding from './pages/FireTourLanding';
 import AdminPage from './pages/AdminPage';
 import AuthPage from './pages/AuthPage';
+import ReviewsPage from './pages/ReviewsPage';
+import PartnerTourPage from './pages/PartnerTourPage';
 
 import SuccessPage from './pages/SuccessPage';
 import ResortLandingPage from './pages/ResortLandingPage';
@@ -35,7 +37,7 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-6">
-          <nav className="flex items-center gap-2.5 sm:gap-5 md:gap-6 text-xs font-bold font-display uppercase tracking-wider">
+          <nav className="flex items-center gap-2 sm:gap-4 md:gap-5 text-xs font-bold font-display uppercase tracking-wider">
             <Link 
               to="/" 
               className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
@@ -44,6 +46,31 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
             >
               <Compass className={`w-4 h-4 ${path === '/' ? 'text-secondary' : ''}`} /> 
               <span className="hidden sm:inline">Tours</span>
+            </Link>
+
+            <Link 
+              to="/reviews" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/reviews' ? 'text-amber-400 shadow-glow rounded-full' : 'text-gray-400 hover:text-amber-300'
+              }`}
+              title="Reseñas y Opiniones de Aventureros"
+            >
+              <Star className={`w-4 h-4 ${path === '/reviews' ? 'text-amber-400 fill-amber-400' : 'text-amber-400/80'}`} /> 
+              <span className="hidden md:inline">Reseñas</span>
+            </Link>
+
+            <Link 
+              to="/vender-tours" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/vender-tours' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
+              }`}
+              title="Vende tus Excursiones - Proveedores Oficiales"
+            >
+              <Building2 className={`w-4 h-4 ${path === '/vender-tours' ? 'text-secondary' : ''}`} /> 
+              <span className="hidden lg:inline">Vender Tours</span>
+              <span className="hidden sm:inline text-[7px] bg-secondary/20 text-secondary border border-secondary/40 px-1 py-0.2 rounded-full font-black uppercase tracking-wider">
+                Socios
+              </span>
             </Link>
 
             {/* Vuelos Coming Soon Button */}
@@ -135,6 +162,20 @@ function Footer() {
         <a href="https://firetourdr.com/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-cyan transition-colors">
           <Globe className="w-4 h-4 text-white" /> firetourdr.com
         </a>
+      </div>
+
+      <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-bold text-gray-300 mt-2">
+        <Link to="/reviews" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" /> Reseñas de Clientes
+        </Link>
+        <span className="text-white/20">•</span>
+        <Link to="/vender-tours" className="hover:text-secondary transition-colors flex items-center gap-1.5">
+          <Building2 className="w-3.5 h-3.5 text-secondary" /> Vende tus Excursiones (Proveedores)
+        </Link>
+        <span className="text-white/20">•</span>
+        <Link to="/" className="hover:text-white transition-colors">Catálogo de Tours</Link>
+        <span className="text-white/20">•</span>
+        <Link to="/reservations" className="hover:text-white transition-colors">Mis Tickets y Reservas</Link>
       </div>
 
       <div className="flex items-center gap-1.5 text-cyan font-bold bg-primary/20 border border-outline rounded-full px-3 py-1 mt-2">
@@ -270,6 +311,11 @@ export default function App() {
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/cuenta" element={<AuthPage />} />
               <Route path="/chat" element={<ChatPage />} />
+              <Route path="/reviews" element={<ReviewsPage />} />
+              <Route path="/opiniones" element={<Navigate to="/reviews" replace />} />
+              <Route path="/vender-tours" element={<PartnerTourPage />} />
+              <Route path="/proveedores" element={<Navigate to="/vender-tours" replace />} />
+              <Route path="/socios" element={<Navigate to="/vender-tours" replace />} />
               <Route path="/vuelos" element={<TravelpayoutsPage />} />
               <Route path="/travelpayouts" element={<Navigate to="/vuelos" replace />} />
               <Route path="/travel" element={<Navigate to="/vuelos" replace />} />

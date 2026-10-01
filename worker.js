@@ -105,6 +105,122 @@ export default {
       return jsonResponse(tour);
     }
 
+    // 2.1 Get Reviews (with KV persistence)
+    if (url.pathname === '/api/reviews' && request.method === 'GET') {
+      const tourId = url.searchParams.get('tourId');
+      const allReviews = await getKVData(env, 'REVIEWS', database.reviews || []);
+      if (!tourId || tourId === 'all') {
+        return jsonResponse({ success: true, reviews: allReviews });
+      }
+      const targetId = parseInt(tourId, 10);
+      const filtered = allReviews.filter(r => r.tourId === targetId || String(r.tourId) === String(tourId));
+      return jsonResponse({ success: true, reviews: filtered });
+    }
+
+    // 2.2 Submit Customer Review
+    if (url.pathname === '/api/reviews' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { name, rating, comment, tourId, tourName, email, country } = body;
+        if (!name || !name.trim()) {
+          return jsonResponse({ success: false, error: 'Por favor ingresa tu nombre.' }, 400);
+        }
+        if (!rating || rating < 1 || rating > 5) {
+          return jsonResponse({ success: false, error: 'Por favor califica de 1 a 5 estrellas.' }, 400);
+        }
+        if (!comment || comment.trim().length < 5) {
+          return jsonResponse({ success: false, error: 'Tu comentario debe tener al menos 5 caracteres.' }, 400);
+        }
+
+        const allReviews = await getKVData(env, 'REVIEWS', database.reviews || []);
+        const gradients = [
+          'from-blue-500 to-teal-400',
+          'from-amber-500 to-orange-600',
+          'from-purple-500 to-indigo-500',
+          'from-emerald-500 to-teal-500',
+          'from-pink-500 to-rose-600',
+          'from-cyan-500 to-blue-600'
+        ];
+        const randomBg = gradients[Math.floor(Math.random() * gradients.length)];
+
+        const newReview = {
+          id: Date.now(),
+          tourId: tourId ? parseInt(tourId, 10) : null,
+          tourName: tourName || 'Experiencia General Fire Tour DR',
+          name: name.trim(),
+          email: (email || '').trim(),
+          rating: Math.min(5, Math.max(1, parseInt(rating) || 5)),
+          comment: comment.trim(),
+          date: 'Hoy',
+          createdAt: new Date().toISOString(),
+          avatarBg: randomBg,
+          helpfulCount: 0,
+          verified: true,
+          country: country || 'República Dominicana'
+        };
+
+        allReviews.unshift(newReview);
+        await setKVData(env, 'REVIEWS', allReviews);
+
+        return jsonResponse({ success: true, review: newReview });
+      } catch (err) {
+        return jsonResponse({ success: false, error: 'Error al procesar la reseña.' }, 500);
+      }
+    }
+
+    // 2.3 Submit Partner Application
+    if (url.pathname === '/api/partner/apply' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { companyName, contactName, phone, email, location, tourTitle, category, description, duration, priceAdult, priceChild, capacity, included, photos } = body;
+
+        if (!contactName || !contactName.trim()) {
+          return jsonResponse({ success: false, error: 'Por favor proporciona el nombre de contacto.' }, 400);
+        }
+        if (!phone && !email) {
+          return jsonResponse({ success: false, error: 'Por favor proporciona un teléfono / WhatsApp o correo.' }, 400);
+        }
+        if (!tourTitle || !tourTitle.trim()) {
+          return jsonResponse({ success: false, error: 'Por favor indica el título de la excursión.' }, 400);
+        }
+        if (!priceAdult || priceAdult <= 0) {
+          return jsonResponse({ success: false, error: 'Por favor indica un precio por adulto válido.' }, 400);
+        }
+
+        const allApps = await getKVData(env, 'PARTNER_APPLICATIONS', database.partner_applications || []);
+        const newApp = {
+          id: 'partner_' + Date.now(),
+          companyName: (companyName || contactName).trim(),
+          contactName: contactName.trim(),
+          phone: (phone || '').trim(),
+          email: (email || '').trim().toLowerCase(),
+          location: (location || 'Punta Cana, República Dominicana').trim(),
+          tourTitle: tourTitle.trim(),
+          category: (category || 'Aventura').trim(),
+          description: (description || '').trim(),
+          duration: (duration || 'Medio Día').trim(),
+          priceAdult: parseFloat(priceAdult) || 0,
+          priceChild: priceChild ? parseFloat(priceChild) : null,
+          capacity: capacity || 'Hasta 20 personas',
+          included: Array.isArray(included) ? included : (included ? [included] : []),
+          photos: Array.isArray(photos) ? photos : [],
+          status: 'pending_review',
+          createdAt: new Date().toISOString()
+        };
+
+        allApps.unshift(newApp);
+        await setKVData(env, 'PARTNER_APPLICATIONS', allApps);
+
+        return jsonResponse({
+          success: true,
+          message: '¡Tu propuesta ha sido enviada con éxito! Nuestro equipo de operaciones la revisará en breve.',
+          applicationId: newApp.id
+        });
+      } catch (err) {
+        return jsonResponse({ success: false, error: 'Error al enviar propuesta.' }, 500);
+      }
+    }
+
     // 2.4 Worldwide Airports and Cities Search Autocomplete (Duffel Places Suggestions + Curated Global Hubs)
     if (url.pathname === '/api/airports/search') {
       const q = (url.searchParams.get('q') || '').trim();

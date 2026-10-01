@@ -209,5 +209,100 @@ module.exports = {
       return db.tours[index];
     }
     return null;
+  },
+  getReviews: (tourId) => {
+    const db = readDB();
+    const all = db.reviews || [];
+    if (!tourId || tourId === 'all') {
+      return all;
+    }
+    const targetId = parseInt(tourId);
+    return all.filter(r => r.tourId === targetId || String(r.tourId) === String(tourId));
+  },
+  addReview: (reviewData) => {
+    const db = readDB();
+    if (!db.reviews) db.reviews = [];
+    
+    const gradients = [
+      'from-blue-500 to-teal-400',
+      'from-amber-500 to-orange-600',
+      'from-purple-500 to-indigo-500',
+      'from-emerald-500 to-teal-500',
+      'from-pink-500 to-rose-600',
+      'from-cyan-500 to-blue-600'
+    ];
+    const randomBg = gradients[Math.floor(Math.random() * gradients.length)];
+
+    const newReview = {
+      id: Date.now(),
+      tourId: reviewData.tourId ? parseInt(reviewData.tourId) : null,
+      tourName: reviewData.tourName || 'Experiencia General Fire Tour DR',
+      name: (reviewData.name || 'Viajero').trim(),
+      email: (reviewData.email || '').trim(),
+      rating: Math.min(5, Math.max(1, parseInt(reviewData.rating) || 5)),
+      comment: (reviewData.comment || '').trim(),
+      date: 'Hoy',
+      createdAt: new Date().toISOString(),
+      avatarBg: randomBg,
+      helpfulCount: 0,
+      verified: true,
+      country: reviewData.country || 'República Dominicana'
+    };
+
+    db.reviews.unshift(newReview);
+
+    // If review is for a specific tour, increment tour's review counter
+    if (newReview.tourId && Array.isArray(db.tours)) {
+      const tour = db.tours.find(t => t.id === newReview.tourId);
+      if (tour) {
+        tour.reviews = (tour.reviews || 0) + 1;
+      }
+    }
+
+    writeDB(db);
+    return newReview;
+  },
+  voteReviewHelpful: (reviewId) => {
+    const db = readDB();
+    if (!db.reviews) return null;
+    const rev = db.reviews.find(r => r.id === parseInt(reviewId) || String(r.id) === String(reviewId));
+    if (rev) {
+      rev.helpfulCount = (rev.helpfulCount || 0) + 1;
+      writeDB(db);
+      return rev;
+    }
+    return null;
+  },
+  getPartnerApplications: () => {
+    const db = readDB();
+    return db.partner_applications || [];
+  },
+  addPartnerApplication: (appData) => {
+    const db = readDB();
+    if (!db.partner_applications) db.partner_applications = [];
+
+    const newApp = {
+      id: "partner_" + Date.now(),
+      companyName: (appData.companyName || appData.contactName || 'Operador Turístico').trim(),
+      contactName: (appData.contactName || '').trim(),
+      phone: (appData.phone || '').trim(),
+      email: (appData.email || '').trim().toLowerCase(),
+      location: (appData.location || 'Punta Cana, República Dominicana').trim(),
+      tourTitle: (appData.tourTitle || '').trim(),
+      category: (appData.category || 'Aventura').trim(),
+      description: (appData.description || '').trim(),
+      duration: (appData.duration || 'Medio Día').trim(),
+      priceAdult: parseFloat(appData.priceAdult) || 0,
+      priceChild: appData.priceChild ? parseFloat(appData.priceChild) : null,
+      capacity: appData.capacity || 'Hasta 20 personas',
+      included: Array.isArray(appData.included) ? appData.included : (appData.included ? [appData.included] : []),
+      photos: Array.isArray(appData.photos) ? appData.photos : [],
+      status: 'pending_review',
+      createdAt: new Date().toISOString()
+    };
+
+    db.partner_applications.unshift(newApp);
+    writeDB(db);
+    return newApp;
   }
 };

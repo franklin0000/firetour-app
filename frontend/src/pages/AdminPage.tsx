@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag, FileText, ExternalLink } from 'lucide-react';
+import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag, FileText, ExternalLink, Star, Building2, MessageSquare, CheckCircle2, MessageCircle, MapPin, Tag, Check } from 'lucide-react';
 import { Tour } from '../types';
 
 interface Reservation {
@@ -21,7 +21,39 @@ interface Reservation {
   createdAt: string;
 }
 
-type AdminTab = 'reservations' | 'tours';
+interface ReviewItem {
+  id: number;
+  tourId?: number;
+  name: string;
+  email?: string;
+  country?: string;
+  rating: number;
+  date: string;
+  comment: string;
+  helpfulCount: number;
+  verified?: boolean;
+}
+
+interface PartnerApplication {
+  id: string;
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  location: string;
+  tourTitle: string;
+  category: string;
+  duration: string;
+  priceAdult: number;
+  priceChild?: number;
+  capacity?: number;
+  includes?: string[];
+  description: string;
+  status: string;
+  createdAt: string;
+}
+
+type AdminTab = 'reservations' | 'tours' | 'reviews' | 'partners';
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<AdminTab>('reservations');
@@ -37,6 +69,16 @@ export default function AdminPage() {
   const [tours, setTours] = useState<Tour[]>([]);
   const [editingTour, setEditingTour] = useState<Tour | null>(null);
   const [toursLoading, setToursLoading] = useState(true);
+
+  // Reviews state
+  const [reviews, setReviews] = useState<ReviewItem[]>([]);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
+  const [reviewSearch, setReviewSearch] = useState('');
+
+  // Partners state
+  const [partners, setPartners] = useState<PartnerApplication[]>([]);
+  const [partnersLoading, setPartnersLoading] = useState(false);
+  const [partnerSearch, setPartnerSearch] = useState('');
 
   const userEmail = (() => { try { const u = localStorage.getItem('user'); return u ? JSON.parse(u).email : ''; } catch { return ''; } })();
 
@@ -55,7 +97,31 @@ export default function AdminPage() {
       .catch(() => setResLoading(false));
   };
 
-  // Fetch tours
+  // Fetch reviews
+  const fetchReviews = () => {
+    setReviewsLoading(true);
+    fetch('/api/reviews')
+      .then(res => res.json())
+      .then(data => {
+        setReviews(Array.isArray(data.reviews) ? data.reviews : []);
+        setReviewsLoading(false);
+      })
+      .catch(() => setReviewsLoading(false));
+  };
+
+  // Fetch partner applications
+  const fetchPartners = () => {
+    setPartnersLoading(true);
+    fetch('/api/partner/applications')
+      .then(res => res.json())
+      .then(data => {
+        setPartners(Array.isArray(data.applications) ? data.applications : []);
+        setPartnersLoading(false);
+      })
+      .catch(() => setPartnersLoading(false));
+  };
+
+  // Initial fetch for counters
   useEffect(() => {
     fetch('/api/tours?limit=200')
       .then(res => res.json())
@@ -63,10 +129,14 @@ export default function AdminPage() {
         setTours(data.tours || []);
         setToursLoading(false);
       });
+    fetchReviews();
+    fetchPartners();
   }, []);
 
   useEffect(() => {
     if (activeTab === 'reservations') fetchReservations();
+    if (activeTab === 'reviews') fetchReviews();
+    if (activeTab === 'partners') fetchPartners();
   }, [activeTab]);
 
   const handleSaveTour = async () => {
@@ -130,20 +200,34 @@ export default function AdminPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 border-b border-white/10 pb-0">
+        <div className="flex flex-wrap gap-2 mb-8 border-b border-white/10 pb-0">
           <button
             onClick={() => setActiveTab('reservations')}
-            className={`px-6 py-3 text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'reservations' ? 'bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
+            className={`px-5 py-3 text-xs md:text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'reservations' ? 'bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
           >
             <TicketCheck className="w-4 h-4" /> Reservaciones
             <span className="bg-cyan-500/30 text-cyan-300 text-xs px-2 py-0.5 rounded-full">{reservations.length}</span>
           </button>
           <button
             onClick={() => setActiveTab('tours')}
-            className={`px-6 py-3 text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'tours' ? 'bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
+            className={`px-5 py-3 text-xs md:text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'tours' ? 'bg-cyan-500/20 text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
           >
             <ShoppingBag className="w-4 h-4" /> Excursiones
             <span className="bg-cyan-500/30 text-cyan-300 text-xs px-2 py-0.5 rounded-full">{tours.length}</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('reviews')}
+            className={`px-5 py-3 text-xs md:text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'reviews' ? 'bg-amber-500/20 text-amber-400 border-b-2 border-amber-400' : 'text-gray-400 hover:text-white'}`}
+          >
+            <Star className="w-4 h-4 text-amber-400 fill-amber-400" /> Reseñas
+            <span className="bg-amber-500/30 text-amber-300 text-xs px-2 py-0.5 rounded-full">{reviews.length}</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('partners')}
+            className={`px-5 py-3 text-xs md:text-sm font-bold uppercase tracking-widest rounded-t-xl transition-all duration-200 flex items-center gap-2 ${activeTab === 'partners' ? 'bg-secondary/20 text-secondary border-b-2 border-secondary' : 'text-gray-400 hover:text-white'}`}
+          >
+            <Building2 className="w-4 h-4 text-secondary" /> Proveedores / Socios
+            <span className="bg-secondary/30 text-secondary text-xs px-2 py-0.5 rounded-full font-black">{partners.length}</span>
           </button>
         </div>
 
@@ -297,6 +381,241 @@ export default function AdminPage() {
                     </button>
                   </div>
                 ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ===== REVIEWS TAB ===== */}
+        {activeTab === 'reviews' && (
+          <div>
+            {/* Reviews Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {[
+                { label: 'Total Reseñas', value: reviews.length, icon: '⭐', color: 'from-amber-600 to-yellow-700' },
+                { 
+                  label: 'Calificación Media', 
+                  value: reviews.length > 0 ? (reviews.reduce((acc, r) => acc + (r.rating || 5), 0) / reviews.length).toFixed(1) + ' ★' : '5.0 ★', 
+                  icon: '✨', 
+                  color: 'from-orange-600 to-amber-700' 
+                },
+                { label: 'Excelencia (5★)', value: reviews.filter(r => r.rating === 5).length, icon: '🏆', color: 'from-emerald-600 to-teal-700' },
+                { label: 'Votos de Utilidad', value: reviews.reduce((acc, r) => acc + (r.helpfulCount || 0), 0), icon: '👍', color: 'from-cyan-600 to-blue-700' },
+              ].map((stat, i) => (
+                <div key={i} className={`bg-gradient-to-br ${stat.color} rounded-2xl p-4 border border-white/10`}>
+                  <div className="text-2xl mb-1">{stat.icon}</div>
+                  <div className="text-white font-black text-xl">{stat.value}</div>
+                  <div className="text-white/70 text-xs font-bold uppercase tracking-wider mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Filter */}
+            <div className="flex flex-col md:flex-row gap-3 mb-5">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Buscar reseñas por cliente, comentario, país..."
+                  value={reviewSearch}
+                  onChange={e => setReviewSearch(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-amber-400 transition placeholder-gray-500"
+                />
+              </div>
+              <button
+                onClick={fetchReviews}
+                className="px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-white transition flex items-center gap-2 text-sm font-bold"
+              >
+                <RefreshCw className="w-4 h-4" /> Actualizar
+              </button>
+            </div>
+
+            {reviewsLoading ? (
+              <div className="flex items-center justify-center h-48 text-gray-400">
+                <RefreshCw className="animate-spin mr-2 w-5 h-5" /> Cargando reseñas...
+              </div>
+            ) : reviews.length === 0 ? (
+              <div className="text-center py-20 text-gray-500">
+                <Star className="w-12 h-12 mx-auto mb-4 opacity-30 text-amber-400" />
+                <p className="font-bold">No hay reseñas registradas aún</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {reviews
+                  .filter(r => !reviewSearch || r.name.toLowerCase().includes(reviewSearch.toLowerCase()) || r.comment.toLowerCase().includes(reviewSearch.toLowerCase()))
+                  .map(rev => (
+                    <div key={rev.id} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-amber-500/30 transition flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-orange-500 text-white font-black flex items-center justify-center text-sm shadow-md">
+                              {rev.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <h4 className="text-white font-bold text-sm">{rev.name}</h4>
+                                {rev.country && (
+                                  <span className="text-[10px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/5">{rev.country}</span>
+                                )}
+                              </div>
+                              <span className="text-[11px] text-gray-500">{rev.date}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 px-2 py-1 rounded-lg">
+                            <span className="text-amber-400 font-black text-xs">{rev.rating}.0</span>
+                            <div className="flex text-amber-400">
+                              {[...Array(rev.rating)].map((_, i) => (
+                                <Star key={i} className="w-3 h-3 fill-amber-400" />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-gray-300 text-xs leading-relaxed italic mb-4 line-clamp-4">
+                          "{rev.comment}"
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between pt-3 border-t border-white/5 text-[11px] text-gray-500">
+                        <span className="flex items-center gap-1.5 text-cyan-400">
+                          <CheckCircle2 className="w-3.5 h-3.5" /> Verificada
+                        </span>
+                        <span className="text-gray-400 font-bold">
+                          👍 {rev.helpfulCount || 0} personas encontraron esto útil
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ===== PARTNERS TAB ===== */}
+        {activeTab === 'partners' && (
+          <div>
+            {/* Partners Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              {[
+                { label: 'Propuestas Recibidas', value: partners.length, icon: '🤝', color: 'from-secondary to-orange-700' },
+                { label: 'Capitanes & Operadores', value: partners.filter(p => p.category?.includes('barco') || p.category?.includes('acuatico')).length, icon: '🛥️', color: 'from-blue-600 to-cyan-700' },
+                { label: 'Aventuras Terrestres', value: partners.filter(p => !p.category?.includes('barco')).length, icon: '🏎️', color: 'from-amber-600 to-yellow-700' },
+                { label: 'En Proceso de Revisión', value: partners.filter(p => p.status === 'Pendiente' || !p.status).length, icon: '⏳', color: 'from-violet-600 to-purple-700' },
+              ].map((stat, i) => (
+                <div key={i} className={`bg-gradient-to-br ${stat.color} rounded-2xl p-4 border border-white/10`}>
+                  <div className="text-2xl mb-1">{stat.icon}</div>
+                  <div className="text-white font-black text-xl">{stat.value}</div>
+                  <div className="text-white/70 text-xs font-bold uppercase tracking-wider mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Filter */}
+            <div className="flex flex-col md:flex-row gap-3 mb-5">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Buscar por empresa, contacto, tour, email..."
+                  value={partnerSearch}
+                  onChange={e => setPartnerSearch(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-secondary transition placeholder-gray-500"
+                />
+              </div>
+              <button
+                onClick={fetchPartners}
+                className="px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-white transition flex items-center gap-2 text-sm font-bold"
+              >
+                <RefreshCw className="w-4 h-4" /> Actualizar
+              </button>
+            </div>
+
+            {partnersLoading ? (
+              <div className="flex items-center justify-center h-48 text-gray-400">
+                <RefreshCw className="animate-spin mr-2 w-5 h-5" /> Cargando propuestas de proveedores...
+              </div>
+            ) : partners.length === 0 ? (
+              <div className="text-center py-20 text-gray-500">
+                <Building2 className="w-12 h-12 mx-auto mb-4 opacity-30 text-secondary" />
+                <p className="font-bold">No hay solicitudes de proveedores aún</p>
+                <p className="text-xs text-gray-600 mt-1">Las nuevas postulaciones desde el portal de proveedores aparecerán aquí automáticamente.</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {partners
+                  .filter(p => !partnerSearch || 
+                    p.companyName?.toLowerCase().includes(partnerSearch.toLowerCase()) || 
+                    p.contactName?.toLowerCase().includes(partnerSearch.toLowerCase()) ||
+                    p.tourTitle?.toLowerCase().includes(partnerSearch.toLowerCase())
+                  )
+                  .map(app => (
+                    <div key={app.id} className="bg-white/5 border border-white/10 hover:border-secondary/40 rounded-2xl p-5 md:p-6 transition">
+                      <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="flex flex-wrap items-center gap-2 mb-2">
+                            <span className="bg-secondary/20 text-secondary border border-secondary/30 text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                              {app.category || 'Excursión'}
+                            </span>
+                            <span className="text-xs text-gray-400 flex items-center gap-1">
+                              <MapPin className="w-3.5 h-3.5 text-cyan-400" /> {app.location}
+                            </span>
+                            <span className="text-xs text-gray-500">• {app.duration}</span>
+                          </div>
+                          
+                          <h3 className="text-white text-lg font-black">{app.tourTitle}</h3>
+                          <p className="text-gray-400 text-xs mt-1">
+                            Operado por: <span className="text-white font-bold">{app.companyName}</span> ({app.contactName})
+                          </p>
+
+                          <p className="text-gray-300 text-xs mt-3 leading-relaxed line-clamp-3 bg-black/30 p-3 rounded-xl border border-white/5">
+                            {app.description}
+                          </p>
+
+                          {app.includes && app.includes.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 mt-3">
+                              {app.includes.map((inc, i) => (
+                                <span key={i} className="text-[10px] bg-white/5 text-gray-300 border border-white/10 px-2 py-0.5 rounded-md flex items-center gap-1">
+                                  <Check className="w-2.5 h-2.5 text-emerald-400" /> {inc}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex flex-col items-start lg:items-end justify-between gap-4 min-w-[200px] border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6">
+                          <div>
+                            <div className="text-left lg:text-right">
+                              <span className="text-[10px] text-gray-400 uppercase tracking-widest block font-bold">Precio Adulto</span>
+                              <span className="text-emerald-400 font-black text-2xl">${app.priceAdult} USD</span>
+                              {app.priceChild ? (
+                                <span className="block text-[11px] text-gray-400">Niños: ${app.priceChild} USD</span>
+                              ) : null}
+                            </div>
+                            {app.capacity ? (
+                              <span className="block text-left lg:text-right text-[11px] text-gray-500 mt-1">
+                                Capacidad: {app.capacity} personas
+                              </span>
+                            ) : null}
+                          </div>
+
+                          <div className="flex flex-col w-full gap-2">
+                            <a
+                              href={`https://wa.me/${app.phone ? app.phone.replace(/[^0-9]/g, '') : ''}?text=Hola%20${encodeURIComponent(app.contactName)}%2C%20te%20contactamos%20desde%20Fire%20Tour%20DR%20sobre%20tu%20propuesta%20"${encodeURIComponent(app.tourTitle)}"`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="w-full bg-[#25D366] hover:bg-[#20ba59] text-black font-black text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition shadow-md"
+                            >
+                              <MessageCircle className="w-4 h-4 fill-black" /> Contactar por WhatsApp
+                            </a>
+                            <a
+                              href={`mailto:${app.email}?subject=Propuesta%20Excursión%20Fire%20Tour%20DR%20-%20${encodeURIComponent(app.tourTitle)}`}
+                              className="w-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-2 transition"
+                            >
+                              <Mail className="w-4 h-4 text-cyan-400" /> Responder Email
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
             )}
           </div>

@@ -4,11 +4,12 @@ import {
   Calendar, Users, ShieldAlert, Award, ChevronRight, CheckCircle2, 
   ArrowLeft, Loader, Map, Clock, Star, ShieldCheck, Compass, Heart, 
   Share2, Info, ChevronDown, Check, ThumbsUp, Send, Landmark, Smile, 
-  X, ZoomIn, Eye, Sparkles, TrendingUp, Languages, AlertCircle 
+  X, ZoomIn, Eye, Sparkles, TrendingUp, Languages, AlertCircle, Plus 
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
 import { trackViewContent } from '../utils/analytics';
+import ReviewModal from '../components/ReviewModal';
 
 // Returns an array of photos for a specific tour
 const getTourPhotos = (tour: Tour): string[] => {
@@ -179,6 +180,8 @@ export default function ExcursionDetailsPage() {
 
   // Interactive review feedback counters
   const [votedReviews, setVotedReviews] = useState<Record<number, boolean>>({});
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [dynamicReviews, setDynamicReviews] = useState<any[]>([]);
 
   // Mobile Bottom Bar visibility State
   const [showStickyMobileBar, setShowStickyMobileBar] = useState(false);
@@ -231,6 +234,25 @@ export default function ExcursionDetailsPage() {
     fetchTourDetails();
   }, [id]);
 
+  // Fetch dynamic reviews submitted for this tour
+  useEffect(() => {
+    if (!id) return;
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch(`/api/reviews?tourId=${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.reviews)) {
+            setDynamicReviews(data.reviews);
+          }
+        }
+      } catch (err) {
+        console.warn('[Fetch reviews warning]', err);
+      }
+    };
+    fetchReviews();
+  }, [id]);
+
   // Scroll detection for Mobile Floating Booking CTA
   useEffect(() => {
     const handleScroll = () => {
@@ -269,7 +291,11 @@ export default function ExcursionDetailsPage() {
   }
 
   const photos = getTourPhotos(tour);
-  const reviewsPool = getReviewsForTour(tour.name, tour.tag);
+  const staticReviews = getReviewsForTour(tour.name, tour.tag);
+  const reviewsPool = [
+    ...dynamicReviews,
+    ...staticReviews.filter(s => !dynamicReviews.some(d => d.comment === s.comment))
+  ];
 
   // Price calculations & Group Viral Discount (6th passenger 100% FREE!)
   const totalGuests = adults + children;
@@ -614,9 +640,21 @@ export default function ExcursionDetailsPage() {
 
           {/* Social Proof & Customer Reviews Panel */}
           <div ref={reviewsRef} className="bg-surface/50 border border-outline/40 p-6 md:p-8 rounded-3xl shadow-sm">
-            <h3 className="text-xl font-bold font-display mb-6 border-b border-outline pb-4 flex items-center gap-2.5 text-white">
-              <Smile className="w-5 h-5 text-amber-400" /> Reseñas de Aventureros Realistas
-            </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-outline pb-4 mb-6 gap-4">
+              <div>
+                <h3 className="text-xl font-bold font-display flex items-center gap-2.5 text-white">
+                  <Smile className="w-5 h-5 text-amber-400" /> Reseñas de Aventureros Realistas
+                </h3>
+                <p className="text-xs text-gray-400 mt-0.5">Opiniones certificadas de viajeros en Punta Cana</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsReviewModalOpen(true)}
+                className="bg-gradient-to-r from-amber-500 to-secondary hover:from-secondary hover:to-amber-500 text-white font-black text-xs uppercase tracking-wider py-2.5 px-5 rounded-xl flex items-center gap-2 transition duration-200 cursor-pointer self-start sm:self-auto hover:scale-105 active:scale-95 shadow-lg shadow-orange-900/20"
+              >
+                <Plus className="w-4 h-4" /> Escribir Reseña
+              </button>
+            </div>
 
             {/* Ratings Summary Header Graph */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 bg-bgDark/40 p-5 rounded-2xl border border-outline/40 items-center">
@@ -985,6 +1023,15 @@ export default function ExcursionDetailsPage() {
           Reservar Ahora <ChevronRight className="w-4 h-4" />
         </button>
       </div>
+
+      {/* Review Modal */}
+      <ReviewModal
+        isOpen={isReviewModalOpen}
+        onClose={() => setIsReviewModalOpen(false)}
+        tourId={tour?.id}
+        tourName={tour?.name}
+        onReviewAdded={(newRev) => setDynamicReviews(prev => [newRev, ...prev])}
+      />
 
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag, FileText, ExternalLink, Star, Building2, MessageSquare, CheckCircle2, MessageCircle, MapPin, Tag, Check } from 'lucide-react';
+import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag, FileText, ExternalLink, Star, Building2, MessageSquare, CheckCircle2, MessageCircle, MapPin, Tag, Check, Camera } from 'lucide-react';
 import { Tour } from '../types';
 
 interface Reservation {
@@ -50,6 +50,7 @@ interface PartnerApplication {
   includes?: string[];
   description: string;
   status: string;
+  photos?: string[];
   createdAt: string;
 }
 
@@ -576,6 +577,32 @@ export default function AdminPage() {
                                   <Check className="w-2.5 h-2.5 text-emerald-400" /> {inc}
                                 </span>
                               ))}
+                            </div>
+                          )}
+
+                          {app.photos && app.photos.length > 0 && (
+                            <div className="mt-4 pt-3 border-t border-white/5">
+                              <p className="text-[10px] font-black uppercase tracking-wider text-amber-400 mb-2 flex items-center gap-1.5">
+                                <Camera className="w-3.5 h-3.5" /> Fotografías de la Excursión ({app.photos.length})
+                              </p>
+                              <div className="flex gap-2 flex-wrap">
+                                {app.photos.map((photo, pIdx) => (
+                                  <a
+                                    key={pIdx}
+                                    href={photo}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="group relative w-16 h-16 rounded-xl overflow-hidden border border-white/10 hover:border-amber-400 transition"
+                                  >
+                                    <img src={photo} alt="" className="w-full h-full object-cover group-hover:scale-110 transition duration-300" />
+                                    {pIdx === 0 && (
+                                      <span className="absolute bottom-0 left-0 right-0 bg-black/80 text-[7px] text-amber-300 text-center font-bold uppercase py-0.5">
+                                        Portada
+                                      </span>
+                                    )}
+                                  </a>
+                                ))}
+                              </div>
                             </div>
                           )}
                         </div>

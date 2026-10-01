@@ -5630,6 +5630,34 @@
   ],
   "partner_applications": [
     {
+      "id": "partner_1790841581175",
+      "companyName": "Catamarán del Mar VIP",
+      "contactName": "Capitán Eduardo Santana",
+      "phone": "+1 809 333 4455",
+      "email": "eduardo@catamarandelmar.com",
+      "location": "Punta Cana / Bávaro",
+      "tourTitle": "Catamarán Privado Party Boat & Piscina Natural",
+      "category": "Acuática / Marítima",
+      "description": "Disfruta de una fiesta marina inolvidable por la costa de Bávaro navegando hasta la hermosa piscina natural con parada de snorkel en arrecife de coral.",
+      "duration": "Medio Día (4 horas)",
+      "priceAdult": 95,
+      "priceChild": 50,
+      "capacity": "Hasta 30 pasajeros",
+      "included": [
+        "Catamarán exclusivo",
+        "Barra libre",
+        "Snorkel",
+        "Frutas frescas",
+        "DJ"
+      ],
+      "photos": [
+        "/uploads/firetour-1790841548833-490575687.jpg",
+        "/uploads/firetour-1790841548835-866818649.jpg"
+      ],
+      "status": "pending_review",
+      "createdAt": "2026-10-01T07:59:41.175Z"
+    },
+    {
       "id": "partner_1790840628915",
       "companyName": "Punta Cana Safari & Horses",
       "contactName": "Marcos Peña",

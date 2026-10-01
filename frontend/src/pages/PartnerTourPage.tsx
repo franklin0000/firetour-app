@@ -17,7 +17,13 @@ import {
   MessageCircle, 
   Globe, 
   TrendingUp, 
-  CreditCard 
+  CreditCard,
+  Camera,
+  Trash2,
+  Plus,
+  Loader2,
+  Upload,
+  Image as ImageIcon
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -38,12 +44,79 @@ export default function PartnerTourPage() {
     description: ''
   });
 
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [customPhotoUrl, setCustomPhotoUrl] = useState('');
+  const [showUrlInput, setShowUrlInput] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successData, setSuccessData] = useState<{ applicationId: string; message: string } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFileUpload = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setIsUploading(true);
+    setUploadError(null);
+
+    const formDataUpload = new FormData();
+    const count = Math.min(files.length, 8 - photos.length);
+    for (let i = 0; i < count; i++) {
+      formDataUpload.append('images', files[i]);
+    }
+
+    try {
+      const res = await fetch('/api/upload-multiple', {
+        method: 'POST',
+        body: formDataUpload
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data.imageUrls)) {
+          setPhotos(prev => [...prev, ...data.imageUrls].slice(0, 8));
+        }
+      } else {
+        // Fallback: upload one by one if upload-multiple fails
+        const newUrls: string[] = [];
+        for (let i = 0; i < count; i++) {
+          const singleData = new FormData();
+          singleData.append('image', files[i]);
+          const singleRes = await fetch('/api/upload', { method: 'POST', body: singleData });
+          if (singleRes.ok) {
+            const singleJson = await singleRes.json();
+            if (singleJson.imageUrl) newUrls.push(singleJson.imageUrl);
+          }
+        }
+        if (newUrls.length > 0) {
+          setPhotos(prev => [...prev, ...newUrls].slice(0, 8));
+        } else {
+          setUploadError('No se pudieron procesar las imágenes. Por favor intenta de nuevo.');
+        }
+      }
+    } catch (err) {
+      setUploadError('Error de conexión al subir imágenes.');
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handleRemovePhoto = (index: number) => {
+    setPhotos(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleAddCustomUrl = () => {
+    if (!customPhotoUrl.trim()) return;
+    if (photos.length >= 8) {
+      setUploadError('Límite de 8 fotografías alcanzado.');
+      return;
+    }
+    setPhotos(prev => [...prev, customPhotoUrl.trim()].slice(0, 8));
+    setCustomPhotoUrl('');
+    setShowUrlInput(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,6 +151,7 @@ export default function PartnerTourPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          photos,
           included: formData.included.split(',').map(s => s.trim()).filter(Boolean)
         })
       });
@@ -257,6 +331,7 @@ export default function PartnerTourPage() {
                     included: '',
                     description: ''
                   });
+                  setPhotos([]);
                 }}
                 className="bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider py-4 px-6 rounded-2xl transition"
               >
@@ -514,6 +589,128 @@ export default function PartnerTourPage() {
                       className="w-full bg-black/50 border border-white/15 rounded-2xl p-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-secondary font-medium resize-none leading-relaxed"
                     />
                   </div>
+                </div>
+              </div>
+
+              {/* SECCIÓN 3: FOTOGRAFÍAS DE LA EXCURSIÓN */}
+              <div className="border-t border-white/10 pt-6">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h3 className="text-xs font-black uppercase tracking-wider text-amber-400 font-display flex items-center gap-2">
+                    <Camera className="w-4 h-4" /> 3. Fotografías de la Excursión (Hasta 8 fotos)
+                  </h3>
+                  <span className="text-[10px] text-gray-400 font-bold bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full">
+                    {photos.length} de 8 fotos
+                  </span>
+                </div>
+                <p className="text-xs text-gray-400 mb-4">
+                  Sube fotos reales de tu barco, vehículos, actividades o paradas paradisíacas. La primera foto será la imagen de portada de la excursión.
+                </p>
+
+                {uploadError && (
+                  <div className="mb-4 p-3 bg-red-500/15 border border-red-500/30 rounded-xl text-xs text-red-300">
+                    {uploadError}
+                  </div>
+                )}
+
+                {/* Dropzone / Upload Trigger */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                  {photos.map((photo, index) => (
+                    <div 
+                      key={index} 
+                      className="relative group aspect-video sm:aspect-square rounded-2xl overflow-hidden border border-white/20 bg-black/60 shadow-lg"
+                    >
+                      <img 
+                        src={photo} 
+                        alt={`Foto excursión ${index + 1}`} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                      />
+                      {index === 0 && (
+                        <span className="absolute top-2 left-2 bg-secondary text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md shadow-md">
+                          ⭐ Portada
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => handleRemovePhoto(index)}
+                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-red-600/90 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg hover:bg-red-700 cursor-pointer"
+                        title="Eliminar foto"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))}
+
+                  {photos.length < 8 && (
+                    <label 
+                      className={`relative aspect-video sm:aspect-square rounded-2xl border-2 border-dashed ${
+                        isUploading ? 'border-amber-400 bg-amber-500/10' : 'border-white/20 hover:border-amber-400/60 bg-black/30 hover:bg-white/5'
+                      } flex flex-col items-center justify-center p-3 text-center transition cursor-pointer group`}
+                    >
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        multiple 
+                        disabled={isUploading}
+                        onChange={e => handleFileUpload(e.target.files)} 
+                        className="hidden" 
+                      />
+                      {isUploading ? (
+                        <div className="flex flex-col items-center gap-2">
+                          <Loader2 className="w-6 h-6 text-amber-400 animate-spin" />
+                          <span className="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Subiendo...</span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-1.5">
+                          <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-110 transition">
+                            <Upload className="w-4 h-4" />
+                          </div>
+                          <span className="text-[10px] font-bold text-white uppercase tracking-wider">
+                            Subir Fotos
+                          </span>
+                          <span className="text-[9px] text-gray-500">
+                            JPG, PNG, WEBP
+                          </span>
+                        </div>
+                      )}
+                    </label>
+                  )}
+                </div>
+
+                {/* Direct URL toggle */}
+                <div className="mt-2">
+                  {!showUrlInput ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowUrlInput(true)}
+                      className="text-[11px] text-cyan hover:text-cyan/80 font-bold flex items-center gap-1.5 transition cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" /> O agregar enlace directo de imagen (URL)
+                    </button>
+                  ) : (
+                    <div className="flex gap-2 items-center bg-black/40 p-2.5 rounded-xl border border-white/10">
+                      <input
+                        type="url"
+                        placeholder="https://ejemplo.com/foto-barco.jpg"
+                        value={customPhotoUrl}
+                        onChange={e => setCustomPhotoUrl(e.target.value)}
+                        className="flex-1 bg-transparent text-xs text-white placeholder-gray-500 focus:outline-none px-2"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleAddCustomUrl}
+                        className="bg-cyan hover:bg-cyan/80 text-black font-black text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-lg transition cursor-pointer"
+                      >
+                        Añadir
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowUrlInput(false)}
+                        className="text-gray-400 hover:text-white text-xs px-2 cursor-pointer"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 

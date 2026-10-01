@@ -217,7 +217,7 @@ const upload = multer({ storage: storage });
 // Serve uploaded files statically
 app.use('/uploads', express.static(uploadsDir));
 
-// Upload Endpoint
+// Upload Endpoint (Single)
 app.post('/api/upload', upload.single('image'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No se proporcionó ningún archivo." });
@@ -225,6 +225,15 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
   // Provide absolute URL for the uploaded image
   const imageUrl = `/uploads/${req.file.filename}`;
   res.json({ imageUrl });
+});
+
+// Upload Multiple Images Endpoint (for partner excursions)
+app.post('/api/upload-multiple', upload.array('images', 8), (req, res) => {
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).json({ error: "No se proporcionaron archivos de imagen." });
+  }
+  const imageUrls = req.files.map(file => `/uploads/${file.filename}`);
+  res.json({ success: true, imageUrls });
 });
 
 // Sync Upload Endpoint (keeps original filename)
@@ -395,6 +404,18 @@ app.post('/api/partner/apply', async (req, res) => {
           <p><strong>Descripción:</strong></p>
           <p style="white-space: pre-wrap; color: #cbd5e1; background: #0b1320; padding: 12px; border-radius: 8px;">${application.description}</p>
           <p><strong>Incluye:</strong> ${Array.isArray(application.included) ? application.included.join(', ') : application.included}</p>
+          ${Array.isArray(application.photos) && application.photos.length > 0 ? `
+            <div style="margin-top: 15px; border-top: 1px solid #334155; pt: 12px;">
+              <p><strong>📸 Fotografías Adjuntas (${application.photos.length}):</strong></p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                ${application.photos.map(p => `
+                  <a href="${p.startsWith('http') ? p : 'https://firetourdr.com' + p}" target="_blank">
+                    <img src="${p.startsWith('http') ? p : 'https://firetourdr.com' + p}" style="width: 100px; height: 75px; object-fit: cover; border-radius: 8px; border: 1px solid #475569;" />
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
         </div>
 
         <p style="font-size: 12px; color: #64748b;">ID de Propuesta: ${application.id} · Fecha: ${application.createdAt}</p>

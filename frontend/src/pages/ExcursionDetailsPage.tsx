@@ -10,6 +10,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
 import { trackViewContent } from '../utils/analytics';
 import ReviewModal from '../components/ReviewModal';
+import ShareModal from '../components/ShareModal';
 
 // Returns an array of photos for a specific tour
 const getTourPhotos = (tour: Tour): string[] => {
@@ -181,6 +182,7 @@ export default function ExcursionDetailsPage() {
   // Interactive review feedback counters
   const [votedReviews, setVotedReviews] = useState<Record<number, boolean>>({});
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [dynamicReviews, setDynamicReviews] = useState<any[]>([]);
 
   // Mobile Bottom Bar visibility State
@@ -367,14 +369,23 @@ export default function ExcursionDetailsPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-bgDark/80 via-transparent to-transparent" />
         </motion.div>
 
-        {/* Back Button Overlay */}
-        <div className="absolute top-8 left-4 md:left-12 z-20">
+        {/* Back and Share Button Overlays */}
+        <div className="absolute top-8 left-4 md:left-12 right-4 md:right-12 z-20 flex items-center justify-between pointer-events-none">
           <button 
             onClick={() => navigate('/')}
-            className="flex items-center gap-2.5 px-4 py-2 bg-black/30 backdrop-blur-md rounded-full border border-white/10 text-white hover:bg-white/10 hover:border-white/30 text-sm font-bold transition-all duration-300 shadow-lg group-hover:shadow-glow"
+            className="pointer-events-auto flex items-center gap-2.5 px-4 py-2 bg-black/40 backdrop-blur-md rounded-full border border-white/10 text-white hover:bg-white/10 hover:border-white/30 text-sm font-bold transition-all duration-300 shadow-lg cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1.5 transition-transform duration-300" /> 
+            <ArrowLeft className="w-4 h-4 transform hover:-translate-x-1 transition-transform" /> 
             Volver
+          </button>
+
+          <button 
+            onClick={() => setIsShareModalOpen(true)}
+            className="pointer-events-auto flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/15 text-white hover:bg-secondary hover:border-secondary text-sm font-bold transition-all duration-300 shadow-lg cursor-pointer group"
+            title="Compartir excursión con amigos o familia"
+          >
+            <Share2 className="w-4 h-4 text-secondary group-hover:text-white transition-colors" /> 
+            <span>Compartir</span>
           </button>
         </div>
 
@@ -1031,6 +1042,15 @@ export default function ExcursionDetailsPage() {
         tourId={tour?.id}
         tourName={tour?.name}
         onReviewAdded={(newRev) => setDynamicReviews(prev => [newRev, ...prev])}
+      />
+
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        title={tour?.name || 'Excursión en Punta Cana'}
+        url={typeof window !== 'undefined' ? window.location.href : 'https://firetourdr.com'}
+        description={tour?.desc}
       />
 
     </div>

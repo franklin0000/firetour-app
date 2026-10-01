@@ -19,6 +19,8 @@ import ResortLandingPage from './pages/ResortLandingPage';
 import ComingSoonModal from './components/ComingSoonModal';
 import LanguageSelector from './components/LanguageSelector';
 import SmoothScroll from './components/SmoothScroll';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
+import TopPromoBanner from './components/TopPromoBanner';
 
 // Sticky Top Header Navigation component - Floating Pill Style
 function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
@@ -292,13 +294,18 @@ export default function App() {
   return (
     <SmoothScroll>
       <BrowserRouter>
-        <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pt-16 sm:pt-24 pb-16 md:pb-0 overflow-x-hidden">
+        <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pb-16 md:pb-0 overflow-x-hidden">
           
+          {/* Top Promotional Announcement Banner */}
+          <TopPromoBanner />
+
           {/* Navigation */}
-          <Header onOpenComingSoon={() => setShowComingSoon(true)} />
+          <div className="pt-2 sm:pt-4">
+            <Header onOpenComingSoon={() => setShowComingSoon(true)} />
+          </div>
 
           {/* Dynamic Route Pages */}
-          <main className="flex-1 w-full relative">
+          <main className="flex-1 w-full relative pt-16 sm:pt-20">
             <Routes>
               <Route path="/" element={<CatalogPage />} />
               <Route path="/excursion/:id" element={<ExcursionDetailsPage />} />
@@ -326,6 +333,9 @@ export default function App() {
 
           {/* Global Footer */}
           <Footer />
+
+          {/* Global Floating WhatsApp Contact & Booking Widget */}
+          <FloatingWhatsApp />
 
           {/* Mobile Bottom Navigation */}
           <MobileBottomNav onOpenComingSoon={() => setShowComingSoon(true)} />

@@ -4988,7 +4988,7 @@
       "ticketCode": "FTDR-779653",
       "createdAt": "2026-05-18T17:10:37.580Z",
       "tourId": 1,
-      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote SubterrÃ¡neo",
+      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote Subterráneo",
       "tourImage": "/tours/page2/tour_24/foto_1.jpg",
       "customerName": "Jane Doe",
       "email": "jane@example.com",
@@ -5004,7 +5004,7 @@
       "ticketCode": "FTDR-527905",
       "createdAt": "2026-05-18T17:15:26.894Z",
       "tourId": 2,
-      "tourName": "Fire Tour DR: Aventura en Buggy Off-Road, Rancho TÃ­pico & Playa Macao",
+      "tourName": "Fire Tour DR: Aventura en Buggy Off-Road, Rancho Típico & Playa Macao",
       "tourImage": "/tours/page2/tour_2/foto_1.jpg",
       "customerName": "F FAMILIA FABIAN",
       "email": "familiababyapple@gmail.com",
@@ -5020,7 +5020,7 @@
       "ticketCode": "FTDR-346146",
       "createdAt": "2026-05-18T17:30:11.720Z",
       "tourId": 1,
-      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote SubterrÃ¡neo",
+      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote Subterráneo",
       "tourImage": "/tours/page2/tour_24/foto_1.jpg",
       "customerName": "John Doe",
       "email": "john@example.com",
@@ -5036,7 +5036,7 @@
       "ticketCode": "FTDR-760891",
       "createdAt": "2026-05-18T17:38:28.001Z",
       "tourId": -1,
-      "tourName": "Vuelo Aero F9: F9-66 (MIA âž” PUJ)",
+      "tourName": "Vuelo Aero F9: F9-66 (MIA ➔ PUJ)",
       "tourImage": "https://images.kiwi.com/airlines/64/F9.png",
       "customerName": "John Doe",
       "email": "john@example.com",
@@ -5052,7 +5052,7 @@
       "ticketCode": "FTDR-569789",
       "createdAt": "2026-05-18T17:49:51.740Z",
       "tourId": 2,
-      "tourName": "Fire Tour DR: Aventura en Buggy Off-Road, Rancho TÃ­pico & Playa Macao",
+      "tourName": "Fire Tour DR: Aventura en Buggy Off-Road, Rancho Típico & Playa Macao",
       "tourImage": "/tours/page2/tour_2/foto_1.jpg",
       "customerName": "c kjgc",
       "email": "familiafabian@yandex.com",
@@ -5068,7 +5068,7 @@
       "ticketCode": "FTDR-922408",
       "createdAt": "2026-05-18T18:01:44.121Z",
       "tourId": 1,
-      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote SubterrÃ¡neo",
+      "tourName": "Fire Tour DR: Aventura Extrema en ATV, Buggy & Cenote Subterráneo",
       "tourImage": "/tours/page2/tour_24/foto_1.jpg",
       "customerName": "John Doe",
       "email": "john@example.com",
@@ -5116,13 +5116,397 @@
       "status": "Confirmado",
       "hotelName": "melia",
       "roomNumber": "203"
+    },
+    {
+      "id": 9,
+      "ticketCode": "FTDR-FDGZOU",
+      "createdAt": "2026-09-30T21:39:49.777Z",
+      "tourId": 9999,
+      "tourName": "Vuelo YYC ➔ PUJ (Air Canada)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AC.svg",
+      "customerName": "franklin familia",
+      "email": "familiafabian@yandex.com",
+      "phone": "15872257342",
+      "date": "00:55",
+      "guests": 1,
+      "amountPaid": 1029,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "FTDR-FDGZOU",
+        "flightNumber": "AC-0328",
+        "airline": "Air Canada",
+        "origin": "YYC",
+        "destination": "PUJ",
+        "departureTime": "00:55",
+        "duration": "13h 10m",
+        "duffelOrderId": null,
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "franklin",
+            "lastName": "familia",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "15872257342",
+            "documentId": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "ticketCode": "FTDR-NGFEPA",
+      "createdAt": "2026-09-30T22:28:12.973Z",
+      "tourId": 9999,
+      "tourName": "Vuelo YYC ➔ FCO (Air Canada)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AC.svg",
+      "customerName": "franklin familia",
+      "email": "familiafabian@yandex.com",
+      "phone": "15872257342",
+      "date": "15:22",
+      "guests": 1,
+      "amountPaid": 1128.53,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "FTDR-NGFEPA",
+        "flightNumber": "AC 4210",
+        "airline": "Air Canada",
+        "origin": "YYC",
+        "destination": "FCO",
+        "departureTime": "15:22",
+        "duration": "14h 18m",
+        "duffelOrderId": null,
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "franklin",
+            "lastName": "familia",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "15872257342",
+            "documentId": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "ticketCode": "34MRAY",
+      "createdAt": "2026-10-01T00:09:14.343Z",
+      "tourId": 9999,
+      "tourName": "Vuelo MIA ➔ PUJ (American Airlines)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AA.svg",
+      "customerName": "Franklin Familia",
+      "email": "familiafabian@yandex.com",
+      "phone": "+15872257342",
+      "date": "10:50",
+      "guests": 1,
+      "amountPaid": 82,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "34MRAY",
+        "duffelOrderId": "ord_0000BAx0dvPRKhfnJsTK8R",
+        "duffelRequestId": "N/A",
+        "flightNumber": "AA 118",
+        "airline": "American Airlines",
+        "origin": "MIA",
+        "destination": "PUJ",
+        "departureTime": "10:50",
+        "duration": "2h 32m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "Franklin",
+            "lastName": "Familia",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "+15872257342"
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "ticketCode": "42MMKI",
+      "createdAt": "2026-10-01T00:09:17.085Z",
+      "tourId": 9999,
+      "tourName": "Vuelo JFK ➔ PUJ (American Airlines)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AA.svg",
+      "customerName": "Franklin Familia Fabian",
+      "email": "familiafabian@yandex.com",
+      "phone": "+15872257342",
+      "date": "14:42",
+      "guests": 1,
+      "amountPaid": 116,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "42MMKI",
+        "duffelOrderId": "ord_0000BAx0eBBMj2tgy9Tfgx",
+        "duffelRequestId": "N/A",
+        "flightNumber": "AA 118",
+        "airline": "American Airlines",
+        "origin": "JFK",
+        "destination": "PUJ",
+        "departureTime": "14:42",
+        "duration": "3h 55m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "Franklin",
+            "lastName": "Familia Fabian",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "+15872257342"
+          }
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "ticketCode": "RTW34N",
+      "createdAt": "2026-10-01T00:09:19.026Z",
+      "tourId": 9999,
+      "tourName": "Vuelo YYC ➔ PUJ (Duffel Airways)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/ZZ.svg",
+      "customerName": "Franklin Familia",
+      "email": "familiafabian@yandex.com",
+      "phone": "+15872257342",
+      "date": "03:05",
+      "guests": 1,
+      "amountPaid": 216,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "RTW34N",
+        "duffelOrderId": "ord_0000BAx0eMGVlzpesOXdQb",
+        "duffelRequestId": "N/A",
+        "flightNumber": "ZZ 7353",
+        "airline": "Duffel Airways",
+        "origin": "YYC",
+        "destination": "PUJ",
+        "departureTime": "03:05",
+        "duration": "7h 45m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "Franklin",
+            "lastName": "Familia",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "+15872257342"
+          }
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "ticketCode": "BU5QOE",
+      "createdAt": "2026-10-01T00:09:21.274Z",
+      "tourId": 9999,
+      "tourName": "Vuelo MAD ➔ SDQ (British Airways)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg",
+      "customerName": "Franklin Familia VIP",
+      "email": "familiafabian@yandex.com",
+      "phone": "+15872257342",
+      "date": "08:30",
+      "guests": 1,
+      "amountPaid": 254,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "BU5QOE",
+        "duffelOrderId": "ord_0000BAx0eZ73iSjmSSBD23",
+        "duffelRequestId": "N/A",
+        "flightNumber": "BA 1516",
+        "airline": "British Airways",
+        "origin": "MAD",
+        "destination": "SDQ",
+        "departureTime": "08:30",
+        "duration": "9h 30m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "Franklin",
+            "lastName": "Familia VIP",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "+15872257342"
+          }
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "ticketCode": "GNWEO7",
+      "createdAt": "2026-10-01T00:10:04.339Z",
+      "tourId": 9999,
+      "tourName": "Vuelo MIA ➔ PUJ (American Airlines)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AA.svg",
+      "customerName": "Pasajero Principal",
+      "email": "cliente@firetourdr.com",
+      "phone": "",
+      "date": "10:50",
+      "guests": 1,
+      "amountPaid": 162,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "GNWEO7",
+        "duffelOrderId": "ord_0000BAx0iXNC7toUDjcZKY",
+        "duffelRequestId": "N/A",
+        "flightNumber": "AA 118",
+        "airline": "American Airlines",
+        "origin": "MIA",
+        "destination": "PUJ",
+        "departureTime": "10:50",
+        "duration": "2h 32m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "",
+            "lastName": "",
+            "birthDate": "",
+            "gender": "m",
+            "email": "",
+            "phone": "",
+            "documentId": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "ticketCode": "ZST4MN",
+      "createdAt": "2026-10-01T00:27:16.454Z",
+      "tourId": 9999,
+      "tourName": "Vuelo MIA ➔ PUJ (American Airlines)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AA.svg",
+      "customerName": "Pasajero Principal",
+      "email": "cliente@firetourdr.com",
+      "phone": "",
+      "date": "10:50",
+      "guests": 1,
+      "amountPaid": 153.54,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "ZST4MN",
+        "duffelOrderId": "ord_0000BAx2Fig09ZKuXeRMwK",
+        "duffelRequestId": "N/A",
+        "flightNumber": "AA 118",
+        "airline": "American Airlines",
+        "origin": "MIA",
+        "destination": "PUJ",
+        "departureTime": "10:50",
+        "duration": "2h 32m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "",
+            "lastName": "",
+            "birthDate": "",
+            "gender": "m",
+            "email": "",
+            "phone": "",
+            "documentId": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "ticketCode": "36SSHG",
+      "createdAt": "2026-10-01T00:32:55.217Z",
+      "tourId": 9999,
+      "tourName": "Vuelo MIA ➔ PUJ (American Airlines)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AA.svg",
+      "customerName": "Franklin Familia",
+      "email": "familiafabian@yandex.com",
+      "phone": "+15872257342",
+      "date": "10:50",
+      "guests": 1,
+      "amountPaid": 152.65,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "36SSHG",
+        "duffelOrderId": "ord_0000BAx2kxYAu30VeIfyAI",
+        "duffelRequestId": "N/A",
+        "flightNumber": "AA 118",
+        "airline": "American Airlines",
+        "origin": "MIA",
+        "destination": "PUJ",
+        "departureTime": "10:50",
+        "duration": "2h 32m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "Franklin",
+            "lastName": "Familia",
+            "birthDate": "1999-11-03",
+            "gender": "m",
+            "email": "familiafabian@yandex.com",
+            "phone": "+15872257342",
+            "documentId": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "ticketCode": "PL6YJR",
+      "createdAt": "2026-10-01T01:05:51.123Z",
+      "tourId": 9999,
+      "tourName": "Vuelo MIA ➔ PUJ (American Airlines)",
+      "tourImage": "https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AA.svg",
+      "customerName": "f s",
+      "email": "firetourdr@gmail.com",
+      "phone": "15872257342",
+      "date": "10:50",
+      "guests": 1,
+      "amountPaid": 156.13,
+      "paymentMethod": "Tarjeta de Crédito (Stripe Direct)",
+      "status": "Confirmado",
+      "flightDetails": {
+        "pnr": "PL6YJR",
+        "duffelOrderId": "ord_0000BAx5hAFZ9DMuiXgWoy",
+        "duffelRequestId": "N/A",
+        "flightNumber": "AA 118",
+        "airline": "American Airlines",
+        "origin": "MIA",
+        "destination": "PUJ",
+        "departureTime": "10:50",
+        "duration": "2h 32m",
+        "passengers": [
+          {
+            "title": "Mr",
+            "firstName": "f",
+            "lastName": "s",
+            "birthDate": "1986-02-11",
+            "gender": "m",
+            "email": "firetourdr@gmail.com",
+            "phone": "15872257342",
+            "documentId": ""
+          }
+        ]
+      }
     }
   ],
   "chat_messages": [
     {
       "id": 1,
       "sender": "agent",
-      "text": "Â¡Hola! Bienvenido al chat de soporte de Fire Tour DR. Â¿En quÃ© puedo ayudarte a planear tus vacaciones en Punta Cana hoy?",
+      "text": "Â¡Hola! Bienvenido al chat de soporte de Fire Tour DR. Â¿En qué puedo ayudarte a planear tus vacaciones en Punta Cana hoy?",
       "timestamp": "2026-05-17T17:06:36.582Z"
     }
   ],

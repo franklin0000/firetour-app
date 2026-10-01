@@ -117,12 +117,20 @@ export default function ReservationsPage() {
                 </div>
 
                 {/* Action CTA */}
-                <div className="w-full md:w-auto relative z-10 flex-shrink-0">
+                <div className="w-full md:w-auto relative z-10 flex-shrink-0 flex flex-col sm:flex-row md:flex-col gap-2.5">
+                  <a 
+                    href={`/api/reservations/${encodeURIComponent(res.ticketCode || res.id)}/pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-cyan hover:bg-cyan-400 text-white font-black font-display uppercase tracking-widest px-5 py-3 rounded-2xl text-[10px] flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] cursor-pointer text-center"
+                  >
+                    <FileText className="w-4 h-4 text-white flex-shrink-0" /> Boleto Oficial PDF
+                  </a>
                   <button 
                     onClick={() => navigate(`/ticket/${res.id}`)}
-                    className="w-full bg-gradient-to-r from-cyan/20 to-cyan/10 border border-cyan/30 hover:border-cyan text-cyan hover:text-white font-black font-display uppercase tracking-widest px-6 py-4 rounded-2xl text-[10px] flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:bg-cyan/40 backdrop-blur-md"
+                    className="w-full bg-white/5 border border-white/10 hover:border-white/30 text-white font-bold font-display uppercase tracking-widest px-5 py-2.5 rounded-2xl text-[10px] flex items-center justify-center gap-2 transition-all duration-300 hover:bg-white/10 cursor-pointer"
                   >
-                    <FileText className="w-5 h-5 drop-shadow-md" /> Ver Pase Digital (QR)
+                    Pase con QR
                   </button>
                 </div>
               </div>

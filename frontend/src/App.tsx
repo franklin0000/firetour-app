@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User } from 'lucide-react';
 import CatalogPage from './pages/CatalogPage';
@@ -14,15 +14,18 @@ import AuthPage from './pages/AuthPage';
 
 import SuccessPage from './pages/SuccessPage';
 import ResortLandingPage from './pages/ResortLandingPage';
+import ComingSoonModal from './components/ComingSoonModal';
+import LanguageSelector from './components/LanguageSelector';
+import SmoothScroll from './components/SmoothScroll';
 
 // Sticky Top Header Navigation component - Floating Pill Style
-function Header() {
+function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
   const location = useLocation();
   const path = location.pathname;
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-6 px-2 sm:px-4 pointer-events-none">
-      <header className="pointer-events-auto bg-black/70 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-3 px-3 sm:px-8 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/85 hover:border-white/20">
+      <header className="pointer-events-auto bg-black/75 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-2.5 px-3 sm:px-6 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/90 hover:border-white/20">
         <Link to="/" className="flex items-center gap-2 group">
           <span className="text-2xl group-hover:scale-110 transition-transform duration-300">🔥</span>
           <div className="hidden sm:block">
@@ -31,46 +34,72 @@ function Header() {
           </div>
         </Link>
 
-        <nav className="flex items-center gap-4 md:gap-8 text-xs font-bold font-display uppercase tracking-wider">
-          <Link 
-            to="/" 
-            className={`flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 ${
-              path === '/' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
-            }`}
-          >
-            <Compass className={`w-4 h-4 ${path === '/' ? 'text-secondary' : ''}`} /> 
-            <span className="hidden sm:inline">Tours</span>
-          </Link>
-          <Link 
-            to="/vuelos" 
-            className={`flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 ${
-              path === '/vuelos' || path === '/travelpayouts' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
-            }`}
-          >
-            <Plane className={`w-4 h-4 ${path === '/vuelos' || path === '/travelpayouts' ? 'text-cyan' : ''}`} /> 
-            <span className="hidden sm:inline">Vuelos</span>
-          </Link>
+        <div className="flex items-center gap-2 sm:gap-6">
+          <nav className="flex items-center gap-2.5 sm:gap-5 md:gap-6 text-xs font-bold font-display uppercase tracking-wider">
+            <Link 
+              to="/" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Compass className={`w-4 h-4 ${path === '/' ? 'text-secondary' : ''}`} /> 
+              <span className="hidden sm:inline">Tours</span>
+            </Link>
 
-          <Link 
-            to="/reservations" 
-            className={`flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 ${
-              path === '/reservations' ? 'text-secondary' : 'text-gray-400 hover:text-white'
-            }`}
-          >
-            <Calendar className={`w-4 h-4 ${path === '/reservations' ? 'text-secondary' : ''}`} /> 
-            <span className="hidden sm:inline">Reservas</span>
-          </Link>
-          
-          <Link 
-            to="/auth" 
-            className={`flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 ${
-              path === '/auth' ? 'text-cyan shadow-[0_0_15px_rgba(6,182,212,0.4)] rounded-full px-2' : 'text-gray-400 hover:text-white'
-            }`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-4 h-4 ${path === '/auth' ? 'text-cyan' : ''}`}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span className="hidden sm:inline">Cuenta</span>
-          </Link>
-        </nav>
+            {/* Vuelos Coming Soon Button */}
+            <button 
+              type="button"
+              onClick={onOpenComingSoon}
+              className="flex items-center gap-1.5 text-gray-400 hover:text-cyan transition-all duration-300 group cursor-pointer"
+              title="Vuelos Internacionales - Disponibles Próximamente"
+            >
+              <Plane className="w-4 h-4 text-cyan/70 group-hover:text-cyan transition-colors" /> 
+              <span className="hidden sm:inline">Vuelos</span>
+              <span className="text-[8px] bg-secondary/20 text-secondary border border-secondary/40 px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider">
+                Soon
+              </span>
+            </button>
+
+            {/* Hoteles Coming Soon Button */}
+            <button 
+              type="button"
+              onClick={onOpenComingSoon}
+              className="hidden md:flex items-center gap-1.5 text-gray-400 hover:text-amber-400 transition-all duration-300 group cursor-pointer"
+              title="Hoteles y Resorts - Disponibles Próximamente"
+            >
+              <Hotel className="w-4 h-4 text-amber-400/70 group-hover:text-amber-400 transition-colors" /> 
+              <span className="hidden sm:inline">Hoteles</span>
+              <span className="text-[8px] bg-secondary/20 text-secondary border border-secondary/40 px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider">
+                Soon
+              </span>
+            </button>
+
+            <Link 
+              to="/reservations" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/reservations' ? 'text-secondary' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Calendar className={`w-4 h-4 ${path === '/reservations' ? 'text-secondary' : ''}`} /> 
+              <span className="hidden sm:inline">Reservas</span>
+            </Link>
+            
+            <Link 
+              to="/auth" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/auth' ? 'text-cyan shadow-[0_0_15px_rgba(6,182,212,0.4)] rounded-full px-2' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-4 h-4 ${path === '/auth' ? 'text-cyan' : ''}`}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span className="hidden sm:inline">Cuenta</span>
+            </Link>
+          </nav>
+
+          {/* Language Selector Dropdown */}
+          <div className="pl-1.5 border-l border-white/15 flex items-center">
+            <LanguageSelector />
+          </div>
+        </div>
       </header>
     </div>
   );
@@ -149,9 +178,8 @@ function Footer() {
   );
 }
 
-
 // Mobile Bottom Navigation Bar (Persistent Thumb Navigation)
-function MobileBottomNav() {
+function MobileBottomNav({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
   const location = useLocation();
   const path = location.pathname;
 
@@ -168,15 +196,18 @@ function MobileBottomNav() {
           <span className="text-[10px] font-bold font-display uppercase tracking-wider">Tours</span>
         </Link>
 
-        <Link 
-          to="/vuelos" 
-          className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
-            path === '/vuelos' || path === '/travelpayouts' ? 'text-secondary' : 'text-gray-400 hover:text-white'
-          }`}
+        {/* Vuelos Coming Soon Mobile Button */}
+        <button 
+          type="button"
+          onClick={onOpenComingSoon}
+          className="flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition text-gray-400 hover:text-white cursor-pointer relative"
         >
-          <Plane className="w-5 h-5 text-cyan" />
+          <div className="relative">
+            <Plane className="w-5 h-5 text-cyan" />
+            <span className="absolute -top-1 -right-2 text-[7px] bg-secondary text-white font-black px-1 rounded-full uppercase leading-tight">Soon</span>
+          </div>
           <span className="text-[10px] font-bold font-display uppercase tracking-wider text-cyan">Vuelos</span>
-        </Link>
+        </button>
 
         <a 
           href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20excursiones" 
@@ -214,16 +245,16 @@ function MobileBottomNav() {
   );
 }
 
-import SmoothScroll from './components/SmoothScroll';
-
 export default function App() {
+  const [showComingSoon, setShowComingSoon] = useState(false);
+
   return (
     <SmoothScroll>
       <BrowserRouter>
         <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pt-16 sm:pt-24 pb-16 md:pb-0 overflow-x-hidden">
           
           {/* Navigation */}
-          <Header />
+          <Header onOpenComingSoon={() => setShowComingSoon(true)} />
 
           {/* Dynamic Route Pages */}
           <main className="flex-1 w-full relative">
@@ -251,7 +282,10 @@ export default function App() {
           <Footer />
 
           {/* Mobile Bottom Navigation */}
-          <MobileBottomNav />
+          <MobileBottomNav onOpenComingSoon={() => setShowComingSoon(true)} />
+
+          {/* Coming Soon Modal */}
+          <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} />
 
         </div>
       </BrowserRouter>

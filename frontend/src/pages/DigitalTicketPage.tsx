@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Calendar, Users, ArrowLeft, Loader, Printer, CreditCard, Mail, Phone, CheckCircle2, ShieldCheck, HelpCircle, MapPin, Info } from 'lucide-react';
+import { Calendar, Users, ArrowLeft, Loader, Printer, CreditCard, Mail, Phone, CheckCircle2, ShieldCheck, HelpCircle, MapPin, Info, FileText, MessageSquare, Download, Share2 } from 'lucide-react';
 import type { Reservation } from '../types';
 
 export default function DigitalTicketPage() {
@@ -73,14 +73,54 @@ export default function DigitalTicketPage() {
     );
   }
 
-  // Generates a real interactive QR code dynamically using public QR server API
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${reservation.ticketCode}&color=0A192F&bgcolor=FFFFFF`;
+  const cleanText = (str: string) => {
+    if (!str) return '';
+    return str
+      .replace(/Ã¡/g, 'á').replace(/Ã©/g, 'é').replace(/Ã­/g, 'í').replace(/Ã³/g, 'ó').replace(/Ãº/g, 'ú')
+      .replace(/Ã /g, 'Á').replace(/Ã‰/g, 'É').replace(/Ã /g, 'Í').replace(/Ã“/g, 'Ó').replace(/Ãš/g, 'Ú')
+      .replace(/Ã±/g, 'ñ').replace(/Ã‘/g, 'Ñ');
+  };
 
-  // Dynamic label helpers based on custom negative IDs
-  const isCustom = reservation.tourId < 0;
-  const isFlight = reservation.tourId === -1;
+  const pnr = reservation.ticketCode || (reservation as any).flightDetails?.pnr || reservation.id;
+  const currentOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://firetourdr.com';
+  const pdfDownloadUrl = `${currentOrigin}/api/reservations/${encodeURIComponent(pnr)}/pdf`;
+
+  // Encode the direct PDF verification URL into the QR Code so camera scans open the official PDF immediately
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(pdfDownloadUrl)}&color=0A192F&bgcolor=FFFFFF`;
+
+  // Dynamic label helpers based on custom negative IDs or flight reservation
+  const isCustom = reservation.tourId < 0 || reservation.tourId === 9999 || Boolean((reservation as any).flightDetails);
+  const isFlight = reservation.tourId === -1 || reservation.tourId === 9999 || Boolean((reservation as any).flightDetails);
   const isHotel = reservation.tourId === -2;
   const isCar = reservation.tourId === -3;
+
+  const handleShareWhatsApp = () => {
+    const phoneClean = (reservation.phone || '').replace(/[^\d+]/g, '');
+    const message = isFlight
+      ? encodeURIComponent(
+          `✈️ *Fire Tour DR - Boleto y Pase de Abordaje Oficial*\n\n` +
+          `👤 Pasajero: ${reservation.customerName}\n` +
+          `🎟️ Localizador PNR: ${pnr}\n` +
+          `📍 Itinerario: ${reservation.tourName}\n` +
+          `📅 Fecha: ${reservation.date}\n` +
+          `💵 Total Pagado: $${reservation.amountPaid} USD\n\n` +
+          `📄 Descarga tu boleto oficial en PDF con sello y logo aquí:\n${pdfDownloadUrl}\n\n` +
+          `Presenta este enlace o código QR en el mostrador del aeropuerto.`
+        )
+      : encodeURIComponent(
+          `🏖️ *Fire Tour DR - Voucher Oficial de Excursión*\n\n` +
+          `👤 Titular: ${reservation.customerName}\n` +
+          `🎟️ Código de Reserva: ${pnr}\n` +
+          `🌴 Excursión: ${reservation.tourName}\n` +
+          `📅 Fecha: ${reservation.date}\n` +
+          `👥 Participantes: ${reservation.guests} Persona(s)\n` +
+          (reservation.hotelName ? `🏨 Hotel / Recogida: ${reservation.hotelName} (Hab: ${reservation.roomNumber || 'Lobby'})\n` : '') +
+          `💵 Total Pagado: $${reservation.amountPaid} USD\n\n` +
+          `📄 Descarga tu Voucher Oficial en PDF con Código QR aquí:\n${pdfDownloadUrl}\n\n` +
+          `Presenta este documento o código QR a tu chofer o guía en el lobby del hotel.`
+        );
+    window.open(`https://api.whatsapp.com/send?phone=${phoneClean}&text=${message}`, '_blank');
+  };
 
   const getServiceTypeLabel = () => {
     if (isFlight) return 'Vuelo Reservado';
@@ -252,7 +292,7 @@ export default function DigitalTicketPage() {
               <div>
                 <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest block mb-1">{getServiceTypeLabel()}</span>
                 <h3 className="font-black text-xl text-white font-display leading-tight print-text-black">
-                  {reservation.tourName}
+                  {cleanText(reservation.tourName)}
                 </h3>
               </div>
 
@@ -379,19 +419,45 @@ export default function DigitalTicketPage() {
               />
             </div>
             
-            <p className="text-[10px] text-gray-300 font-black tracking-[0.1em] uppercase text-center max-w-[220px] leading-relaxed print-text-gray">
-              Presenta este código QR interactivo en la terminal o al guía VIP
-            </p>
+            <div className="text-center max-w-[240px]">
+              <span className="text-[10px] text-cyan font-black uppercase tracking-wider block mb-1">
+                📱 Escanea con tu móvil
+              </span>
+              <p className="text-[9.5px] text-gray-300 leading-relaxed font-semibold print-text-gray">
+                Abre y descarga el boleto oficial en PDF con logo y verificación de Fire Tour DR al instante.
+              </p>
+            </div>
           </div>
 
-          {/* Printable Button CTA */}
-          <button 
-            type="button"
-            onClick={handlePrint}
-            className="w-full bg-secondary hover:bg-orange-600 text-white font-black font-display py-3.5 px-5 rounded-2xl text-xs flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-secondary/15 hover:shadow-secondary/25 active:scale-95 cursor-pointer print-hide"
-          >
-            <Printer className="w-4 h-4 text-white" /> Imprimir Recibo / PDF
-          </button>
+          {/* Action CTAs: Download PDF, WhatsApp, Print */}
+          <div className="w-full flex flex-col gap-2.5 print-hide">
+            <a
+              href={pdfDownloadUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ background: 'linear-gradient(135deg, #0284c7, #0369a1)' }}
+              className="w-full text-white font-black font-display py-3.5 px-4 rounded-2xl text-xs flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-sky-900/40 hover:brightness-110 active:scale-95 cursor-pointer uppercase tracking-wider"
+            >
+              <FileText className="w-4 h-4 text-white" /> {isFlight ? 'Descargar Boleto Oficial PDF' : 'Descargar Voucher Oficial PDF'}
+            </a>
+
+            <button 
+              type="button"
+              onClick={handleShareWhatsApp}
+              style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}
+              className="w-full text-white font-black font-display py-3 px-4 rounded-2xl text-xs flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-emerald-900/40 hover:brightness-110 active:scale-95 cursor-pointer uppercase tracking-wider"
+            >
+              <MessageSquare className="w-4 h-4 text-white" /> Enviar por WhatsApp / SMS
+            </button>
+
+            <button 
+              type="button"
+              onClick={handlePrint}
+              className="w-full bg-white/10 hover:bg-white/20 text-white font-bold font-display py-2.5 px-4 rounded-2xl text-xs flex items-center justify-center gap-2 transition duration-300 active:scale-95 cursor-pointer"
+            >
+              <Printer className="w-4 h-4 text-gray-300" /> Imprimir Documento
+            </button>
+          </div>
 
         </div>
 

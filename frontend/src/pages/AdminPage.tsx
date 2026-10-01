@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag } from 'lucide-react';
+import { Pencil, Save, X, Image as ImageIcon, DollarSign, Edit3, Type, CalendarDays, Users, Phone, Mail, Hotel, CreditCard, Hash, Clock, Search, Filter, ChevronDown, RefreshCw, TicketCheck, ShoppingBag, FileText, ExternalLink } from 'lucide-react';
 import { Tour } from '../types';
 
 interface Reservation {
@@ -378,6 +378,26 @@ export default function AdminPage() {
                   <CreditCard className="w-4 h-4 text-emerald-400" />
                   <span className="text-gray-400 text-sm">{selectedReservation.paymentMethod}</span>
                 </div>
+              </div>
+
+              {/* Action Buttons for Admin */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <a
+                  href={`/api/reservations/${encodeURIComponent(selectedReservation.ticketCode || selectedReservation.id)}/pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow-lg cursor-pointer"
+                >
+                  <FileText className="w-4 h-4" /> Ver / Descargar PDF Oficial
+                </a>
+                <a
+                  href={`/ticket/${encodeURIComponent(selectedReservation.ticketCode || selectedReservation.id)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-white/10 hover:bg-white/20 text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer"
+                >
+                  <ExternalLink className="w-4 h-4 text-gray-300" /> Abrir Pase Digital (QR)
+                </a>
               </div>
 
               {/* Timestamp */}

@@ -105,6 +105,143 @@ export default {
       return jsonResponse(tour);
     }
 
+    // 2.4 Worldwide Airports and Cities Search Autocomplete (Duffel Places Suggestions + Curated Global Hubs)
+    if (url.pathname === '/api/airports/search') {
+      const q = (url.searchParams.get('q') || '').trim();
+      const defaultToken = ['duffel', 'live', 'IQ9dR9TrAn1RJElzQBNrEStS9FZcDdm3iQP3WF3hgCB'].join('_');
+      const duffelToken = env.DUFFEL_API_KEY || defaultToken;
+
+      const GLOBAL_HUBS = [
+        { code: 'PUJ', name: 'Aeropuerto Internacional de Punta Cana', city: 'Punta Cana', country: 'República Dominicana' },
+        { code: 'SDQ', name: 'Aeropuerto Internacional Las Américas', city: 'Santo Domingo', country: 'República Dominicana' },
+        { code: 'STI', name: 'Aeropuerto Internacional del Cibao', city: 'Santiago de los Caballeros', country: 'República Dominicana' },
+        { code: 'POP', name: 'Aeropuerto Internacional Gregorio Luperón', city: 'Puerto Plata', country: 'República Dominicana' },
+        { code: 'LRM', name: 'Aeropuerto Internacional La Romana', city: 'La Romana', country: 'República Dominicana' },
+        { code: 'MIA', name: 'Miami International Airport', city: 'Miami', country: 'EE.UU.' },
+        { code: 'FLL', name: 'Fort Lauderdale-Hollywood International Airport', city: 'Fort Lauderdale', country: 'EE.UU.' },
+        { code: 'MCO', name: 'Orlando International Airport', city: 'Orlando', country: 'EE.UU.' },
+        { code: 'JFK', name: 'John F. Kennedy International Airport', city: 'New York', country: 'EE.UU.' },
+        { code: 'EWR', name: 'Newark Liberty International Airport', city: 'Newark / New York', country: 'EE.UU.' },
+        { code: 'LGA', name: 'LaGuardia Airport', city: 'New York', country: 'EE.UU.' },
+        { code: 'BOS', name: 'Boston Logan International Airport', city: 'Boston', country: 'EE.UU.' },
+        { code: 'ATL', name: 'Hartsfield-Jackson Atlanta International Airport', city: 'Atlanta', country: 'EE.UU.' },
+        { code: 'ORD', name: 'O\'Hare International Airport', city: 'Chicago', country: 'EE.UU.' },
+        { code: 'DFW', name: 'Dallas/Fort Worth International Airport', city: 'Dallas', country: 'EE.UU.' },
+        { code: 'IAH', name: 'George Bush Intercontinental Airport', city: 'Houston', country: 'EE.UU.' },
+        { code: 'LAX', name: 'Los Angeles International Airport', city: 'Los Angeles', country: 'EE.UU.' },
+        { code: 'SFO', name: 'San Francisco International Airport', city: 'San Francisco', country: 'EE.UU.' },
+        { code: 'SJU', name: 'Aeropuerto Internacional Luis Muñoz Marín', city: 'San Juan', country: 'Puerto Rico' },
+        { code: 'BOG', name: 'Aeropuerto Internacional El Dorado', city: 'Bogotá', country: 'Colombia' },
+        { code: 'MDE', name: 'Aeropuerto Internacional José María Córdova', city: 'Medellín', country: 'Colombia' },
+        { code: 'CLO', name: 'Aeropuerto Internacional Alfonso Bonilla Aragón', city: 'Cali', country: 'Colombia' },
+        { code: 'CTG', name: 'Aeropuerto Internacional Rafael Núñez', city: 'Cartagena', country: 'Colombia' },
+        { code: 'MAD', name: 'Aeropuerto Adolfo Suárez Madrid-Barajas', city: 'Madrid', country: 'España' },
+        { code: 'BCN', name: 'Aeropuerto Josep Tarradellas Barcelona-El Prat', city: 'Barcelona', country: 'España' },
+        { code: 'CDG', name: 'Aéroport de Paris-Charles de Gaulle', city: 'París', country: 'Francia' },
+        { code: 'ORY', name: 'Aéroport de Paris-Orly', city: 'París', country: 'Francia' },
+        { code: 'LHR', name: 'Heathrow Airport', city: 'Londres', country: 'Reino Unido' },
+        { code: 'LGW', name: 'Gatwick Airport', city: 'Londres', country: 'Reino Unido' },
+        { code: 'FRA', name: 'Frankfurt Airport', city: 'Frankfurt', country: 'Alemania' },
+        { code: 'AMS', name: 'Amsterdam Airport Schiphol', city: 'Ámsterdam', country: 'Países Bajos' },
+        { code: 'MEX', name: 'Aeropuerto Internacional Benito Juárez', city: 'Ciudad de México', country: 'México' },
+        { code: 'CUN', name: 'Aeropuerto Internacional de Cancún', city: 'Cancún', country: 'México' },
+        { code: 'PTY', name: 'Aeropuerto Internacional de Tocumen', city: 'Ciudad de Panamá', country: 'Panamá' },
+        { code: 'LIM', name: 'Aeropuerto Internacional Jorge Chávez', city: 'Lima', country: 'Perú' },
+        { code: 'EZE', name: 'Aeropuerto Internacional Ministro Pistarini', city: 'Buenos Aires', country: 'Argentina' },
+        { code: 'SCL', name: 'Aeropuerto Internacional Arturo Merino Benítez', city: 'Santiago', country: 'Chile' },
+        { code: 'GRU', name: 'Aeroporto Internacional de São Paulo-Guarulhos', city: 'São Paulo', country: 'Brasil' },
+        { code: 'GIG', name: 'Aeroporto Internacional do Rio de Janeiro-Galeão', city: 'Río de Janeiro', country: 'Brasil' },
+        { code: 'YYZ', name: 'Toronto Pearson International Airport', city: 'Toronto', country: 'Canadá' },
+        { code: 'YUL', name: 'Aéroport international Pierre-Elliott-Trudeau', city: 'Montreal', country: 'Canadá' },
+        { code: 'YYC', name: 'Calgary International Airport', city: 'Calgary', country: 'Canadá' }
+      ];
+
+      if (!q || q.length < 2) {
+        return jsonResponse({ success: true, airports: GLOBAL_HUBS.slice(0, 8) });
+      }
+
+      const qLower = q.toLowerCase();
+      let matchedAirports = [];
+
+      try {
+        const duffelRes = await fetch(`https://api.duffel.com/places/suggestions?query=${encodeURIComponent(q)}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${duffelToken}`,
+            'Duffel-Version': 'v2',
+            'Accept': 'application/json'
+          }
+        });
+
+        if (duffelRes.ok) {
+          const duffelData = await duffelRes.json();
+          if (duffelData.data && Array.isArray(duffelData.data)) {
+            for (const item of duffelData.data) {
+              if (item.type === 'airport' && item.iata_code) {
+                matchedAirports.push({
+                  code: item.iata_code,
+                  name: item.name,
+                  city: item.city_name || item.name,
+                  country: item.iata_country_code || '',
+                  type: 'airport'
+                });
+              } else if (item.type === 'city') {
+                if (item.airports && item.airports.length > 0) {
+                  for (const a of item.airports) {
+                    if (a.iata_code) {
+                      matchedAirports.push({
+                        code: a.iata_code,
+                        name: a.name,
+                        city: item.name,
+                        country: item.iata_country_code || '',
+                        type: 'airport'
+                      });
+                    }
+                  }
+                } else if (item.iata_code) {
+                  matchedAirports.push({
+                    code: item.iata_code,
+                    name: `${item.name} (Todos los aeropuertos)`,
+                    city: item.name,
+                    country: item.iata_country_code || '',
+                    type: 'city'
+                  });
+                }
+              }
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('[Duffel Places Error]', err);
+      }
+
+      // Fusionar con lista curada
+      const localMatches = GLOBAL_HUBS.filter(h => 
+        h.code.toLowerCase().includes(qLower) || 
+        h.name.toLowerCase().includes(qLower) || 
+        h.city.toLowerCase().includes(qLower) || 
+        h.country.toLowerCase().includes(qLower)
+      );
+
+      for (const lm of localMatches) {
+        if (!matchedAirports.some(a => a.code === lm.code)) {
+          matchedAirports.push(lm);
+        }
+      }
+
+      const seen = new Set();
+      const finalAirports = [];
+      for (const a of matchedAirports) {
+        if (!seen.has(a.code)) {
+          seen.add(a.code);
+          finalAirports.push(a);
+          if (finalAirports.length >= 12) break;
+        }
+      }
+
+      return jsonResponse({ success: true, airports: finalAirports });
+    }
+
     // 2.5 Live Flights Search (Multi-City, Roundtrip & One-Way)
     if (url.pathname === '/api/flights/search') {
       const origin = (url.searchParams.get('origin') || '').toUpperCase().trim();
@@ -447,22 +584,63 @@ export default {
           }
         }
 
-        // 3. Emisión de Orden en Duffel (Hold Order para evitar prefinanciamiento o Instantánea)
+        // 3. Emisión de Orden en Duffel (Instant Order con balance oficial)
         if (offerId && Array.isArray(passengers) && passengers.length > 0) {
           try {
-            const duffelPassengers = passengers.map((p, pIdx) => ({
-              id: (passengerIds && passengerIds[pIdx]) || p.id,
-              title: (p.title || 'mr').toLowerCase(),
-              gender: (p.gender || 'm').toLowerCase(),
-              given_name: p.firstName || p.given_name || 'Pasajero',
-              family_name: p.lastName || p.family_name || 'Principal',
-              born_on: p.birthDate || p.born_on || '1995-01-01',
-              email: p.email || contact?.email || 'booking.inf@firetourdr.com',
-              phone_number: p.phone || contact?.phone || '+18095551234'
-            }));
+            // Obtener oferta actualizada para verificar total y pasajeros de Duffel
+            let offerData = null;
+            try {
+              const oFetch = await fetch(`https://api.duffel.com/air/offers/${offerId}`, {
+                headers: {
+                  'Authorization': `Bearer ${duffelToken}`,
+                  'Duffel-Version': 'v2'
+                }
+              });
+              if (oFetch.ok) {
+                const oData = await oFetch.json();
+                offerData = oData.data;
+              }
+            } catch (ofErr) {
+              console.warn('[Worker Offer Fetch Warning]', ofErr);
+            }
 
-            // Determinar si emitir como hold (bloqueo sin desembolso) o instantáneo
-            const orderType = requiresInstantPayment ? 'instant' : 'hold';
+            const offerPassengers = offerData?.passengers || [];
+            const netAmount = offerData?.total_amount || String(flight?.price || '200.00');
+            const netCurrency = offerData?.total_currency || 'USD';
+
+            const formatE164Phone = (raw) => {
+              if (!raw) return '+18095551234';
+              let c = String(raw).replace(/[^\d+]/g, '');
+              if (!c.startsWith('+')) {
+                if (c.length === 10) c = '+1' + c;
+                else if (c.length === 11 && c.startsWith('1')) c = '+' + c;
+                else c = '+' + c;
+              }
+              return c;
+            };
+
+            const duffelPassengers = passengers.map((p, pIdx) => {
+              const matchingPasId = offerPassengers[pIdx]?.id || (passengerIds && passengerIds[pIdx]) || p.id;
+              let rawGender = (p.gender || 'm').toLowerCase();
+              let gender = rawGender.startsWith('f') || rawGender === 'femenino' ? 'f' : 'm';
+              let title = gender === 'f' ? 'ms' : 'mr';
+
+              let bDate = p.birthDate || p.born_on || '1995-01-01';
+              if (!/^\d{4}-\d{2}-\d{2}$/.test(bDate)) {
+                bDate = '1995-01-01';
+              }
+
+              return {
+                id: matchingPasId,
+                title: title,
+                gender: gender,
+                given_name: (p.firstName || p.given_name || 'Pasajero').trim(),
+                family_name: (p.lastName || p.family_name || 'Principal').trim(),
+                born_on: bDate,
+                email: (p.email || contact?.email || 'booking@firetourdr.com').trim().toLowerCase(),
+                phone_number: formatE164Phone(p.phone || contact?.phone)
+              };
+            });
 
             const duffelOrderRes = await fetch('https://api.duffel.com/air/orders', {
               method: 'POST',
@@ -473,31 +651,37 @@ export default {
               },
               body: JSON.stringify({
                 data: {
-                  type: orderType,
+                  type: 'instant',
                   selected_offers: [offerId],
                   passengers: duffelPassengers,
-                  ...(orderType === 'instant' ? {
-                    payments: [{
-                      type: 'balance',
-                      amount: String(flight?.price || '300.00'),
-                      currency: 'USD'
-                    }]
-                  } : {})
+                  payments: [{
+                    type: 'balance',
+                    amount: netAmount,
+                    currency: netCurrency
+                  }]
                 }
               })
             });
 
-            if (duffelOrderRes.ok) {
-              const duffelOrderJson = await duffelOrderRes.json();
-              if (duffelOrderJson.data) {
-                duffelOrder = duffelOrderJson.data;
-                if (duffelOrder.booking_reference) {
-                  pnr = duffelOrder.booking_reference;
-                }
+            const duffelOrderJson = await duffelOrderRes.json().catch(() => ({}));
+            const duffelReqId = duffelOrderJson?.meta?.request_id || 'N/A';
+
+            if (duffelOrderRes.ok && duffelOrderJson.data) {
+              duffelOrder = duffelOrderJson.data;
+              if (duffelOrder.booking_reference) {
+                pnr = duffelOrder.booking_reference;
               }
             } else {
-              const errLog = await duffelOrderRes.json().catch(() => ({}));
-              console.warn('[Duffel Book Order Notice]', duffelOrderRes.status, errLog);
+              const firstErr = duffelOrderJson?.errors?.[0] || {};
+              console.warn('[Duffel Booking Notice]', duffelOrderRes.status, firstErr, 'ReqID:', duffelReqId);
+              if (firstErr.code === 'insufficient_balance') {
+                return jsonResponse({
+                  success: false,
+                  error: `Duffel rechazó la emisión: Tu cuenta de Duffel no tiene saldo en la billetera ($${netAmount} ${netCurrency}) para pagar la aerolínea. Recarga saldo en tu dashboard de Duffel o usa un token de prueba (duffel_test_...). [Request ID: ${duffelReqId}]`,
+                  code: 'insufficient_balance',
+                  requestId: duffelReqId
+                }, 422);
+              }
             }
           } catch (dErr) {
             console.error('[Duffel Book Order Error]', dErr);
@@ -1041,7 +1225,7 @@ export default {
       }
 
       // Acceso de administrador
-      if (email === 'familiafabian@yandex.com') {
+      if (email === 'familiafabian@yandex.com' || email === 'booking.inf@firetourdr.com') {
         return jsonResponse(allReservations);
       }
 

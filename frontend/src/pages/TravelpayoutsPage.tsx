@@ -1,19 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Plane, Hotel, Calendar, Users, Compass, ShieldCheck, Sparkles, MapPin, ArrowRight, Star, RefreshCw, Lock, Car, Check, Plus, Trash2, X, CheckCircle2, Ticket } from 'lucide-react';
+import { Plane, Hotel, Calendar, Users, Compass, ShieldCheck, Sparkles, MapPin, ArrowRight, ArrowLeft, Star, RefreshCw, Lock, Car, Check, Plus, Trash2, X, CheckCircle2, Ticket, ChevronDown, ChevronUp, Clock, Info, Luggage, AlertCircle, FileText, MessageSquare, Mail } from 'lucide-react';
 import ModernDatePicker from '../components/ModernDatePicker';
+import ComingSoonModal from '../components/ComingSoonModal';
 
 // =========================================================================
 // CONSTANTES DE SUGERENCIAS DE SKYSCANNER
 // =========================================================================
 const POPULAR_AIRPORTS = [
-  { code: 'PUJ', name: 'Punta Cana International', country: 'República Dominicana' },
-  { code: 'SDQ', name: 'Las Américas Santo Domingo', country: 'República Dominicana' },
-  { code: 'MIA', name: 'Miami International Airport', country: 'EE.UU.' },
-  { code: 'JFK', name: 'John F. Kennedy New York', country: 'EE.UU.' },
-  { code: 'MAD', name: 'Adolfo Suárez Madrid-Barajas', country: 'España' },
-  { code: 'BOG', name: 'El Dorado Bogotá', country: 'Colombia' },
-  { code: 'YYC', name: 'Calgary International Airport', country: 'Canadá' },
-  { code: 'YYZ', name: 'Toronto Pearson International', country: 'Canadá' }
+  { code: 'PUJ', name: 'Aeropuerto Internacional Punta Cana', city: 'Punta Cana', country: 'República Dominicana' },
+  { code: 'SDQ', name: 'Aeropuerto Internacional Las Américas', city: 'Santo Domingo', country: 'República Dominicana' },
+  { code: 'STI', name: 'Aeropuerto Internacional del Cibao', city: 'Santiago', country: 'República Dominicana' },
+  { code: 'POP', name: 'Aeropuerto Internacional Gregorio Luperón', city: 'Puerto Plata', country: 'República Dominicana' },
+  { code: 'LRM', name: 'Aeropuerto Internacional La Romana', city: 'La Romana', country: 'República Dominicana' },
+  { code: 'MIA', name: 'Miami International Airport', city: 'Miami', country: 'EE.UU.' },
+  { code: 'FLL', name: 'Fort Lauderdale-Hollywood International Airport', city: 'Fort Lauderdale', country: 'EE.UU.' },
+  { code: 'MCO', name: 'Orlando International Airport', city: 'Orlando', country: 'EE.UU.' },
+  { code: 'JFK', name: 'John F. Kennedy International Airport', city: 'New York', country: 'EE.UU.' },
+  { code: 'EWR', name: 'Newark Liberty International Airport', city: 'Newark / New York', country: 'EE.UU.' },
+  { code: 'BOS', name: 'Boston Logan International Airport', city: 'Boston', country: 'EE.UU.' },
+  { code: 'ATL', name: 'Hartsfield-Jackson Atlanta International Airport', city: 'Atlanta', country: 'EE.UU.' },
+  { code: 'ORD', name: 'O\'Hare International Airport', city: 'Chicago', country: 'EE.UU.' },
+  { code: 'LAX', name: 'Los Angeles International Airport', city: 'Los Angeles', country: 'EE.UU.' },
+  { code: 'SJU', name: 'Aeropuerto Internacional Luis Muñoz Marín', city: 'San Juan', country: 'Puerto Rico' },
+  { code: 'MAD', name: 'Aeropuerto Adolfo Suárez Madrid-Barajas', city: 'Madrid', country: 'España' },
+  { code: 'BCN', name: 'Aeropuerto Josep Tarradellas Barcelona-El Prat', city: 'Barcelona', country: 'España' },
+  { code: 'CDG', name: 'Aéroport de Paris-Charles de Gaulle', city: 'París', country: 'Francia' },
+  { code: 'LHR', name: 'Heathrow Airport', city: 'Londres', country: 'Reino Unido' },
+  { code: 'FRA', name: 'Frankfurt Airport', city: 'Frankfurt', country: 'Alemania' },
+  { code: 'BOG', name: 'Aeropuerto Internacional El Dorado', city: 'Bogotá', country: 'Colombia' },
+  { code: 'MDE', name: 'Aeropuerto Internacional José María Córdova', city: 'Medellín', country: 'Colombia' },
+  { code: 'MEX', name: 'Aeropuerto Internacional Benito Juárez', city: 'Ciudad de México', country: 'México' },
+  { code: 'CUN', name: 'Aeropuerto Internacional de Cancún', city: 'Cancún', country: 'México' },
+  { code: 'PTY', name: 'Aeropuerto Internacional de Tocumen', city: 'Panamá', country: 'Panamá' },
+  { code: 'LIM', name: 'Aeropuerto Internacional Jorge Chávez', city: 'Lima', country: 'Perú' },
+  { code: 'EZE', name: 'Aeropuerto Internacional Ministro Pistarini', city: 'Buenos Aires', country: 'Argentina' },
+  { code: 'YYZ', name: 'Toronto Pearson International Airport', city: 'Toronto', country: 'Canadá' },
+  { code: 'YUL', name: 'Aéroport international Pierre-Elliott-Trudeau', city: 'Montreal', country: 'Canadá' },
+  { code: 'YYC', name: 'Calgary International Airport', city: 'Calgary', country: 'Canadá' }
 ];
 
 const POPULAR_HOTELS = [
@@ -26,6 +49,7 @@ const POPULAR_HOTELS = [
 ];
 
 export default function TravelpayoutsPage() {
+  const [showComingSoonModal, setShowComingSoonModal] = useState(false);
   const [activeTab, setActiveTab] = useState<'flights' | 'hotels' | 'cars'>('flights');
   
   // Estados de Control e Iframe Sandbox
@@ -161,6 +185,7 @@ export default function TravelpayoutsPage() {
   const [isSearchingFlights, setIsSearchingFlights] = useState(false);
   const [hasSearchedFlights, setHasSearchedFlights] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [expandedFlightId, setExpandedFlightId] = useState<string | null>(null);
 
   // Estados para Modal de Reserva Directa de Vuelos (Duffel API)
   const [selectedFlightForBooking, setSelectedFlightForBooking] = useState<any | null>(null);
@@ -168,17 +193,17 @@ export default function TravelpayoutsPage() {
     title: 'Mr',
     firstName: '',
     lastName: '',
-    birthDate: '1995-05-15',
+    birthDate: '',
     gender: 'm',
     email: '',
     phone: '',
     documentId: ''
   });
   const [paymentCard, setPaymentCard] = useState({
-    number: '•••• •••• •••• 4242',
+    number: '',
     name: '',
-    expiry: '12/28',
-    cvc: '•••'
+    expiry: '',
+    cvc: ''
   });
   const [idempotencyKey, setIdempotencyKey] = useState<string>('');
   const [isVerifyingPrice, setIsVerifyingPrice] = useState(false);
@@ -187,32 +212,107 @@ export default function TravelpayoutsPage() {
   const [flightBookingSuccess, setFlightBookingSuccess] = useState<any | null>(null);
   const [flightBookingError, setFlightBookingError] = useState<string | null>(null);
 
-  useEffect(() => {
-    try {
-      const uStr = localStorage.getItem('user') || localStorage.getItem('firetour_user');
-      if (uStr) {
-        const u = JSON.parse(uStr);
-        setBookingPassenger(prev => ({
-          ...prev,
-          email: u.email || '',
-          firstName: u.name ? u.name.split(' ')[0] : '',
-          lastName: u.name ? u.name.split(' ').slice(1).join(' ') : ''
-        }));
-        setPaymentCard(prev => ({
-          ...prev,
-          name: u.name || ''
-        }));
+  // Estados de Búsqueda Dinámica de Aeropuertos y Ciudades a Nivel Mundial
+  const [originAirportsList, setOriginAirportsList] = useState<any[]>(POPULAR_AIRPORTS);
+  const [destAirportsList, setDestAirportsList] = useState<any[]>(POPULAR_AIRPORTS);
+  const [multiLegAirports, setMultiLegAirports] = useState<{ [key: string]: any[] }>({});
+  const [isLoadingAirports, setIsLoadingAirports] = useState(false);
+  const airportSearchTimerRef = useRef<any>(null);
+
+  // Búsqueda en vivo de aeropuertos y ciudades a nivel mundial
+  const searchAirportsApi = (query: string, setter: (list: any[]) => void) => {
+    if (airportSearchTimerRef.current) {
+      clearTimeout(airportSearchTimerRef.current);
+    }
+
+    const q = (query || '').trim();
+    if (!q) {
+      setter(POPULAR_AIRPORTS);
+      return;
+    }
+
+    // Filtro instantáneo local para respuesta inmediata
+    const qLower = q.toLowerCase();
+    const localFiltered = POPULAR_AIRPORTS.filter(a =>
+      a.code.toLowerCase().includes(qLower) ||
+      a.name.toLowerCase().includes(qLower) ||
+      (a.city && a.city.toLowerCase().includes(qLower)) ||
+      (a.country && a.country.toLowerCase().includes(qLower))
+    );
+    if (localFiltered.length > 0) {
+      setter(localFiltered);
+    }
+
+    // Consulta en vivo al backend (Duffel Places + Global Hubs) con debounce de 150ms
+    airportSearchTimerRef.current = setTimeout(async () => {
+      try {
+        setIsLoadingAirports(true);
+        const res = await fetch(`/api/airports/search?q=${encodeURIComponent(q)}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.airports && Array.isArray(data.airports) && data.airports.length > 0) {
+            setter(data.airports);
+          }
+        }
+      } catch (err) {
+        console.warn('Aviso: Búsqueda de aeropuertos', err);
+      } finally {
+        setIsLoadingAirports(false);
       }
-    } catch (e) {}
+    }, 150);
+  };
+
+  // Manejo de navegación segura hacia atrás sin salir de la página ni perder la búsqueda
+  const closeBookingModal = () => {
+    if (window.history.state?.modal === 'flight-booking') {
+      window.history.back();
+    } else {
+      setSelectedFlightForBooking(null);
+      setFlightBookingSuccess(null);
+      setFlightBookingError(null);
+      setVerifiedPriceData(null);
+    }
+  };
+
+  // Escuchar popstate (botón atrás físico o gesto del navegador) para solo cerrar el modal y quedarse en los vuelos
+  useEffect(() => {
+    const handlePopState = () => {
+      setSelectedFlightForBooking(null);
+      setFlightBookingSuccess(null);
+      setFlightBookingError(null);
+      setVerifiedPriceData(null);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const openFlightBookingModal = async (flight: any) => {
+    // Empujar estado en historial para que el botón 'atrás' del navegador cierre el modal limpiamente
+    window.history.pushState({ modal: 'flight-booking' }, '');
+
     setSelectedFlightForBooking(flight);
     setFlightBookingSuccess(null);
     setFlightBookingError(null);
     setVerifiedPriceData(null);
 
-    // Generar clave de idempotencia única para este intento de checkout
+    // Formulario de pasajero y tarjeta completamente limpios para el nuevo cliente
+    setBookingPassenger({
+      title: 'Mr',
+      firstName: '',
+      lastName: '',
+      birthDate: '',
+      gender: 'm',
+      email: '',
+      phone: '',
+      documentId: ''
+    });
+    setPaymentCard({
+      number: '',
+      name: '',
+      expiry: '',
+      cvc: ''
+    });
+
     const newIdempKey = 'ftdr_idemp_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8);
     setIdempotencyKey(newIdempKey);
     setIsVerifyingPrice(true);
@@ -285,7 +385,7 @@ export default function TravelpayoutsPage() {
           },
           payment: {
             method: 'Tarjeta de Crédito / Débito (Stripe 256-bit SSL)',
-            cardLast4: paymentCard.number ? paymentCard.number.slice(-4) : '4242',
+            cardLast4: paymentCard.number ? paymentCard.number.replace(/\s+/g, '').slice(-4) : '••••',
             cardholderName: paymentCard.name || `${bookingPassenger.firstName} ${bookingPassenger.lastName}`
           }
         })
@@ -362,8 +462,8 @@ export default function TravelpayoutsPage() {
   // ==========================================
   const handleFlightSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (tripType !== 'multicity' && (!origin || !destination || !departDate)) return;
-    if (tripType === 'multicity' && multiCityLegs.some(l => !l.origin || !l.destination || !l.date)) return;
+    setShowComingSoonModal(true);
+    return;
     
     setIsSearchingFlights(true);
     setHasSearchedFlights(true);
@@ -564,9 +664,8 @@ export default function TravelpayoutsPage() {
   const handlePopularRouteSearch = async (originCode: string) => {
     setOrigin(originCode.toUpperCase());
     setDestination('PUJ');
-    setTripType('round');
-    
-    setIsSearchingFlights(true);
+    setShowComingSoonModal(true);
+    return;
     setHasSearchedFlights(true);
     setSearchError(null);
     setFlightResults([]);
@@ -842,16 +941,40 @@ export default function TravelpayoutsPage() {
           <div className="animate-fadeIn relative z-10">
             
             {/* Hero Header */}
-            <div className="text-center max-w-4xl mx-auto mb-16 mt-8">
+            <div className="text-center max-w-4xl mx-auto mb-10 mt-8">
               <span className="bg-secondary/10 text-secondary text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2 rounded-full border border-secondary/20 inline-flex items-center gap-2 mb-6 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
-                <Sparkles className="w-4 h-4 text-secondary animate-pulse" /> Portal de Vuelos
+                <Clock className="w-4 h-4 text-secondary animate-pulse" /> Vuelos & Hoteles · Próximamente
               </span>
               <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 leading-tight drop-shadow-2xl">
-                Buscador de Vuelos <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">Exclusivos</span>
+                Vuelos y Hoteles <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">Coming Soon</span>
               </h1>
               <p className="text-sm md:text-base text-gray-300 font-medium leading-relaxed max-w-2xl mx-auto tracking-wide">
-                Encuentra y reserva tus vuelos al Caribe y al resto del mundo. Tarifas oficiales en tiempo real con confirmación inmediata y máxima seguridad.
+                Estamos finalizando la acreditación directa con las aerolíneas internacionales (Duffel API) y cadenas hoteleras. Mientras tanto, todas nuestras excursiones y traslados en Punta Cana están 100% activos con confirmación inmediata y pago seguro con Stripe.
               </p>
+            </div>
+
+            {/* Banner Oficial Coming Soon con CTA a Excursiones 100% Activas */}
+            <div className="max-w-4xl mx-auto mb-10 bg-gradient-to-r from-secondary/15 via-black/50 to-cyan/15 border border-secondary/30 rounded-3xl p-5 sm:p-6 backdrop-blur-2xl shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-5">
+              <div className="flex items-center gap-4 text-left">
+                <div className="w-12 h-12 rounded-2xl bg-secondary/20 border border-secondary/40 flex items-center justify-center text-secondary flex-shrink-0">
+                  <Clock className="w-6 h-6 animate-pulse" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-white font-black text-sm uppercase tracking-wider font-display">Vuelos, Hoteles y Rent-a-Car</span>
+                    <span className="text-[9px] bg-secondary/20 text-secondary border border-secondary/40 font-black px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Soon</span>
+                  </div>
+                  <p className="text-xs text-gray-300 leading-relaxed">
+                    Emisión de pasajes aéreos en acreditación técnica. <strong className="text-emerald-400">Excursiones VIP y Traslados PUJ 100% Operativos</strong> con emisión digital instantánea y pagos con Stripe.
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/"
+                className="whitespace-nowrap bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-500 hover:to-secondary text-white font-black uppercase text-xs tracking-wider py-3.5 px-6 rounded-2xl transition flex items-center gap-2 shadow-lg shadow-orange-900/30 flex-shrink-0 hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <Compass className="w-4 h-4" /> Ver Excursiones 100% Activas
+              </a>
             </div>
 
             {/* Módulo Principal de Búsqueda de Vidrio Esmerilado */}
@@ -867,7 +990,7 @@ export default function TravelpayoutsPage() {
                   {/* Shields de Clic Externo para Cerrar Popovers de Sugerencias */}
                   {(showOriginSuggest || showDestSuggest || showPassengerPopover || multiOriginSuggestIdx !== null || multiDestSuggestIdx !== null) && (
                     <div 
-                      className="fixed inset-0 z-40" 
+                      className="fixed inset-0 z-20" 
                       onClick={() => {
                         setShowOriginSuggest(false);
                         setShowDestSuggest(false);
@@ -962,16 +1085,25 @@ export default function TravelpayoutsPage() {
                                   setMultiOriginSuggestIdx(index);
                                   setMultiDestSuggestIdx(null);
                                   setShowPassengerPopover(false);
+                                  searchAirportsApi(leg.origin, (list) => setMultiLegAirports(prev => ({ ...prev, [`origin_${index}`]: list })));
                                 }}
-                                onChange={(e) => handleUpdateLeg(index, 'origin', e.target.value.toUpperCase())}
-                                placeholder="Ej: MIA"
+                                onChange={(e) => {
+                                  const v = e.target.value.toUpperCase();
+                                  handleUpdateLeg(index, 'origin', v);
+                                  searchAirportsApi(v, (list) => setMultiLegAirports(prev => ({ ...prev, [`origin_${index}`]: list })));
+                                }}
+                                placeholder="Ej: MIA, Madrid, París"
                                 className="bg-bgDark border border-outline rounded-xl py-3 px-3 text-sm text-white focus:outline-none focus:border-secondary font-bold"
                               />
                               {multiOriginSuggestIdx === index && (
-                                <div className="absolute top-[68px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-2.5 shadow-2xl z-50 flex flex-col gap-1 max-h-48 overflow-y-auto">
-                                  {POPULAR_AIRPORTS.map((airport) => (
+                                <div className="absolute top-[68px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-2.5 shadow-2xl z-50 flex flex-col gap-1 max-h-56 overflow-y-auto">
+                                  <div className="flex items-center justify-between border-b border-outline/35 pb-1 mb-1">
+                                    <p className="text-[8px] text-gray-400 font-bold uppercase tracking-wider">Aeropuertos y Ciudades</p>
+                                    {isLoadingAirports && <RefreshCw className="w-3 h-3 text-secondary animate-spin" />}
+                                  </div>
+                                  {(multiLegAirports[`origin_${index}`] || POPULAR_AIRPORTS).map((airport) => (
                                     <button
-                                      key={airport.code}
+                                      key={airport.code + '-' + (airport.city || airport.name)}
                                       type="button"
                                       onClick={() => {
                                         handleUpdateLeg(index, 'origin', airport.code);
@@ -979,8 +1111,11 @@ export default function TravelpayoutsPage() {
                                       }}
                                       className="flex items-center justify-between text-left p-1.5 rounded-lg hover:bg-surface/50 text-xs font-bold text-gray-300 hover:text-white"
                                     >
-                                      <span>{airport.name}</span>
-                                      <span className="text-secondary font-black">{airport.code}</span>
+                                      <div>
+                                        <p className="leading-tight text-white">{airport.name}</p>
+                                        <p className="text-[8px] text-gray-400 font-normal">{airport.city ? `${airport.city}, ` : ''}{airport.country}</p>
+                                      </div>
+                                      <span className="text-secondary font-black ml-2 bg-secondary/10 px-1.5 py-0.5 rounded text-[11px] border border-secondary/20">{airport.code}</span>
                                     </button>
                                   ))}
                                 </div>
@@ -1000,16 +1135,25 @@ export default function TravelpayoutsPage() {
                                   setMultiDestSuggestIdx(index);
                                   setMultiOriginSuggestIdx(null);
                                   setShowPassengerPopover(false);
+                                  searchAirportsApi(leg.destination, (list) => setMultiLegAirports(prev => ({ ...prev, [`dest_${index}`]: list })));
                                 }}
-                                onChange={(e) => handleUpdateLeg(index, 'destination', e.target.value.toUpperCase())}
-                                placeholder="Ej: PUJ"
+                                onChange={(e) => {
+                                  const v = e.target.value.toUpperCase();
+                                  handleUpdateLeg(index, 'destination', v);
+                                  searchAirportsApi(v, (list) => setMultiLegAirports(prev => ({ ...prev, [`dest_${index}`]: list })));
+                                }}
+                                placeholder="Ej: PUJ, Cancún, SDQ"
                                 className="bg-bgDark border border-outline rounded-xl py-3 px-3 text-sm text-white focus:outline-none focus:border-cyan font-bold"
                               />
                               {multiDestSuggestIdx === index && (
-                                <div className="absolute top-[68px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-2.5 shadow-2xl z-50 flex flex-col gap-1 max-h-48 overflow-y-auto">
-                                  {POPULAR_AIRPORTS.map((airport) => (
+                                <div className="absolute top-[68px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-2.5 shadow-2xl z-50 flex flex-col gap-1 max-h-56 overflow-y-auto">
+                                  <div className="flex items-center justify-between border-b border-outline/35 pb-1 mb-1">
+                                    <p className="text-[8px] text-gray-400 font-bold uppercase tracking-wider">Destinos y Conexiones</p>
+                                    {isLoadingAirports && <RefreshCw className="w-3 h-3 text-cyan animate-spin" />}
+                                  </div>
+                                  {(multiLegAirports[`dest_${index}`] || POPULAR_AIRPORTS).map((airport) => (
                                     <button
-                                      key={airport.code}
+                                      key={airport.code + '-' + (airport.city || airport.name)}
                                       type="button"
                                       onClick={() => {
                                         handleUpdateLeg(index, 'destination', airport.code);
@@ -1017,8 +1161,11 @@ export default function TravelpayoutsPage() {
                                       }}
                                       className="flex items-center justify-between text-left p-1.5 rounded-lg hover:bg-surface/50 text-xs font-bold text-gray-300 hover:text-white"
                                     >
-                                      <span>{airport.name}</span>
-                                      <span className="text-cyan font-black">{airport.code}</span>
+                                      <div>
+                                        <p className="leading-tight text-white">{airport.name}</p>
+                                        <p className="text-[8px] text-gray-400 font-normal">{airport.city ? `${airport.city}, ` : ''}{airport.country}</p>
+                                      </div>
+                                      <span className="text-cyan font-black ml-2 bg-cyan/10 px-1.5 py-0.5 rounded text-[11px] border border-cyan/20">{airport.code}</span>
                                     </button>
                                   ))}
                                 </div>
@@ -1052,10 +1199,10 @@ export default function TravelpayoutsPage() {
                     </div>
                   ) : (
                     /* VISTA CLÁSICA: IDA Y VUELTA / SOLO IDA */
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-30">
                       
-                      {/* Origen Input con Autocomplete Popover */}
-                      <div className="flex flex-col gap-2 relative">
+                      {/* Origen Input con Autocomplete Popover Dinámico */}
+                      <div className="flex flex-col gap-2 relative z-30">
                         <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
                           <MapPin className="w-3.5 h-3.5 text-secondary" /> Origen
                         </label>
@@ -1067,43 +1214,56 @@ export default function TravelpayoutsPage() {
                             setShowOriginSuggest(true);
                             setShowDestSuggest(false);
                             setShowPassengerPopover(false);
+                            searchAirportsApi(origin, setOriginAirportsList);
                           }}
-                          onChange={(e) => setOrigin(e.target.value.toUpperCase())}
-                          placeholder="MIA"
-                          className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-secondary font-bold z-50"
+                          onChange={(e) => {
+                            const v = e.target.value.toUpperCase();
+                            setOrigin(v);
+                            searchAirportsApi(v, setOriginAirportsList);
+                          }}
+                          placeholder="Ej: MIA, Madrid, París, BOG..."
+                          className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-secondary font-bold"
                         />
                         
                         {showOriginSuggest && (
-                          <div className="absolute top-[72px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-3 shadow-2xl z-50 flex flex-col gap-1.5 animate-fadeIn">
-                            <p className="text-[8px] text-gray-500 font-bold uppercase tracking-wider border-b border-outline/35 pb-1 mb-1">
-                              Aeropuertos Recomendados
-                            </p>
-                            {POPULAR_AIRPORTS.map((airport) => (
+                          <div className="absolute top-[72px] left-0 right-0 bg-[#0d131f] border border-white/20 rounded-xl p-3 shadow-2xl z-[100] flex flex-col gap-1.5 animate-fadeIn max-h-72 overflow-y-auto">
+                            <div className="flex items-center justify-between border-b border-outline/35 pb-1 mb-1">
+                              <p className="text-[8px] text-gray-400 font-bold uppercase tracking-wider">
+                                {originAirportsList.length > 0 ? 'Aeropuertos y Ciudades' : 'Buscando Aeropuertos...'}
+                              </p>
+                              {isLoadingAirports && (
+                                <RefreshCw className="w-3 h-3 text-secondary animate-spin" />
+                              )}
+                            </div>
+                            {originAirportsList.map((airport) => (
                               <button
-                                key={airport.code}
+                                key={airport.code + '-' + (airport.city || airport.name)}
                                 type="button"
                                 onClick={() => {
                                   setOrigin(airport.code);
                                   setShowOriginSuggest(false);
                                 }}
-                                className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-300 hover:text-white"
+                                className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-200 hover:text-white"
                               >
                                 <div className="flex items-center gap-2">
-                                  <span className="text-[9px] bg-outline/40 px-1.5 py-0.5 rounded text-gray-400">✈️</span>
+                                  <span className="text-[10px] bg-secondary/15 text-secondary px-1.5 py-0.5 rounded font-black">✈️</span>
                                   <div>
-                                    <p className="leading-tight">{airport.name}</p>
-                                    <p className="text-[8px] text-gray-500">{airport.country}</p>
+                                    <p className="leading-tight text-white">{airport.name}</p>
+                                    <p className="text-[9px] text-gray-400 font-normal">{airport.city ? `${airport.city}, ` : ''}{airport.country}</p>
                                   </div>
                                 </div>
-                                <span className="text-secondary font-black">{airport.code}</span>
+                                <span className="text-secondary font-black text-xs bg-secondary/10 px-2 py-0.5 rounded border border-secondary/20 ml-2">{airport.code}</span>
                               </button>
                             ))}
+                            {originAirportsList.length === 0 && !isLoadingAirports && (
+                              <p className="text-xs text-gray-400 text-center py-2">No se encontraron aeropuertos con "{origin}".</p>
+                            )}
                           </div>
                         )}
                       </div>
 
-                      {/* Destino Input con Autocomplete Popover */}
-                      <div className="flex flex-col gap-2 relative">
+                      {/* Destino Input con Autocomplete Popover Dinámico */}
+                      <div className="flex flex-col gap-2 relative z-30">
                         <label className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
                           <MapPin className="w-3.5 h-3.5 text-cyan" /> Destino
                         </label>
@@ -1115,37 +1275,50 @@ export default function TravelpayoutsPage() {
                             setShowDestSuggest(true);
                             setShowOriginSuggest(false);
                             setShowPassengerPopover(false);
+                            searchAirportsApi(destination, setDestAirportsList);
                           }}
-                          onChange={(e) => setDestination(e.target.value.toUpperCase())}
-                          placeholder="PUJ"
-                          className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-cyan font-bold z-50"
+                          onChange={(e) => {
+                            const v = e.target.value.toUpperCase();
+                            setDestination(v);
+                            searchAirportsApi(v, setDestAirportsList);
+                          }}
+                          placeholder="Ej: PUJ, SDQ, Cancún..."
+                          className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-cyan font-bold"
                         />
 
                         {showDestSuggest && (
-                          <div className="absolute top-[72px] left-0 right-0 bg-bgDark border border-outline rounded-xl p-3 shadow-2xl z-50 flex flex-col gap-1.5 animate-fadeIn">
-                            <p className="text-[8px] text-gray-500 font-bold uppercase tracking-wider border-b border-outline/35 pb-1 mb-1">
-                              Destinos Dominicanos y Conexiones
-                            </p>
-                            {POPULAR_AIRPORTS.map((airport) => (
+                          <div className="absolute top-[72px] left-0 right-0 bg-[#0d131f] border border-white/20 rounded-xl p-3 shadow-2xl z-[100] flex flex-col gap-1.5 animate-fadeIn max-h-72 overflow-y-auto">
+                            <div className="flex items-center justify-between border-b border-outline/35 pb-1 mb-1">
+                              <p className="text-[8px] text-gray-400 font-bold uppercase tracking-wider">
+                                {destAirportsList.length > 0 ? 'Destinos y Conexiones' : 'Buscando Destinos...'}
+                              </p>
+                              {isLoadingAirports && (
+                                <RefreshCw className="w-3 h-3 text-cyan animate-spin" />
+                              )}
+                            </div>
+                            {destAirportsList.map((airport) => (
                               <button
-                                key={airport.code}
+                                key={airport.code + '-' + (airport.city || airport.name)}
                                 type="button"
                                 onClick={() => {
                                   setDestination(airport.code);
                                   setShowDestSuggest(false);
                                 }}
-                                className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-300 hover:text-white"
+                                className="flex items-center justify-between text-left p-2 rounded-lg hover:bg-surface/50 transition text-xs font-bold text-gray-200 hover:text-white"
                               >
                                 <div className="flex items-center gap-2">
-                                  <span className="text-[9px] bg-outline/40 px-1.5 py-0.5 rounded text-gray-400">✈️</span>
+                                  <span className="text-[10px] bg-cyan/15 text-cyan px-1.5 py-0.5 rounded font-black">✈️</span>
                                   <div>
-                                    <p className="leading-tight">{airport.name}</p>
-                                    <p className="text-[8px] text-gray-500">{airport.country}</p>
+                                    <p className="leading-tight text-white">{airport.name}</p>
+                                    <p className="text-[9px] text-gray-400 font-normal">{airport.city ? `${airport.city}, ` : ''}{airport.country}</p>
                                   </div>
                                 </div>
-                                <span className="text-cyan font-black">{airport.code}</span>
+                                <span className="text-cyan font-black text-xs bg-cyan/10 px-2 py-0.5 rounded border border-cyan/20 ml-2">{airport.code}</span>
                               </button>
                             ))}
+                            {destAirportsList.length === 0 && !isLoadingAirports && (
+                              <p className="text-xs text-gray-400 text-center py-2">No se encontraron aeropuertos con "{destination}".</p>
+                            )}
                           </div>
                         )}
                         
@@ -1180,7 +1353,7 @@ export default function TravelpayoutsPage() {
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline/30 pt-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline/30 pt-4 relative z-10">
                     
                     {/* Pasajeros y Clase Consolidado (Popover Popup de Skyscanner) */}
                     <div className="flex flex-col gap-2 relative">
@@ -1194,7 +1367,7 @@ export default function TravelpayoutsPage() {
                           setShowOriginSuggest(false);
                           setShowDestSuggest(false);
                         }}
-                        className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-left text-sm text-white focus:outline-none focus:border-secondary font-bold flex items-center justify-between z-50"
+                        className="bg-bgDark border border-outline rounded-xl py-3 px-4 text-left text-sm text-white focus:outline-none focus:border-secondary font-bold flex items-center justify-between"
                       >
                         <span className="flex items-center gap-2">
                           <Users className="w-4 h-4 text-secondary" />
@@ -1303,13 +1476,14 @@ export default function TravelpayoutsPage() {
 
                     </div>
 
-                    {/* Botón Buscar Vuelo */}
+                    {/* Botón Buscar Vuelo -> Vuelos Disponibles Coming Soon */}
                     <div className="flex items-end">
                       <button
-                        type="submit"
-                        className="w-full bg-secondary hover:bg-orange-600 text-white font-black text-xs uppercase tracking-wider py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-secondary/15 transition-all duration-300 active:scale-95 hover:scale-[1.01]"
+                        type="button"
+                        onClick={() => setShowComingSoonModal(true)}
+                        className="w-full bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-500 hover:to-secondary text-white font-black text-xs uppercase tracking-wider py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-secondary/20 transition-all duration-300 cursor-pointer hover:scale-[1.01] active:scale-95"
                       >
-                        Buscar Vuelos en Tiempo Real <ArrowRight className="w-4 h-4" />
+                        <Clock className="w-4 h-4 text-white animate-pulse" /> Vuelos Disponibles — Coming Soon
                       </button>
                     </div>
 
@@ -1433,93 +1607,325 @@ export default function TravelpayoutsPage() {
 
                       {/* Lista de Vuelos Filtrados y Ordenados */}
                       <div className="flex flex-col gap-4">
-                        {processedFlights.map((flight) => (
-                          <div 
-                            key={flight.id} 
-                            className="border border-outline/40 hover:border-secondary/45 bg-bgDark/20 rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 flex flex-col gap-4"
-                          >
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full">
-                              {/* Aerolínea */}
-                              <div className="flex items-center gap-4 w-full md:w-1/4">
-                                <img 
-                                  src={flight.logo} 
-                                  alt={flight.airline} 
-                                  className="w-10 h-10 rounded-xl object-contain bg-white/5 border border-outline/35 p-1"
-                                  onError={(e) => {
-                                    (e.target as HTMLImageElement).src = 'https://images.kiwi.com/airlines/64/AA.png';
-                                  }}
-                                />
-                                <div>
-                                  <p className="text-white text-xs font-black uppercase tracking-wide leading-tight">{flight.airline}</p>
-                                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.flightNumber}</p>
-                                </div>
-                              </div>
+                        {processedFlights.map((flight) => {
+                          const isExpanded = expandedFlightId === flight.id;
+                          const outboundSlice = flight.slices?.[0];
 
-                              {/* Horarios e Itinerario Principal */}
-                              <div className="flex items-center justify-between md:justify-center gap-6 w-full md:w-2/5 border-y md:border-y-0 border-outline/20 py-3 md:py-0">
-                                <div className="text-right">
-                                  <p className="text-white text-sm font-black tracking-tight">{flight.departureTime}</p>
-                                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.origin}</p>
-                                </div>
-
-                                <div className="flex-1 flex flex-col items-center relative max-w-[120px]">
-                                  <span className="text-[8px] text-gray-500 font-bold uppercase tracking-widest mb-1">{flight.duration}</span>
-                                  <div className="w-full h-0.5 bg-outline/50 relative flex items-center justify-center">
-                                    <div className="absolute w-1.5 h-1.5 rounded-full bg-cyan" />
-                                  </div>
-                                  <span className={`text-[8px] font-black uppercase tracking-wider mt-1 px-1.5 py-0.5 rounded ${
-                                    flight.stops === 'Directo' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'
-                                  }`}>
-                                    {flight.stops}
-                                  </span>
-                                </div>
-
-                                <div className="text-left">
-                                  <p className="text-white text-sm font-black tracking-tight">{flight.arrivalTime}</p>
-                                  <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest mt-0.5">{flight.destination}</p>
-                                </div>
-                              </div>
-
-                              {/* Precio y Reserva */}
-                              <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-1/3">
-                                <div className="text-left md:text-right">
-                                  <p className="text-[8px] text-emerald-400 font-bold uppercase tracking-wider">{flight.provider || 'Tarifa Oficial Directa'}</p>
-                                  <p className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400 text-xl font-black tracking-tight mt-0.5">
-                                    ${flight.price} USD
-                                  </p>
-                                </div>
-
-                                <button 
-                                  type="button"
-                                  onClick={() => openFlightBookingModal(flight)}
-                                  className="bg-secondary hover:bg-orange-600 text-white font-black text-[10px] uppercase tracking-widest px-6 py-3.5 rounded-xl transition duration-300 flex items-center gap-1.5 active:scale-95 shadow-md shadow-secondary/15 hover:scale-[1.02]"
-                                >
-                                  Reservar Vuelo ➔
-                                </button>
-                              </div>
-                            </div>
-
-                            {/* Desglose de tramos para Multiciudad si aplica */}
-                            {flight.legs && flight.legs.length > 1 && (
-                              <div className="w-full flex flex-col gap-2 pt-3 border-t border-white/5">
-                                <p className="text-[9px] text-gray-400 font-black uppercase tracking-wider">
-                                  Detalle de los {flight.legs.length} Tramos del Itinerario:
-                                </p>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                  {flight.legs.map((leg: any, lIdx: number) => (
-                                    <div key={lIdx} className="flex items-center justify-between text-[11px] text-gray-300 bg-bgDark/40 border border-outline/30 px-3 py-2 rounded-xl">
-                                      <span className="font-bold text-secondary text-[9px] uppercase tracking-wider">Tramo {lIdx + 1}</span>
-                                      <span className="font-bold text-white">{leg.origin} ➔ {leg.destination}</span>
-                                      <span className="text-gray-400 text-[10px]">{leg.departureTime} - {leg.arrivalTime} ({leg.duration})</span>
-                                      <span className="text-[9px] text-cyan font-bold bg-cyan/10 px-1.5 py-0.5 rounded border border-cyan/20">{leg.stops}</span>
+                          return (
+                            <div 
+                              key={flight.id} 
+                              className={`border transition-all duration-300 rounded-3xl overflow-hidden ${
+                                isExpanded 
+                                  ? 'border-secondary/60 bg-gradient-to-b from-[#101726] to-[#0a0f1d] shadow-2xl shadow-secondary/10' 
+                                  : 'border-outline/40 hover:border-secondary/40 bg-bgDark/30 hover:bg-bgDark/50 shadow-lg'
+                              }`}
+                            >
+                              {/* CABECERA PRINCIPAL DE LA TARJETA */}
+                              <div className="p-5 md:p-6 flex flex-col gap-4">
+                                
+                                {/* Fila Superior: Aerolínea + Badges de Duffel y Equipaje */}
+                                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/5 pb-3">
+                                  <div className="flex items-center gap-3">
+                                    <img 
+                                      src={flight.logo} 
+                                      alt={flight.airline} 
+                                      className="w-9 h-9 rounded-xl object-contain bg-white/10 border border-white/10 p-1"
+                                      onError={(e) => {
+                                        (e.target as HTMLImageElement).src = 'https://images.kiwi.com/airlines/64/AA.png';
+                                      }}
+                                    />
+                                    <div>
+                                      <p className="text-white text-sm font-black uppercase tracking-wide leading-tight">{flight.airline}</p>
+                                      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5">
+                                        {flight.flightNumber} {flight.slices?.[0]?.segments?.[0]?.aircraft ? `• ${flight.slices[0].segments[0].aircraft}` : ''}
+                                      </p>
                                     </div>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
+                                  </div>
 
-                          </div>
-                        ))}
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-[9px] bg-secondary/15 text-secondary border border-secondary/25 px-2.5 py-1 rounded-full font-black uppercase flex items-center gap-1">
+                                      <Sparkles className="w-3 h-3" /> Tarifa Oficial Duffel
+                                    </span>
+                                    <span className="text-[9px] bg-cyan/10 text-cyan border border-cyan/20 px-2.5 py-1 rounded-full font-black uppercase flex items-center gap-1">
+                                      <Luggage className="w-3 h-3" /> {flight.checkedBagsCount > 0 ? `${flight.checkedBagsCount} Maleta en bodega` : 'Equipaje de mano incl.'}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Fila Itinerario: Tramo de Ida */}
+                                <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+                                  
+                                  <div className="flex items-center justify-between md:justify-start gap-4 md:gap-8 w-full md:w-3/5">
+                                    {/* Salida */}
+                                    <div className="text-left md:text-right min-w-[90px]">
+                                      <p className="text-xl md:text-2xl font-black text-white tracking-tight">{flight.departureTime}</p>
+                                      <p className="text-xs font-bold text-gray-300">{flight.origin}</p>
+                                      {flight.originName && <p className="text-[9px] text-gray-500 truncate max-w-[120px]">{flight.originName}</p>}
+                                    </div>
+
+                                    {/* Trayecto y Escalas */}
+                                    <div className="flex-1 flex flex-col items-center max-w-[200px] text-center">
+                                      <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+                                        <Clock className="w-3 h-3 text-secondary" /> {flight.duration}
+                                      </span>
+                                      <div className="w-full h-1 bg-outline/60 rounded-full relative flex items-center justify-center">
+                                        <div className={`w-2.5 h-2.5 rounded-full ${flight.stopsCount === 0 ? 'bg-emerald-400 ring-2 ring-emerald-400/20' : 'bg-amber-400 ring-2 ring-amber-400/20'}`} />
+                                      </div>
+                                      <span className={`text-[9px] font-black uppercase tracking-wider mt-1 px-2 py-0.5 rounded-full ${
+                                        flight.stopsCount === 0 
+                                          ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25' 
+                                          : 'bg-amber-500/15 text-amber-400 border border-amber-500/25'
+                                      }`}>
+                                        {flight.stops}
+                                      </span>
+                                      {flight.layoversSummary && flight.layoversSummary.length > 0 && (
+                                        <span className="text-[8px] text-amber-300 font-bold mt-1 bg-black/40 px-2 py-0.5 rounded border border-amber-500/20">
+                                          {flight.layoversSummary.join(', ')}
+                                        </span>
+                                      )}
+                                    </div>
+
+                                    {/* Llegada */}
+                                    <div className="text-right md:text-left min-w-[90px]">
+                                      <p className="text-xl md:text-2xl font-black text-white tracking-tight">{flight.arrivalTime}</p>
+                                      <p className="text-xs font-bold text-gray-300">{flight.destination}</p>
+                                      {flight.destinationName && <p className="text-[9px] text-gray-500 truncate max-w-[120px]">{flight.destinationName}</p>}
+                                    </div>
+                                  </div>
+
+                                  {/* Precio y Botones de Acción */}
+                                  <div className="flex items-center justify-between md:justify-end gap-4 w-full md:w-2/5 border-t md:border-t-0 border-white/5 pt-3 md:pt-0">
+                                    <div className="text-left md:text-right">
+                                      <span className="text-[9px] text-gray-400 uppercase font-black tracking-wider block">Tarifa Final</span>
+                                      <p className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-secondary to-orange-400">
+                                        ${flight.price} <span className="text-xs font-bold text-gray-400">USD</span>
+                                      </p>
+                                    </div>
+
+                                    <div className="flex items-center gap-2">
+                                      <button 
+                                        type="button"
+                                        onClick={() => setExpandedFlightId(isExpanded ? null : flight.id)}
+                                        className="bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 px-3.5 py-3 rounded-xl text-xs font-black uppercase tracking-wider transition flex items-center gap-1.5 active:scale-95"
+                                        title="Ver escalas e información detallada del vuelo"
+                                      >
+                                        <Info className="w-3.5 h-3.5 text-secondary" />
+                                        <span className="hidden sm:inline">{isExpanded ? 'Ocultar' : 'Detalles'}</span>
+                                        {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                                      </button>
+
+                                      <button 
+                                        type="button"
+                                        onClick={() => openFlightBookingModal(flight)}
+                                        className="bg-secondary hover:bg-orange-600 text-white font-black text-xs uppercase tracking-widest px-5 py-3 rounded-xl transition duration-300 flex items-center gap-1.5 active:scale-95 shadow-lg shadow-secondary/25 hover:scale-[1.02]"
+                                      >
+                                        Seleccionar ➔
+                                      </button>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                {/* Si es ida y vuelta y tiene vuelo de regreso, mostramos la fila de regreso resumida */}
+                                {flight.returnSlice && (
+                                  <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-[9px] bg-cyan/15 text-cyan border border-cyan/25 px-2 py-0.5 rounded font-black uppercase">Vuelta</span>
+                                      <span className="text-white font-bold">{flight.returnSlice.origin.iata} ➔ {flight.returnSlice.destination.iata}</span>
+                                      <span className="text-gray-400 text-[10px]">({flight.returnSlice.departureDate})</span>
+                                    </div>
+                                    <div className="flex items-center gap-4 text-gray-300">
+                                      <span>{flight.returnSlice.departureTime} - {flight.returnSlice.arrivalTime}</span>
+                                      <span className="text-[10px] text-gray-400">({flight.returnSlice.duration})</span>
+                                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded ${flight.returnSlice.stopsCount === 0 ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>
+                                        {flight.returnSlice.stopsLabel}
+                                      </span>
+                                    </div>
+                                  </div>
+                                )}
+
+                              </div>
+
+                              {/* PANEL EXPANDIBLE: ITINERARIO COMPLETO TRAMO A TRAMO (DUFFEL FULL FLOW) */}
+                              {isExpanded && (
+                                <div className="border-t border-secondary/20 bg-black/40 p-5 md:p-7 flex flex-col gap-6 animate-fadeIn">
+                                  
+                                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-7 h-7 rounded-lg bg-secondary/20 text-secondary flex items-center justify-center">
+                                        <Plane className="w-4 h-4" />
+                                      </div>
+                                      <div>
+                                        <h4 className="text-sm font-black uppercase text-white tracking-wide">Itinerario Oficial y Escalas de Vuelo</h4>
+                                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Conexiones directas verificadas con Duffel Global GDS</p>
+                                      </div>
+                                    </div>
+                                    <span className="text-xs font-mono text-cyan bg-cyan/10 border border-cyan/20 px-2.5 py-1 rounded-lg">
+                                      {flight.offerId}
+                                    </span>
+                                  </div>
+
+                                  {/* Slices / Tramos completos */}
+                                  <div className="flex flex-col gap-6">
+                                    {(flight.slices || [outboundSlice]).filter(Boolean).map((slice: any, sIdx: number) => (
+                                      <div key={slice.sliceId || sIdx} className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-5 flex flex-col gap-4">
+                                        
+                                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+                                          <span className="text-xs font-black uppercase tracking-wider text-secondary flex items-center gap-1.5">
+                                            <span className="w-5 h-5 rounded-full bg-secondary text-white text-[10px] flex items-center justify-center font-bold">
+                                              {sIdx + 1}
+                                            </span>
+                                            {slice.type || (sIdx === 0 ? 'Vuelo de Ida' : 'Vuelo de Vuelta')}: {slice.origin?.cityName || slice.origin?.name || slice.origin?.iata} ({slice.origin?.iata}) ➔ {slice.destination?.cityName || slice.destination?.name || slice.destination?.iata} ({slice.destination?.iata})
+                                          </span>
+                                          <div className="flex items-center gap-2 text-[10px] text-gray-400">
+                                            <span>Fecha: <strong className="text-white">{slice.departureDate}</strong></span>
+                                            <span>•</span>
+                                            <span>Duración total: <strong className="text-cyan">{slice.duration}</strong></span>
+                                            <span>•</span>
+                                            <span className={`font-bold ${slice.stopsCount === 0 ? 'text-emerald-400' : 'text-amber-400'}`}>{slice.stopsLabel}</span>
+                                          </div>
+                                        </div>
+
+                                        {/* Segmentos del Slice */}
+                                        <div className="flex flex-col gap-4 pl-2 md:pl-4">
+                                          {(slice.segments || []).map((seg: any, segIdx: number) => (
+                                            <div key={seg.id || segIdx} className="flex flex-col gap-3">
+                                              
+                                              {/* Cabecera del Segmento */}
+                                              <div className="flex flex-wrap items-center justify-between text-[11px] text-gray-300 bg-white/5 px-3 py-2 rounded-xl border border-white/5">
+                                                <div className="flex items-center gap-2 font-bold text-white">
+                                                  <img 
+                                                    src={seg.airlineLogo || flight.logo} 
+                                                    alt={seg.airlineName} 
+                                                    className="w-5 h-5 rounded object-contain bg-white/10 p-0.5" 
+                                                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.kiwi.com/airlines/64/AA.png'; }}
+                                                  />
+                                                  <span>{seg.airlineName}</span>
+                                                  <span className="text-secondary font-mono text-[10px]">Vuelo {seg.flightNumber}</span>
+                                                  {seg.operatingCarrierName && (
+                                                    <span className="text-[9px] text-gray-400 font-normal">({seg.operatingCarrierName})</span>
+                                                  )}
+                                                </div>
+                                                <div className="flex items-center gap-3 text-[10px] text-gray-400">
+                                                  <span>Aeronave: <strong className="text-gray-200">{seg.aircraft}</strong></span>
+                                                  <span>•</span>
+                                                  <span>Cabina: <strong className="text-cyan">{seg.cabinName}</strong></span>
+                                                </div>
+                                              </div>
+
+                                              {/* Timeline Origen -> Destino */}
+                                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-3 border-l-2 border-secondary/40 my-1">
+                                                {/* Salida */}
+                                                <div className="flex flex-col gap-0.5">
+                                                  <span className="text-[10px] text-secondary font-black uppercase tracking-wider">Salida</span>
+                                                  <div className="flex items-baseline gap-2">
+                                                    <span className="text-lg font-black text-white">{seg.departingTime}</span>
+                                                    <span className="text-xs font-bold text-cyan">{seg.origin?.iata}</span>
+                                                  </div>
+                                                  <p className="text-xs font-bold text-gray-200">{seg.origin?.name}</p>
+                                                  {seg.origin?.cityName && <p className="text-[10px] text-gray-400">{seg.origin.cityName}</p>}
+                                                  {seg.origin?.terminal && (
+                                                    <span className="text-[9px] text-gray-400 font-mono mt-0.5">Terminal {seg.origin.terminal}</span>
+                                                  )}
+                                                </div>
+
+                                                {/* Llegada */}
+                                                <div className="flex flex-col gap-0.5">
+                                                  <div className="flex items-center justify-between">
+                                                    <span className="text-[10px] text-emerald-400 font-black uppercase tracking-wider">Llegada</span>
+                                                    <span className="text-[9px] text-gray-400 font-mono flex items-center gap-1">
+                                                      <Clock className="w-3 h-3 text-gray-400" /> {seg.duration} en vuelo
+                                                    </span>
+                                                  </div>
+                                                  <div className="flex items-baseline gap-2">
+                                                    <span className="text-lg font-black text-white">{seg.arrivingTime}</span>
+                                                    <span className="text-xs font-bold text-cyan">{seg.destination?.iata}</span>
+                                                  </div>
+                                                  <p className="text-xs font-bold text-gray-200">{seg.destination?.name}</p>
+                                                  {seg.destination?.cityName && <p className="text-[10px] text-gray-400">{seg.destination.cityName}</p>}
+                                                  {seg.destination?.terminal && (
+                                                    <span className="text-[9px] text-gray-400 font-mono mt-0.5">Terminal {seg.destination.terminal}</span>
+                                                  )}
+                                                </div>
+                                              </div>
+
+                                              {/* Escala / Conexión (Layover Alert) */}
+                                              {seg.layoverAfter && (
+                                                <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 flex items-center gap-3 my-1">
+                                                  <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0">
+                                                    <Clock className="w-4 h-4 animate-spin" />
+                                                  </div>
+                                                  <div className="flex-1">
+                                                    <p className="text-xs font-black text-amber-300 uppercase tracking-wide">
+                                                      Conexión / Escala en {seg.layoverAfter.airportName || seg.layoverAfter.cityName} ({seg.layoverAfter.airportIata})
+                                                    </p>
+                                                    <p className="text-[11px] text-amber-200/90 mt-0.5">
+                                                      Tiempo de espera en aeropuerto: <strong className="text-white">{seg.layoverAfter.duration}</strong>. {seg.layoverAfter.changePlanes ? 'Requiere cambio de aeronave.' : 'Mismo avión.'}
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              )}
+
+                                            </div>
+                                          ))}
+                                        </div>
+
+                                      </div>
+                                    ))}
+                                  </div>
+
+                                  {/* Políticas de Equipaje y Reglas de la Tarifa */}
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-white/[0.02] border border-white/5 rounded-2xl p-4 text-xs">
+                                    <div className="flex flex-col gap-1.5">
+                                      <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
+                                        <Luggage className="w-3.5 h-3.5 text-cyan" /> Equipaje y Franquicia
+                                      </span>
+                                      <p className="text-gray-200 font-bold">
+                                        • 1 Artículo personal / Equipaje de mano incluido en cabina
+                                      </p>
+                                      <p className="text-gray-300">
+                                        • Equipaje facturado en bodega: <strong className="text-white">{flight.checkedBagsCount > 0 ? `${flight.checkedBagsCount} maleta(s) incluida(s)` : '0 maletas (puedes añadir maletas en el check-in)'}</strong>
+                                      </p>
+                                    </div>
+
+                                    <div className="flex flex-col gap-1.5">
+                                      <span className="text-[10px] text-gray-400 uppercase font-black tracking-widest flex items-center gap-1.5">
+                                        <ShieldCheck className="w-3.5 h-3.5 text-secondary" /> Condiciones de Tarifa Duffel
+                                      </span>
+                                      <p className="text-gray-300">
+                                        • Cambios: <strong className="text-white">{flight.conditions?.changeBeforeDeparture || 'Permitidos con cargo según política de la aerolínea'}</strong>
+                                      </p>
+                                      <p className="text-gray-300">
+                                        • Reembolso: <strong className="text-white">{flight.conditions?.refundBeforeDeparture || 'No reembolsable tras emisión'}</strong>
+                                      </p>
+                                    </div>
+                                  </div>
+
+                                  {/* Botones de Acción al Final del Detalle */}
+                                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-white/10">
+                                    <button 
+                                      type="button"
+                                      onClick={() => setExpandedFlightId(null)}
+                                      className="text-gray-400 hover:text-white text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-xl transition flex items-center gap-1.5"
+                                    >
+                                      <ChevronUp className="w-4 h-4" /> Ocultar Detalles del Vuelo
+                                    </button>
+
+                                    <button 
+                                      type="button"
+                                      onClick={() => openFlightBookingModal(flight)}
+                                      className="w-full sm:w-auto bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 hover:to-orange-700 text-white font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-xl transition duration-300 shadow-xl shadow-secondary/20 flex items-center justify-center gap-2 active:scale-95"
+                                    >
+                                      Seleccionar este Vuelo (${flight.price} USD) y Reservar <ArrowRight className="w-4 h-4" />
+                                    </button>
+                                  </div>
+
+                                </div>
+                              )}
+
+                            </div>
+                          );
+                        })}
                       </div>
 
                     </div>
@@ -1579,22 +1985,29 @@ export default function TravelpayoutsPage() {
             MODAL DE RESERVA DIRECTA DE VUELOS (DUFFEL ENGINE + STRIPE SECURE PAY)
             ========================================== */}
         {selectedFlightForBooking && (
-          <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-fadeIn">
-            <div className="max-w-xl w-full bg-[#0d131f] border border-white/15 rounded-3xl p-6 md:p-8 shadow-2xl relative my-8">
+          <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-start justify-center p-4 sm:p-6 overflow-y-auto animate-fadeIn">
+            <div className="max-w-xl w-full bg-[#0d131f] border border-white/15 rounded-3xl p-6 md:p-8 shadow-2xl relative my-6">
               
-              {/* Botón Cerrar */}
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedFlightForBooking(null);
-                  setFlightBookingSuccess(null);
-                  setFlightBookingError(null);
-                  setVerifiedPriceData(null);
-                }}
-                className="absolute top-5 right-5 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full transition"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              {/* Barra superior de navegación / Regresar a los vuelos */}
+              <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                <button
+                  type="button"
+                  onClick={closeBookingModal}
+                  className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 px-3.5 py-2 rounded-xl transition border border-white/10 group active:scale-95"
+                  title="Volver a los resultados de búsqueda de vuelos"
+                >
+                  <ArrowLeft className="w-4 h-4 text-secondary group-hover:-translate-x-1 transition" />
+                  <span>Volver a los Vuelos</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={closeBookingModal}
+                  className="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full transition"
+                  title="Cerrar modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
               {flightBookingSuccess ? (
                 /* Pantalla de Éxito / Itinerario Completo */
@@ -1642,29 +2055,75 @@ export default function TravelpayoutsPage() {
                     </div>
                   </div>
 
+                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4 text-xs text-emerald-300 flex items-start gap-3 text-left w-full shadow-inner">
+                    <Mail className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-bold text-white mb-0.5">Confirmación enviada por Correo y SMS</p>
+                      <p className="text-[11px] text-gray-300 leading-relaxed">
+                        Hemos enviado el itinerario completo y tu boleto oficial en PDF adjunto a <strong>{flightBookingSuccess.email}</strong>.
+                      </p>
+                    </div>
+                  </div>
+
                   <p className="text-xs text-gray-400 leading-relaxed max-w-md">
-                    Tu boleto digital ha sido emitido y guardado con respaldo en Cloudflare KV. Puedes presentar tu código QR interactivo directamente en el aeropuerto.
+                    Tu boleto digital oficial con código QR y sello de Fire Tour DR está listo para descargar y presentar en el aeropuerto.
                   </p>
 
-                  <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
+                  <div className="flex flex-col gap-2.5 w-full mt-2">
+                    <a
+                      href={`/api/reservations/${encodeURIComponent(flightBookingSuccess.ticketCode || flightBookingSuccess.id)}/pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ background: 'linear-gradient(135deg, #0284c7, #0369a1)' }}
+                      className="w-full text-white font-black uppercase tracking-wider text-xs py-3.5 px-4 rounded-xl transition shadow-lg shadow-sky-900/40 hover:brightness-110 flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <FileText className="w-4 h-4" /> Descargar Boleto Oficial en PDF
+                    </a>
+
                     <button
                       type="button"
                       onClick={() => {
-                        window.location.href = `/ticket/${flightBookingSuccess.id}`;
+                        const pnr = flightBookingSuccess.ticketCode || flightBookingSuccess.id;
+                        const phoneClean = (flightBookingSuccess.phone || bookingPassenger.phone || '').replace(/[^\d+]/g, '');
+                        const origin = window.location.origin;
+                        const pdfUrl = `${origin}/api/reservations/${encodeURIComponent(pnr)}/pdf`;
+                        const text = encodeURIComponent(
+                          `✈️ *Fire Tour DR - Confirmación de Reserva de Vuelo*\n\n` +
+                          `¡Hola ${flightBookingSuccess.customerName}! Tu vuelo ha sido emitido con éxito.\n` +
+                          `🎟️ *Localizador PNR:* ${pnr}\n` +
+                          `📍 *Itinerario:* ${flightBookingSuccess.tourName}\n` +
+                          `💵 *Total Pagado:* $${flightBookingSuccess.amountPaid} USD\n\n` +
+                          `📄 *Descarga tu boleto oficial en PDF con QR y logo aquí:*\n${pdfUrl}\n\n` +
+                          `Presenta este PDF o código QR directamente en el mostrador del aeropuerto.`
+                        );
+                        window.open(`https://api.whatsapp.com/send?phone=${phoneClean}&text=${text}`, '_blank');
                       }}
-                      className="flex-1 bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 hover:to-orange-700 text-white font-black uppercase tracking-wider text-xs py-3.5 rounded-xl transition shadow-lg shadow-secondary/20 flex items-center justify-center gap-2"
+                      style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}
+                      className="w-full text-white font-black uppercase tracking-wider text-xs py-3.5 px-4 rounded-xl transition shadow-lg shadow-emerald-900/40 hover:brightness-110 flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <Ticket className="w-4 h-4" /> Ver Boleto Digital con QR
+                      <MessageSquare className="w-4 h-4" /> Enviar Boleto por WhatsApp / SMS
                     </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        window.location.href = '/cuenta';
-                      }}
-                      className="px-6 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl transition"
-                    >
-                      Mi Cuenta
-                    </button>
+
+                    <div className="flex flex-col sm:flex-row gap-2.5 w-full">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          window.location.href = `/ticket/${flightBookingSuccess.id}`;
+                        }}
+                        className="flex-1 bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-600 text-white font-black uppercase tracking-wider text-xs py-3 rounded-xl transition shadow-lg shadow-secondary/20 flex items-center justify-center gap-2"
+                      >
+                        <Ticket className="w-4 h-4" /> Ver Boleto Digital con QR
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          window.location.href = '/cuenta';
+                        }}
+                        className="px-6 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider py-3 rounded-xl transition"
+                      >
+                        Mi Cuenta
+                      </button>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -1769,7 +2228,7 @@ export default function TravelpayoutsPage() {
                           required
                           value={bookingPassenger.firstName}
                           onChange={(e) => setBookingPassenger({ ...bookingPassenger, firstName: e.target.value })}
-                          placeholder="Ej: Franklin"
+                          placeholder="Nombre"
                           className="bg-black/50 border border-white/15 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-cyan font-bold"
                         />
                       </div>
@@ -1780,7 +2239,7 @@ export default function TravelpayoutsPage() {
                           required
                           value={bookingPassenger.lastName}
                           onChange={(e) => setBookingPassenger({ ...bookingPassenger, lastName: e.target.value })}
-                          placeholder="Ej: Fabian"
+                          placeholder="Apellido"
                           className="bg-black/50 border border-white/15 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-cyan font-bold"
                         />
                       </div>
@@ -1818,7 +2277,7 @@ export default function TravelpayoutsPage() {
                           required
                           value={bookingPassenger.email}
                           onChange={(e) => setBookingPassenger({ ...bookingPassenger, email: e.target.value })}
-                          placeholder="tu@email.com"
+                          placeholder="ejemplo@correo.com"
                           className="bg-black/50 border border-white/15 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-cyan"
                         />
                       </div>
@@ -1829,7 +2288,7 @@ export default function TravelpayoutsPage() {
                           required
                           value={bookingPassenger.phone}
                           onChange={(e) => setBookingPassenger({ ...bookingPassenger, phone: e.target.value })}
-                          placeholder="+1 809 000 0000"
+                          placeholder="+1 (809) 000-0000"
                           className="bg-black/50 border border-white/15 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-cyan"
                         />
                       </div>
@@ -1866,7 +2325,7 @@ export default function TravelpayoutsPage() {
                           required
                           value={paymentCard.number}
                           onChange={(e) => setPaymentCard({ ...paymentCard, number: e.target.value })}
-                          placeholder="•••• •••• •••• 4242"
+                          placeholder="•••• •••• •••• ••••"
                           className="bg-black/50 border border-white/15 rounded-xl py-2 px-3 text-xs text-white focus:outline-none focus:border-cyan font-mono"
                         />
                       </div>
@@ -1900,21 +2359,30 @@ export default function TravelpayoutsPage() {
                     <ShieldCheck className="w-4 h-4 flex-shrink-0" /> Protección anti-duplicados activa (Idempotencia en KV). Sin prefinanciamiento.
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmittingFlightBooking}
-                    className="w-full bg-secondary hover:bg-orange-600 text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl transition duration-300 shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
-                  >
-                    {isSubmittingFlightBooking ? (
-                      <>
-                        <RefreshCw className="w-4 h-4 animate-spin" /> Procesando Pago y Emitiendo Boleto...
-                      </>
-                    ) : (
-                      <>
-                        Pagar y Emitir Reserva (${verifiedPriceData?.finalTotal || selectedFlightForBooking.price} USD) <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={closeBookingModal}
+                      className="order-2 sm:order-1 sm:w-2/5 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-black text-xs uppercase tracking-wider py-4 rounded-xl transition border border-white/10 flex items-center justify-center gap-2 active:scale-95"
+                    >
+                      <ArrowLeft className="w-4 h-4 text-gray-400" /> Cancelar y Volver
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmittingFlightBooking}
+                      className="order-1 sm:order-2 flex-1 bg-secondary hover:bg-orange-600 text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl transition duration-300 shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 active:scale-95 disabled:opacity-50"
+                    >
+                      {isSubmittingFlightBooking ? (
+                        <>
+                          <RefreshCw className="w-4 h-4 animate-spin" /> Procesando Pago y Emitiendo Boleto...
+                        </>
+                      ) : (
+                        <>
+                          Pagar y Emitir Reserva (${verifiedPriceData?.finalTotal || selectedFlightForBooking.price} USD) <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               )}
 
@@ -1923,6 +2391,12 @@ export default function TravelpayoutsPage() {
         )}
 
       </div>
+
+      {/* Modal Coming Soon Informativo Oficial */}
+      <ComingSoonModal 
+        isOpen={showComingSoonModal} 
+        onClose={() => setShowComingSoonModal(false)} 
+      />
     </div>
   );
 }

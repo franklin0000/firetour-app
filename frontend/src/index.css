@@ -66,3 +66,22 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #FF4500;
 }
+
+/* Google Translate styling overrides to maintain luxury dark mode */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+#goog-gt-tt, .goog-te-balloon-frame {
+  display: none !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+.skiptranslate iframe {
+  display: none !important;
+}

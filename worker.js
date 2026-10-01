@@ -41,6 +41,16 @@ async function setKVData(env, key, data) {
   return false;
 }
 
+function bufferToBase64(buffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
@@ -218,6 +228,70 @@ export default {
         });
       } catch (err) {
         return jsonResponse({ success: false, error: 'Error al enviar propuesta.' }, 500);
+      }
+    }
+
+    // 2.3.1 Get Partner Applications (Admin)
+    if (url.pathname === '/api/partner/applications' && request.method === 'GET') {
+      const allApps = await getKVData(env, 'PARTNER_APPLICATIONS', database.partner_applications || []);
+      return jsonResponse({ success: true, applications: allApps });
+    }
+
+    // 2.3.2 Vote Review Helpful
+    if (url.pathname.startsWith('/api/reviews/') && url.pathname.endsWith('/vote') && request.method === 'POST') {
+      try {
+        const idStr = url.pathname.replace('/api/reviews/', '').replace('/vote', '').trim();
+        const allReviews = await getKVData(env, 'REVIEWS', database.reviews || []);
+        const review = allReviews.find(r => String(r.id) === idStr);
+        if (!review) {
+          return jsonResponse({ success: false, error: 'Reseña no encontrada.' }, 404);
+        }
+        review.helpfulCount = (review.helpfulCount || 0) + 1;
+        await setKVData(env, 'REVIEWS', allReviews);
+        return jsonResponse({ success: true, helpfulCount: review.helpfulCount });
+      } catch (err) {
+        return jsonResponse({ success: false, error: 'Error al registrar el voto.' }, 500);
+      }
+    }
+
+    // 2.3.3 Upload Single Image (for tour operators/partners)
+    if (url.pathname === '/api/upload' && request.method === 'POST') {
+      try {
+        const formData = await request.formData();
+        const file = formData.get('image');
+        if (!file || typeof file === 'string') {
+          return jsonResponse({ success: false, error: 'No se recibió ninguna imagen.' }, 400);
+        }
+        const buffer = await file.arrayBuffer();
+        const base64 = bufferToBase64(buffer);
+        const mimeType = file.type || 'image/jpeg';
+        const imageUrl = `data:${mimeType};base64,${base64}`;
+        return jsonResponse({ success: true, imageUrl });
+      } catch (err) {
+        return jsonResponse({ success: false, error: 'Error al procesar la imagen: ' + err.message }, 500);
+      }
+    }
+
+    // 2.3.4 Upload Multiple Images (for tour operators/partners)
+    if (url.pathname === '/api/upload-multiple' && request.method === 'POST') {
+      try {
+        const formData = await request.formData();
+        const files = formData.getAll('images');
+        if (!files || files.length === 0) {
+          return jsonResponse({ success: false, error: 'No se recibieron imágenes.' }, 400);
+        }
+        const imageUrls = [];
+        for (const file of files) {
+          if (file && typeof file !== 'string') {
+            const buffer = await file.arrayBuffer();
+            const base64 = bufferToBase64(buffer);
+            const mimeType = file.type || 'image/jpeg';
+            imageUrls.push(`data:${mimeType};base64,${base64}`);
+          }
+        }
+        return jsonResponse({ success: true, imageUrls });
+      } catch (err) {
+        return jsonResponse({ success: false, error: 'Error al procesar las imágenes: ' + err.message }, 500);
       }
     }
 

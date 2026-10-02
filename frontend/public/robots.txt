@@ -1,13 +1,63 @@
+# ==========================================
+# FIRE TOUR DR - Robots.txt for Search Engines
+# ==========================================
+
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin-secreto-123
 Disallow: /api/
 
+# Google Search & Google Images
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /tours/
+Allow: /uploads/
+
+# Microsoft Bing & DuckDuckGo
 User-agent: Bingbot
 Allow: /
 
+User-agent: DuckDuckBot
+Allow: /
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+
+# Yandex (Europe & International)
+User-agent: Yandex
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Apple Search & Siri
+User-agent: Applebot
+Allow: /
+
+# Asian Search Engines (Baidu / Sogou / Naver)
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+# Social Media Previews & Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+# Sitemaps
 Sitemap: https://www.firetourdr.com/sitemap.xml
 Sitemap: https://firetourdr.com/sitemap.xml

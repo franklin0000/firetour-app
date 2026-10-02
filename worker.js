@@ -58,6 +58,7 @@ export default {
     }
 
     const url = new URL(request.url);
+    const allTours = database.tours || [];
 
     // 0. Explicit /ads.txt for Google AdSense verification
     if (url.pathname === '/ads.txt') {
@@ -66,7 +67,50 @@ export default {
       });
     }
 
-    const allTours = database.tours || [];
+    // 0.1 IndexNow Key verification file (Bing & Yandex Instant Indexing)
+    if (url.pathname === '/firetourdr2026indexnow.txt') {
+      return new Response("firetourdr2026indexnow\n", {
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      });
+    }
+
+    // 0.2 Trigger Automated IndexNow Submission to Bing & Yandex
+    if (url.pathname === '/api/seo/submit-indexnow') {
+      const topUrls = [
+        'https://www.firetourdr.com/',
+        'https://www.firetourdr.com/reviews',
+        'https://www.firetourdr.com/vender-tours',
+        'https://www.firetourdr.com/vuelos',
+        ...allTours.map(t => `https://www.firetourdr.com/excursion/${t.id}`)
+      ];
+
+      try {
+        const payload = {
+          host: 'www.firetourdr.com',
+          key: 'firetourdr2026indexnow',
+          keyLocation: 'https://www.firetourdr.com/firetourdr2026indexnow.txt',
+          urlList: topUrls.slice(0, 100)
+        };
+
+        const indexNowRes = await fetch('https://api.indexnow.org/indexnow', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json; charset=utf-8',
+            'User-Agent': 'FireTourDR-Bot/1.0'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        return jsonResponse({
+          success: true,
+          message: 'URLs enviadas con éxito a los motores de búsqueda (Bing, Yandex, Seznam).',
+          submittedCount: payload.urlList.length,
+          status: indexNowRes.status
+        });
+      } catch (err) {
+        return jsonResponse({ success: false, error: err.message }, 500);
+      }
+    }
 
     // 1. Get tours (with pagination, category and search filtering)
     if (url.pathname === '/api/tours') {

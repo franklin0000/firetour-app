@@ -35,7 +35,7 @@ export default function AdSenseBanner({
       <ins
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', minHeight: '90px' }}
-        data-ad-client="ca-pub-4522283034841677"
+        data-ad-client="ca-pub-7206413484396748"
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive={responsive ? 'true' : 'false'}

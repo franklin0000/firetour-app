@@ -62,7 +62,7 @@ export default {
 
     // 0. Explicit /ads.txt for Google AdSense verification
     if (url.pathname === '/ads.txt') {
-      return new Response("google.com, pub-4522283034841677, DIRECT, f08c47fec0942fa0\n", {
+      return new Response("google.com, pub-7206413484396748, DIRECT, f08c47fec0942fa0\n", {
         headers: { 'Content-Type': 'text/plain; charset=utf-8' }
       });
     }

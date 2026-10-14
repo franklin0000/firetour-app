@@ -76,11 +76,33 @@
       "logo": "https://www.firetourdr.com/favicon.svg",
       "image": "https://www.firetourdr.com/tours/excursions/tour_1/001.jpg",
       "description": "Agencia líder de excursiones y tours de aventura en Punta Cana, República Dominicana. Especialistas en Isla Saona VIP, Buggies 4x4 Macao, Parasailing y Traslados Privados Aeropuerto PUJ.",
-      "telephone": "+1-829-456-7890",
+      "telephone": "+1-587-225-7342",
       "priceRange": "$$",
+      "sameAs": [
+        "https://maps.app.goo.gl/tZVXEzYeciHL3SbPA",
+        "https://maps.app.goo.gl/PFhUxBDUySNF9KmFA"
+      ],
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Punta Cana, Dominican Republic"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Bávaro, Dominican Republic"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Playa Bávaro",
+        "streetAddress": "Playa Bávaro, Los Corales",
         "addressLocality": "Punta Cana",
         "addressRegion": "La Altagracia",
         "postalCode": "23000",
@@ -88,8 +110,8 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 18.5820,
-        "longitude": -68.4055
+        "latitude": 18.6015,
+        "longitude": -68.4173
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -137,6 +159,48 @@
           },
           "price": "45.00",
           "priceCurrency": "USD"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Search Rich Snippet FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Las excursiones incluyen transporte desde el hotel en Punta Cana?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, todas nuestras excursiones (Isla Saona VIP, Buggies Macao y Traslados) incluyen recogida y regreso puerta a puerta en todos los hoteles y resorts de Punta Cana, Bávaro, Cap Cana y Uvero Alto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se reserva y se recibe la confirmación?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes reservar directamente en línea a través de firetourdr.com o por WhatsApp (+1 587-225-7342). Recibirás tu boleto digital oficial de confirmación inmediata con los detalles de recogida de tu chofer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué incluye la excursión VIP a Isla Saona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Incluye transporte ida y vuelta desde tu hotel, navegación en catamarán de fiesta y lancha rápida, parada en la Piscina Natural con estrellas de mar, almuerzo buffet típico dominicano en playa privada, barra libre nacional ilimitada y guía certificado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la política de cancelación o mal tiempo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ofrecemos cancelación flexible y reprogramación sin costo adicional. En caso de condiciones climáticas adversas que impidan la navegación, se ofrece cambio de fecha o reembolso completo."
+          }
         }
       ]
     }
@@ -241,7 +305,21 @@
     </script>
   </head>
   <body class="bg-bgDark text-white select-none">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Prerendered Semantic SEO Content for Search Engine Bots (Replaced upon React hydration) -->
+      <main class="sr-only p-4" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+        <h1>Fire Tour DR - Excursiones Premium en Punta Cana | Mejores Tours y Traslados</h1>
+        <p>Reserva las mejores excursiones en Punta Cana con Fire Tour DR: Isla Saona All Inclusive VIP ($79), Buggies 4x4 Macao ($55), Parasailing ($75) y Traslados Aeropuerto PUJ ($45). Pago seguro y cancelación gratis.</p>
+        <section>
+          <h2>Excursión Isla Saona All Inclusive VIP</h2>
+          <p>Catamarán a vela con fiesta y animación, trayecto en lancha rápida, baño en la Piscina Natural con estrellas de mar y almuerzo buffet en playa privada con barra libre.</p>
+        </section>
+        <section>
+          <h2>Buggies 4x4 Macao</h2>
+          <p>Aventura off-road en senderos selváticos, baño en cenote cueva subterránea de aguas cristalinas y visita a Playa Macao.</p>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -457,53 +457,135 @@ export default function CatalogPage() {
           </div>
         </div>
 
-        {/* Controls: Search and Categories */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-outline">
-          <div>
-            <h2 className="text-3xl font-extrabold font-display">Catálogo de Excursiones</h2>
-            <p className="text-gray-400 text-sm mt-1">Explora actividades increíbles en Punta Cana con carga fluida en vivo.</p>
+        {/* ============================================================= */}
+        {/* 🔍 CONTROLS: CENTERED HEADER, SEARCH & LUXURY CATEGORY DOCK   */}
+        {/* ============================================================= */}
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto mb-12 pb-10 border-b border-white/10">
+          
+          {/* Badge */}
+          <span className="text-secondary font-black text-[11px] uppercase tracking-[0.3em] font-display bg-secondary/15 px-5 py-2 rounded-full border border-secondary/30 backdrop-blur-xl mb-4 inline-flex items-center gap-2 shadow-glow">
+            <Sparkles className="w-3.5 h-3.5 text-secondary animate-pulse" /> Experiencias Oficiales en Punta Cana
+          </span>
+
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-white leading-tight">
+            Catálogo de Excursiones
+          </h2>
+
+          {/* Subtitle */}
+          <p className="text-gray-300 text-sm sm:text-base mt-2.5 max-w-2xl leading-relaxed">
+            Explora actividades increíbles en Punta Cana con carga fluida en vivo, precios oficiales sin intermediarios y recogida incluida en tu resort.
+          </p>
+
+          {/* Centered Search Bar */}
+          <div className="relative w-full max-w-lg mt-7 group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-secondary transition-colors" />
+            <input
+              type="text"
+              placeholder="Buscar tours (ej: Saona, Buggies, Parasail)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-black/60 backdrop-blur-2xl border border-white/15 focus:border-secondary focus:ring-2 focus:ring-secondary/40 rounded-full py-3.5 pl-12 pr-10 text-sm text-white placeholder-gray-400 focus:outline-none transition-all shadow-[0_4px_25px_rgba(0,0,0,0.5)] hover:border-white/30"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white text-xs font-bold bg-white/10 hover:bg-white/20 rounded-full w-5 h-5 flex items-center justify-center transition"
+                title="Limpiar búsqueda"
+              >
+                ✕
+              </button>
+            )}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-            {/* Search Input */}
-            <div className="relative w-full sm:w-64 group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-secondary transition-colors" />
-              <input
-                type="text"
-                placeholder="Buscar tours..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-black/40 backdrop-blur-md border border-white/10 focus:border-secondary focus:ring-1 focus:ring-secondary/50 rounded-full py-2.5 pl-11 pr-4 text-sm text-white focus:outline-none transition-all shadow-inner"
-              />
-            </div>
-
-            {/* Categories */}
-            <div className="flex gap-2 overflow-x-auto w-full sm:w-auto pb-1 scrollbar-hide">
-              {[
-                { id: 'all', label: '🔥 Todas' },
-                { id: 'saona', label: '🏝️ Isla Saona' },
-                { id: 'buggy', label: '🏎️ Buggies 4x4' },
-                { id: 'parasail', label: '🪂 Parasailing' },
-                { id: 'transfer', label: '🚐 Traslados PUJ' },
-                { id: 'water', label: '⛵ Catamarán' },
-                { id: 'adventure', label: '🌋 Aventura' },
-                { id: 'nightlife', label: '🎉 Coco Bongo & Noche' },
-                { id: 'relax', label: '🌴 Ecoturismo' }
-              ].map(cat => (
+          {/* Centered Category Filter Icons Dock */}
+          <div className="w-full mt-8">
+            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
+              <span>Filtrar por Categoría:</span>
+              {category !== 'all' && (
                 <button
-                  key={cat.id}
-                  onClick={() => setCategory(cat.id)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-bold font-display whitespace-nowrap border transition-all duration-300 ${
-                    category === cat.id
-                      ? 'bg-secondary border-secondary text-white shadow-glow'
-                      : 'bg-black/40 backdrop-blur-md border-white/5 text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/5'
-                  }`}
+                  type="button"
+                  onClick={() => setCategory('all')}
+                  className="text-secondary hover:underline normal-case font-medium text-xs"
                 >
-                  {cat.label}
+                  (Mostrar todas)
                 </button>
-              ))}
+              )}
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-4xl mx-auto px-2">
+              {[
+                { id: 'all', emoji: '🔥', label: 'Todas' },
+                { id: 'saona', emoji: '🏝️', label: 'Isla Saona' },
+                { id: 'buggy', emoji: '🏎️', label: 'Buggies 4x4' },
+                { id: 'parasail', emoji: '🪂', label: 'Parasailing' },
+                { id: 'transfer', emoji: '🚐', label: 'Traslados PUJ' },
+                { id: 'water', emoji: '⛵', label: 'Catamarán' },
+                { id: 'adventure', emoji: '🌋', label: 'Aventura' },
+                { id: 'nightlife', emoji: '🎉', label: 'Coco Bongo' },
+                { id: 'relax', emoji: '🌴', label: 'Ecoturismo' }
+              ].map(cat => {
+                const isActive = category === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => setCategory(cat.id)}
+                    className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold font-display uppercase tracking-wider transition-all duration-300 border ${
+                      isActive
+                        ? 'bg-gradient-to-r from-secondary to-orange-500 border-secondary text-white shadow-[0_0_25px_rgba(255,69,0,0.5)] scale-105 ring-2 ring-secondary/30'
+                        : 'bg-white/[0.04] hover:bg-white/[0.09] border-white/10 hover:border-secondary/40 text-gray-300 hover:text-white backdrop-blur-md transform hover:-translate-y-0.5'
+                    }`}
+                  >
+                    <span className="text-base sm:text-lg leading-none">{cat.emoji}</span>
+                    <span>{cat.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
+
+          {/* Active Filter Status */}
+          <div className="mt-5 flex items-center justify-center gap-2 text-xs text-gray-400">
+            <Tag className="w-3.5 h-3.5 text-secondary" />
+            <span>
+              {category === 'all' && !searchQuery
+                ? 'Mostrando todas las excursiones'
+                : `Filtro activo: ${searchQuery ? `"${searchQuery}" • ` : ''}${
+                    category === 'all'
+                      ? 'Todas'
+                      : category === 'saona'
+                      ? 'Isla Saona'
+                      : category === 'buggy'
+                      ? 'Buggies 4x4'
+                      : category === 'parasail'
+                      ? 'Parasailing'
+                      : category === 'transfer'
+                      ? 'Traslados PUJ'
+                      : category === 'water'
+                      ? 'Catamarán'
+                      : category === 'adventure'
+                      ? 'Aventura'
+                      : category === 'nightlife'
+                      ? 'Coco Bongo'
+                      : 'Ecoturismo'
+                  }`}
+            </span>
+            {(category !== 'all' || searchQuery) && (
+              <button
+                type="button"
+                onClick={() => {
+                  setCategory('all');
+                  setSearchQuery('');
+                }}
+                className="text-secondary hover:text-white underline font-semibold ml-1 cursor-pointer"
+              >
+                Limpiar filtros
+              </button>
+            )}
+          </div>
+
         </div>
 
         {/* AdSense Placement */}

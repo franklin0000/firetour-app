@@ -453,9 +453,9 @@ export default function App() {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
-    <SmoothScroll>
-      <BrowserRouter>
-        <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pb-16 md:pb-0 overflow-x-hidden">
+    <BrowserRouter>
+      <SmoothScroll>
+        <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pb-16 md:pb-0 overflow-x-clip">
           
           {/* Top Promotional Announcement Banner */}
           <TopPromoBanner />
@@ -533,7 +533,7 @@ export default function App() {
           <ComingSoonModal isOpen={showComingSoon} onClose={() => setShowComingSoon(false)} />
 
         </div>
-      </BrowserRouter>
-    </SmoothScroll>
+      </SmoothScroll>
+    </BrowserRouter>
   );
 }

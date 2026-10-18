@@ -18,15 +18,9 @@ export default function CatalogPage() {
   
   // Framer Motion Scroll Drivers
   const { scrollY } = useScroll();
-  const heroScale = useTransform(scrollY, [0, 800], [1, 1.15]);
-  const heroOpacity = useTransform(scrollY, [0, 800], [1, 0]);
+  const heroVideoScale = useTransform(scrollY, [0, 600], [1, 1.1]);
+  const heroVideoOpacity = useTransform(scrollY, [0, 600], [1, 0.35]);
   const videoScale = useTransform(scrollY, [0, 1500], [1.1, 1]);
-  const text1Opacity = useTransform(scrollY, [0, 300, 600], [1, 1, 0]);
-  const text2Opacity = useTransform(scrollY, [400, 800, 1200], [0, 1, 0]);
-  const text3Opacity = useTransform(scrollY, [1000, 1400], [0, 1]);
-  const text1Y = useTransform(scrollY, [0, 600], [0, -150]);
-  const text2Y = useTransform(scrollY, [400, 1200], [100, -100]);
-  const text3Y = useTransform(scrollY, [1000, 1500], [100, -50]);
   
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
@@ -151,7 +145,7 @@ export default function CatalogPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen text-white select-none bg-black -mt-24">
+    <div className="relative min-h-screen text-white bg-black -mt-24">
       
       {/* 🎬 GLOBAL FIXED BACKGROUND VIDEO */}
       <div className="fixed inset-0 w-full h-screen z-0 pointer-events-none">
@@ -224,11 +218,11 @@ export default function CatalogPage() {
         </div>
       </section>
 
-      {/* 🖥️ DESKTOP PARALLAX HEADER (>= md) */}
-      <section className="relative h-[250vh] w-full z-10 hidden md:block">
+      {/* 🖥️ DESKTOP HERO (>= md): Fluid, non-sticky & instant mouse-wheel responsive */}
+      <section className="relative min-h-[580px] h-[90vh] lg:h-[92vh] w-full hidden md:flex flex-col justify-center items-center text-center px-6 overflow-hidden z-10 pt-20">
         
-        {/* Full-bleed video player pinned in background */}
-        <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
+        {/* Full-bleed video player background with smooth parallax */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <motion.video
             ref={video1Ref}
             src="/video1.mp4"
@@ -236,74 +230,93 @@ export default function CatalogPage() {
             loop
             muted
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover"
             style={{
-              scale: heroScale,
-              opacity: heroOpacity,
-              filter: 'contrast(125%) saturate(135%) brightness(85%) hue-rotate(5deg)',
+              scale: heroVideoScale,
+              opacity: heroVideoOpacity,
+              filter: 'contrast(120%) saturate(130%) brightness(75%) hue-rotate(5deg)',
             }}
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/85" />
         </div>
 
-        {/* Floating Text 1 */}
-        <motion.div 
-          className="absolute top-[35vh] left-0 right-0 flex justify-center items-center pointer-events-none"
-          style={{ opacity: text1Opacity, y: text1Y }}
-        >
-          <div className="max-w-3xl px-6 text-center">
-            <motion.span 
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-secondary font-black text-xs uppercase tracking-[0.4em] font-display bg-secondary/10 px-5 py-2 rounded-full border border-secondary/20 backdrop-blur-xl shadow-glow inline-block"
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-4xl flex flex-col items-center">
+          <motion.span 
+            initial={{ scale: 0.85, opacity: 0, y: -10 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-secondary font-black text-xs uppercase tracking-[0.35em] font-display bg-secondary/15 px-6 py-2 rounded-full border border-secondary/30 backdrop-blur-xl shadow-glow mb-6 inline-block"
+          >
+            🔥 Fire Tour DR • Excursiones Oficiales Punta Cana
+          </motion.span>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-6xl lg:text-8xl font-black font-display tracking-tight text-white leading-[0.95] drop-shadow-[0_15px_40px_rgba(0,0,0,0.85)]"
+          >
+            DESCUBRE EL <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">
+              PARAÍSO
+            </span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-gray-200 text-base lg:text-lg mt-6 leading-relaxed max-w-2xl font-medium drop-shadow-md"
+          >
+            Isla Saona VIP en Catamarán, Buggies Macao 4x4, Parasailing y Traslados Privados Aeropuerto PUJ con recogida directa en tu resort y cancelación gratis.
+          </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex items-center gap-4 mt-8"
+          >
+            <a
+              href="#catalogo-tours"
+              className="bg-gradient-to-r from-secondary to-orange-500 hover:from-secondary hover:to-orange-600 text-white font-black font-display uppercase tracking-wider text-sm py-4 px-8 rounded-2xl shadow-glow flex items-center gap-2 transform hover:-translate-y-0.5 transition duration-200"
             >
-              Fire Tour DR presenta
-            </motion.span>
-            <h1 className="text-6xl md:text-9xl font-black font-display tracking-tighter text-white mt-8 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)] leading-[0.9]">
-              DESCUBRE EL <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-500 to-cyan drop-shadow-none">PARAÍSO</span>
-            </h1>
-            <div className="mt-12 flex justify-center animate-bounce">
-              <span className="text-secondary text-3xl drop-shadow-glow">↓</span>
-            </div>
-          </div>
-        </motion.div>
+              Ver Excursiones y Precios <ArrowRight className="w-4 h-4" />
+            </a>
 
-        {/* Floating Text 2 */}
-        <motion.div 
-          className="absolute top-[120vh] left-0 right-0 flex justify-center items-center pointer-events-none"
-          style={{ opacity: text2Opacity, y: text2Y }}
-        >
-          <div className="max-w-xl bg-black/40 border border-white/10 rounded-[3rem] p-10 shadow-[0_0_50px_rgba(0,0,0,0.6)] backdrop-blur-[30px] text-center pointer-events-auto relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 to-transparent pointer-events-none" />
-            <span className="relative text-cyan font-black text-[10px] uppercase tracking-[0.4em] font-display bg-cyan/10 px-4 py-1.5 rounded-full border border-cyan/20">
-              Servicios VIP
-            </span>
-            <h2 className="relative text-4xl font-black font-display text-white mt-6 tracking-tight drop-shadow-md">ITINERARIOS EXCLUSIVOS</h2>
-            <p className="relative text-gray-300 text-sm mt-4 leading-relaxed font-bold tracking-wide">
-              Explora la Isla Saona en un catamarán privado con barra libre, almuerzo gourmet y snorkel en arrecifes de coral vivos.
-            </p>
-          </div>
-        </motion.div>
+            <a
+              href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20estoy%20en%20Punta%20Cana%20y%20quiero%20informaci%C3%B3n"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-[#25D366]/20 border border-[#25D366]/40 hover:bg-[#25D366]/30 text-[#25D366] font-bold font-display uppercase tracking-wider text-sm py-4 px-6 rounded-2xl flex items-center gap-2 backdrop-blur-xl transition"
+            >
+              <span className="text-lg">💬</span> WhatsApp Atención 24/7
+            </a>
+          </motion.div>
 
-        {/* Floating Text 3 */}
-        <motion.div 
-          className="absolute top-[200vh] left-0 right-0 flex justify-center items-center pointer-events-none"
-          style={{ opacity: text3Opacity, y: text3Y }}
-        >
-          <div className="text-center px-4">
-            <span className="text-secondary font-black text-xs uppercase tracking-[0.4em] font-display">
-              Reserva Hoy
-            </span>
-            <h3 className="text-5xl md:text-8xl font-black font-display tracking-tight text-white mt-4 leading-none drop-shadow-2xl">
-              ¿Listo para Zarpar?
-            </h3>
-            <div className="mt-12 flex justify-center">
-              <div className="w-1 h-20 bg-gradient-to-b from-secondary to-transparent rounded-full animate-pulse" />
-            </div>
-          </div>
-        </motion.div>
+          {/* Social Proof & Trust Badges */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-8 flex items-center gap-4 text-xs text-gray-300 backdrop-blur-md bg-black/40 px-6 py-2.5 rounded-full border border-white/10"
+          >
+            <span>⭐ 4.9/5 (1,420+ Reseñas Verificadas)</span>
+            <span>•</span>
+            <span className="text-emerald-400 font-semibold">✓ Cancelación Gratuita 24h</span>
+            <span>•</span>
+            <span className="text-cyan font-semibold">🛡️ Pago 100% Seguro</span>
+          </motion.div>
 
+          <a 
+            href="#catalogo-tours" 
+            className="mt-8 text-secondary hover:text-white transition-colors animate-bounce flex flex-col items-center gap-1 group cursor-pointer"
+          >
+            <span className="text-[10px] uppercase font-bold tracking-widest text-gray-400 group-hover:text-white">Explorar Tours</span>
+            <span className="text-2xl drop-shadow-glow">↓</span>
+          </a>
+        </div>
       </section>
 
       {/* ============================================================= */}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader, Sparkles, Hotel, Tag, ChevronRight } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader, Sparkles, Hotel, Tag, ChevronRight, Camera, BookOpen } from 'lucide-react';
 import { RESORTS_DATA, getResortBySlug } from '../data/resorts';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
@@ -595,6 +595,123 @@ export default function CatalogPage() {
             </div>
           )}
         </div>
+
+        {/* Real Community Photos & Punta Cana Destination Showcase */}
+        <section className="mt-24 pt-16 border-t border-white/10 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold uppercase tracking-wider">
+                <Camera className="w-3.5 h-3.5" /> Momentos Reales
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+                Punta Cana en los Ojos de Nuestros Viajeros
+              </h2>
+              <p className="text-sm text-gray-400 max-w-xl">
+                Fotos 100% auténticas tomadas por nuestros aventureros en Isla Saona, buggy safaris en Macao y playas secretas.
+              </p>
+            </div>
+
+            <Link
+              to="/punta-cana"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan/15 border border-cyan/30 text-cyan text-xs font-bold uppercase tracking-wider hover:bg-cyan/25 transition shrink-0"
+            >
+              <BookOpen className="w-4 h-4" /> Leer Guía Oficial de Punta Cana
+            </Link>
+          </div>
+
+          {/* 6 Real Photos Showcase Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
+              <img 
+                src="/gallery/facebook_1791837976637.jpg" 
+                alt="Turista bajo palmeras en Punta Cana"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span className="text-[10px] font-bold text-white leading-tight">Playa Bávaro • Paraíso</span>
+              </div>
+            </div>
+
+            <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
+              <img 
+                src="/gallery/facebook_1792088108970.jpg" 
+                alt="Amigos disfrutando del sol dominicano"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span className="text-[10px] font-bold text-white leading-tight">Amigos • Catamarán</span>
+              </div>
+            </div>
+
+            <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
+              <img 
+                src="/gallery/facebook_1792088042689.jpg" 
+                alt="Relax en palmera curva de Isla Saona"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span className="text-[10px] font-bold text-white leading-tight">Canto de la Playa • Saona</span>
+              </div>
+            </div>
+
+            <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
+              <img 
+                src="/gallery/facebook_1791838610500.jpg" 
+                alt="Costa de aguas cristalinas y palmeras vírgenes"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span className="text-[10px] font-bold text-white leading-tight">Mar Caribe • Vista Panorámica</span>
+              </div>
+            </div>
+
+            <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
+              <img 
+                src="/gallery/facebook_1792088950614.jpg" 
+                alt="Hamacas bajo palmeras en playa privada"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span className="text-[10px] font-bold text-white leading-tight">Relax en Hamacas</span>
+              </div>
+            </div>
+
+            <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
+              <img 
+                src="/gallery/facebook_1791838696169.jpg" 
+                alt="Buggies 4x4 en ruta de Macao"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                <span className="text-[10px] font-bold text-white leading-tight">Buggies 4x4 • Macao</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Guide Teaser Callout Banner */}
+          <div className="bg-gradient-to-r from-secondary/15 via-surface to-cyan/15 border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <h3 className="text-xl sm:text-2xl font-bold font-display text-white">
+                ¿Planeando tu primera vez en República Dominicana?
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-300 max-w-2xl">
+                Lee nuestra guía completa sobre el clima mes a mes, qué zonas elegir (Bávaro vs Cap Cana vs Macao), cómo evitar el sargazo y consejos locales de dinero y transporte.
+              </p>
+            </div>
+            <Link
+              to="/punta-cana"
+              className="px-6 py-3 rounded-full bg-secondary text-white font-bold font-display text-xs sm:text-sm hover:scale-105 transition shadow-glow shrink-0 flex items-center gap-2"
+            >
+              Explorar Guía Punta Cana <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
 
       </div>
 

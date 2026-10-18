@@ -37,7 +37,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Guía Certificado en La Altagracia",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/gallery/facebook_1792088865961.jpg",
     relatedTourId: 1,
     content: {
       introduction: "Isla Saona es, sin duda, la excursión más codiciada por cualquier viajero que aterriza en Punta Cana. Perteneciente al Parque Nacional Cotubanamá, este santuario de arena blanca impoluta, cocoteros inclinados y aguas turquesas que parecen una piscina infinita representa la postal caribeña por excelencia. Sin embargo, no todas las experiencias son iguales: la diferencia entre un día caótico y una jornada inolvidable radica en conocer los detalles logísticos.",
@@ -95,7 +95,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Instructor de Deportes de Motor",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/gallery/facebook_1791838696169.jpg",
     relatedTourId: 2,
     content: {
       introduction: "Si estás cansado de estar tumbado en la tumbona del hotel y buscas liberar adrenalina pura, el tour en Buggies 4x4 o Four Wheels por los caminos rurales de Macao es la elección número uno en Punta Cana. Cruzarás plantaciones tropicales, senderos rocosos llenos de lodo y terminarás sumergiéndote en un cenote de agua dulce cristalina dentro de una cueva milenaria.",
@@ -150,7 +150,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Especialista en Operaciones Turísticas",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/gallery/facebook_1792088848136.jpg",
     relatedTourId: 4,
     content: {
       introduction: "El Aeropuerto Internacional de Punta Cana (PUJ) es famoso por su arquitectura tropical con techos de palmas de cana, pero también por el caos que puede suponer salir de la terminal si no tienes tu transporte previamente organizado. Decenas de taxistas informales y vendedores abordan al visitante a la salida de aduanas, a menudo cobrando tarifas desorbitadas de hasta $80 o $100 USD por distancias cortas.",
@@ -201,7 +201,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Guía Certificado en La Altagracia",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/gallery/facebook_1791837976637.jpg",
     content: {
       introduction: "La República Dominicana goza de un clima tropical cálido durante los doce meses del año, con temperaturas medias que oscilan entre los 25°C y 31°C. Sin embargo, factores como la brisa marina, los aguaceros vespertinos y las corrientes marinas cambian sensiblemente según el mes del año.",
       sections: [
@@ -248,7 +248,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Especialista en Operaciones Turísticas",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/gallery/facebook_1792088042689.jpg",
     content: {
       introduction: "La Costa del Coco en República Dominicana abarca más de 50 kilómetros ininterrumpidos de litoral caribeño y atlántico. Pero no todas las playas tienen la misma personalidad: algunas son ideales para surfistas intrépidos, otras ofrecen lujo caribeño y otras parecen sacadas de una película de náufragos.",
       sections: [

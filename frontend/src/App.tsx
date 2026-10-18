@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User, Star, Building2, BookOpen, Shield, FileText } from 'lucide-react';
+import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User, Star, Building2, BookOpen, Shield, FileText, Camera } from 'lucide-react';
 import CatalogPage from './pages/CatalogPage';
 import ExcursionDetailsPage from './pages/ExcursionDetailsPage';
 import CheckoutPage from './pages/CheckoutPage';
@@ -19,6 +19,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
+import PuntaCanaGuidePage from './pages/PuntaCanaGuidePage';
 
 import SuccessPage from './pages/SuccessPage';
 import ResortLandingPage from './pages/ResortLandingPage';
@@ -90,6 +91,17 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
             >
               <BookOpen className={`w-4 h-4 ${path.startsWith('/blog') ? 'text-cyan' : ''}`} /> 
               <span className="hidden sm:inline">Guías</span>
+            </Link>
+
+            <Link 
+              to="/punta-cana" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/punta-cana' ? 'text-secondary font-extrabold shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
+              }`}
+              title="Guía Oficial y Fotos de Punta Cana"
+            >
+              <Camera className={`w-4 h-4 ${path === '/punta-cana' ? 'text-secondary' : ''}`} /> 
+              <span className="hidden md:inline">Punta Cana</span>
             </Link>
 
             {/* Vuelos Direct Page */}
@@ -211,6 +223,11 @@ function Footer() {
             <BookOpen className="w-3.5 h-3.5 text-cyan" /> Guías & Consejos
           </h4>
           <ul className="space-y-2 text-xs">
+            <li>
+              <Link to="/punta-cana" className="text-secondary font-bold hover:underline">
+                Guía Oficial & Fotos de Punta Cana
+              </Link>
+            </li>
             <li>
               <Link to="/blog" className="text-cyan font-bold hover:underline">
                 Centro de Guías de Turismo
@@ -454,6 +471,10 @@ export default function App() {
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/guias" element={<Navigate to="/blog" replace />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
+
+              {/* Punta Cana Comprehensive Guide & Real Photo Showcase */}
+              <Route path="/punta-cana" element={<PuntaCanaGuidePage />} />
+              <Route path="/guia-punta-cana" element={<Navigate to="/punta-cana" replace />} />
 
               <Route path="/admin-secreto-123" element={<AdminPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

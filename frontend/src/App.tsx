@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User, Star, Building2 } from 'lucide-react';
+import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User, Star, Building2, BookOpen, Shield, FileText } from 'lucide-react';
 import CatalogPage from './pages/CatalogPage';
 import ExcursionDetailsPage from './pages/ExcursionDetailsPage';
 import CheckoutPage from './pages/CheckoutPage';
@@ -13,6 +13,12 @@ import AdminPage from './pages/AdminPage';
 import AuthPage from './pages/AuthPage';
 import ReviewsPage from './pages/ReviewsPage';
 import PartnerTourPage from './pages/PartnerTourPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 
 import SuccessPage from './pages/SuccessPage';
 import ResortLandingPage from './pages/ResortLandingPage';
@@ -75,33 +81,28 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
               </span>
             </Link>
 
-            {/* Vuelos Coming Soon Button */}
-            <button 
-              type="button"
-              onClick={onOpenComingSoon}
-              className="flex items-center gap-1.5 text-gray-400 hover:text-cyan transition-all duration-300 group cursor-pointer"
-              title="Vuelos Internacionales - Disponibles Próximamente"
+            <Link 
+              to="/blog" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path.startsWith('/blog') ? 'text-cyan font-extrabold shadow-glow-cyan rounded-full' : 'text-gray-400 hover:text-cyan'
+              }`}
+              title="Guías de Viaje y Consejos de Punta Cana"
             >
-              <Plane className="w-4 h-4 text-cyan/70 group-hover:text-cyan transition-colors" /> 
-              <span className="hidden sm:inline">Vuelos</span>
-              <span className="text-[8px] bg-secondary/20 text-secondary border border-secondary/40 px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider">
-                Soon
-              </span>
-            </button>
+              <BookOpen className={`w-4 h-4 ${path.startsWith('/blog') ? 'text-cyan' : ''}`} /> 
+              <span className="hidden sm:inline">Guías</span>
+            </Link>
 
-            {/* Hoteles Coming Soon Button */}
-            <button 
-              type="button"
-              onClick={onOpenComingSoon}
-              className="hidden md:flex items-center gap-1.5 text-gray-400 hover:text-amber-400 transition-all duration-300 group cursor-pointer"
-              title="Hoteles y Resorts - Disponibles Próximamente"
+            {/* Vuelos Direct Page */}
+            <Link 
+              to="/vuelos"
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/vuelos' ? 'text-cyan' : 'text-gray-400 hover:text-cyan'
+              }`}
+              title="Vuelos Internacionales y Conexiones"
             >
-              <Hotel className="w-4 h-4 text-amber-400/70 group-hover:text-amber-400 transition-colors" /> 
-              <span className="hidden sm:inline">Hoteles</span>
-              <span className="text-[8px] bg-secondary/20 text-secondary border border-secondary/40 px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider">
-                Soon
-              </span>
-            </button>
+              <Plane className="w-4 h-4 text-cyan/80" /> 
+              <span className="hidden sm:inline">Vuelos</span>
+            </Link>
 
             <Link 
               to="/reservations" 
@@ -137,57 +138,163 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
 // Global Layout & Footer
 function Footer() {
   return (
-    <footer className="bg-surface border-t border-outline py-8 px-6 mt-16 text-center text-xs text-gray-500 flex flex-col items-center gap-4">
-      <div className="flex items-center gap-2">
-        <span className="text-lg">🔥</span>
-        <span className="font-bold text-white font-display">Fire Tour DR</span>
-        <span className="text-secondary font-bold">Punta Cana Adventures</span>
-      </div>
-      <p className="max-w-md leading-relaxed">
-        El principal ecosistema digital para reservar experiencias exclusivas de turismo en la República Dominicana.
-      </p>
-      
-      <div className="flex flex-col md:flex-row items-center justify-center flex-wrap gap-4 text-gray-400 mt-2">
-        <span className="flex items-center gap-2 hover:text-cyan transition-colors cursor-default"><Mail className="w-4 h-4 text-cyan" /> booking.inf@firetourdr.com</span>
-        <span className="hidden md:inline text-white/20">•</span>
+    <footer className="bg-surface border-t border-outline pt-16 pb-12 px-6 mt-16 text-xs text-gray-400">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         
-        <a href="https://wa.me/15872257342" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
-          <MessageCircle className="w-4 h-4 text-[#25D366]" /> WhatsApp: +1 (587) 225-7342
-        </a>
-        <span className="hidden md:inline text-white/20">•</span>
+        {/* Col 1: Brand & Contact Info */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🔥</span>
+            <div>
+              <span className="font-extrabold text-base text-white font-display block">Fire Tour DR</span>
+              <span className="text-[10px] text-cyan font-bold tracking-widest uppercase">Punta Cana Adventures</span>
+            </div>
+          </div>
+          <p className="text-gray-400 text-xs leading-relaxed">
+            Ecosistema digital líder para reservar excursiones exclusivas y traslados seguros en República Dominicana.
+          </p>
+          <div className="space-y-2 text-xs pt-1">
+            <a href="mailto:booking.inf@firetourdr.com" className="flex items-center gap-2 hover:text-cyan transition-colors">
+              <Mail className="w-3.5 h-3.5 text-cyan" /> booking.inf@firetourdr.com
+            </a>
+            <a href="https://wa.me/15872257342" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
+              <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" /> +1 (587) 225-7342 (24/7)
+            </a>
+            <p className="text-gray-500 text-[11px]">
+              Av. España, Bávaro - Punta Cana, La Altagracia, RD
+            </p>
+          </div>
+          <div className="flex items-center gap-3 pt-1">
+            <a href="https://instagram.com/firetourdr" target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#E1306C]/20 hover:border-[#E1306C]/40 hover:text-[#E1306C] transition">
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a href="https://firetourdr.com/" target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-cyan/20 hover:border-cyan/40 hover:text-cyan transition">
+              <Globe className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
 
-        <a href="https://instagram.com/firetourdr" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#E1306C] transition-colors">
-          <Instagram className="w-4 h-4 text-[#E1306C]" /> @firetourdr
-        </a>
-        <span className="hidden md:inline text-white/20">•</span>
+        {/* Col 2: Explorar & Experiencias */}
+        <div className="space-y-3">
+          <h4 className="font-bold font-display text-white text-sm uppercase tracking-wider">
+            Experiencias
+          </h4>
+          <ul className="space-y-2 text-xs">
+            <li>
+              <Link to="/" className="hover:text-white transition-colors">Catálogo Completo de Tours</Link>
+            </li>
+            <li>
+              <Link to="/excursion/1" className="hover:text-white transition-colors">Isla Saona All Inclusive VIP</Link>
+            </li>
+            <li>
+              <Link to="/excursion/2" className="hover:text-white transition-colors">Buggies Macao 4x4 Off-Road</Link>
+            </li>
+            <li>
+              <Link to="/excursion/4" className="hover:text-white transition-colors">Traslados Aeropuerto Punta Cana (PUJ)</Link>
+            </li>
+            <li>
+              <Link to="/reviews" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                <Star className="w-3 h-3 text-amber-400 fill-amber-400" /> Reseñas de Clientes
+              </Link>
+            </li>
+            <li>
+              <Link to="/vender-tours" className="hover:text-secondary transition-colors">
+                Proveedores: Vender Tours
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-        <a href="https://firetourdr.com/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-cyan transition-colors">
-          <Globe className="w-4 h-4 text-white" /> firetourdr.com
-        </a>
-      </div>
+        {/* Col 3: Guías de Viaje & Blog */}
+        <div className="space-y-3">
+          <h4 className="font-bold font-display text-white text-sm uppercase tracking-wider flex items-center gap-1.5">
+            <BookOpen className="w-3.5 h-3.5 text-cyan" /> Guías & Consejos
+          </h4>
+          <ul className="space-y-2 text-xs">
+            <li>
+              <Link to="/blog" className="text-cyan font-bold hover:underline">
+                Centro de Guías de Turismo
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/guia-completa-isla-saona-punta-cana" className="hover:text-white transition-colors line-clamp-1">
+                Guía Definitiva Isla Saona
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/buggies-macao-punta-cana-consejos-seguridad" className="hover:text-white transition-colors line-clamp-1">
+                Buggies 4x4 Macao: Seguridad & Ruta
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/traslados-aeropuerto-punta-cana-puj-consejos" className="hover:text-white transition-colors line-clamp-1">
+                Traslados en Aeropuerto PUJ
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/clima-punta-cana-mejor-epoca-viajar-sargazo" className="hover:text-white transition-colors line-clamp-1">
+                Clima y Mejor Época para Viajar
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/top-5-mejores-playas-punta-cana-republica-dominicana" className="hover:text-white transition-colors line-clamp-1">
+                Top 5 Playas Más Espectaculares
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-      <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-bold text-gray-300 mt-2">
-        <Link to="/reviews" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-          <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" /> Reseñas de Clientes
-        </Link>
-        <span className="text-white/20">•</span>
-        <Link to="/vender-tours" className="hover:text-secondary transition-colors flex items-center gap-1.5">
-          <Building2 className="w-3.5 h-3.5 text-secondary" /> Vende tus Excursiones (Proveedores)
-        </Link>
-        <span className="text-white/20">•</span>
-        <Link to="/" className="hover:text-white transition-colors">Catálogo de Tours</Link>
-        <span className="text-white/20">•</span>
-        <Link to="/reservations" className="hover:text-white transition-colors">Mis Tickets y Reservas</Link>
-      </div>
+        {/* Col 4: Confianza, Legal & Soporte */}
+        <div className="space-y-3">
+          <h4 className="font-bold font-display text-white text-sm uppercase tracking-wider flex items-center gap-1.5">
+            <Shield className="w-3.5 h-3.5 text-secondary" /> Legal & Confianza
+          </h4>
+          <ul className="space-y-2 text-xs">
+            <li>
+              <Link to="/sobre-nosotros" className="hover:text-white transition-colors">
+                Sobre Nosotros (Quiénes Somos)
+              </Link>
+            </li>
+            <li>
+              <Link to="/contacto" className="hover:text-white transition-colors">
+                Contacto & Soporte Directo
+              </Link>
+            </li>
+            <li>
+              <Link to="/politica-de-privacidad" className="hover:text-white transition-colors font-medium">
+                Política de Privacidad y Cookies
+              </Link>
+            </li>
+            <li>
+              <Link to="/terminos-y-condiciones" className="hover:text-white transition-colors font-medium">
+                Términos y Condiciones
+              </Link>
+            </li>
+            <li>
+              <Link to="/terminos-y-condiciones" className="hover:text-white transition-colors">
+                Política de Cancelación y Reembolsos
+              </Link>
+            </li>
+            <li>
+              <Link to="/reservations" className="hover:text-white transition-colors">
+                Consulta de Tickets & Vouchers
+              </Link>
+            </li>
+          </ul>
 
-      <div className="flex items-center gap-1.5 text-cyan font-bold bg-primary/20 border border-outline rounded-full px-3 py-1 mt-2">
-        <ShieldCheck className="w-4 h-4" /> Pagos Asegurados vía Stripe
+          <div className="pt-2">
+            <div className="inline-flex items-center gap-1.5 text-[11px] text-cyan font-bold bg-primary/40 border border-outline rounded-full px-3 py-1">
+              <ShieldCheck className="w-3.5 h-3.5" /> Pagos Seguros con Stripe
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* Programmatic Resort Links for SEO Crawlers */}
-      <div className="max-w-4xl border-t border-white/5 pt-6 mt-4">
-        <p className="text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-wider">
-          Excursiones con Recogida en Hoteles y Resorts de Punta Cana:
+      <div className="max-w-6xl mx-auto border-t border-white/5 pt-8 mt-10">
+        <p className="text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-wider text-center">
+          Recogida Incluida en Hoteles y Resorts de Punta Cana:
         </p>
         <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 text-[11px] text-gray-500">
           <Link to="/hoteles/hard-rock-hotel-punta-cana" className="hover:text-secondary transition-colors">Hard Rock Hotel</Link>
@@ -216,7 +323,14 @@ function Footer() {
         </div>
       </div>
 
-      <p className="mt-4 text-[10px]">© {new Date().getFullYear()} Fire Tour DR. Todos los derechos reservados.</p>
+      <div className="max-w-6xl mx-auto border-t border-white/5 pt-6 mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-gray-500">
+        <p>© {new Date().getFullYear()} Fire Tour DR. Todos los derechos reservados. Operador Turístico Certificado en Punta Cana, República Dominicana.</p>
+        <div className="flex items-center gap-4">
+          <Link to="/politica-de-privacidad" className="hover:underline">Privacidad</Link>
+          <Link to="/terminos-y-condiciones" className="hover:underline">Términos</Link>
+          <Link to="/contacto" className="hover:underline">Contacto</Link>
+        </div>
+      </div>
     </footer>
   );
 }
@@ -239,18 +353,16 @@ function MobileBottomNav({ onOpenComingSoon }: { onOpenComingSoon: () => void })
           <span className="text-[10px] font-bold font-display uppercase tracking-wider">Tours</span>
         </Link>
 
-        {/* Vuelos Coming Soon Mobile Button */}
-        <button 
-          type="button"
-          onClick={onOpenComingSoon}
-          className="flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition text-gray-400 hover:text-white cursor-pointer relative"
+        {/* Guías de Viaje Mobile Button */}
+        <Link 
+          to="/blog"
+          className={`flex flex-col items-center gap-1 py-1 px-2.5 rounded-xl transition ${
+            path.startsWith('/blog') ? 'text-cyan' : 'text-gray-400 hover:text-white'
+          }`}
         >
-          <div className="relative">
-            <Plane className="w-5 h-5 text-cyan" />
-            <span className="absolute -top-1 -right-2 text-[7px] bg-secondary text-white font-black px-1 rounded-full uppercase leading-tight">Soon</span>
-          </div>
-          <span className="text-[10px] font-bold font-display uppercase tracking-wider text-cyan">Vuelos</span>
-        </button>
+          <BookOpen className="w-5 h-5 text-cyan" />
+          <span className="text-[10px] font-bold font-display uppercase tracking-wider text-cyan">Guías</span>
+        </Link>
 
         <a 
           href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20excursiones" 
@@ -326,6 +438,23 @@ export default function App() {
               <Route path="/vuelos" element={<TravelpayoutsPage />} />
               <Route path="/travelpayouts" element={<Navigate to="/vuelos" replace />} />
               <Route path="/travel" element={<Navigate to="/vuelos" replace />} />
+
+              {/* Legal & Trust Pages (AdSense & E-E-A-T Compliance) */}
+              <Route path="/politica-de-privacidad" element={<PrivacyPolicyPage />} />
+              <Route path="/privacy" element={<Navigate to="/politica-de-privacidad" replace />} />
+              <Route path="/terminos-y-condiciones" element={<TermsPage />} />
+              <Route path="/terms" element={<Navigate to="/terminos-y-condiciones" replace />} />
+              <Route path="/cancelaciones" element={<TermsPage />} />
+              <Route path="/sobre-nosotros" element={<AboutPage />} />
+              <Route path="/about" element={<Navigate to="/sobre-nosotros" replace />} />
+              <Route path="/contacto" element={<ContactPage />} />
+              <Route path="/contact" element={<Navigate to="/contacto" replace />} />
+
+              {/* Travel Guides & Editorial Content Hub */}
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/guias" element={<Navigate to="/blog" replace />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+
               <Route path="/admin-secreto-123" element={<AdminPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

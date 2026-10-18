@@ -285,5 +285,163 @@ export const BLOG_POSTS: BlogPost[] = [
         "Para la experiencia caribeña pura: Isla Saona."
       ]
     }
+  },
+  {
+    slug: "guia-las-terrenas-samana-playas-ballenas",
+    title: "Guía de Las Terrenas y Samaná: Playas de Rincón, Cosón, Ballenas Jorobadas y Salto del Limón",
+    excerpt: "Explora la península más verde y salvaje del Caribe: santuario de ballenas jorobadas, pueblos bohemios de pescadores y ríos cristalinos que desembocan en el mar.",
+    category: "Guías de Destino",
+    date: "16 de Octubre de 2024",
+    readTime: "7 min de lectura",
+    author: {
+      name: "Manuel Rosario",
+      role: "Guía Certificado en La Altagracia & Samaná",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+    },
+    coverImage: "/gallery/facebook_1791838610500.jpg",
+    content: {
+      introduction: "La Península de Samaná, situada en el noreste de la República Dominicana, ofrece una experiencia radicalmente diferente a la de los grandes resorts de Punta Cana. Aquí, densos palmerales cubren colinas que descienden directamente hacia playas vírgenes y bahías protegidas. Si buscas naturaleza pura, gastronomía caribeña con fusión europea y aventuras ecológicas, Samaná y Las Terrenas deben estar en tu itinerario.",
+      sections: [
+        {
+          heading: "1. Las Terrenas: El encanto bohemio entre palmeras",
+          body: [
+            "Las Terrenas pasó de ser un pequeño poblado de pescadores a uno de los destinos playeros con más personalidad del Caribe. Su famoso Pueblo de los Pescadores alberga restaurantes y bistrós frente al agua donde se combinan mariscos frescos con cocina francesa e italiana.",
+            "Playa Cosón y Playa Bonita destacan por sus extensas orillas de arena dorada bordeadas de cocoteros, ideales para largas caminatas al atardecer y sesiones de surf suave."
+          ],
+          tip: "En Playa Bonita, camina hasta Punta Bonita para disfrutar de una piscina natural de aguas cristalinas totalmente protegida del oleaje."
+        },
+        {
+          heading: "2. Playa Rincón y Caño Frío: Entre las mejores playas del mundo",
+          body: [
+            "Ubicada cerca de Las Galeras, Playa Rincón cuenta con más de 3 kilómetros de costa virgen flanqueada por acantilados de 600 metros de altura cubiertos de vegetación tropical.",
+            "En un extremo de la playa se encuentra Caño Frío, un río de manglar de aguas heladas y transparentes donde puedes darte un refrescante baño de agua dulce antes de volver al calor del mar."
+          ]
+        },
+        {
+          heading: "3. El Espectáculo de las Ballenas Jorobadas (Enero a Marzo)",
+          body: [
+            "Cada invierno boreal, entre 2,500 y 3,000 ballenas jorobadas del Atlántico Norte acuden a la Bahía de Samaná para aparearse y dar a luz. Es uno de los mayores santuarios marinos del mundo.",
+            "Las excursiones en embarcaciones autorizadas permiten observar los impresionantes saltos de los machos y el tierno nado de las madres con sus crías recién nacidas."
+          ]
+        },
+        {
+          heading: "4. Salto del Limón: Aventura hacia la cascada oculta",
+          body: [
+            "En el corazón de la sierra de Samaná se oculta el Salto del Limón, una imponente cascada de más de 40 metros de caída. Se llega a través de un sendero tropical a caballo o a pie, cruzando ríos y plantaciones de café y cacao, concluyendo en una profunda poza natural de agua dulce."
+          ]
+        }
+      ],
+      conclusion: "Samaná es el testimonio vivo de la exuberancia caribeña. Ya sea navegando hacia Cayo Levantado o explorando los caminos de tierra de Las Galeras, esta península te dejará grabado en la memoria el rostro más auténtico y verde de República Dominicana.",
+      keyTakeaways: [
+        "Mejor época para ver ballenas: del 15 de enero al 30 de marzo.",
+        "Imprescindibles: Playa Rincón, Caño Frío, Cayo Levantado y Salto del Limón.",
+        "Cómo llegar desde Santo Domingo: unas 2 horas y media por la Autopista Juan Pablo II."
+      ]
+    }
+  },
+  {
+    slug: "guia-barahona-los-patos-bahia-de-las-aguilas",
+    title: "El Sur Profundo: Los Patos de Barahona, Bahía de las Águilas y la Magia del Larimar",
+    excerpt: "Descubre la región más virgen e inexplorada de República Dominicana: el río más corto del mundo en Los Patos, acantilados de piedra caliza y la arena blanca de Bahía de las Águilas.",
+    category: "Ecoturismo y Playas Vírgenes",
+    date: "17 de Octubre de 2024",
+    readTime: "7 min de lectura",
+    author: {
+      name: "Laura De León",
+      role: "Especialista en Ecoturismo Dominicano",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
+    },
+    coverImage: "/gallery/facebook_1791838590171.jpg",
+    content: {
+      introduction: "El Suroeste dominicano, conocido popularmente como el 'Sur Profundo', es el territorio de los contrastes ecológicos: desiertos de cactus que limitan con bosques nublados de pinos y costas de un azul turquesa tan intenso que parece artificial. Barahona y Pedernales albergan algunos de los tesoros naturales más puros del continente americano.",
+      sections: [
+        {
+          heading: "1. Balneario Los Patos: El río más corto del mundo y su playa",
+          body: [
+            "En la localidad costera de Los Patos brota de la base de la montaña un río de agua helada y cristalina que recorre escasos 500 metros antes de fundirse con el mar Caribe.",
+            "El contraste entre zambullirte en el agua dulce y helada del manantial y caminar unos pasos hacia la playa de guijarros blancos pulidos frente a las olas turquesas es una de las experiencias sensoriales más singulares de la isla."
+          ],
+          tip: "Lleva escarpines o zapatillas de agua para caminar con total comodidad sobre las piedras redondeadas de la playa de Los Patos."
+        },
+        {
+          heading: "2. Bahía de las Águilas (Pedernales): La última frontera virgen",
+          body: [
+            "Perteneciente al Parque Nacional Jaragua, Bahía de las Águilas es considerada por exploradores internacionales como la playa virgen más perfecta del Caribe.",
+            "Son más de 8 kilómetros de arena blanca impoluta, sin construcciones hoteleras, con aguas totalmente calmas donde es común avistar tortugas carey, manatíes y estrellas de mar gigantes en su hábitat natural."
+          ]
+        },
+        {
+          heading: "3. La Tierra del Larimar: La gema azul exclusiva de Barahona",
+          body: [
+            "En las escarpadas montañas de Los Chupaderos, en Barahona, se encuentra la única mina del mundo de Larimar. Esta piedra semipreciosa de origen volcánico deslumbra por sus vetas celestes y blancas que recuerdan las olas del mar Caribe.",
+            "En los talleres locales de la costa de Barahona podrás observar a los artesanos tallar anillos, colgantes y pulseras de plata con esta gema única."
+          ]
+        },
+        {
+          heading: "4. San Rafael y la Laguna de Oviedo",
+          body: [
+            "En San Rafael, una impresionante cascada de montaña forma piscinas naturales escalonadas antes de acariciar la playa. Hacia el sur, la Laguna de Oviedo alberga la mayor colonia de flamencos rosados del país e iguanas rinoceronte endémicas."
+          ]
+        }
+      ],
+      conclusion: "Viajar al Sur Profundo y a Barahona es reconectar con la naturaleza en su estado más primitivo y majestuoso. Un destino obligatorio para el viajero aventurero que desea conocer la verdadera esencia indómita de la República Dominicana.",
+      keyTakeaways: [
+        "Imperdibles: Balneario Los Patos, Bahía de las Águilas, Minas de Larimar y San Rafael.",
+        "Acceso a Bahía de las Águilas: en lancha rápida desde Cabo Rojo o en vehículo 4x4 por tierra.",
+        "Gastronomía local: pescado frito al momento y mariscos en las enramadas costeras de Barahona."
+      ]
+    }
+  },
+  {
+    slug: "guia-santo-domingo-zona-colonial-tres-ojos",
+    title: "Santo Domingo Histórico: Qué Ver en la Zona Colonial, Los Tres Ojos y el Malecón",
+    excerpt: "Recorre la ciudad más antigua del continente americano: la primera catedral de América, alcázares virreinales, cuevas subterráneas y la vibrante vida cultural dominicana.",
+    category: "Cultura e Historia",
+    date: "17 de Octubre de 2024",
+    readTime: "6 min de lectura",
+    author: {
+      name: "Manuel Rosario",
+      role: "Guía Certificado en La Altagracia & Santo Domingo",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+    },
+    coverImage: "/gallery/facebook_1791838547646.jpg",
+    content: {
+      introduction: "Santo Domingo de Guzmán, fundada a orillas del río Ozama en 1496, es el corazón histórico, político y cultural de la República Dominicana. Designada Patrimonio de la Humanidad por la UNESCO, su Ciudad Colonial conserva los primeros edificios administrativos, religiosos y militares construidos por los europeos en el Nuevo Mundo.",
+      sections: [
+        {
+          heading: "1. La Ciudad Colonial: Cuna de las primacías americanas",
+          body: [
+            "Pasear por sus calles adoquinadas es viajar en el tiempo. La Calle Las Damas, la primera calle empedrada de América, alberga la Fortaleza Ozama, el Panteón Nacional y antiguas casonas de piedra coralina.",
+            "La Catedral Primada de América (Santa María la Menor) impresiona por su mezcla arquitectónica de gótico tardío y renacentista, con bóvedas de crucería y capillas históricas de gran solemnidad."
+          ]
+        },
+        {
+          heading: "2. El Alcázar de Colón y la Plaza España",
+          body: [
+            "Residencia virreinal de Diego Colón (hijo del almirante Cristóbal Colón) y su esposa María de Toledo. Este palacio fortificado de piedra de cantería ofrece una panorámica privilegiada del puerto de Santo Domingo y exhibe mobiliario y obras de arte de los siglos XV y XVI.",
+            "Al atardecer, la Plaza España se llena de terrazas al aire libre, música de son dominicano y degustaciones de ron y cocina criolla de autor."
+          ]
+        },
+        {
+          heading: "3. Parque Nacional Los Tres Ojos: La joya subterránea",
+          body: [
+            "A escasos 10 minutos de la Zona Colonial se encuentra este impresionante sistema de cavernas kársticas abiertas. Cuatro lagos de aguas cristalinas alimentados por ríos subterráneos exhiben tonalidades azul zafiro y verde esmeralda rodeados de estalactitas y helechos gigantes.",
+            "Para llegar al cuarto lago ('Los Zaramagullones'), se cruza en una balsa rústica impulsada por cuerdas, revelando un paisaje que ha servido de escenario para películas internacionales."
+          ]
+        },
+        {
+          heading: "4. El Malecón y la Vida Nocturna",
+          body: [
+            "El Malecón de Santo Domingo bordea el mar Caribe a lo largo de varios kilómetros. Es el escenario ideal para sentir el pulso de la ciudad: brisa marina, carritos de comida típica y clubes donde se baila merengue, salsa y bachata hasta la madrugada."
+          ]
+        }
+      ],
+      conclusion: "Ninguna visita a la República Dominicana está completa sin dedicar al menos un día a Santo Domingo. Es la puerta de entrada a la identidad, el orgullo y la historia viva del Caribe.",
+      keyTakeaways: [
+        "Duración ideal: 1 a 2 días completos de visita.",
+        "Puntos clave: Catedral Primada, Alcázar de Colón, Calle Las Damas, Los Tres Ojos.",
+        "Transporte desde Punta Cana: 2 horas y cuarto por la moderna Autopista del Coral."
+      ]
+    }
   }
 ];

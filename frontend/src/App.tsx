@@ -20,6 +20,7 @@ import ContactPage from './pages/ContactPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import PuntaCanaGuidePage from './pages/PuntaCanaGuidePage';
+import DominicanRepublicGuidePage from './pages/DominicanRepublicGuidePage';
 
 import SuccessPage from './pages/SuccessPage';
 import ResortLandingPage from './pages/ResortLandingPage';
@@ -102,6 +103,17 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
             >
               <Camera className={`w-4 h-4 ${path === '/punta-cana' ? 'text-secondary' : ''}`} /> 
               <span className="hidden md:inline">Punta Cana</span>
+            </Link>
+
+            <Link 
+              to="/republica-dominicana" 
+              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/republica-dominicana' ? 'text-cyan font-extrabold shadow-glow-cyan rounded-full' : 'text-gray-400 hover:text-cyan'
+              }`}
+              title="Guía de Samaná, Las Terrenas, Barahona y Santo Domingo"
+            >
+              <Globe className={`w-4 h-4 ${path === '/republica-dominicana' ? 'text-cyan' : ''}`} /> 
+              <span className="hidden lg:inline">RD Completa</span>
             </Link>
 
             {/* Vuelos Direct Page */}
@@ -224,8 +236,28 @@ function Footer() {
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
+              <Link to="/republica-dominicana" className="text-cyan font-bold hover:underline">
+                🇩🇴 Guía Completa República Dominicana
+              </Link>
+            </li>
+            <li>
               <Link to="/punta-cana" className="text-secondary font-bold hover:underline">
                 Guía Oficial & Fotos de Punta Cana
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/guia-las-terrenas-samana-playas-ballenas" className="hover:text-white transition-colors line-clamp-1">
+                Samaná & Las Terrenas: Ballenas & Rincón
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/guia-barahona-los-patos-bahia-de-las-aguilas" className="hover:text-white transition-colors line-clamp-1">
+                Barahona: Los Patos & Bahía de las Águilas
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/guia-santo-domingo-zona-colonial-tres-ojos" className="hover:text-white transition-colors line-clamp-1">
+                Santo Domingo: Zona Colonial & Tres Ojos
               </Link>
             </li>
             <li>
@@ -475,6 +507,13 @@ export default function App() {
               {/* Punta Cana Comprehensive Guide & Real Photo Showcase */}
               <Route path="/punta-cana" element={<PuntaCanaGuidePage />} />
               <Route path="/guia-punta-cana" element={<Navigate to="/punta-cana" replace />} />
+
+              {/* Comprehensive Dominican Republic Destination Guide */}
+              <Route path="/republica-dominicana" element={<DominicanRepublicGuidePage />} />
+              <Route path="/destinos" element={<Navigate to="/republica-dominicana" replace />} />
+              <Route path="/samana" element={<Navigate to="/republica-dominicana" replace />} />
+              <Route path="/barahona" element={<Navigate to="/republica-dominicana" replace />} />
+              <Route path="/santo-domingo" element={<Navigate to="/republica-dominicana" replace />} />
 
               <Route path="/admin-secreto-123" element={<AdminPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />

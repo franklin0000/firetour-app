@@ -25,10 +25,34 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://www.firetourdr.com/republica-dominicana</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://www.firetourdr.com/punta-cana</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://www.firetourdr.com/blog/guia-las-terrenas-samana-playas-ballenas</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://www.firetourdr.com/blog/guia-barahona-los-patos-bahia-de-las-aguilas</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://www.firetourdr.com/blog/guia-santo-domingo-zona-colonial-tres-ojos</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
   </url>
   <url>
     <loc>https://www.firetourdr.com/blog</loc>

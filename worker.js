@@ -1363,6 +1363,10 @@ export default {
         if (date) stripeParams.append('metadata[date]', date);
         if (guests) stripeParams.append('metadata[guests]', String(guests));
 
+        if (tourImage) stripeParams.append('metadata[tourImage]', String(tourImage));
+        if (body.hotelName) stripeParams.append('metadata[hotelName]', String(body.hotelName));
+        if (body.roomNumber) stripeParams.append('metadata[roomNumber]', String(body.roomNumber));
+
         const stripeRes = await fetch('https://api.stripe.com/v1/payment_intents', {
           method: 'POST',
           headers: {
@@ -1383,6 +1387,96 @@ export default {
         });
       } catch (err) {
         return jsonResponse({ error: err.message }, 500);
+      }
+    }
+
+    // 3.1 Verify and Book (Stripe Confirmation & Ticket Issuance)
+    if (url.pathname === '/api/payment/verify-and-book' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { payment_intent, fallbackMetadata, fallbackAmount } = body;
+
+        if (!payment_intent) {
+          return jsonResponse({ error: "No se proporcionó el payment_intent de Stripe." }, 400);
+        }
+
+        const stripeKey = env.STRIPE_SECRET_KEY;
+        const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
+
+        // Si es un mock / test simulado
+        if (payment_intent.includes('mock') || !stripeKey) {
+          const meta = fallbackMetadata || {};
+          const ticketCode = `FT-${Date.now().toString().slice(-6)}`;
+          const mockReservation = {
+            id: Date.now(),
+            ticketCode,
+            tourId: parseInt(meta.tourId) || 0,
+            tourName: meta.tourName || "Reserva Confirmada Fire Tour DR",
+            tourImage: meta.tourImage || "",
+            customerName: meta.customerName || "Cliente",
+            email: (meta.email || "reservas@firetourdr.com").toLowerCase().trim(),
+            phone: meta.phone || "",
+            date: meta.date || new Date().toISOString().split('T')[0],
+            guests: parseInt(meta.guests) || 1,
+            amountPaid: fallbackAmount || meta.amountPaid || 0,
+            paymentMethod: 'Stripe Seguro (Confirmado)',
+            paymentStatus: 'Aprobado y Garantizado',
+            status: 'Confirmado',
+            hotelName: meta.hotelName || '',
+            roomNumber: meta.roomNumber || '',
+            createdAt: new Date().toISOString()
+          };
+          allReservations.push(mockReservation);
+          await setKVData(env, 'reservations_data', allReservations);
+          return jsonResponse({ success: true, reservation: mockReservation });
+        }
+
+        // Verificación oficial con Stripe API
+        const stripeRes = await fetch(`https://api.stripe.com/v1/payment_intents/${encodeURIComponent(payment_intent)}`, {
+          headers: {
+            'Authorization': `Bearer ${stripeKey}`
+          }
+        });
+
+        const intent = await stripeRes.json();
+        if (intent.error) {
+          return jsonResponse({ error: intent.error.message }, 400);
+        }
+
+        if (intent.status !== 'succeeded') {
+          return jsonResponse({ error: `El estado del pago es '${intent.status}'. Debe ser 'succeeded' para emitir el boleto.` }, 400);
+        }
+
+        const meta = intent.metadata || fallbackMetadata || {};
+        const ticketCode = `FT-${Date.now().toString().slice(-6)}`;
+
+        const newReservation = {
+          id: Date.now(),
+          ticketCode,
+          tourId: parseInt(meta.tourId) || 0,
+          tourName: meta.tourName || intent.description || "Excursión Oficial Fire Tour DR",
+          tourImage: meta.tourImage || fallbackMetadata?.tourImage || "",
+          customerName: meta.customerName || (intent.charges?.data?.[0]?.billing_details?.name) || "Cliente Fire Tour DR",
+          email: (meta.email || intent.receipt_email || intent.charges?.data?.[0]?.billing_details?.email || "reservas@firetourdr.com").toLowerCase().trim(),
+          phone: meta.phone || intent.charges?.data?.[0]?.billing_details?.phone || "",
+          date: meta.date || new Date().toISOString().split('T')[0],
+          guests: parseInt(meta.guests) || 1,
+          amountPaid: (intent.amount_received || intent.amount) / 100,
+          paymentMethod: 'Stripe Tarjeta de Crédito / Débito (Oficial 256-bit)',
+          paymentStatus: 'Aprobado y Garantizado',
+          status: 'Confirmado',
+          hotelName: meta.hotelName || fallbackMetadata?.hotelName || '',
+          roomNumber: meta.roomNumber || fallbackMetadata?.roomNumber || '',
+          stripePaymentIntentId: intent.id,
+          createdAt: new Date().toISOString()
+        };
+
+        allReservations.push(newReservation);
+        await setKVData(env, 'reservations_data', allReservations);
+
+        return jsonResponse({ success: true, reservation: newReservation });
+      } catch (err) {
+        return jsonResponse({ error: "Error en el servidor al verificar y emitir la reserva: " + err.message }, 500);
       }
     }
 

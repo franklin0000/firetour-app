@@ -1345,7 +1345,11 @@ export default {
         const body = await request.json();
         const { amount, tourId, email, customerName, phone, date, guests, tourName } = body;
         
-        const stripeKey = env.STRIPE_SECRET_KEY || "";
+        const stripeKey = env.STRIPE_SECRET_KEY;
+        if (!stripeKey) {
+          console.error('[Stripe] STRIPE_SECRET_KEY secret is not configured on this Worker.');
+          return jsonResponse({ error: "La pasarela de pago no está disponible en este momento. Contáctanos por WhatsApp para completar tu reserva." }, 503);
+        }
         
         const stripeParams = new URLSearchParams();
         stripeParams.append('amount', Math.round(amount).toString());

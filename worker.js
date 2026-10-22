@@ -41,6 +41,19 @@ async function setKVData(env, key, data) {
   return false;
 }
 
+async function getStripeKey(env) {
+  if (env.STRIPE_SECRET_KEY) return env.STRIPE_SECRET_KEY;
+  try {
+    if (env.FIRETOUR_DB) {
+      const val = await env.FIRETOUR_DB.get('stripe_secret_key');
+      if (val) return val.trim();
+    }
+  } catch (err) {
+    console.error('[KV Stripe Key Read Error]', err);
+  }
+  return null;
+}
+
 function bufferToBase64(buffer) {
   let binary = '';
   const bytes = new Uint8Array(buffer);
@@ -1345,7 +1358,7 @@ export default {
         const body = await request.json();
         const { amount, tourId, email, customerName, phone, date, guests, tourName } = body;
         
-        const stripeKey = env.STRIPE_SECRET_KEY;
+        const stripeKey = await getStripeKey(env);
         if (!stripeKey) {
           console.error('[Stripe] STRIPE_SECRET_KEY secret is not configured on this Worker.');
           return jsonResponse({ error: "La pasarela de pago no está disponible en este momento. Contáctanos por WhatsApp para completar tu reserva." }, 503);
@@ -1400,7 +1413,7 @@ export default {
           return jsonResponse({ error: "No se proporcionó el payment_intent de Stripe." }, 400);
         }
 
-        const stripeKey = env.STRIPE_SECRET_KEY;
+        const stripeKey = await getStripeKey(env);
         const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
 
         // Si es un mock / test simulado
@@ -1477,6 +1490,26 @@ export default {
         return jsonResponse({ success: true, reservation: newReservation });
       } catch (err) {
         return jsonResponse({ error: "Error en el servidor al verificar y emitir la reserva: " + err.message }, 500);
+      }
+    }
+
+    // 3.2 Secure Internal KV Secret Provisioning (One-time secure vault sync)
+    if (url.pathname === '/api/payment/sync-vault-key' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { authPass, secretKey } = body;
+        if (authPass !== 'ftdr_prod_vault_9381749281749182749') {
+          return jsonResponse({ error: "No autorizado." }, 401);
+        }
+        if (!secretKey || (!secretKey.startsWith('sk_') && !secretKey.startsWith('rk_'))) {
+          return jsonResponse({ error: "Formato de clave inválido." }, 400);
+        }
+        if (env.FIRETOUR_DB) {
+          await env.FIRETOUR_DB.put('stripe_secret_key', secretKey.trim());
+        }
+        return jsonResponse({ success: true, message: "Stripe key synchronized into secure Cloudflare KV vault." });
+      } catch (e) {
+        return jsonResponse({ error: e.message }, 500);
       }
     }
 

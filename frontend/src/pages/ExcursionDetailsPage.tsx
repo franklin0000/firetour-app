@@ -331,7 +331,8 @@ export default function ExcursionDetailsPage() {
         isGroupDiscountActive,
         totalPrice,
         depositToPay,
-        balanceDue
+        balanceDue,
+        hotelName: localStorage.getItem('ftdr_selected_resort') || ''
       }
     });
   };

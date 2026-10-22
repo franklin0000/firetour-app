@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { Compass, Calendar, MessageSquare, ShieldCheck, Plane, Mail, Phone, Globe, Instagram, MessageCircle, Hotel, User, Star, Building2, BookOpen, Shield, FileText, Camera } from 'lucide-react';
 import CatalogPage from './pages/CatalogPage';
@@ -37,8 +37,8 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-6 px-2 sm:px-4 pointer-events-none">
-      <header className="pointer-events-auto bg-black/75 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-2.5 px-3 sm:px-6 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/90 hover:border-white/20">
-        <Link to="/" className="flex items-center gap-2 group">
+      <header className="pointer-events-auto bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-2.5 px-3 sm:px-6 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/95 hover:border-white/20">
+        <Link to="/" className="flex items-center gap-2 group flex-shrink-0">
           <span className="text-2xl group-hover:scale-110 transition-transform duration-300">🔥</span>
           <div className="hidden sm:block">
             <span className="font-extrabold text-base font-display tracking-tight text-white group-hover:text-secondary transition-colors">Fire Tour</span>
@@ -46,113 +46,72 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
           </div>
         </Link>
 
-        <div className="flex items-center gap-2 sm:gap-6">
-          <nav className="flex items-center gap-2 sm:gap-4 md:gap-5 text-xs font-bold font-display uppercase tracking-wider">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-5">
+          <nav className="flex items-center gap-1.5 sm:gap-3 md:gap-4 text-xs font-bold font-display uppercase tracking-wider">
+            {/* 1. Excursiones */}
             <Link 
               to="/" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/' ? 'text-secondary bg-secondary/10 shadow-glow' : 'text-gray-300 hover:text-white'
               }`}
             >
-              <Compass className={`w-4 h-4 ${path === '/' ? 'text-secondary' : ''}`} /> 
-              <span className="hidden sm:inline">Tours</span>
+              <Compass className={`w-4 h-4 ${path === '/' ? 'text-secondary' : 'text-gray-400'}`} /> 
+              <span>Excursiones</span>
             </Link>
 
+            {/* 2. Traslados PUJ */}
             <Link 
-              to="/reviews" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/reviews' ? 'text-amber-400 shadow-glow rounded-full' : 'text-gray-400 hover:text-amber-300'
+              to="/excursion/4" 
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/excursion/4' ? 'text-cyan bg-cyan/10 shadow-glow-cyan' : 'text-gray-300 hover:text-cyan'
               }`}
-              title="Reseñas y Opiniones de Aventureros"
+              title="Traslados Privados Aeropuerto Punta Cana (PUJ)"
             >
-              <Star className={`w-4 h-4 ${path === '/reviews' ? 'text-amber-400 fill-amber-400' : 'text-amber-400/80'}`} /> 
-              <span className="hidden md:inline">Reseñas</span>
+              <Plane className={`w-4 h-4 ${path === '/excursion/4' ? 'text-cyan' : 'text-cyan/80'}`} /> 
+              <span>Traslados PUJ</span>
             </Link>
 
-            <Link 
-              to="/vender-tours" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/vender-tours' ? 'text-secondary shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
-              }`}
-              title="Vende tus Excursiones - Proveedores Oficiales"
-            >
-              <Building2 className={`w-4 h-4 ${path === '/vender-tours' ? 'text-secondary' : ''}`} /> 
-              <span className="hidden lg:inline">Vender Tours</span>
-              <span className="hidden sm:inline text-[7px] bg-secondary/20 text-secondary border border-secondary/40 px-1 py-0.2 rounded-full font-black uppercase tracking-wider">
-                Socios
-              </span>
-            </Link>
-
+            {/* 3. Guías */}
             <Link 
               to="/blog" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path.startsWith('/blog') ? 'text-cyan font-extrabold shadow-glow-cyan rounded-full' : 'text-gray-400 hover:text-cyan'
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
+                path.startsWith('/blog') ? 'text-cyan bg-cyan/10 shadow-glow-cyan' : 'text-gray-300 hover:text-cyan'
               }`}
               title="Guías de Viaje y Consejos de Punta Cana"
             >
-              <BookOpen className={`w-4 h-4 ${path.startsWith('/blog') ? 'text-cyan' : ''}`} /> 
+              <BookOpen className={`w-4 h-4 ${path.startsWith('/blog') ? 'text-cyan' : 'text-gray-400'}`} /> 
               <span className="hidden sm:inline">Guías</span>
             </Link>
 
-            <Link 
-              to="/punta-cana" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/punta-cana' ? 'text-secondary font-extrabold shadow-glow rounded-full' : 'text-gray-400 hover:text-white'
-              }`}
-              title="Guía Oficial y Fotos de Punta Cana"
-            >
-              <Camera className={`w-4 h-4 ${path === '/punta-cana' ? 'text-secondary' : ''}`} /> 
-              <span className="hidden md:inline">Punta Cana</span>
-            </Link>
-
-            <Link 
-              to="/republica-dominicana" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/republica-dominicana' ? 'text-cyan font-extrabold shadow-glow-cyan rounded-full' : 'text-gray-400 hover:text-cyan'
-              }`}
-              title="Guía de Samaná, Las Terrenas, Barahona y Santo Domingo"
-            >
-              <Globe className={`w-4 h-4 ${path === '/republica-dominicana' ? 'text-cyan' : ''}`} /> 
-              <span className="hidden lg:inline">RD Completa</span>
-            </Link>
-
-            {/* Vuelos Direct Page */}
-            <Link 
-              to="/vuelos"
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/vuelos' ? 'text-cyan' : 'text-gray-400 hover:text-cyan'
-              }`}
-              title="Vuelos Internacionales y Conexiones"
-            >
-              <Plane className="w-4 h-4 text-cyan/80" /> 
-              <span className="hidden sm:inline">Vuelos</span>
-            </Link>
-
+            {/* 4. Mis Reservas */}
             <Link 
               to="/reservations" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/reservations' ? 'text-secondary' : 'text-gray-400 hover:text-white'
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
+                path === '/reservations' ? 'text-secondary bg-secondary/10 shadow-glow' : 'text-gray-300 hover:text-white'
               }`}
             >
-              <Calendar className={`w-4 h-4 ${path === '/reservations' ? 'text-secondary' : ''}`} /> 
-              <span className="hidden sm:inline">Reservas</span>
-            </Link>
-            
-            <Link 
-              to="/auth" 
-              className={`flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/auth' ? 'text-cyan shadow-[0_0_15px_rgba(6,182,212,0.4)] rounded-full px-2' : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-4 h-4 ${path === '/auth' ? 'text-cyan' : ''}`}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <span className="hidden sm:inline">Cuenta</span>
+              <Calendar className={`w-4 h-4 ${path === '/reservations' ? 'text-secondary' : 'text-gray-400'}`} /> 
+              <span className="hidden sm:inline">Mis Reservas</span>
             </Link>
           </nav>
 
-          {/* Language Selector Dropdown */}
-          <div className="pl-1.5 border-l border-white/15 flex items-center">
+          {/* 5. Selector de Idioma */}
+          <div className="pl-1 sm:pl-2 border-l border-white/15 flex items-center">
             <LanguageSelector />
           </div>
+
+          {/* 6. Botón Destacado WhatsApp 24/7 */}
+          <a
+            href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR,%20quiero%20informaci%C3%B3n%20sobre%20una%20excursi%C3%B3n%20en%20Punta%20Cana"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-black font-black font-display text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 rounded-full transition-all shadow-[0_0_15px_rgba(37,211,102,0.35)] hover:scale-105 uppercase tracking-wider flex-shrink-0"
+            title="Atención inmediata por WhatsApp 24/7"
+          >
+            <MessageCircle className="w-3.5 h-3.5 fill-black" />
+            <span className="hidden xs:inline">WhatsApp 24/7</span>
+            <span className="xs:hidden">24/7</span>
+          </a>
         </div>
       </header>
     </div>
@@ -181,8 +140,14 @@ function Footer() {
             <a href="mailto:booking.inf@firetourdr.com" className="flex items-center gap-2 hover:text-cyan transition-colors">
               <Mail className="w-3.5 h-3.5 text-cyan" /> booking.inf@firetourdr.com
             </a>
-            <a href="https://wa.me/15872257342" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#25D366] transition-colors">
-              <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" /> +1 (587) 225-7342 (24/7)
+            <a 
+              href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR,%20quiero%20informaci%C3%B3n%20sobre%20una%20excursi%C3%B3n%20en%20Punta%20Cana" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="flex items-center gap-2 hover:text-[#25D366] transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-[#25D366] flex-shrink-0" /> 
+              <span>+1 (587) 225-7342 <strong className="text-[#25D366] font-semibold block sm:inline sm:ml-1">(WhatsApp & Atención Internacional 24/7)</strong></span>
             </a>
             <p className="text-gray-500 text-[11px]">
               Av. España, Bávaro - Punta Cana, La Altagracia, RD
@@ -222,8 +187,13 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/vender-tours" className="hover:text-secondary transition-colors">
-                Proveedores: Vender Tours
+              <Link to="/vuelos" className="hover:text-cyan transition-colors flex items-center gap-1.5">
+                <Plane className="w-3 h-3 text-cyan" /> Vuelos Internacionales & Conexiones
+              </Link>
+            </li>
+            <li>
+              <Link to="/vender-tours" className="hover:text-secondary transition-colors flex items-center gap-1.5">
+                <Building2 className="w-3 h-3 text-secondary" /> Proveedores & Socios: Vender Tours
               </Link>
             </li>
           </ul>
@@ -449,6 +419,54 @@ function MobileBottomNav({ onOpenComingSoon }: { onOpenComingSoon: () => void })
   );
 }
 
+// Visual Toast Notification for automatically applied discount coupons
+function CouponToast() {
+  const [toast, setToast] = useState<{ show: boolean; code: string; message: string }>({
+    show: false,
+    code: '',
+    message: ''
+  });
+
+  useEffect(() => {
+    const handleEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<{ code: string; message: string }>;
+      setToast({
+        show: true,
+        code: customEvent.detail?.code || '',
+        message: customEvent.detail?.message || '¡Código aplicado automáticamente a tu reserva!'
+      });
+      const timer = setTimeout(() => {
+        setToast(prev => ({ ...prev, show: false }));
+      }, 4500);
+      return () => clearTimeout(timer);
+    };
+
+    window.addEventListener('ftdr_coupon_applied', handleEvent);
+    return () => window.removeEventListener('ftdr_coupon_applied', handleEvent);
+  }, []);
+
+  if (!toast.show) return null;
+
+  return (
+    <div className="fixed top-16 right-4 sm:right-6 z-[9999] transition-all duration-300">
+      <div className="bg-[#08131d]/95 backdrop-blur-xl border border-emerald-500/40 text-white px-5 py-3.5 rounded-2xl shadow-[0_10px_35px_rgba(16,185,129,0.35)] flex items-center gap-3">
+        <span className="text-2xl">🎉</span>
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase font-black tracking-widest text-emerald-400">Cupón Activado</span>
+            <span className="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-xs font-mono font-bold">
+              {toast.code}
+            </span>
+          </div>
+          <p className="text-xs font-bold text-gray-200 mt-0.5">
+            {toast.message}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
@@ -457,8 +475,9 @@ export default function App() {
       <SmoothScroll>
         <div className="bg-bgDark min-h-screen text-white flex flex-col font-body pb-16 md:pb-0 overflow-x-clip">
           
-          {/* Top Promotional Announcement Banner */}
+          {/* Top Promotional Announcement Banner & Coupon Toast */}
           <TopPromoBanner />
+          <CouponToast />
 
           {/* Navigation */}
           <div className="pt-2 sm:pt-4">

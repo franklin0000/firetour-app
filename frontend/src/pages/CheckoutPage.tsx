@@ -6,7 +6,11 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 // Inicializar Stripe con la clave pública de Producción (Live)
-const stripePromise = loadStripe('pk_live_51Te0ecBFxtpxngws3onLiw40h7f4S3qqSOwpsxVsGFUoVGiOXDKLkQJuZQ15Xya8m70TNS1AVic0ubfNjZz1yEag00VLTzGSMP');
+const stripePromise = loadStripe('pk_live_51Te0ecBFxtpxngws3onLiw40h7f4S3qqSOwpsxVsGFUoVGiOXDKLkQJuZQ15Xya8m70TNS1AVic0ubfNjZz1yEag00VLTzGSMP')
+  .catch((err) => {
+    console.warn('[Stripe] Error o bloqueo al inicializar Stripe.js:', err);
+    return null;
+  });
 
 function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: any, clientSecret: string, isMock?: boolean }) {
   const navigate = useNavigate();
@@ -16,14 +20,18 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
   const [customerName, setCustomerName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [hotelName, setHotelName] = useState('');
+  const [hotelName, setHotelName] = useState(() => {
+    return checkoutData?.hotelName || localStorage.getItem('ftdr_selected_resort') || '';
+  });
   const [roomNumber, setRoomNumber] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showAuthGate, setShowAuthGate] = useState(true);
 
   // Coupon & Group Discount Engine
-  const [couponCode, setCouponCode] = useState('');
+  const [couponCode, setCouponCode] = useState(() => {
+    return localStorage.getItem('ftdr_applied_coupon') || '';
+  });
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(() => {
     return checkoutData.isGroupDiscountActive ? 'GRUPO6_GRATIS' : null;
   });
@@ -47,9 +55,9 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
       setAppliedCoupon('VIP5');
       setCouponDiscount(discount);
       setCouponFeedback({ type: 'success', message: `¡Cupón VIP5 aplicado! Ahorras -$${discount} USD (5% OFF).` });
-    } else if (clean === 'PUNTACANA10') {
+    } else if (clean === 'PUNTACANA10' || clean === 'FIRE10') {
       const discount = Math.round(Number(checkoutData.totalPrice || 100) * 0.10);
-      setAppliedCoupon('PUNTACANA10');
+      setAppliedCoupon(clean);
       setCouponDiscount(discount);
       setCouponFeedback({ type: 'success', message: `¡Cupón PUNTACANA10 aplicado! Ahorras -$${discount} USD (10% OFF).` });
     } else if (clean === 'GRUPOFREE') {
@@ -70,6 +78,33 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
   const extraDiscount = appliedCoupon && appliedCoupon !== 'GRUPO6_GRATIS' ? couponDiscount : 0;
   const currentTotal = Math.max(0, Number(checkoutData.totalPrice) - extraDiscount);
   const currentBalanceDue = Math.max(0, Number(checkoutData.balanceDue) - extraDiscount);
+
+  // Auto-apply stored coupon from URL/banner click
+  useEffect(() => {
+    const savedCoupon = localStorage.getItem('ftdr_applied_coupon');
+    if (savedCoupon && !appliedCoupon) {
+      const clean = savedCoupon.trim().toUpperCase();
+      if (clean === 'PUNTACANA10' || clean === 'FIRE10') {
+        const discount = Math.round(Number(checkoutData.totalPrice || 100) * 0.10);
+        setAppliedCoupon(clean);
+        setCouponDiscount(discount);
+        setCouponCode(clean);
+        setCouponFeedback({ type: 'success', message: `¡Cupón ${clean} aplicado automáticamente a tu reserva! Ahorras -$${discount} USD (10% OFF).` });
+      } else if (clean === 'GRUPOFREE') {
+        const discount = Number(checkoutData.tourPrice || 79);
+        setAppliedCoupon('GRUPOFREE');
+        setCouponDiscount(discount);
+        setCouponCode('GRUPOFREE');
+        setCouponFeedback({ type: 'success', message: `¡Cupón GRUPOFREE aplicado automáticamente a tu reserva! (-$${discount} USD).` });
+      } else if (clean === 'VIP5') {
+        const discount = Math.round(Number(checkoutData.totalPrice || 100) * 0.05);
+        setAppliedCoupon('VIP5');
+        setCouponDiscount(discount);
+        setCouponCode('VIP5');
+        setCouponFeedback({ type: 'success', message: `¡Cupón VIP5 aplicado automáticamente a tu reserva! (-$${discount} USD).` });
+      }
+    }
+  }, [checkoutData, appliedCoupon]);
 
   useEffect(() => {
     const userStr = localStorage.getItem('user');

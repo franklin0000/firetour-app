@@ -16,6 +16,16 @@ export default function TopPromoBanner() {
     sessionStorage.setItem('ftdr_promo_dismissed', 'true');
   };
 
+  const handleApplyFire10 = () => {
+    localStorage.setItem('ftdr_applied_coupon', 'FIRE10');
+    window.dispatchEvent(new CustomEvent('ftdr_coupon_applied', {
+      detail: {
+        code: 'FIRE10',
+        message: '¡Código aplicado automáticamente a tu reserva!'
+      }
+    }));
+  };
+
   if (!isVisible) return null;
 
   return (
@@ -25,7 +35,15 @@ export default function TopPromoBanner() {
           <Sparkles className="w-3 h-3 text-amber-300" /> Promoción Especial
         </span>
         <span>
-          🌴 ¡Reserva online en <strong>Fire Tour DR</strong> con confirmación inmediata, cancelación gratuita y <strong>10% OFF</strong> con el código <span className="underline bg-white/20 px-1.5 py-0.2 rounded font-black tracking-wider">FIRE10</span>!
+          🌴 ¡Reserva online en <strong>Fire Tour DR</strong> con confirmación inmediata, cancelación gratuita y <strong>10% OFF</strong> con el código{' '}
+          <button
+            type="button"
+            onClick={handleApplyFire10}
+            className="underline bg-white/20 hover:bg-white/35 active:scale-95 px-2 py-0.5 rounded font-black tracking-wider cursor-pointer transition inline-flex items-center gap-1 shadow-sm"
+            title="Haz clic para aplicar FIRE10"
+          >
+            FIRE10
+          </button>!
         </span>
         <span className="hidden md:inline-flex items-center gap-1 text-white/90">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" /> Pago seguro con Stripe
@@ -33,7 +51,7 @@ export default function TopPromoBanner() {
       </div>
       <button
         onClick={handleDismiss}
-        className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-1 rounded-full transition"
+        className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-1 rounded-full transition cursor-pointer"
         title="Ocultar aviso"
       >
         <X className="w-3.5 h-3.5" />

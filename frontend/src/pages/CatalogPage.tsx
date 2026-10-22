@@ -4,7 +4,7 @@ import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader, Spar
 import { RESORTS_DATA, getResortBySlug } from '../data/resorts';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
-import AdSenseBanner from '../components/AdSenseBanner';
+
 
 export default function CatalogPage() {
   const navigate = useNavigate();
@@ -14,7 +14,36 @@ export default function CatalogPage() {
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedHotel, setSelectedHotel] = useState('');
+  const [selectedHotel, setSelectedHotel] = useState<string>(() => {
+    return localStorage.getItem('ftdr_selected_resort_slug') || '';
+  });
+
+  const selectedResortName = selectedHotel
+    ? (getResortBySlug(selectedHotel)?.name || selectedHotel)
+    : (localStorage.getItem('ftdr_selected_resort') || '');
+
+  const handleSelectResort = (slug: string) => {
+    setSelectedHotel(slug);
+    const resortObj = getResortBySlug(slug);
+    if (resortObj) {
+      localStorage.setItem('ftdr_selected_resort', resortObj.name);
+      localStorage.setItem('ftdr_selected_resort_slug', slug);
+    } else {
+      localStorage.removeItem('ftdr_selected_resort');
+      localStorage.removeItem('ftdr_selected_resort_slug');
+    }
+  };
+
+  const handleApplyPromoCode = (code: string) => {
+    const clean = code.trim().toUpperCase();
+    localStorage.setItem('ftdr_applied_coupon', clean);
+    window.dispatchEvent(new CustomEvent('ftdr_coupon_applied', {
+      detail: {
+        code: clean,
+        message: '¡Código aplicado automáticamente a tu reserva!'
+      }
+    }));
+  };
   
   // Framer Motion Scroll Drivers
   const { scrollY } = useScroll();
@@ -168,58 +197,8 @@ export default function CatalogPage() {
       {/* ============================================================= */}
       {/* 🎬 FRAMER MOTION PARALLAX HEADER                             */}
       {/* ============================================================= */}
-            {/* 📱 MOBILE HERO (< md): Responsive 1-screen viewport without 250vh empty space */}
-      <section className="relative min-h-[520px] h-[85vh] w-full flex flex-col justify-center items-center text-center px-4 overflow-hidden md:hidden z-10 pt-16">
-        <div className="absolute inset-0 bg-black/55 z-0 pointer-events-none" />
-        
-        <div className="relative z-10 max-w-sm flex flex-col items-center">
-          <span className="text-secondary font-black text-[10px] uppercase tracking-[0.25em] font-display bg-secondary/15 px-4 py-1.5 rounded-full border border-secondary/30 backdrop-blur-xl shadow-glow mb-4 inline-block">
-            🔥 PUNTA CANA ADVENTURES
-          </span>
-
-          <h1 className="text-4xl sm:text-5xl font-black font-display tracking-tight text-white leading-[1.05] drop-shadow-2xl">
-            DESCUBRE EL <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">
-              PARAÍSO
-            </span>
-          </h1>
-
-          <p className="text-gray-300 text-xs sm:text-sm mt-3 leading-relaxed max-w-xs">
-            Excursiones oficiales en Punta Cana. Isla Saona VIP, Buggies Macao y Parasailing con recogida directa en tu resort.
-          </p>
-
-          <div className="flex flex-col w-full gap-2.5 mt-6">
-            <a
-              href="#catalogo-tours"
-              className="w-full bg-gradient-to-r from-secondary to-orange-500 text-white font-black font-display uppercase tracking-wider text-xs py-3.5 rounded-xl shadow-glow flex items-center justify-center gap-2"
-            >
-              Ver Excursiones y Precios <ArrowRight className="w-4 h-4" />
-            </a>
-
-            <a
-              href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20estoy%20en%20Punta%20Cana%20y%20quiero%20informaci%C3%B3n"
-              target="_blank"
-              rel="noreferrer"
-              className="w-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] font-bold font-display uppercase tracking-wider text-xs py-3 rounded-xl flex items-center justify-center gap-2"
-            >
-              <span className="text-base">💬</span> WhatsApp Atención 24/7
-            </a>
-          </div>
-
-          <div className="mt-5 flex items-center gap-3 text-[10px] text-gray-400">
-            <span>⭐ 4.9/5 (1,420 reseñas)</span>
-            <span>•</span>
-            <span className="text-emerald-400">✓ Cancelación Gratis</span>
-          </div>
-
-          <a href="#catalogo-tours" className="mt-4 text-secondary animate-bounce text-xl">
-            ↓
-          </a>
-        </div>
-      </section>
-
-      {/* 🖥️ DESKTOP HERO (>= md): Fluid, non-sticky & instant mouse-wheel responsive */}
-      <section className="relative min-h-[580px] h-[90vh] lg:h-[92vh] w-full hidden md:flex flex-col justify-center items-center text-center px-6 overflow-hidden z-10 pt-20">
+      {/* 🎬 HERO SECTION: Fluid, responsive & instant mouse-wheel interactive */}
+      <section className="relative min-h-[560px] h-[90vh] lg:h-[92vh] w-full flex flex-col justify-center items-center text-center px-4 sm:px-6 overflow-hidden z-10 pt-20">
         
         {/* Full-bleed video player background with smooth parallax */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -255,7 +234,7 @@ export default function CatalogPage() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-6xl lg:text-8xl font-black font-display tracking-tight text-white leading-[0.95] drop-shadow-[0_15px_40px_rgba(0,0,0,0.85)]"
+            className="text-4xl sm:text-6xl lg:text-8xl font-black font-display tracking-tight text-white leading-[0.95] drop-shadow-[0_15px_40px_rgba(0,0,0,0.85)]"
           >
             DESCUBRE EL <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-orange-400 to-cyan">
@@ -267,7 +246,7 @@ export default function CatalogPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-gray-200 text-base lg:text-lg mt-6 leading-relaxed max-w-2xl font-medium drop-shadow-md"
+            className="text-gray-200 text-sm sm:text-base lg:text-lg mt-5 sm:mt-6 leading-relaxed max-w-2xl font-medium drop-shadow-md"
           >
             Isla Saona VIP en Catamarán, Buggies Macao 4x4, Parasailing y Traslados Privados Aeropuerto PUJ con recogida directa en tu resort y cancelación gratis.
           </motion.p>
@@ -276,11 +255,11 @@ export default function CatalogPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex items-center gap-4 mt-8"
+            className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-8 w-full sm:w-auto"
           >
             <a
               href="#catalogo-tours"
-              className="bg-gradient-to-r from-secondary to-orange-500 hover:from-secondary hover:to-orange-600 text-white font-black font-display uppercase tracking-wider text-sm py-4 px-8 rounded-2xl shadow-glow flex items-center gap-2 transform hover:-translate-y-0.5 transition duration-200"
+              className="w-full sm:w-auto bg-gradient-to-r from-secondary to-orange-500 hover:from-secondary hover:to-orange-600 text-white font-black font-display uppercase tracking-wider text-xs sm:text-sm py-3.5 sm:py-4 px-6 sm:px-8 rounded-2xl shadow-glow flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition duration-200 text-center"
             >
               Ver Excursiones y Precios <ArrowRight className="w-4 h-4" />
             </a>
@@ -289,7 +268,7 @@ export default function CatalogPage() {
               href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR%2C%20estoy%20en%20Punta%20Cana%20y%20quiero%20informaci%C3%B3n"
               target="_blank"
               rel="noreferrer"
-              className="bg-[#25D366]/20 border border-[#25D366]/40 hover:bg-[#25D366]/30 text-[#25D366] font-bold font-display uppercase tracking-wider text-sm py-4 px-6 rounded-2xl flex items-center gap-2 backdrop-blur-xl transition"
+              className="w-full sm:w-auto bg-[#25D366]/20 border border-[#25D366]/40 hover:bg-[#25D366]/30 text-[#25D366] font-bold font-display uppercase tracking-wider text-xs sm:text-sm py-3.5 sm:py-4 px-5 sm:px-6 rounded-2xl flex items-center justify-center gap-2 backdrop-blur-xl transition text-center"
             >
               <span className="text-lg">💬</span> WhatsApp Atención 24/7
             </a>
@@ -300,7 +279,7 @@ export default function CatalogPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-8 flex items-center gap-4 text-xs text-gray-300 backdrop-blur-md bg-black/40 px-6 py-2.5 rounded-full border border-white/10"
+            className="mt-8 flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-[11px] sm:text-xs text-gray-300 backdrop-blur-md bg-black/40 px-4 sm:px-6 py-2.5 rounded-full border border-white/10 text-center"
           >
             <span>⭐ 4.9/5 (1,420+ Reseñas Verificadas)</span>
             <span>•</span>
@@ -347,18 +326,31 @@ export default function CatalogPage() {
                   ¡Si reservas para 5 personas, la 6ta viaja 100% GRATIS!
                 </h3>
                 <p className="text-gray-300 text-xs md:text-sm mt-1 max-w-2xl leading-relaxed">
-                  Aplica automáticamente en el checkout para Isla Saona VIP, Buggies Macao y Parasail. Ahorro de hasta -$79 USD por grupo. Usa el código <b className="text-white font-mono bg-white/10 px-2 py-0.5 rounded">GRUPOFREE</b> o <b className="text-white font-mono bg-white/10 px-2 py-0.5 rounded">VIP5</b>.
+                  Aplica automáticamente en el checkout para Isla Saona VIP, Buggies Macao y Parasail. Ahorro de hasta -$79 USD por grupo. Usa el código{' '}
+                  <button
+                    type="button"
+                    onClick={() => handleApplyPromoCode('GRUPOFREE')}
+                    className="text-white font-mono bg-white/15 hover:bg-white/25 px-2 py-0.5 rounded border border-white/20 transition cursor-pointer inline-flex items-center gap-1 font-bold"
+                    title="Haz clic para aplicar GRUPOFREE"
+                  >
+                    GRUPOFREE
+                  </button>.
                 </p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto relative z-10 flex-shrink-0">
-              <a
-                href="#catalogo-tours"
-                className="bg-secondary hover:bg-orange-600 text-white font-black font-display uppercase tracking-wider text-xs py-3.5 px-6 rounded-xl transition text-center shadow-glow flex items-center justify-center gap-2"
+              <button
+                type="button"
+                onClick={() => {
+                  handleApplyPromoCode('GRUPOFREE');
+                  const el = document.getElementById('catalogo-tours');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="bg-secondary hover:bg-orange-600 text-white font-black font-display uppercase tracking-wider text-xs py-3.5 px-6 rounded-xl transition text-center shadow-glow flex items-center justify-center gap-2 cursor-pointer"
               >
-                Ver Excursiones <ArrowRight className="w-4 h-4" />
-              </a>
+                Aplicar Código GRUPOFREE <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
@@ -382,7 +374,7 @@ export default function CatalogPage() {
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <select
                 value={selectedHotel}
-                onChange={(e) => setSelectedHotel(e.target.value)}
+                onChange={(e) => handleSelectResort(e.target.value)}
                 className="bg-[#08131d] border border-outline focus:border-cyan text-white text-xs font-semibold py-3 px-4 rounded-xl focus:outline-none w-full sm:w-64 cursor-pointer"
               >
                 <option value="">Selecciona tu Resort...</option>
@@ -588,8 +580,8 @@ export default function CatalogPage() {
 
         </div>
 
-        {/* AdSense Placement */}
-        <AdSenseBanner className="max-w-4xl mx-auto my-6" />
+
+
 
         {/* Grid List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -649,6 +641,13 @@ export default function CatalogPage() {
                 <p className="text-gray-400 text-xs md:text-sm line-clamp-3 leading-relaxed flex-1">
                   {tour.desc}
                 </p>
+
+                {/* Dynamic Resort Pickup Badge */}
+                {selectedResortName && (
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-2 rounded-xl shadow-sm">
+                    <span>✅ Recogida confirmada en {selectedResortName}</span>
+                  </div>
+                )}
 
                 {/* Rating */}
                 <div className="flex items-center gap-2 mt-2 pt-5 border-t border-white/5">

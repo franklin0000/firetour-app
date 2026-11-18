@@ -1973,15 +1973,38 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Fallo Interno del Servidor. Inténtalo más tarde." });
 });
 
-// Serve frontend static files in production (including /tours/mass images)
+// Serve frontend static files in production with optimized caching headers (Fix 3: Performance)
 const distPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(distPath));
+const setCustomCacheHeaders = (res, filePath) => {
+  const normalized = filePath.toLowerCase();
+  if (normalized.includes(path.sep + 'assets' + path.sep)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  } else if (/\.(jpe?g|png|webp|svg|gif|ico|woff2?)$/i.test(normalized)) {
+    res.setHeader('Cache-Control', 'public, max-age=2592000, immutable');
+  } else if (normalized.endsWith('.html')) {
+    res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+  }
+};
+
+app.use(express.static(distPath, { redirect: false, extensions: ['html'], setHeaders: setCustomCacheHeaders }));
 
 // Explicit route for tour images in case they are not bundled
-app.use('/tours', express.static(path.join(distPath, 'tours')));
+app.use('/tours', express.static(path.join(distPath, 'tours'), { setHeaders: setCustomCacheHeaders }));
 
-// SPA catch-all — must be LAST
+// SPA catch-all — checks for pre-rendered route HTML before falling back to index.html
 app.get('*', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+  const cleanPath = req.path.replace(/^\/|\/$/g, '');
+  if (cleanPath) {
+    const dirHtml = path.join(distPath, cleanPath, 'index.html');
+    if (fs.existsSync(dirHtml)) {
+      return res.sendFile(dirHtml);
+    }
+    const flatHtml = path.join(distPath, cleanPath + '.html');
+    if (fs.existsSync(flatHtml)) {
+      return res.sendFile(flatHtml);
+    }
+  }
   res.sendFile(path.join(distPath, 'index.html'));
 });
 

@@ -21,7 +21,7 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [hotelName, setHotelName] = useState(() => {
-    return checkoutData?.hotelName || localStorage.getItem('ftdr_selected_resort') || '';
+    return checkoutData?.hotelName || (typeof window !== 'undefined' && localStorage.getItem('ftdr_selected_resort')) || '';
   });
   const [roomNumber, setRoomNumber] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
 
   // Coupon & Group Discount Engine
   const [couponCode, setCouponCode] = useState(() => {
-    return localStorage.getItem('ftdr_applied_coupon') || '';
+    return (typeof window !== 'undefined' && localStorage.getItem('ftdr_applied_coupon')) || '';
   });
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(() => {
     return checkoutData.isGroupDiscountActive ? 'GRUPO6_GRATIS' : null;

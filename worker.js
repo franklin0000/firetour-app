@@ -1680,9 +1680,37 @@ export default {
     // 4. Default: Delegate to static assets (Frontend SPA with index.html fallback)
     let res = await env.ASSETS.fetch(request);
     if (res.status === 404 && !url.pathname.includes('.')) {
-      const indexReq = new Request(new URL('/index.html', request.url), request);
-      return env.ASSETS.fetch(indexReq);
+      // First try serving exact pre-rendered .html file
+      const htmlReq = new Request(new URL(url.pathname + '.html', request.url), request);
+      res = await env.ASSETS.fetch(htmlReq);
+      // Fallback to SPA index.html only if specific pre-rendered route not found
+      if (res.status === 404) {
+        const indexReq = new Request(new URL('/index.html', request.url), request);
+        res = await env.ASSETS.fetch(indexReq);
+      }
     }
+
+    // Fix 3: Set optimal Cache-Control headers on static responses
+    if (res && res.status < 400) {
+      const newHeaders = new Headers(res.headers);
+      const pathname = url.pathname.toLowerCase();
+      if (pathname.startsWith('/assets/')) {
+        // Hashed JS/CSS Vite bundles
+        newHeaders.set('Cache-Control', 'public, max-age=31536000, immutable');
+      } else if (/\.(jpe?g|png|webp|svg|gif|ico|woff2?)$/i.test(pathname)) {
+        // Static images and fonts
+        newHeaders.set('Cache-Control', 'public, max-age=2592000, immutable');
+      } else if (pathname.endsWith('.html') || !pathname.includes('.')) {
+        // HTML documents (keep uncached/short-cached)
+        newHeaders.set('Cache-Control', 'public, max-age=0, must-revalidate');
+      }
+      return new Response(res.body, {
+        status: res.status,
+        statusText: res.statusText,
+        headers: newHeaders
+      });
+    }
+
     return res;
   }
 };

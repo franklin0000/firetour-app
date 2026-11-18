@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useServerData } from '../context/ServerDataContext';
+import AdSenseBanner from '../components/AdSenseBanner';
 import { 
   Calendar, Users, ShieldAlert, Award, ChevronRight, CheckCircle2, 
   ArrowLeft, Loader, Map, Clock, Star, ShieldCheck, Compass, Heart, 
@@ -164,8 +166,18 @@ const getReviewsForTour = (tourName: string, tag: string) => {
 export default function ExcursionDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [tour, setTour] = useState<Tour | null>(null);
-  const [loading, setLoading] = useState(true);
+  const serverData = useServerData();
+  const [tour, setTour] = useState<Tour | null>(() => {
+    if (serverData?.tour && (!id || String(serverData.tour.id) === String(id))) {
+      return serverData.tour;
+    }
+    if (typeof window !== 'undefined' && (window as any).__INITIAL_DATA__?.tour) {
+      const initial = (window as any).__INITIAL_DATA__.tour;
+      if (!id || String(initial.id) === String(id)) return initial;
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState<boolean>(!tour);
 
   // Lightbox Gallery State
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -200,6 +212,7 @@ export default function ExcursionDetailsPage() {
   const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   useEffect(() => {
+    if (tour && String(tour.id) === String(id)) return;
     const fetchTourDetails = async () => {
       try {
         const response = await fetch(`/api/tours/${id}?_t=${Date.now()}`, { cache: 'no-store' });
@@ -650,6 +663,9 @@ export default function ExcursionDetailsPage() {
             </div>
           )}
 
+          {/* AdSense In-Content Responsive Banner (Middle of Tour Page) */}
+          <AdSenseBanner className="my-8" />
+
           {/* Social Proof & Customer Reviews Panel */}
           <div ref={reviewsRef} className="bg-surface/50 border border-outline/40 p-6 md:p-8 rounded-3xl shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-outline pb-4 mb-6 gap-4">
@@ -1009,7 +1025,7 @@ export default function ExcursionDetailsPage() {
                       : 'border-white/10 opacity-55 hover:opacity-100'
                   }`}
                 >
-                  <img src={photo} alt={`nav-thumb-${i}`} className="w-full h-full object-cover" />
+                  <img src={photo} alt={`nav-thumb-${i}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Clock, Calendar, ArrowLeft, Tag, CheckCircle2, Lightbulb, Compass, Share2 } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogData';
+import AdSenseBanner from '../components/AdSenseBanner';
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -121,9 +122,14 @@ export default function BlogPostPage() {
                   {section.heading}
                 </h2>
                 {section.body.map((p, pIdx) => (
-                  <p key={pIdx} className="leading-relaxed">
-                    {p}
-                  </p>
+                  <React.Fragment key={pIdx}>
+                    <p className="leading-relaxed">
+                      {p}
+                    </p>
+                    {idx === 0 && pIdx === 1 && (
+                      <AdSenseBanner className="my-6" />
+                    )}
+                  </React.Fragment>
                 ))}
 
                 {section.tip && (

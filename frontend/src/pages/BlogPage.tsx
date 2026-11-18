@@ -149,6 +149,8 @@ export default function BlogPage() {
                     <img 
                       src={post.coverImage} 
                       alt={post.title} 
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md text-cyan text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-white/10">

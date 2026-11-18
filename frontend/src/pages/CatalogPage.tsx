@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useServerData } from '../context/ServerDataContext';
+import AdSenseBanner from '../components/AdSenseBanner';
 import { useNavigate, Link } from 'react-router-dom';
 import { Search, Compass, Shield, Award, MapPin, Clock, ArrowRight, Loader, Sparkles, Hotel, Tag, ChevronRight, Camera, BookOpen } from 'lucide-react';
 import { RESORTS_DATA, getResortBySlug } from '../data/resorts';
@@ -8,19 +10,28 @@ import type { Tour } from '../types';
 
 export default function CatalogPage() {
   const navigate = useNavigate();
-  const [tours, setTours] = useState<Tour[]>([]);
+  const serverData = useServerData();
+  const [tours, setTours] = useState<Tour[]>(() => {
+    if (serverData?.tours && serverData.tours.length > 0) {
+      return serverData.tours;
+    }
+    if (typeof window !== 'undefined' && (window as any).__INITIAL_DATA__?.tours) {
+      return (window as any).__INITIAL_DATA__.tours;
+    }
+    return [];
+  });
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedHotel, setSelectedHotel] = useState<string>(() => {
-    return localStorage.getItem('ftdr_selected_resort_slug') || '';
+    return (typeof window !== 'undefined' && localStorage.getItem('ftdr_selected_resort_slug')) || '';
   });
 
   const selectedResortName = selectedHotel
     ? (getResortBySlug(selectedHotel)?.name || selectedHotel)
-    : (localStorage.getItem('ftdr_selected_resort') || '');
+    : ((typeof window !== 'undefined' && localStorage.getItem('ftdr_selected_resort')) || '');
 
   const handleSelectResort = (slug: string) => {
     setSelectedHotel(slug);
@@ -133,6 +144,7 @@ export default function CatalogPage() {
   // Trigger load when filters or search change
   useEffect(() => {
     setPage(1);
+    if (tours.length > 0 && category === 'all' && !searchQuery) return;
     fetchTours(1, true);
   }, [category, searchQuery]);
 
@@ -424,6 +436,9 @@ export default function CatalogPage() {
 
         <div id="catalogo-tours" />
 
+        {/* AdSense In-Content Responsive Banner (Below Hero) */}
+        <AdSenseBanner className="max-w-5xl mx-auto my-8" />
+
         {/* Value Pitch */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <div className="bg-surface border border-outline p-6 rounded-2xl flex items-start gap-4">
@@ -604,6 +619,8 @@ export default function CatalogPage() {
                 <img
                   src={tour.image}
                   alt={tour.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = "data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 200 100%22 style=%22background:%230A192F;fill:%2394a3b8;font-family:Inter;font-size:12px;text-anchor:middle;%22><text x=%22100%22 y=%2255%22>Experiencia Dominicana</text></svg>";

@@ -186,7 +186,7 @@ async function run() {
             "@type": "Organization",
             "name": "Fire Tour DR",
             "url": "https://www.firetourdr.com",
-            "logo": { "@type": "ImageObject", "url": "https://www.firetourdr.com/favicon.svg" }
+            "logo": { "@type": "ImageObject", "url": "https://www.firetourdr.com/android-chrome-192x192.png" }
           },
           "articleSection": post.category,
           "inLanguage": "es"

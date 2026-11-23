@@ -1718,7 +1718,7 @@ export default {
         newHeaders.set('Cache-Control', 'public, max-age=0, must-revalidate');
 
         // Block indexing on admin and private/transactional routes (HTTP header + HTML meta rewrite)
-        const isPrivateOrAdminRoute = /^\/(admin|checkout|ticket|auth|cuenta|reservations|success)(\/|$)/i.test(pathnameLower);
+        const isPrivateOrAdminRoute = /^\/(admin|checkout|ticket|auth|cuenta|reservations|success)/i.test(pathnameLower);
         if (isPrivateOrAdminRoute && finalContentType.includes('text/html')) {
           newHeaders.set('X-Robots-Tag', 'noindex, nofollow');
           const htmlBody = await res.text();

@@ -193,6 +193,7 @@ export default function CatalogPage() {
         <motion.video
           ref={video2Ref}
           src="/video2.mp4"
+          preload="none"
           autoPlay
           loop
           muted
@@ -217,6 +218,8 @@ export default function CatalogPage() {
           <motion.video
             ref={video1Ref}
             src="/video1.mp4"
+            preload="metadata"
+            poster="/gallery/facebook_1792088865961.webp"
             autoPlay
             loop
             muted
@@ -437,7 +440,7 @@ export default function CatalogPage() {
         <div id="catalogo-tours" />
 
         {/* AdSense In-Content Responsive Banner (Below Hero) */}
-        <AdSenseBanner className="max-w-5xl mx-auto my-8" />
+        <AdSenseBanner slot="1034914794" className="max-w-5xl mx-auto my-8" />
 
         {/* Value Pitch */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -734,9 +737,10 @@ export default function CatalogPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
               <img 
-                src="/gallery/facebook_1791837976637.jpg" 
+                src="/gallery/facebook_1791837976637.webp" 
                 alt="Turista bajo palmeras en Punta Cana"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -746,9 +750,10 @@ export default function CatalogPage() {
 
             <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
               <img 
-                src="/gallery/facebook_1792088108970.jpg" 
+                src="/gallery/facebook_1792088108970.webp" 
                 alt="Amigos disfrutando del sol dominicano"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -758,9 +763,10 @@ export default function CatalogPage() {
 
             <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
               <img 
-                src="/gallery/facebook_1792088042689.jpg" 
+                src="/gallery/facebook_1792088042689.webp" 
                 alt="Relax en palmera curva de Isla Saona"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -770,9 +776,10 @@ export default function CatalogPage() {
 
             <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
               <img 
-                src="/gallery/facebook_1791838610500.jpg" 
+                src="/gallery/facebook_1791838610500.webp" 
                 alt="Costa de aguas cristalinas y palmeras vírgenes"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -782,9 +789,10 @@ export default function CatalogPage() {
 
             <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
               <img 
-                src="/gallery/facebook_1792088950614.jpg" 
+                src="/gallery/facebook_1792088950614.webp" 
                 alt="Hamacas bajo palmeras en playa privada"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
@@ -794,9 +802,10 @@ export default function CatalogPage() {
 
             <div className="group relative h-56 rounded-2xl overflow-hidden border border-white/10 shadow-glass">
               <img 
-                src="/gallery/facebook_1791838696169.jpg" 
+                src="/gallery/facebook_1791838696169.webp" 
                 alt="Buggies 4x4 en ruta de Macao"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">

@@ -1,8 +1,8 @@
 // Fire Tour DR - Analytics & Ad Pixel Integration Engine
 // Compatible with Meta Pixel (Facebook & Instagram), TikTok Ads, and Google Analytics 4 (GA4)
 
-// GA4 Measurement ID placeholder (Replace with your actual G-XXXXXXXXXX ID from Google Analytics)
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+// GA4 Measurement ID (Google Analytics 4)
+export const GA_MEASUREMENT_ID = 'G-JVE35754LD';
 
 declare global {
   interface Window {

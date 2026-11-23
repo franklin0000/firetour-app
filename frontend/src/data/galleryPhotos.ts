@@ -9,112 +9,112 @@ export interface GalleryPhoto {
 export const REAL_GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: "g1",
-    url: "/gallery/facebook_1792088865961.jpg",
+    url: "/gallery/facebook_1792088865961.webp",
     title: "Palmeras infinitas y arena blanca virgen",
     location: "Isla Saona, Parque Nacional Cotubanamá",
     tag: "saona"
   },
   {
     id: "g2",
-    url: "/gallery/facebook_1791837976637.jpg",
+    url: "/gallery/facebook_1791837976637.webp",
     title: "Aguas turquesas transparentes en la costa caribeña",
     location: "Playa Bávaro, Punta Cana",
     tag: "playas"
   },
   {
     id: "g3",
-    url: "/gallery/facebook_1792088108970.jpg",
+    url: "/gallery/facebook_1792088108970.webp",
     title: "Momentos inolvidables entre amigos bajo el sol caribeño",
     location: "Catamarán VIP hacia Saona",
     tag: "saona"
   },
   {
     id: "g4",
-    url: "/gallery/facebook_1792088950614.jpg",
+    url: "/gallery/facebook_1792088950614.webp",
     title: "Relax total en hamacas frente a la brisa marina",
     location: "Playa Privada Fire Tour, Saona",
     tag: "relax"
   },
   {
     id: "g5",
-    url: "/gallery/facebook_1791838610500.jpg",
+    url: "/gallery/facebook_1791838610500.webp",
     title: "Costa tropical y palmerales vírgenes de La Altagracia",
     location: "Playa Macao, Punta Cana",
     tag: "playas"
   },
   {
     id: "g6",
-    url: "/gallery/facebook_1792088042689.jpg",
+    url: "/gallery/facebook_1792088042689.webp",
     title: "Descanso en las palmeras icónicas de la playa",
     location: "Canto de la Playa, Saona",
     tag: "relax"
   },
   {
     id: "g7",
-    url: "/gallery/facebook_1791838590171.jpg",
+    url: "/gallery/facebook_1791838590171.webp",
     title: "Piscina natural con aguas cálidas y estrellas de mar",
     location: "Piscina Natural de Bayahíbe",
     tag: "saona"
   },
   {
     id: "g8",
-    url: "/gallery/facebook_1791838696169.jpg",
+    url: "/gallery/facebook_1791838696169.webp",
     title: "Aventura y adrenalina off-road en rutas selváticas",
     location: "Ruta 4x4 Macao",
     tag: "aventura"
   },
   {
     id: "g9",
-    url: "/gallery/facebook_1792088198310.jpg",
+    url: "/gallery/facebook_1792088198310.webp",
     title: "Panorámica de postal caribeña desde el mar",
     location: "Costa de Punta Cana",
     tag: "playas"
   },
   {
     id: "g10",
-    url: "/gallery/facebook_1792088848136.jpg",
+    url: "/gallery/facebook_1792088848136.webp",
     title: "Cielo despejado y brisa marina en altamar",
     location: "Travesía en Catamarán a vela",
     tag: "saona"
   },
   {
     id: "g11",
-    url: "/gallery/facebook_1792088855610.jpg",
+    url: "/gallery/facebook_1792088855610.webp",
     title: "Naturaleza intacta y bosque tropical caribeño",
     location: "Parque Ecológico Ojos Indígenas",
     tag: "cultura"
   },
   {
     id: "g12",
-    url: "/gallery/facebook_1791838053618.jpg",
+    url: "/gallery/facebook_1791838053618.webp",
     title: "Sonrisas y buena vibra en la excursión",
     location: "Isla Saona",
     tag: "relax"
   },
   {
     id: "g13",
-    url: "/gallery/facebook_1791838085109.jpg",
+    url: "/gallery/facebook_1791838085109.webp",
     title: "Aguas cristalinas poco profundas para bañarse",
     location: "Playa Juanillo, Cap Cana",
     tag: "playas"
   },
   {
     id: "g14",
-    url: "/gallery/facebook_1792088679530.jpg",
+    url: "/gallery/facebook_1792088679530.webp",
     title: "Aventura en cenotes subterráneos de agua dulce",
     location: "Cueva Taina Macao",
     tag: "aventura"
   },
   {
     id: "g15",
-    url: "/gallery/facebook_1791838547646.jpg",
+    url: "/gallery/facebook_1791838547646.webp",
     title: "Tradición y sabor dominicano en los ranchos",
     location: "Higüey, La Altagracia",
     tag: "cultura"
   },
   {
     id: "g16",
-    url: "/gallery/facebook_1791838585042.jpg",
+    url: "/gallery/facebook_1791838585042.webp",
     title: "La verdadera esencia del paraíso caribeño",
     location: "Punta Cana, República Dominicana",
     tag: "playas"

@@ -27,7 +27,7 @@ const ResortLandingPage = React.lazy(() => import('./pages/ResortLandingPage'));
 
 function RouteLoadingSpinner() {
   return (
-    <div className="min-h-[50vh] flex flex-col items-center justify-center text-center p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center p-6">
       <span className="text-3xl mb-3 animate-bounce">🔥</span>
       <p className="text-xs text-gray-400">Cargando experiencia...</p>
     </div>

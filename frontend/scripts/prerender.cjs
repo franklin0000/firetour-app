@@ -154,6 +154,165 @@ async function run() {
     html = html.replace(/<meta name="twitter:description" content=".*?" \/>/s, `<meta name="twitter:description" content="${description}" />`);
     html = html.replace(/<meta name="twitter:url" content=".*?" \/>/s, `<meta name="twitter:url" content="${canonicalUrl}" />`);
 
+    // Inject route-specific JSON-LD Structured Data (eliminates Schema Mismatch in GSC)
+    if (pathname.startsWith('/blog/')) {
+      const slug = pathname.replace('/blog/', '');
+      const post = BLOG_POSTS.find(p => p.slug === slug);
+      if (post) {
+        const blogImg = post.coverImage.startsWith('http')
+          ? post.coverImage
+          : `https://www.firetourdr.com${post.coverImage}`;
+
+        // Update og:type & og:image / twitter:image for article
+        html = html.replace(/<meta property="og:type" content=".*?" \/>/s, `<meta property="og:type" content="article" />`);
+        html = html.replace(/<meta property="og:image" content=".*?" \/>/s, `<meta property="og:image" content="${blogImg}" />`);
+        html = html.replace(/<meta name="twitter:image" content=".*?" \/>/s, `<meta name="twitter:image" content="${blogImg}" />`);
+
+        const blogPostingSchema = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+          "headline": post.title,
+          "description": post.excerpt,
+          "image": [blogImg],
+          "datePublished": "2024-10-12T08:00:00+00:00",
+          "dateModified": new Date().toISOString(),
+          "author": {
+            "@type": "Person",
+            "name": post.author?.name || "Manuel Rosario",
+            "jobTitle": post.author?.role || "Guía Certificado en La Altagracia"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Fire Tour DR",
+            "url": "https://www.firetourdr.com",
+            "logo": { "@type": "ImageObject", "url": "https://www.firetourdr.com/favicon.svg" }
+          },
+          "articleSection": post.category,
+          "inLanguage": "es"
+        };
+
+        const breadcrumbsSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.firetourdr.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Guías de Viaje", "item": "https://www.firetourdr.com/blog" },
+            { "@type": "ListItem", "position": 3, "name": post.title, "item": canonicalUrl }
+          ]
+        };
+
+        const blogJsonLd = `<script type="application/ld+json">\n${JSON.stringify(blogPostingSchema, null, 2)}\n</script>\n    <script type="application/ld+json">\n${JSON.stringify(breadcrumbsSchema, null, 2)}\n</script>`;
+
+        // Build article-specific FAQPage
+        const faqEntities = (post.content?.sections || [])
+          .filter(sec => sec.heading && sec.heading.length > 8)
+          .slice(0, 4)
+          .map(sec => ({
+            "@type": "Question",
+            "name": sec.heading.replace(/^\d+\.\s*/, '').trim(),
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": (sec.body || []).join(' ').replace(/["\r\n]+/g, ' ').slice(0, 320) + (sec.tip ? ` Consejo: ${sec.tip}` : '')
+            }
+          }));
+
+        const faqJsonLd = faqEntities.length > 0
+          ? `<script type="application/ld+json">\n${JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqEntities }, null, 2)}\n</script>`
+          : null;
+
+        // Replace each JSON-LD script block independently (never crosses </script> boundaries)
+        html = html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (match, body) => {
+          if (body.includes('"@type": "TravelAgency"')) return blogJsonLd;
+          if (faqJsonLd && body.includes('"@type": "FAQPage"')) return faqJsonLd;
+          return match;
+        });
+      }
+    } else if (pathname.startsWith('/excursion/')) {
+      const tourId = pathname.replace('/excursion/', '');
+      const tour = tours.find(t => String(t.id) === String(tourId));
+      if (tour) {
+        const tourImg = tour.image
+          ? (tour.image.startsWith('http') ? tour.image : `https://www.firetourdr.com${tour.image}`)
+          : 'https://www.firetourdr.com/tours/excursions/tour_1/001.jpg';
+
+        html = html.replace(/<meta property="og:image" content=".*?" \/>/s, `<meta property="og:image" content="${tourImg}" />`);
+        html = html.replace(/<meta name="twitter:image" content=".*?" \/>/s, `<meta name="twitter:image" content="${tourImg}" />`);
+
+        let tourSchema;
+        if (tourId === '4') {
+          // Transfers have no fixed price (quoted on WhatsApp)
+          tourSchema = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": tour.name,
+            "description": description,
+            "image": [tourImg],
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Fire Tour DR",
+              "url": "https://www.firetourdr.com",
+              "telephone": "+1-587-225-7342"
+            },
+            "areaServed": "Punta Cana, Dominican Republic"
+          };
+        } else {
+          const verifiedPrice =
+            tourId === '1' ? '75.00' :
+            tourId === '2' ? '120.00' :
+            tourId === '3' ? '120.00' :
+            (tour.price ? Number(tour.price).toFixed(2) : '75.00');
+
+          tourSchema = {
+            "@context": "https://schema.org",
+            "@type": ["Product", "TouristTrip"],
+            "name": tour.name,
+            "description": description,
+            "image": [tourImg],
+            "brand": { "@type": "Brand", "name": "Fire Tour DR" },
+            "provider": {
+              "@type": "TravelAgency",
+              "name": "Fire Tour DR",
+              "url": "https://www.firetourdr.com",
+              "telephone": "+1-587-225-7342"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": canonicalUrl,
+              "priceCurrency": "USD",
+              "price": verifiedPrice,
+              "priceValidUntil": "2027-12-31",
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": tour.rating ? String(tour.rating) : "4.9",
+              "reviewCount": tour.reviews ? String(tour.reviews) : "1250",
+              "bestRating": "5",
+              "worstRating": "1"
+            }
+          };
+        }
+
+        const breadcrumbsSchema = {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.firetourdr.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Excursiones", "item": "https://www.firetourdr.com/excursiones" },
+            { "@type": "ListItem", "position": 3, "name": tour.name, "item": canonicalUrl }
+          ]
+        };
+
+        const tourJsonLd = `<script type="application/ld+json">\n${JSON.stringify(tourSchema, null, 2)}\n</script>\n    <script type="application/ld+json">\n${JSON.stringify(breadcrumbsSchema, null, 2)}\n</script>`;
+        html = html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (match, body) => {
+          if (body.includes('"@type": "TravelAgency"')) return tourJsonLd;
+          return match;
+        });
+      }
+    }
+
     // Inject initial data script if present
     const initialDataScript = Object.keys(initialData).length > 0 
       ? `\n    <script>window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};</script>` 

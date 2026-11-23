@@ -184,6 +184,8 @@ export default function BlogPage() {
                     <img 
                       src={post.author.avatar} 
                       alt={post.author.name} 
+                      loading="lazy"
+                      decoding="async"
                       className="w-7 h-7 rounded-full object-cover border border-white/10"
                     />
                     <span className="text-[11px] text-gray-300 font-medium">{post.author.name}</span>

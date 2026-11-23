@@ -65,6 +65,9 @@ export default function BlogPostPage() {
             {post.title}
           </h1>
 
+          {/* AdSense Responsive Banner — Justo después del H1 principal */}
+          <AdSenseBanner slot="4013713188" className="my-4 max-w-3xl mx-auto w-full" format="auto" />
+
           <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-body">
             {post.excerpt}
           </p>
@@ -74,6 +77,8 @@ export default function BlogPostPage() {
             <img 
               src={post.author.avatar} 
               alt={post.author.name}
+              loading="lazy"
+              decoding="async"
               className="w-12 h-12 rounded-full object-cover border border-cyan/40" 
             />
             <div>
@@ -88,6 +93,8 @@ export default function BlogPostPage() {
           <img 
             src={post.coverImage} 
             alt={post.title}
+            {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
+            decoding="async"
             className="w-full h-full object-cover" 
           />
         </div>
@@ -127,7 +134,7 @@ export default function BlogPostPage() {
                       {p}
                     </p>
                     {idx === 0 && pIdx === 1 && (
-                      <AdSenseBanner className="my-6" />
+                      <AdSenseBanner slot="4013713188" className="my-6" />
                     )}
                   </React.Fragment>
                 ))}
@@ -168,14 +175,6 @@ export default function BlogPostPage() {
             </p>
           </div>
 
-          {/* AdSense In-Article Anchor Placeholder */}
-          <div className="my-8 p-4 rounded-2xl bg-white/5 border border-dashed border-white/20 text-center">
-            <span className="text-[10px] uppercase tracking-widest text-gray-400 block mb-2">Espacio Informativo Patrocinado</span>
-            <div className="min-h-[90px] flex items-center justify-center text-xs text-gray-400">
-              Contenido respaldado por la Red de Viajes y Operadores de Punta Cana
-            </div>
-          </div>
-
           {/* Call to action: Book Tour */}
           {post.relatedTourId && (
             <div className="bg-gradient-to-r from-secondary/20 via-surface to-cyan/20 border border-secondary/40 rounded-2xl p-6 sm:p-8 text-center space-y-4">
@@ -197,6 +196,30 @@ export default function BlogPostPage() {
           )}
 
         </div>
+
+        {/* Related Guides (Internal Linking / Topic Cluster SEO) */}
+        <section className="pt-4 space-y-4">
+          <h3 className="text-lg sm:text-xl font-bold font-display text-white">
+            Otras Guías Recomendadas de Punta Cana
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 2).map((related) => (
+              <Link
+                key={related.slug}
+                to={`/blog/${related.slug}`}
+                className="group bg-surface/70 border border-white/10 hover:border-cyan/50 rounded-2xl p-4 flex flex-col justify-between gap-2 transition-all"
+              >
+                <span className="text-[10px] font-bold uppercase tracking-wider text-secondary">
+                  {related.category}
+                </span>
+                <h4 className="text-sm font-bold font-display text-white group-hover:text-cyan transition-colors line-clamp-2">
+                  {related.title}
+                </h4>
+                <span className="text-xs text-gray-400 line-clamp-2">{related.excerpt}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* Back Link */}
         <div className="text-center pt-4">

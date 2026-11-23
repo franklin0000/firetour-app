@@ -29,10 +29,10 @@ export default function FloatingWhatsApp({
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end select-none">
-      {/* Tooltip Prompt */}
+    <div className="fixed bottom-6 right-6 z-50 w-14 h-14 select-none">
+      {/* Tooltip Prompt (positioned absolute so it causes 0.0000 CLS) */}
       {hasPrompted && !isOpen && (
-        <div className="mb-3 hidden sm:flex items-center gap-2 bg-gray-950/95 text-white border border-emerald-500/30 px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md animate-bounce">
+        <div className="absolute bottom-full right-0 mb-3 hidden sm:flex items-center gap-2 whitespace-nowrap bg-gray-950/95 text-white border border-emerald-500/30 px-4 py-2.5 rounded-2xl shadow-2xl backdrop-blur-md animate-bounce">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
           <p className="text-xs font-bold text-gray-200">
             ¿Dudas con tu tour? <span className="text-emerald-400 font-extrabold">¡Escríbenos en vivo!</span>
@@ -47,9 +47,9 @@ export default function FloatingWhatsApp({
         </div>
       )}
 
-      {/* Expanded Quick Chat Box */}
+      {/* Expanded Quick Chat Box (positioned absolute so it causes 0.0000 CLS) */}
       {isOpen && (
-        <div className="mb-4 w-80 bg-gray-950/95 border border-emerald-500/30 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="absolute bottom-full right-0 mb-4 w-80 bg-gray-950/95 border border-emerald-500/30 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-600 to-teal-700 p-4 text-white flex items-center justify-between">
             <div className="flex items-center gap-3">

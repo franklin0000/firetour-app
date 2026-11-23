@@ -376,6 +376,8 @@ export default function ExcursionDetailsPage() {
           <img 
             src={photos[0]} 
             alt={tour.name} 
+            {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
+            decoding="async"
             className="w-full h-full object-cover opacity-80"
           />
           {/* Deep gradient overlay for text readability */}
@@ -664,7 +666,7 @@ export default function ExcursionDetailsPage() {
           )}
 
           {/* AdSense In-Content Responsive Banner (Middle of Tour Page) */}
-          <AdSenseBanner className="my-8" />
+          <AdSenseBanner slot="1034914794" className="my-8" />
 
           {/* Social Proof & Customer Reviews Panel */}
           <div ref={reviewsRef} className="bg-surface/50 border border-outline/40 p-6 md:p-8 rounded-3xl shadow-sm">

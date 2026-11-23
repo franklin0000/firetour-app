@@ -85,7 +85,7 @@ export default function ResortLandingPage() {
       price: 79,
       hotelPrice: resort.hotelLobbyPriceSaona,
       pickup: resort.pickupTimeSaona,
-      image: "https://www.firetourdr.com/tours/excursions/tour_1/001.jpg",
+      image: "https://www.firetourdr.com/tours/excursions/tour_1/001.webp",
       desc: "Lancha rápida + Catamarán gigante con animación, barra libre, piscina natural con estrellas de mar y buffet frente al mar."
     },
     {
@@ -95,7 +95,7 @@ export default function ResortLandingPage() {
       price: 55,
       hotelPrice: resort.hotelLobbyPriceBuggies,
       pickup: resort.pickupTimeBuggies,
-      image: "https://www.firetourdr.com/tours/excursions/tour_2/001.jpg",
+      image: "https://www.firetourdr.com/tours/excursions/tour_2/001.webp",
       desc: "Aventura todoterreno por senderos de fango, baño en cenote cueva subterránea, casa típica dominicana y Playa Macao."
     },
     {
@@ -105,7 +105,7 @@ export default function ResortLandingPage() {
       price: 75,
       hotelPrice: resort.hotelLobbyPriceParasail,
       pickup: resort.pickupTimeParasail,
-      image: "https://www.firetourdr.com/tours/excursions/tour_3/001.jpg",
+      image: "https://www.firetourdr.com/tours/excursions/tour_3/001.webp",
       desc: "Vuela a más de 100 metros de altura sobre las aguas turquesas del Caribe. Despegue y aterrizaje seguro desde la lancha."
     },
     {
@@ -115,7 +115,7 @@ export default function ResortLandingPage() {
       price: 45,
       hotelPrice: 85,
       pickup: "Según tu vuelo",
-      image: "https://www.firetourdr.com/tours/excursions/tour_4/001.jpg",
+      image: "https://www.firetourdr.com/tours/excursions/tour_4/001.webp",
       desc: "Vehículo privado exclusivo con chofer en sala de llegadas con tu cartel de bienvenida. Climatizado y directo a tu lobby."
     }
   ];

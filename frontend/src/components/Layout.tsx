@@ -6,6 +6,7 @@ import LanguageSelector from './LanguageSelector';
 import SmoothScroll from './SmoothScroll';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import TopPromoBanner from './TopPromoBanner';
+import AdSenseBanner from './AdSenseBanner';
 
 // Sticky Top Header Navigation component - Floating Pill Style
 function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
@@ -446,6 +447,12 @@ function CouponToast() {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [showComingSoon, setShowComingSoon] = useState(false);
+  const location = useLocation();
+  const hidePreFooterAd =
+    location.pathname.startsWith('/checkout') ||
+    location.pathname.startsWith('/admin') ||
+    location.pathname.startsWith('/success') ||
+    location.pathname.startsWith('/ticket');
 
   return (
     <SmoothScroll>
@@ -464,6 +471,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main className="flex-1 w-full relative pt-16 sm:pt-20">
           {children}
         </main>
+
+        {/* AdSense Responsive Pre-Footer Banner (Antes del pie de página, excluye checkout/ticket/admin) */}
+        {!hidePreFooterAd && (
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 my-8">
+            <AdSenseBanner slot="1288185337" className="w-full" format="auto" />
+          </div>
+        )}
 
         {/* Global Footer */}
         <Footer />

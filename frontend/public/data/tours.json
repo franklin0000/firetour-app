@@ -10,7 +10,7 @@
       "rating": 4.9,
       "reviews": 1420,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_1/001.jpg",
+      "image": "/tours/excursions/tour_1/001.webp",
       "desc": "¡La excursión número 1 de la República Dominicana! Navega en catamarán de vela con música, animación y barra libre, báñate en la famosa Piscina Natural con estrellas de mar gigantes y relájate en las playas vírgenes de arena blanca de Isla Saona con almuerzo buffet típico dominicano incluido.",
       "duration": "Día Completo (8-9 hrs)",
       "difficulty": "Fácil",
@@ -24,11 +24,11 @@
         "Impuestos y brazalete de Parque Nacional Cotubanamá"
       ],
       "photos": [
-        "/tours/excursions/tour_1/001.jpg",
-        "/tours/excursions/tour_1/002.jpg",
-        "/tours/excursions/tour_1/003.jpg",
-        "/tours/excursions/tour_1/004.jpg",
-        "/tours/excursions/tour_1/005.jpg"
+        "/tours/excursions/tour_1/001.webp",
+        "/tours/excursions/tour_1/002.webp",
+        "/tours/excursions/tour_1/003.webp",
+        "/tours/excursions/tour_1/004.webp",
+        "/tours/excursions/tour_1/005.webp"
       ]
     },
     {
@@ -41,7 +41,7 @@
       "rating": 4.8,
       "reviews": 1150,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_2/001.jpg",
+      "image": "/tours/excursions/tour_2/001.webp",
       "desc": "¡Acelera a fondo por senderos selváticos en un potente buggy 4x4! Atraviesa caminos de barro, refréscate nadando en un cenote de cueva subterránea de aguas cristalinas, visita la impresionante Playa Macao y degusta café artesanal, cacao orgánico y mamajuana en un rancho típico.",
       "duration": "Medio Día (4 hrs)",
       "difficulty": "Media",
@@ -54,11 +54,11 @@
         "Degustación de café, cacao y mamajuana dominicana"
       ],
       "photos": [
-        "/tours/excursions/tour_2/001.jpg",
-        "/tours/excursions/tour_2/002.jpg",
-        "/tours/excursions/tour_2/003.jpg",
-        "/tours/excursions/tour_2/004.jpg",
-        "/tours/excursions/tour_2/005.jpg"
+        "/tours/excursions/tour_2/001.webp",
+        "/tours/excursions/tour_2/002.webp",
+        "/tours/excursions/tour_2/003.webp",
+        "/tours/excursions/tour_2/004.webp",
+        "/tours/excursions/tour_2/005.webp"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "rating": 4.9,
       "reviews": 840,
       "tag": "Parasail",
-      "image": "/tours/excursions/tour_3/001.jpg",
+      "image": "/tours/excursions/tour_3/001.webp",
       "desc": "¡Vuela sobre las impresionantes aguas turquesas del Caribe a más de 150 metros de altura! Disfruta de vistas panorámicas 360° de toda la costa de Bávaro y Punta Cana con despegue y aterrizaje suave directo en la plataforma del barco. Seguro, emocionante e inolvidable.",
       "duration": "1 hora (10-12 min en el aire)",
       "difficulty": "Fácil",
@@ -84,11 +84,11 @@
         "Instrucciones de seguridad y asistencia completa"
       ],
       "photos": [
-        "/tours/excursions/tour_3/001.jpg",
-        "/tours/excursions/tour_3/002.jpg",
-        "/tours/excursions/tour_3/003.jpg",
-        "/tours/excursions/tour_3/004.jpg",
-        "/tours/excursions/tour_3/005.jpg"
+        "/tours/excursions/tour_3/001.webp",
+        "/tours/excursions/tour_3/002.webp",
+        "/tours/excursions/tour_3/003.webp",
+        "/tours/excursions/tour_3/004.webp",
+        "/tours/excursions/tour_3/005.webp"
       ]
     },
     {
@@ -101,7 +101,7 @@
       "rating": 4.9,
       "reviews": 970,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_4/001.jpg",
+      "image": "/tours/excursions/tour_4/001.webp",
       "desc": "Olvídate de las filas y el estrés al aterrizar en el Aeropuerto Internacional de Punta Cana (PUJ). Tu chofer profesional te esperará con un cartel personalizado para llevarte directo a tu hotel o resort en vehículo moderno con aire acondicionado, Wi-Fi y confort garantizado.",
       "duration": "25 - 45 min",
       "difficulty": "Fácil",
@@ -114,11 +114,11 @@
         "Disponible 24 horas los 7 días de la semana"
       ],
       "photos": [
-        "/tours/excursions/tour_4/001.jpg",
-        "/tours/excursions/tour_4/002.jpg",
-        "/tours/excursions/tour_4/003.jpg",
-        "/tours/excursions/tour_4/004.jpg",
-        "/tours/excursions/tour_4/005.jpg"
+        "/tours/excursions/tour_4/001.webp",
+        "/tours/excursions/tour_4/002.webp",
+        "/tours/excursions/tour_4/003.webp",
+        "/tours/excursions/tour_4/004.webp",
+        "/tours/excursions/tour_4/005.webp"
       ]
     },
     {
@@ -131,7 +131,7 @@
       "rating": 4.3,
       "reviews": 761,
       "tag": "Water",
-      "image": "/tours/excursions/tour_5/001.jpg",
+      "image": "/tours/excursions/tour_5/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -141,11 +141,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_5/001.jpg",
-        "/tours/excursions/tour_5/002.jpg",
-        "/tours/excursions/tour_5/003.jpg",
-        "/tours/excursions/tour_5/004.jpg",
-        "/tours/excursions/tour_5/005.jpg"
+        "/tours/excursions/tour_5/001.webp",
+        "/tours/excursions/tour_5/002.webp",
+        "/tours/excursions/tour_5/003.webp",
+        "/tours/excursions/tour_5/004.webp",
+        "/tours/excursions/tour_5/005.webp"
       ]
     },
     {
@@ -158,7 +158,7 @@
       "rating": 4.7,
       "reviews": 319,
       "tag": "Water",
-      "image": "/tours/excursions/tour_6/001.jpg",
+      "image": "/tours/excursions/tour_6/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -168,11 +168,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_6/001.jpg",
-        "/tours/excursions/tour_6/002.jpg",
-        "/tours/excursions/tour_6/003.jpg",
-        "/tours/excursions/tour_6/004.jpg",
-        "/tours/excursions/tour_6/005.jpg"
+        "/tours/excursions/tour_6/001.webp",
+        "/tours/excursions/tour_6/002.webp",
+        "/tours/excursions/tour_6/003.webp",
+        "/tours/excursions/tour_6/004.webp",
+        "/tours/excursions/tour_6/005.webp"
       ]
     },
     {
@@ -185,7 +185,7 @@
       "rating": 4.9,
       "reviews": 611,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_7/001.jpg",
+      "image": "/tours/excursions/tour_7/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -195,11 +195,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_7/001.jpg",
-        "/tours/excursions/tour_7/002.jpg",
-        "/tours/excursions/tour_7/003.jpg",
-        "/tours/excursions/tour_7/004.jpg",
-        "/tours/excursions/tour_7/005.jpg"
+        "/tours/excursions/tour_7/001.webp",
+        "/tours/excursions/tour_7/002.webp",
+        "/tours/excursions/tour_7/003.webp",
+        "/tours/excursions/tour_7/004.webp",
+        "/tours/excursions/tour_7/005.webp"
       ]
     },
     {
@@ -212,7 +212,7 @@
       "rating": 4.6,
       "reviews": 223,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_8/001.jpg",
+      "image": "/tours/excursions/tour_8/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -222,11 +222,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_8/001.jpg",
-        "/tours/excursions/tour_8/002.jpg",
-        "/tours/excursions/tour_8/003.jpg",
-        "/tours/excursions/tour_8/004.jpg",
-        "/tours/excursions/tour_8/005.jpg"
+        "/tours/excursions/tour_8/001.webp",
+        "/tours/excursions/tour_8/002.webp",
+        "/tours/excursions/tour_8/003.webp",
+        "/tours/excursions/tour_8/004.webp",
+        "/tours/excursions/tour_8/005.webp"
       ]
     },
     {
@@ -239,7 +239,7 @@
       "rating": 4.4,
       "reviews": 375,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_9/001.jpg",
+      "image": "/tours/excursions/tour_9/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -249,11 +249,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_9/001.jpg",
-        "/tours/excursions/tour_9/002.jpg",
-        "/tours/excursions/tour_9/003.jpg",
-        "/tours/excursions/tour_9/004.jpg",
-        "/tours/excursions/tour_9/005.jpg"
+        "/tours/excursions/tour_9/001.webp",
+        "/tours/excursions/tour_9/002.webp",
+        "/tours/excursions/tour_9/003.webp",
+        "/tours/excursions/tour_9/004.webp",
+        "/tours/excursions/tour_9/005.webp"
       ]
     },
     {
@@ -266,7 +266,7 @@
       "rating": 4.5,
       "reviews": 781,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_10/001.jpg",
+      "image": "/tours/excursions/tour_10/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -276,11 +276,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_10/001.jpg",
-        "/tours/excursions/tour_10/002.jpg",
-        "/tours/excursions/tour_10/003.jpg",
-        "/tours/excursions/tour_10/004.jpg",
-        "/tours/excursions/tour_10/005.jpg"
+        "/tours/excursions/tour_10/001.webp",
+        "/tours/excursions/tour_10/002.webp",
+        "/tours/excursions/tour_10/003.webp",
+        "/tours/excursions/tour_10/004.webp",
+        "/tours/excursions/tour_10/005.webp"
       ]
     },
     {
@@ -293,7 +293,7 @@
       "rating": 4.2,
       "reviews": 414,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_11/001.jpg",
+      "image": "/tours/excursions/tour_11/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -303,11 +303,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_11/001.jpg",
-        "/tours/excursions/tour_11/002.jpg",
-        "/tours/excursions/tour_11/003.jpg",
-        "/tours/excursions/tour_11/004.jpg",
-        "/tours/excursions/tour_11/005.jpg"
+        "/tours/excursions/tour_11/001.webp",
+        "/tours/excursions/tour_11/002.webp",
+        "/tours/excursions/tour_11/003.webp",
+        "/tours/excursions/tour_11/004.webp",
+        "/tours/excursions/tour_11/005.webp"
       ]
     },
     {
@@ -320,7 +320,7 @@
       "rating": 4.9,
       "reviews": 487,
       "tag": "Water",
-      "image": "/tours/excursions/tour_12/001.jpg",
+      "image": "/tours/excursions/tour_12/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -330,11 +330,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_12/001.jpg",
-        "/tours/excursions/tour_12/002.jpg",
-        "/tours/excursions/tour_12/003.jpg",
-        "/tours/excursions/tour_12/004.jpg",
-        "/tours/excursions/tour_12/005.jpg"
+        "/tours/excursions/tour_12/001.webp",
+        "/tours/excursions/tour_12/002.webp",
+        "/tours/excursions/tour_12/003.webp",
+        "/tours/excursions/tour_12/004.webp",
+        "/tours/excursions/tour_12/005.webp"
       ]
     },
     {
@@ -347,7 +347,7 @@
       "rating": 4.4,
       "reviews": 749,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_13/001.jpg",
+      "image": "/tours/excursions/tour_13/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -357,11 +357,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_13/001.jpg",
-        "/tours/excursions/tour_13/002.jpg",
-        "/tours/excursions/tour_13/003.jpg",
-        "/tours/excursions/tour_13/004.jpg",
-        "/tours/excursions/tour_13/005.jpg"
+        "/tours/excursions/tour_13/001.webp",
+        "/tours/excursions/tour_13/002.webp",
+        "/tours/excursions/tour_13/003.webp",
+        "/tours/excursions/tour_13/004.webp",
+        "/tours/excursions/tour_13/005.webp"
       ]
     },
     {
@@ -374,7 +374,7 @@
       "rating": 4.3,
       "reviews": 114,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_14/001.jpg",
+      "image": "/tours/excursions/tour_14/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -384,11 +384,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_14/001.jpg",
-        "/tours/excursions/tour_14/002.jpg",
-        "/tours/excursions/tour_14/003.jpg",
-        "/tours/excursions/tour_14/004.jpg",
-        "/tours/excursions/tour_14/005.jpg"
+        "/tours/excursions/tour_14/001.webp",
+        "/tours/excursions/tour_14/002.webp",
+        "/tours/excursions/tour_14/003.webp",
+        "/tours/excursions/tour_14/004.webp",
+        "/tours/excursions/tour_14/005.webp"
       ]
     },
     {
@@ -401,7 +401,7 @@
       "rating": 4.2,
       "reviews": 551,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_15/001.jpg",
+      "image": "/tours/excursions/tour_15/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -411,11 +411,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_15/001.jpg",
-        "/tours/excursions/tour_15/002.jpg",
-        "/tours/excursions/tour_15/003.jpg",
-        "/tours/excursions/tour_15/004.jpg",
-        "/tours/excursions/tour_15/005.jpg"
+        "/tours/excursions/tour_15/001.webp",
+        "/tours/excursions/tour_15/002.webp",
+        "/tours/excursions/tour_15/003.webp",
+        "/tours/excursions/tour_15/004.webp",
+        "/tours/excursions/tour_15/005.webp"
       ]
     },
     {
@@ -428,7 +428,7 @@
       "rating": 4.6,
       "reviews": 614,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_16/001.jpg",
+      "image": "/tours/excursions/tour_16/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -438,11 +438,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_16/001.jpg",
-        "/tours/excursions/tour_16/002.jpg",
-        "/tours/excursions/tour_16/003.jpg",
-        "/tours/excursions/tour_16/004.jpg",
-        "/tours/excursions/tour_16/005.jpg"
+        "/tours/excursions/tour_16/001.webp",
+        "/tours/excursions/tour_16/002.webp",
+        "/tours/excursions/tour_16/003.webp",
+        "/tours/excursions/tour_16/004.webp",
+        "/tours/excursions/tour_16/005.webp"
       ]
     },
     {
@@ -455,7 +455,7 @@
       "rating": 4.8,
       "reviews": 142,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_17/001.jpg",
+      "image": "/tours/excursions/tour_17/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -465,11 +465,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_17/001.jpg",
-        "/tours/excursions/tour_17/002.jpg",
-        "/tours/excursions/tour_17/003.jpg",
-        "/tours/excursions/tour_17/004.jpg",
-        "/tours/excursions/tour_17/005.jpg"
+        "/tours/excursions/tour_17/001.webp",
+        "/tours/excursions/tour_17/002.webp",
+        "/tours/excursions/tour_17/003.webp",
+        "/tours/excursions/tour_17/004.webp",
+        "/tours/excursions/tour_17/005.webp"
       ]
     },
     {
@@ -482,7 +482,7 @@
       "rating": 4,
       "reviews": 315,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_18/001.jpg",
+      "image": "/tours/excursions/tour_18/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -492,11 +492,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_18/001.jpg",
-        "/tours/excursions/tour_18/002.jpg",
-        "/tours/excursions/tour_18/003.jpg",
-        "/tours/excursions/tour_18/004.jpg",
-        "/tours/excursions/tour_18/005.jpg"
+        "/tours/excursions/tour_18/001.webp",
+        "/tours/excursions/tour_18/002.webp",
+        "/tours/excursions/tour_18/003.webp",
+        "/tours/excursions/tour_18/004.webp",
+        "/tours/excursions/tour_18/005.webp"
       ]
     },
     {
@@ -509,7 +509,7 @@
       "rating": 4.7,
       "reviews": 883,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_19/001.jpg",
+      "image": "/tours/excursions/tour_19/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -519,11 +519,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_19/001.jpg",
-        "/tours/excursions/tour_19/002.jpg",
-        "/tours/excursions/tour_19/003.jpg",
-        "/tours/excursions/tour_19/004.jpg",
-        "/tours/excursions/tour_19/005.jpg"
+        "/tours/excursions/tour_19/001.webp",
+        "/tours/excursions/tour_19/002.webp",
+        "/tours/excursions/tour_19/003.webp",
+        "/tours/excursions/tour_19/004.webp",
+        "/tours/excursions/tour_19/005.webp"
       ]
     },
     {
@@ -536,7 +536,7 @@
       "rating": 4.5,
       "reviews": 419,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_20/001.jpg",
+      "image": "/tours/excursions/tour_20/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -546,11 +546,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_20/001.jpg",
-        "/tours/excursions/tour_20/002.jpg",
-        "/tours/excursions/tour_20/003.jpg",
-        "/tours/excursions/tour_20/004.jpg",
-        "/tours/excursions/tour_20/005.jpg"
+        "/tours/excursions/tour_20/001.webp",
+        "/tours/excursions/tour_20/002.webp",
+        "/tours/excursions/tour_20/003.webp",
+        "/tours/excursions/tour_20/004.webp",
+        "/tours/excursions/tour_20/005.webp"
       ]
     },
     {
@@ -563,7 +563,7 @@
       "rating": 4.3,
       "reviews": 554,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_21/001.jpg",
+      "image": "/tours/excursions/tour_21/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -573,11 +573,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_21/001.jpg",
-        "/tours/excursions/tour_21/002.jpg",
-        "/tours/excursions/tour_21/003.jpg",
-        "/tours/excursions/tour_21/004.jpg",
-        "/tours/excursions/tour_21/005.jpg"
+        "/tours/excursions/tour_21/001.webp",
+        "/tours/excursions/tour_21/002.webp",
+        "/tours/excursions/tour_21/003.webp",
+        "/tours/excursions/tour_21/004.webp",
+        "/tours/excursions/tour_21/005.webp"
       ]
     },
     {
@@ -590,7 +590,7 @@
       "rating": 4,
       "reviews": 854,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_22/001.jpg",
+      "image": "/tours/excursions/tour_22/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -600,11 +600,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_22/001.jpg",
-        "/tours/excursions/tour_22/002.jpg",
-        "/tours/excursions/tour_22/003.jpg",
-        "/tours/excursions/tour_22/004.jpg",
-        "/tours/excursions/tour_22/005.jpg"
+        "/tours/excursions/tour_22/001.webp",
+        "/tours/excursions/tour_22/002.webp",
+        "/tours/excursions/tour_22/003.webp",
+        "/tours/excursions/tour_22/004.webp",
+        "/tours/excursions/tour_22/005.webp"
       ]
     },
     {
@@ -617,7 +617,7 @@
       "rating": 4.1,
       "reviews": 805,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_23/001.jpg",
+      "image": "/tours/excursions/tour_23/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -627,11 +627,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_23/001.jpg",
-        "/tours/excursions/tour_23/002.jpg",
-        "/tours/excursions/tour_23/003.jpg",
-        "/tours/excursions/tour_23/004.jpg",
-        "/tours/excursions/tour_23/005.jpg"
+        "/tours/excursions/tour_23/001.webp",
+        "/tours/excursions/tour_23/002.webp",
+        "/tours/excursions/tour_23/003.webp",
+        "/tours/excursions/tour_23/004.webp",
+        "/tours/excursions/tour_23/005.webp"
       ]
     },
     {
@@ -644,7 +644,7 @@
       "rating": 4.1,
       "reviews": 539,
       "tag": "Water",
-      "image": "/tours/excursions/tour_24/001.jpg",
+      "image": "/tours/excursions/tour_24/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -654,11 +654,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_24/001.jpg",
-        "/tours/excursions/tour_24/002.jpg",
-        "/tours/excursions/tour_24/003.jpg",
-        "/tours/excursions/tour_24/004.jpg",
-        "/tours/excursions/tour_24/005.jpg"
+        "/tours/excursions/tour_24/001.webp",
+        "/tours/excursions/tour_24/002.webp",
+        "/tours/excursions/tour_24/003.webp",
+        "/tours/excursions/tour_24/004.webp",
+        "/tours/excursions/tour_24/005.webp"
       ]
     },
     {
@@ -671,7 +671,7 @@
       "rating": 4.9,
       "reviews": 622,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_25/001.jpg",
+      "image": "/tours/excursions/tour_25/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -681,11 +681,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_25/001.jpg",
-        "/tours/excursions/tour_25/002.jpg",
-        "/tours/excursions/tour_25/003.jpg",
-        "/tours/excursions/tour_25/004.jpg",
-        "/tours/excursions/tour_25/005.jpg"
+        "/tours/excursions/tour_25/001.webp",
+        "/tours/excursions/tour_25/002.webp",
+        "/tours/excursions/tour_25/003.webp",
+        "/tours/excursions/tour_25/004.webp",
+        "/tours/excursions/tour_25/005.webp"
       ]
     },
     {
@@ -698,7 +698,7 @@
       "rating": 4,
       "reviews": 771,
       "tag": "Water",
-      "image": "/tours/excursions/tour_26/001.jpg",
+      "image": "/tours/excursions/tour_26/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -708,11 +708,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_26/001.jpg",
-        "/tours/excursions/tour_26/002.jpg",
-        "/tours/excursions/tour_26/003.jpg",
-        "/tours/excursions/tour_26/004.jpg",
-        "/tours/excursions/tour_26/005.jpg"
+        "/tours/excursions/tour_26/001.webp",
+        "/tours/excursions/tour_26/002.webp",
+        "/tours/excursions/tour_26/003.webp",
+        "/tours/excursions/tour_26/004.webp",
+        "/tours/excursions/tour_26/005.webp"
       ]
     },
     {
@@ -725,7 +725,7 @@
       "rating": 4.3,
       "reviews": 694,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_27/001.jpg",
+      "image": "/tours/excursions/tour_27/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -735,11 +735,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_27/001.jpg",
-        "/tours/excursions/tour_27/002.jpg",
-        "/tours/excursions/tour_27/003.jpg",
-        "/tours/excursions/tour_27/004.jpg",
-        "/tours/excursions/tour_27/005.jpg"
+        "/tours/excursions/tour_27/001.webp",
+        "/tours/excursions/tour_27/002.webp",
+        "/tours/excursions/tour_27/003.webp",
+        "/tours/excursions/tour_27/004.webp",
+        "/tours/excursions/tour_27/005.webp"
       ]
     },
     {
@@ -752,7 +752,7 @@
       "rating": 4.4,
       "reviews": 782,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_28/001.jpg",
+      "image": "/tours/excursions/tour_28/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -762,11 +762,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_28/001.jpg",
-        "/tours/excursions/tour_28/002.jpg",
-        "/tours/excursions/tour_28/003.jpg",
-        "/tours/excursions/tour_28/004.jpg",
-        "/tours/excursions/tour_28/005.jpg"
+        "/tours/excursions/tour_28/001.webp",
+        "/tours/excursions/tour_28/002.webp",
+        "/tours/excursions/tour_28/003.webp",
+        "/tours/excursions/tour_28/004.webp",
+        "/tours/excursions/tour_28/005.webp"
       ]
     },
     {
@@ -779,7 +779,7 @@
       "rating": 4.5,
       "reviews": 748,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_29/001.jpg",
+      "image": "/tours/excursions/tour_29/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -789,11 +789,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_29/001.jpg",
-        "/tours/excursions/tour_29/002.jpg",
-        "/tours/excursions/tour_29/003.jpg",
-        "/tours/excursions/tour_29/004.jpg",
-        "/tours/excursions/tour_29/005.jpg"
+        "/tours/excursions/tour_29/001.webp",
+        "/tours/excursions/tour_29/002.webp",
+        "/tours/excursions/tour_29/003.webp",
+        "/tours/excursions/tour_29/004.webp",
+        "/tours/excursions/tour_29/005.webp"
       ]
     },
     {
@@ -806,7 +806,7 @@
       "rating": 4.9,
       "reviews": 117,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_30/001.jpg",
+      "image": "/tours/excursions/tour_30/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -816,11 +816,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_30/001.jpg",
-        "/tours/excursions/tour_30/002.jpg",
-        "/tours/excursions/tour_30/003.jpg",
-        "/tours/excursions/tour_30/004.jpg",
-        "/tours/excursions/tour_30/005.jpg"
+        "/tours/excursions/tour_30/001.webp",
+        "/tours/excursions/tour_30/002.webp",
+        "/tours/excursions/tour_30/003.webp",
+        "/tours/excursions/tour_30/004.webp",
+        "/tours/excursions/tour_30/005.webp"
       ]
     },
     {
@@ -833,7 +833,7 @@
       "rating": 4.5,
       "reviews": 898,
       "tag": "Water",
-      "image": "/tours/excursions/tour_31/001.jpg",
+      "image": "/tours/excursions/tour_31/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -843,11 +843,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_31/001.jpg",
-        "/tours/excursions/tour_31/002.jpg",
-        "/tours/excursions/tour_31/003.jpg",
-        "/tours/excursions/tour_31/004.jpg",
-        "/tours/excursions/tour_31/005.jpg"
+        "/tours/excursions/tour_31/001.webp",
+        "/tours/excursions/tour_31/002.webp",
+        "/tours/excursions/tour_31/003.webp",
+        "/tours/excursions/tour_31/004.webp",
+        "/tours/excursions/tour_31/005.webp"
       ]
     },
     {
@@ -860,7 +860,7 @@
       "rating": 4.7,
       "reviews": 200,
       "tag": "Water",
-      "image": "/tours/excursions/tour_32/001.jpg",
+      "image": "/tours/excursions/tour_32/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -870,11 +870,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_32/001.jpg",
-        "/tours/excursions/tour_32/002.jpg",
-        "/tours/excursions/tour_32/003.jpg",
-        "/tours/excursions/tour_32/004.jpg",
-        "/tours/excursions/tour_32/005.jpg"
+        "/tours/excursions/tour_32/001.webp",
+        "/tours/excursions/tour_32/002.webp",
+        "/tours/excursions/tour_32/003.webp",
+        "/tours/excursions/tour_32/004.webp",
+        "/tours/excursions/tour_32/005.webp"
       ]
     },
     {
@@ -887,7 +887,7 @@
       "rating": 4.2,
       "reviews": 476,
       "tag": "Water",
-      "image": "/tours/excursions/tour_33/001.jpg",
+      "image": "/tours/excursions/tour_33/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -897,11 +897,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_33/001.jpg",
-        "/tours/excursions/tour_33/002.jpg",
-        "/tours/excursions/tour_33/003.jpg",
-        "/tours/excursions/tour_33/004.jpg",
-        "/tours/excursions/tour_33/005.jpg"
+        "/tours/excursions/tour_33/001.webp",
+        "/tours/excursions/tour_33/002.webp",
+        "/tours/excursions/tour_33/003.webp",
+        "/tours/excursions/tour_33/004.webp",
+        "/tours/excursions/tour_33/005.webp"
       ]
     },
     {
@@ -914,7 +914,7 @@
       "rating": 4.7,
       "reviews": 700,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_34/001.jpg",
+      "image": "/tours/excursions/tour_34/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -924,11 +924,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_34/001.jpg",
-        "/tours/excursions/tour_34/002.jpg",
-        "/tours/excursions/tour_34/003.jpg",
-        "/tours/excursions/tour_34/004.jpg",
-        "/tours/excursions/tour_34/005.jpg"
+        "/tours/excursions/tour_34/001.webp",
+        "/tours/excursions/tour_34/002.webp",
+        "/tours/excursions/tour_34/003.webp",
+        "/tours/excursions/tour_34/004.webp",
+        "/tours/excursions/tour_34/005.webp"
       ]
     },
     {
@@ -941,7 +941,7 @@
       "rating": 4.2,
       "reviews": 450,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_35/001.jpg",
+      "image": "/tours/excursions/tour_35/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -951,11 +951,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_35/001.jpg",
-        "/tours/excursions/tour_35/002.jpg",
-        "/tours/excursions/tour_35/003.jpg",
-        "/tours/excursions/tour_35/004.jpg",
-        "/tours/excursions/tour_35/005.jpg"
+        "/tours/excursions/tour_35/001.webp",
+        "/tours/excursions/tour_35/002.webp",
+        "/tours/excursions/tour_35/003.webp",
+        "/tours/excursions/tour_35/004.webp",
+        "/tours/excursions/tour_35/005.webp"
       ]
     },
     {
@@ -968,7 +968,7 @@
       "rating": 4.5,
       "reviews": 429,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_36/001.jpg",
+      "image": "/tours/excursions/tour_36/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -978,11 +978,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_36/001.jpg",
-        "/tours/excursions/tour_36/002.jpg",
-        "/tours/excursions/tour_36/003.jpg",
-        "/tours/excursions/tour_36/004.jpg",
-        "/tours/excursions/tour_36/005.jpg"
+        "/tours/excursions/tour_36/001.webp",
+        "/tours/excursions/tour_36/002.webp",
+        "/tours/excursions/tour_36/003.webp",
+        "/tours/excursions/tour_36/004.webp",
+        "/tours/excursions/tour_36/005.webp"
       ]
     },
     {
@@ -995,7 +995,7 @@
       "rating": 4.2,
       "reviews": 899,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_37/001.jpg",
+      "image": "/tours/excursions/tour_37/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1005,11 +1005,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_37/001.jpg",
-        "/tours/excursions/tour_37/002.jpg",
-        "/tours/excursions/tour_37/003.jpg",
-        "/tours/excursions/tour_37/004.jpg",
-        "/tours/excursions/tour_37/005.jpg"
+        "/tours/excursions/tour_37/001.webp",
+        "/tours/excursions/tour_37/002.webp",
+        "/tours/excursions/tour_37/003.webp",
+        "/tours/excursions/tour_37/004.webp",
+        "/tours/excursions/tour_37/005.webp"
       ]
     },
     {
@@ -1022,7 +1022,7 @@
       "rating": 4.2,
       "reviews": 107,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_38/001.jpg",
+      "image": "/tours/excursions/tour_38/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1032,11 +1032,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_38/001.jpg",
-        "/tours/excursions/tour_38/002.jpg",
-        "/tours/excursions/tour_38/003.jpg",
-        "/tours/excursions/tour_38/004.jpg",
-        "/tours/excursions/tour_38/005.jpg"
+        "/tours/excursions/tour_38/001.webp",
+        "/tours/excursions/tour_38/002.webp",
+        "/tours/excursions/tour_38/003.webp",
+        "/tours/excursions/tour_38/004.webp",
+        "/tours/excursions/tour_38/005.webp"
       ]
     },
     {
@@ -1049,7 +1049,7 @@
       "rating": 4.1,
       "reviews": 717,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_39/001.jpg",
+      "image": "/tours/excursions/tour_39/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1059,11 +1059,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_39/001.jpg",
-        "/tours/excursions/tour_39/002.jpg",
-        "/tours/excursions/tour_39/003.jpg",
-        "/tours/excursions/tour_39/004.jpg",
-        "/tours/excursions/tour_39/005.jpg"
+        "/tours/excursions/tour_39/001.webp",
+        "/tours/excursions/tour_39/002.webp",
+        "/tours/excursions/tour_39/003.webp",
+        "/tours/excursions/tour_39/004.webp",
+        "/tours/excursions/tour_39/005.webp"
       ]
     },
     {
@@ -1076,7 +1076,7 @@
       "rating": 4.1,
       "reviews": 378,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_40/001.jpg",
+      "image": "/tours/excursions/tour_40/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1086,11 +1086,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_40/001.jpg",
-        "/tours/excursions/tour_40/002.jpg",
-        "/tours/excursions/tour_40/003.jpg",
-        "/tours/excursions/tour_40/004.jpg",
-        "/tours/excursions/tour_40/005.jpg"
+        "/tours/excursions/tour_40/001.webp",
+        "/tours/excursions/tour_40/002.webp",
+        "/tours/excursions/tour_40/003.webp",
+        "/tours/excursions/tour_40/004.webp",
+        "/tours/excursions/tour_40/005.webp"
       ]
     },
     {
@@ -1103,7 +1103,7 @@
       "rating": 4.5,
       "reviews": 426,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_41/001.jpg",
+      "image": "/tours/excursions/tour_41/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1113,11 +1113,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_41/001.jpg",
-        "/tours/excursions/tour_41/002.jpg",
-        "/tours/excursions/tour_41/003.jpg",
-        "/tours/excursions/tour_41/004.jpg",
-        "/tours/excursions/tour_41/005.jpg"
+        "/tours/excursions/tour_41/001.webp",
+        "/tours/excursions/tour_41/002.webp",
+        "/tours/excursions/tour_41/003.webp",
+        "/tours/excursions/tour_41/004.webp",
+        "/tours/excursions/tour_41/005.webp"
       ]
     },
     {
@@ -1130,7 +1130,7 @@
       "rating": 4.6,
       "reviews": 321,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_42/001.jpg",
+      "image": "/tours/excursions/tour_42/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1140,11 +1140,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_42/001.jpg",
-        "/tours/excursions/tour_42/002.jpg",
-        "/tours/excursions/tour_42/003.jpg",
-        "/tours/excursions/tour_42/004.jpg",
-        "/tours/excursions/tour_42/005.jpg"
+        "/tours/excursions/tour_42/001.webp",
+        "/tours/excursions/tour_42/002.webp",
+        "/tours/excursions/tour_42/003.webp",
+        "/tours/excursions/tour_42/004.webp",
+        "/tours/excursions/tour_42/005.webp"
       ]
     },
     {
@@ -1157,7 +1157,7 @@
       "rating": 4.1,
       "reviews": 595,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_43/001.jpg",
+      "image": "/tours/excursions/tour_43/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1167,11 +1167,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_43/001.jpg",
-        "/tours/excursions/tour_43/002.jpg",
-        "/tours/excursions/tour_43/003.jpg",
-        "/tours/excursions/tour_43/004.jpg",
-        "/tours/excursions/tour_43/005.jpg"
+        "/tours/excursions/tour_43/001.webp",
+        "/tours/excursions/tour_43/002.webp",
+        "/tours/excursions/tour_43/003.webp",
+        "/tours/excursions/tour_43/004.webp",
+        "/tours/excursions/tour_43/005.webp"
       ]
     },
     {
@@ -1184,7 +1184,7 @@
       "rating": 4.2,
       "reviews": 634,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_44/001.jpg",
+      "image": "/tours/excursions/tour_44/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1194,11 +1194,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_44/001.jpg",
-        "/tours/excursions/tour_44/002.jpg",
-        "/tours/excursions/tour_44/003.jpg",
-        "/tours/excursions/tour_44/004.jpg",
-        "/tours/excursions/tour_44/005.jpg"
+        "/tours/excursions/tour_44/001.webp",
+        "/tours/excursions/tour_44/002.webp",
+        "/tours/excursions/tour_44/003.webp",
+        "/tours/excursions/tour_44/004.webp",
+        "/tours/excursions/tour_44/005.webp"
       ]
     },
     {
@@ -1211,7 +1211,7 @@
       "rating": 4.6,
       "reviews": 765,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_45/001.jpg",
+      "image": "/tours/excursions/tour_45/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1221,11 +1221,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_45/001.jpg",
-        "/tours/excursions/tour_45/002.jpg",
-        "/tours/excursions/tour_45/003.jpg",
-        "/tours/excursions/tour_45/004.jpg",
-        "/tours/excursions/tour_45/005.jpg"
+        "/tours/excursions/tour_45/001.webp",
+        "/tours/excursions/tour_45/002.webp",
+        "/tours/excursions/tour_45/003.webp",
+        "/tours/excursions/tour_45/004.webp",
+        "/tours/excursions/tour_45/005.webp"
       ]
     },
     {
@@ -1238,7 +1238,7 @@
       "rating": 4.8,
       "reviews": 554,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_46/001.jpg",
+      "image": "/tours/excursions/tour_46/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1248,11 +1248,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_46/001.jpg",
-        "/tours/excursions/tour_46/002.jpg",
-        "/tours/excursions/tour_46/003.jpg",
-        "/tours/excursions/tour_46/004.jpg",
-        "/tours/excursions/tour_46/005.jpg"
+        "/tours/excursions/tour_46/001.webp",
+        "/tours/excursions/tour_46/002.webp",
+        "/tours/excursions/tour_46/003.webp",
+        "/tours/excursions/tour_46/004.webp",
+        "/tours/excursions/tour_46/005.webp"
       ]
     },
     {
@@ -1265,7 +1265,7 @@
       "rating": 4,
       "reviews": 537,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_47/001.jpg",
+      "image": "/tours/excursions/tour_47/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1275,11 +1275,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_47/001.jpg",
-        "/tours/excursions/tour_47/002.jpg",
-        "/tours/excursions/tour_47/003.jpg",
-        "/tours/excursions/tour_47/004.jpg",
-        "/tours/excursions/tour_47/005.jpg"
+        "/tours/excursions/tour_47/001.webp",
+        "/tours/excursions/tour_47/002.webp",
+        "/tours/excursions/tour_47/003.webp",
+        "/tours/excursions/tour_47/004.webp",
+        "/tours/excursions/tour_47/005.webp"
       ]
     },
     {
@@ -1292,7 +1292,7 @@
       "rating": 4.2,
       "reviews": 887,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_48/001.jpg",
+      "image": "/tours/excursions/tour_48/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1302,11 +1302,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_48/001.jpg",
-        "/tours/excursions/tour_48/002.jpg",
-        "/tours/excursions/tour_48/003.jpg",
-        "/tours/excursions/tour_48/004.jpg",
-        "/tours/excursions/tour_48/005.jpg"
+        "/tours/excursions/tour_48/001.webp",
+        "/tours/excursions/tour_48/002.webp",
+        "/tours/excursions/tour_48/003.webp",
+        "/tours/excursions/tour_48/004.webp",
+        "/tours/excursions/tour_48/005.webp"
       ]
     },
     {
@@ -1319,7 +1319,7 @@
       "rating": 4.8,
       "reviews": 401,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_49/001.jpg",
+      "image": "/tours/excursions/tour_49/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1329,11 +1329,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_49/001.jpg",
-        "/tours/excursions/tour_49/002.jpg",
-        "/tours/excursions/tour_49/003.jpg",
-        "/tours/excursions/tour_49/004.jpg",
-        "/tours/excursions/tour_49/005.jpg"
+        "/tours/excursions/tour_49/001.webp",
+        "/tours/excursions/tour_49/002.webp",
+        "/tours/excursions/tour_49/003.webp",
+        "/tours/excursions/tour_49/004.webp",
+        "/tours/excursions/tour_49/005.webp"
       ]
     },
     {
@@ -1346,7 +1346,7 @@
       "rating": 4.4,
       "reviews": 371,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_50/001.jpg",
+      "image": "/tours/excursions/tour_50/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1356,11 +1356,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_50/001.jpg",
-        "/tours/excursions/tour_50/002.jpg",
-        "/tours/excursions/tour_50/003.jpg",
-        "/tours/excursions/tour_50/004.jpg",
-        "/tours/excursions/tour_50/005.jpg"
+        "/tours/excursions/tour_50/001.webp",
+        "/tours/excursions/tour_50/002.webp",
+        "/tours/excursions/tour_50/003.webp",
+        "/tours/excursions/tour_50/004.webp",
+        "/tours/excursions/tour_50/005.webp"
       ]
     },
     {
@@ -1373,7 +1373,7 @@
       "rating": 4.8,
       "reviews": 855,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_51/001.jpg",
+      "image": "/tours/excursions/tour_51/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1383,11 +1383,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_51/001.jpg",
-        "/tours/excursions/tour_51/002.jpg",
-        "/tours/excursions/tour_51/003.jpg",
-        "/tours/excursions/tour_51/004.jpg",
-        "/tours/excursions/tour_51/005.jpg"
+        "/tours/excursions/tour_51/001.webp",
+        "/tours/excursions/tour_51/002.webp",
+        "/tours/excursions/tour_51/003.webp",
+        "/tours/excursions/tour_51/004.webp",
+        "/tours/excursions/tour_51/005.webp"
       ]
     },
     {
@@ -1400,7 +1400,7 @@
       "rating": 4.4,
       "reviews": 666,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_52/001.jpg",
+      "image": "/tours/excursions/tour_52/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1410,11 +1410,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_52/001.jpg",
-        "/tours/excursions/tour_52/002.jpg",
-        "/tours/excursions/tour_52/003.jpg",
-        "/tours/excursions/tour_52/004.jpg",
-        "/tours/excursions/tour_52/005.jpg"
+        "/tours/excursions/tour_52/001.webp",
+        "/tours/excursions/tour_52/002.webp",
+        "/tours/excursions/tour_52/003.webp",
+        "/tours/excursions/tour_52/004.webp",
+        "/tours/excursions/tour_52/005.webp"
       ]
     },
     {
@@ -1427,7 +1427,7 @@
       "rating": 4.1,
       "reviews": 547,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_53/001.jpg",
+      "image": "/tours/excursions/tour_53/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1437,11 +1437,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_53/001.jpg",
-        "/tours/excursions/tour_53/002.jpg",
-        "/tours/excursions/tour_53/003.jpg",
-        "/tours/excursions/tour_53/004.jpg",
-        "/tours/excursions/tour_53/005.jpg"
+        "/tours/excursions/tour_53/001.webp",
+        "/tours/excursions/tour_53/002.webp",
+        "/tours/excursions/tour_53/003.webp",
+        "/tours/excursions/tour_53/004.webp",
+        "/tours/excursions/tour_53/005.webp"
       ]
     },
     {
@@ -1454,7 +1454,7 @@
       "rating": 4.4,
       "reviews": 227,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_54/001.jpg",
+      "image": "/tours/excursions/tour_54/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1464,11 +1464,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_54/001.jpg",
-        "/tours/excursions/tour_54/002.jpg",
-        "/tours/excursions/tour_54/003.jpg",
-        "/tours/excursions/tour_54/004.jpg",
-        "/tours/excursions/tour_54/005.jpg"
+        "/tours/excursions/tour_54/001.webp",
+        "/tours/excursions/tour_54/002.webp",
+        "/tours/excursions/tour_54/003.webp",
+        "/tours/excursions/tour_54/004.webp",
+        "/tours/excursions/tour_54/005.webp"
       ]
     },
     {
@@ -1481,7 +1481,7 @@
       "rating": 4.3,
       "reviews": 740,
       "tag": "Water",
-      "image": "/tours/excursions/tour_55/001.jpg",
+      "image": "/tours/excursions/tour_55/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1491,11 +1491,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_55/001.jpg",
-        "/tours/excursions/tour_55/002.jpg",
-        "/tours/excursions/tour_55/003.jpg",
-        "/tours/excursions/tour_55/004.jpg",
-        "/tours/excursions/tour_55/005.jpg"
+        "/tours/excursions/tour_55/001.webp",
+        "/tours/excursions/tour_55/002.webp",
+        "/tours/excursions/tour_55/003.webp",
+        "/tours/excursions/tour_55/004.webp",
+        "/tours/excursions/tour_55/005.webp"
       ]
     },
     {
@@ -1508,7 +1508,7 @@
       "rating": 4.2,
       "reviews": 535,
       "tag": "Water",
-      "image": "/tours/excursions/tour_56/001.jpg",
+      "image": "/tours/excursions/tour_56/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1518,11 +1518,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_56/001.jpg",
-        "/tours/excursions/tour_56/002.jpg",
-        "/tours/excursions/tour_56/003.jpg",
-        "/tours/excursions/tour_56/004.jpg",
-        "/tours/excursions/tour_56/005.jpg"
+        "/tours/excursions/tour_56/001.webp",
+        "/tours/excursions/tour_56/002.webp",
+        "/tours/excursions/tour_56/003.webp",
+        "/tours/excursions/tour_56/004.webp",
+        "/tours/excursions/tour_56/005.webp"
       ]
     },
     {
@@ -1535,7 +1535,7 @@
       "rating": 4.8,
       "reviews": 153,
       "tag": "Water",
-      "image": "/tours/excursions/tour_57/001.jpg",
+      "image": "/tours/excursions/tour_57/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1545,11 +1545,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_57/001.jpg",
-        "/tours/excursions/tour_57/002.jpg",
-        "/tours/excursions/tour_57/003.jpg",
-        "/tours/excursions/tour_57/004.jpg",
-        "/tours/excursions/tour_57/005.jpg"
+        "/tours/excursions/tour_57/001.webp",
+        "/tours/excursions/tour_57/002.webp",
+        "/tours/excursions/tour_57/003.webp",
+        "/tours/excursions/tour_57/004.webp",
+        "/tours/excursions/tour_57/005.webp"
       ]
     },
     {
@@ -1562,7 +1562,7 @@
       "rating": 4.5,
       "reviews": 203,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_58/001.jpg",
+      "image": "/tours/excursions/tour_58/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1572,11 +1572,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_58/001.jpg",
-        "/tours/excursions/tour_58/002.jpg",
-        "/tours/excursions/tour_58/003.jpg",
-        "/tours/excursions/tour_58/004.jpg",
-        "/tours/excursions/tour_58/005.jpg"
+        "/tours/excursions/tour_58/001.webp",
+        "/tours/excursions/tour_58/002.webp",
+        "/tours/excursions/tour_58/003.webp",
+        "/tours/excursions/tour_58/004.webp",
+        "/tours/excursions/tour_58/005.webp"
       ]
     },
     {
@@ -1589,7 +1589,7 @@
       "rating": 4.5,
       "reviews": 356,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_59/001.jpg",
+      "image": "/tours/excursions/tour_59/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1599,11 +1599,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_59/001.jpg",
-        "/tours/excursions/tour_59/002.jpg",
-        "/tours/excursions/tour_59/003.jpg",
-        "/tours/excursions/tour_59/004.jpg",
-        "/tours/excursions/tour_59/005.jpg"
+        "/tours/excursions/tour_59/001.webp",
+        "/tours/excursions/tour_59/002.webp",
+        "/tours/excursions/tour_59/003.webp",
+        "/tours/excursions/tour_59/004.webp",
+        "/tours/excursions/tour_59/005.webp"
       ]
     },
     {
@@ -1616,7 +1616,7 @@
       "rating": 4.3,
       "reviews": 293,
       "tag": "Water",
-      "image": "/tours/excursions/tour_60/001.jpg",
+      "image": "/tours/excursions/tour_60/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1626,11 +1626,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_60/001.jpg",
-        "/tours/excursions/tour_60/002.jpg",
-        "/tours/excursions/tour_60/003.jpg",
-        "/tours/excursions/tour_60/004.jpg",
-        "/tours/excursions/tour_60/005.jpg"
+        "/tours/excursions/tour_60/001.webp",
+        "/tours/excursions/tour_60/002.webp",
+        "/tours/excursions/tour_60/003.webp",
+        "/tours/excursions/tour_60/004.webp",
+        "/tours/excursions/tour_60/005.webp"
       ]
     },
     {
@@ -1643,7 +1643,7 @@
       "rating": 4,
       "reviews": 818,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_61/001.jpg",
+      "image": "/tours/excursions/tour_61/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1653,11 +1653,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_61/001.jpg",
-        "/tours/excursions/tour_61/002.jpg",
-        "/tours/excursions/tour_61/003.jpg",
-        "/tours/excursions/tour_61/004.jpg",
-        "/tours/excursions/tour_61/005.jpg"
+        "/tours/excursions/tour_61/001.webp",
+        "/tours/excursions/tour_61/002.webp",
+        "/tours/excursions/tour_61/003.webp",
+        "/tours/excursions/tour_61/004.webp",
+        "/tours/excursions/tour_61/005.webp"
       ]
     },
     {
@@ -1670,7 +1670,7 @@
       "rating": 4.5,
       "reviews": 196,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_62/001.jpg",
+      "image": "/tours/excursions/tour_62/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1680,11 +1680,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_62/001.jpg",
-        "/tours/excursions/tour_62/002.jpg",
-        "/tours/excursions/tour_62/003.jpg",
-        "/tours/excursions/tour_62/004.jpg",
-        "/tours/excursions/tour_62/005.jpg"
+        "/tours/excursions/tour_62/001.webp",
+        "/tours/excursions/tour_62/002.webp",
+        "/tours/excursions/tour_62/003.webp",
+        "/tours/excursions/tour_62/004.webp",
+        "/tours/excursions/tour_62/005.webp"
       ]
     },
     {
@@ -1697,7 +1697,7 @@
       "rating": 4.3,
       "reviews": 748,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_63/001.jpg",
+      "image": "/tours/excursions/tour_63/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1707,11 +1707,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_63/001.jpg",
-        "/tours/excursions/tour_63/002.jpg",
-        "/tours/excursions/tour_63/003.jpg",
-        "/tours/excursions/tour_63/004.jpg",
-        "/tours/excursions/tour_63/005.jpg"
+        "/tours/excursions/tour_63/001.webp",
+        "/tours/excursions/tour_63/002.webp",
+        "/tours/excursions/tour_63/003.webp",
+        "/tours/excursions/tour_63/004.webp",
+        "/tours/excursions/tour_63/005.webp"
       ]
     },
     {
@@ -1724,7 +1724,7 @@
       "rating": 4,
       "reviews": 317,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_64/001.jpg",
+      "image": "/tours/excursions/tour_64/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1734,11 +1734,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_64/001.jpg",
-        "/tours/excursions/tour_64/002.jpg",
-        "/tours/excursions/tour_64/003.jpg",
-        "/tours/excursions/tour_64/004.jpg",
-        "/tours/excursions/tour_64/005.jpg"
+        "/tours/excursions/tour_64/001.webp",
+        "/tours/excursions/tour_64/002.webp",
+        "/tours/excursions/tour_64/003.webp",
+        "/tours/excursions/tour_64/004.webp",
+        "/tours/excursions/tour_64/005.webp"
       ]
     },
     {
@@ -1751,7 +1751,7 @@
       "rating": 4.6,
       "reviews": 654,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_65/001.jpg",
+      "image": "/tours/excursions/tour_65/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1761,11 +1761,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_65/001.jpg",
-        "/tours/excursions/tour_65/002.jpg",
-        "/tours/excursions/tour_65/003.jpg",
-        "/tours/excursions/tour_65/004.jpg",
-        "/tours/excursions/tour_65/005.jpg"
+        "/tours/excursions/tour_65/001.webp",
+        "/tours/excursions/tour_65/002.webp",
+        "/tours/excursions/tour_65/003.webp",
+        "/tours/excursions/tour_65/004.webp",
+        "/tours/excursions/tour_65/005.webp"
       ]
     },
     {
@@ -1778,7 +1778,7 @@
       "rating": 4.2,
       "reviews": 606,
       "tag": "Parasail",
-      "image": "/tours/excursions/tour_66/001.jpg",
+      "image": "/tours/excursions/tour_66/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1788,11 +1788,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_66/001.jpg",
-        "/tours/excursions/tour_66/002.jpg",
-        "/tours/excursions/tour_66/003.jpg",
-        "/tours/excursions/tour_66/004.jpg",
-        "/tours/excursions/tour_66/005.jpg"
+        "/tours/excursions/tour_66/001.webp",
+        "/tours/excursions/tour_66/002.webp",
+        "/tours/excursions/tour_66/003.webp",
+        "/tours/excursions/tour_66/004.webp",
+        "/tours/excursions/tour_66/005.webp"
       ]
     },
     {
@@ -1805,7 +1805,7 @@
       "rating": 4.5,
       "reviews": 882,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_67/001.jpg",
+      "image": "/tours/excursions/tour_67/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1815,11 +1815,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_67/001.jpg",
-        "/tours/excursions/tour_67/002.jpg",
-        "/tours/excursions/tour_67/003.jpg",
-        "/tours/excursions/tour_67/004.jpg",
-        "/tours/excursions/tour_67/005.jpg"
+        "/tours/excursions/tour_67/001.webp",
+        "/tours/excursions/tour_67/002.webp",
+        "/tours/excursions/tour_67/003.webp",
+        "/tours/excursions/tour_67/004.webp",
+        "/tours/excursions/tour_67/005.webp"
       ]
     },
     {
@@ -1832,7 +1832,7 @@
       "rating": 4.3,
       "reviews": 661,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_68/001.jpg",
+      "image": "/tours/excursions/tour_68/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1842,11 +1842,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_68/001.jpg",
-        "/tours/excursions/tour_68/002.jpg",
-        "/tours/excursions/tour_68/003.jpg",
-        "/tours/excursions/tour_68/004.jpg",
-        "/tours/excursions/tour_68/005.jpg"
+        "/tours/excursions/tour_68/001.webp",
+        "/tours/excursions/tour_68/002.webp",
+        "/tours/excursions/tour_68/003.webp",
+        "/tours/excursions/tour_68/004.webp",
+        "/tours/excursions/tour_68/005.webp"
       ]
     },
     {
@@ -1859,7 +1859,7 @@
       "rating": 4.4,
       "reviews": 364,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_69/001.jpg",
+      "image": "/tours/excursions/tour_69/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1869,11 +1869,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_69/001.jpg",
-        "/tours/excursions/tour_69/002.jpg",
-        "/tours/excursions/tour_69/003.jpg",
-        "/tours/excursions/tour_69/004.jpg",
-        "/tours/excursions/tour_69/005.jpg"
+        "/tours/excursions/tour_69/001.webp",
+        "/tours/excursions/tour_69/002.webp",
+        "/tours/excursions/tour_69/003.webp",
+        "/tours/excursions/tour_69/004.webp",
+        "/tours/excursions/tour_69/005.webp"
       ]
     },
     {
@@ -1886,7 +1886,7 @@
       "rating": 4.5,
       "reviews": 198,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_70/001.jpg",
+      "image": "/tours/excursions/tour_70/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1896,11 +1896,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_70/001.jpg",
-        "/tours/excursions/tour_70/002.jpg",
-        "/tours/excursions/tour_70/003.jpg",
-        "/tours/excursions/tour_70/004.jpg",
-        "/tours/excursions/tour_70/005.jpg"
+        "/tours/excursions/tour_70/001.webp",
+        "/tours/excursions/tour_70/002.webp",
+        "/tours/excursions/tour_70/003.webp",
+        "/tours/excursions/tour_70/004.webp",
+        "/tours/excursions/tour_70/005.webp"
       ]
     },
     {
@@ -1913,7 +1913,7 @@
       "rating": 4.5,
       "reviews": 666,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_71/001.jpg",
+      "image": "/tours/excursions/tour_71/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1923,11 +1923,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_71/001.jpg",
-        "/tours/excursions/tour_71/002.jpg",
-        "/tours/excursions/tour_71/003.jpg",
-        "/tours/excursions/tour_71/004.jpg",
-        "/tours/excursions/tour_71/005.jpg"
+        "/tours/excursions/tour_71/001.webp",
+        "/tours/excursions/tour_71/002.webp",
+        "/tours/excursions/tour_71/003.webp",
+        "/tours/excursions/tour_71/004.webp",
+        "/tours/excursions/tour_71/005.webp"
       ]
     },
     {
@@ -1940,7 +1940,7 @@
       "rating": 4.7,
       "reviews": 104,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_72/001.jpg",
+      "image": "/tours/excursions/tour_72/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1950,11 +1950,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_72/001.jpg",
-        "/tours/excursions/tour_72/002.jpg",
-        "/tours/excursions/tour_72/003.jpg",
-        "/tours/excursions/tour_72/004.jpg",
-        "/tours/excursions/tour_72/005.jpg"
+        "/tours/excursions/tour_72/001.webp",
+        "/tours/excursions/tour_72/002.webp",
+        "/tours/excursions/tour_72/003.webp",
+        "/tours/excursions/tour_72/004.webp",
+        "/tours/excursions/tour_72/005.webp"
       ]
     },
     {
@@ -1967,7 +1967,7 @@
       "rating": 4,
       "reviews": 413,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_73/001.jpg",
+      "image": "/tours/excursions/tour_73/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -1977,11 +1977,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_73/001.jpg",
-        "/tours/excursions/tour_73/002.jpg",
-        "/tours/excursions/tour_73/003.jpg",
-        "/tours/excursions/tour_73/004.jpg",
-        "/tours/excursions/tour_73/005.jpg"
+        "/tours/excursions/tour_73/001.webp",
+        "/tours/excursions/tour_73/002.webp",
+        "/tours/excursions/tour_73/003.webp",
+        "/tours/excursions/tour_73/004.webp",
+        "/tours/excursions/tour_73/005.webp"
       ]
     },
     {
@@ -1994,7 +1994,7 @@
       "rating": 4.9,
       "reviews": 630,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_74/001.jpg",
+      "image": "/tours/excursions/tour_74/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2004,11 +2004,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_74/001.jpg",
-        "/tours/excursions/tour_74/002.jpg",
-        "/tours/excursions/tour_74/003.jpg",
-        "/tours/excursions/tour_74/004.jpg",
-        "/tours/excursions/tour_74/005.jpg"
+        "/tours/excursions/tour_74/001.webp",
+        "/tours/excursions/tour_74/002.webp",
+        "/tours/excursions/tour_74/003.webp",
+        "/tours/excursions/tour_74/004.webp",
+        "/tours/excursions/tour_74/005.webp"
       ]
     },
     {
@@ -2021,7 +2021,7 @@
       "rating": 4.4,
       "reviews": 364,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_75/001.jpg",
+      "image": "/tours/excursions/tour_75/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2031,11 +2031,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_75/001.jpg",
-        "/tours/excursions/tour_75/002.jpg",
-        "/tours/excursions/tour_75/003.jpg",
-        "/tours/excursions/tour_75/004.jpg",
-        "/tours/excursions/tour_75/005.jpg"
+        "/tours/excursions/tour_75/001.webp",
+        "/tours/excursions/tour_75/002.webp",
+        "/tours/excursions/tour_75/003.webp",
+        "/tours/excursions/tour_75/004.webp",
+        "/tours/excursions/tour_75/005.webp"
       ]
     },
     {
@@ -2048,7 +2048,7 @@
       "rating": 4.5,
       "reviews": 448,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_76/001.jpg",
+      "image": "/tours/excursions/tour_76/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2058,11 +2058,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_76/001.jpg",
-        "/tours/excursions/tour_76/002.jpg",
-        "/tours/excursions/tour_76/003.jpg",
-        "/tours/excursions/tour_76/004.jpg",
-        "/tours/excursions/tour_76/005.jpg"
+        "/tours/excursions/tour_76/001.webp",
+        "/tours/excursions/tour_76/002.webp",
+        "/tours/excursions/tour_76/003.webp",
+        "/tours/excursions/tour_76/004.webp",
+        "/tours/excursions/tour_76/005.webp"
       ]
     },
     {
@@ -2075,7 +2075,7 @@
       "rating": 4,
       "reviews": 355,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_77/001.jpg",
+      "image": "/tours/excursions/tour_77/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2085,11 +2085,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_77/001.jpg",
-        "/tours/excursions/tour_77/002.jpg",
-        "/tours/excursions/tour_77/003.jpg",
-        "/tours/excursions/tour_77/004.jpg",
-        "/tours/excursions/tour_77/005.jpg"
+        "/tours/excursions/tour_77/001.webp",
+        "/tours/excursions/tour_77/002.webp",
+        "/tours/excursions/tour_77/003.webp",
+        "/tours/excursions/tour_77/004.webp",
+        "/tours/excursions/tour_77/005.webp"
       ]
     },
     {
@@ -2102,7 +2102,7 @@
       "rating": 4.4,
       "reviews": 222,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_78/001.jpg",
+      "image": "/tours/excursions/tour_78/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2112,11 +2112,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_78/001.jpg",
-        "/tours/excursions/tour_78/002.jpg",
-        "/tours/excursions/tour_78/003.jpg",
-        "/tours/excursions/tour_78/004.jpg",
-        "/tours/excursions/tour_78/005.jpg"
+        "/tours/excursions/tour_78/001.webp",
+        "/tours/excursions/tour_78/002.webp",
+        "/tours/excursions/tour_78/003.webp",
+        "/tours/excursions/tour_78/004.webp",
+        "/tours/excursions/tour_78/005.webp"
       ]
     },
     {
@@ -2129,7 +2129,7 @@
       "rating": 4.7,
       "reviews": 481,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_79/001.jpg",
+      "image": "/tours/excursions/tour_79/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2139,11 +2139,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_79/001.jpg",
-        "/tours/excursions/tour_79/002.jpg",
-        "/tours/excursions/tour_79/003.jpg",
-        "/tours/excursions/tour_79/004.jpg",
-        "/tours/excursions/tour_79/005.jpg"
+        "/tours/excursions/tour_79/001.webp",
+        "/tours/excursions/tour_79/002.webp",
+        "/tours/excursions/tour_79/003.webp",
+        "/tours/excursions/tour_79/004.webp",
+        "/tours/excursions/tour_79/005.webp"
       ]
     },
     {
@@ -2156,7 +2156,7 @@
       "rating": 4.1,
       "reviews": 783,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_80/001.jpg",
+      "image": "/tours/excursions/tour_80/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2166,11 +2166,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_80/001.jpg",
-        "/tours/excursions/tour_80/002.jpg",
-        "/tours/excursions/tour_80/003.jpg",
-        "/tours/excursions/tour_80/004.jpg",
-        "/tours/excursions/tour_80/005.jpg"
+        "/tours/excursions/tour_80/001.webp",
+        "/tours/excursions/tour_80/002.webp",
+        "/tours/excursions/tour_80/003.webp",
+        "/tours/excursions/tour_80/004.webp",
+        "/tours/excursions/tour_80/005.webp"
       ]
     },
     {
@@ -2183,7 +2183,7 @@
       "rating": 4.9,
       "reviews": 311,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_81/001.jpg",
+      "image": "/tours/excursions/tour_81/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2193,11 +2193,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_81/001.jpg",
-        "/tours/excursions/tour_81/002.jpg",
-        "/tours/excursions/tour_81/003.jpg",
-        "/tours/excursions/tour_81/004.jpg",
-        "/tours/excursions/tour_81/005.jpg"
+        "/tours/excursions/tour_81/001.webp",
+        "/tours/excursions/tour_81/002.webp",
+        "/tours/excursions/tour_81/003.webp",
+        "/tours/excursions/tour_81/004.webp",
+        "/tours/excursions/tour_81/005.webp"
       ]
     },
     {
@@ -2210,7 +2210,7 @@
       "rating": 4.2,
       "reviews": 232,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_82/001.jpg",
+      "image": "/tours/excursions/tour_82/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2220,11 +2220,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_82/001.jpg",
-        "/tours/excursions/tour_82/002.jpg",
-        "/tours/excursions/tour_82/003.jpg",
-        "/tours/excursions/tour_82/004.jpg",
-        "/tours/excursions/tour_82/005.jpg"
+        "/tours/excursions/tour_82/001.webp",
+        "/tours/excursions/tour_82/002.webp",
+        "/tours/excursions/tour_82/003.webp",
+        "/tours/excursions/tour_82/004.webp",
+        "/tours/excursions/tour_82/005.webp"
       ]
     },
     {
@@ -2237,7 +2237,7 @@
       "rating": 4.6,
       "reviews": 695,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_83/001.jpg",
+      "image": "/tours/excursions/tour_83/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2247,11 +2247,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_83/001.jpg",
-        "/tours/excursions/tour_83/002.jpg",
-        "/tours/excursions/tour_83/003.jpg",
-        "/tours/excursions/tour_83/004.jpg",
-        "/tours/excursions/tour_83/005.jpg"
+        "/tours/excursions/tour_83/001.webp",
+        "/tours/excursions/tour_83/002.webp",
+        "/tours/excursions/tour_83/003.webp",
+        "/tours/excursions/tour_83/004.webp",
+        "/tours/excursions/tour_83/005.webp"
       ]
     },
     {
@@ -2264,7 +2264,7 @@
       "rating": 4.6,
       "reviews": 237,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_84/001.jpg",
+      "image": "/tours/excursions/tour_84/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2274,11 +2274,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_84/001.jpg",
-        "/tours/excursions/tour_84/002.jpg",
-        "/tours/excursions/tour_84/003.jpg",
-        "/tours/excursions/tour_84/004.jpg",
-        "/tours/excursions/tour_84/005.jpg"
+        "/tours/excursions/tour_84/001.webp",
+        "/tours/excursions/tour_84/002.webp",
+        "/tours/excursions/tour_84/003.webp",
+        "/tours/excursions/tour_84/004.webp",
+        "/tours/excursions/tour_84/005.webp"
       ]
     },
     {
@@ -2291,7 +2291,7 @@
       "rating": 4.2,
       "reviews": 535,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_85/001.jpg",
+      "image": "/tours/excursions/tour_85/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2301,11 +2301,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_85/001.jpg",
-        "/tours/excursions/tour_85/002.jpg",
-        "/tours/excursions/tour_85/003.jpg",
-        "/tours/excursions/tour_85/004.jpg",
-        "/tours/excursions/tour_85/005.jpg"
+        "/tours/excursions/tour_85/001.webp",
+        "/tours/excursions/tour_85/002.webp",
+        "/tours/excursions/tour_85/003.webp",
+        "/tours/excursions/tour_85/004.webp",
+        "/tours/excursions/tour_85/005.webp"
       ]
     },
     {
@@ -2318,7 +2318,7 @@
       "rating": 4.4,
       "reviews": 858,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_86/001.jpg",
+      "image": "/tours/excursions/tour_86/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2328,11 +2328,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_86/001.jpg",
-        "/tours/excursions/tour_86/002.jpg",
-        "/tours/excursions/tour_86/003.jpg",
-        "/tours/excursions/tour_86/004.jpg",
-        "/tours/excursions/tour_86/005.jpg"
+        "/tours/excursions/tour_86/001.webp",
+        "/tours/excursions/tour_86/002.webp",
+        "/tours/excursions/tour_86/003.webp",
+        "/tours/excursions/tour_86/004.webp",
+        "/tours/excursions/tour_86/005.webp"
       ]
     },
     {
@@ -2345,7 +2345,7 @@
       "rating": 4.3,
       "reviews": 216,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_87/001.jpg",
+      "image": "/tours/excursions/tour_87/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2355,11 +2355,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_87/001.jpg",
-        "/tours/excursions/tour_87/002.jpg",
-        "/tours/excursions/tour_87/003.jpg",
-        "/tours/excursions/tour_87/004.jpg",
-        "/tours/excursions/tour_87/005.jpg"
+        "/tours/excursions/tour_87/001.webp",
+        "/tours/excursions/tour_87/002.webp",
+        "/tours/excursions/tour_87/003.webp",
+        "/tours/excursions/tour_87/004.webp",
+        "/tours/excursions/tour_87/005.webp"
       ]
     },
     {
@@ -2372,7 +2372,7 @@
       "rating": 4.3,
       "reviews": 130,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_88/001.jpg",
+      "image": "/tours/excursions/tour_88/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2382,11 +2382,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_88/001.jpg",
-        "/tours/excursions/tour_88/002.jpg",
-        "/tours/excursions/tour_88/003.jpg",
-        "/tours/excursions/tour_88/004.jpg",
-        "/tours/excursions/tour_88/005.jpg"
+        "/tours/excursions/tour_88/001.webp",
+        "/tours/excursions/tour_88/002.webp",
+        "/tours/excursions/tour_88/003.webp",
+        "/tours/excursions/tour_88/004.webp",
+        "/tours/excursions/tour_88/005.webp"
       ]
     },
     {
@@ -2399,7 +2399,7 @@
       "rating": 4.8,
       "reviews": 569,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_89/001.jpg",
+      "image": "/tours/excursions/tour_89/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2409,11 +2409,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_89/001.jpg",
-        "/tours/excursions/tour_89/002.jpg",
-        "/tours/excursions/tour_89/003.jpg",
-        "/tours/excursions/tour_89/004.jpg",
-        "/tours/excursions/tour_89/005.jpg"
+        "/tours/excursions/tour_89/001.webp",
+        "/tours/excursions/tour_89/002.webp",
+        "/tours/excursions/tour_89/003.webp",
+        "/tours/excursions/tour_89/004.webp",
+        "/tours/excursions/tour_89/005.webp"
       ]
     },
     {
@@ -2426,7 +2426,7 @@
       "rating": 4.7,
       "reviews": 445,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_90/001.jpg",
+      "image": "/tours/excursions/tour_90/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2436,11 +2436,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_90/001.jpg",
-        "/tours/excursions/tour_90/002.jpg",
-        "/tours/excursions/tour_90/003.jpg",
-        "/tours/excursions/tour_90/004.jpg",
-        "/tours/excursions/tour_90/005.jpg"
+        "/tours/excursions/tour_90/001.webp",
+        "/tours/excursions/tour_90/002.webp",
+        "/tours/excursions/tour_90/003.webp",
+        "/tours/excursions/tour_90/004.webp",
+        "/tours/excursions/tour_90/005.webp"
       ]
     },
     {
@@ -2453,7 +2453,7 @@
       "rating": 4.5,
       "reviews": 710,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_91/001.jpg",
+      "image": "/tours/excursions/tour_91/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2463,11 +2463,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_91/001.jpg",
-        "/tours/excursions/tour_91/002.jpg",
-        "/tours/excursions/tour_91/003.jpg",
-        "/tours/excursions/tour_91/004.jpg",
-        "/tours/excursions/tour_91/005.jpg"
+        "/tours/excursions/tour_91/001.webp",
+        "/tours/excursions/tour_91/002.webp",
+        "/tours/excursions/tour_91/003.webp",
+        "/tours/excursions/tour_91/004.webp",
+        "/tours/excursions/tour_91/005.webp"
       ]
     },
     {
@@ -2480,7 +2480,7 @@
       "rating": 4.4,
       "reviews": 214,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_92/001.jpg",
+      "image": "/tours/excursions/tour_92/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2490,11 +2490,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_92/001.jpg",
-        "/tours/excursions/tour_92/002.jpg",
-        "/tours/excursions/tour_92/003.jpg",
-        "/tours/excursions/tour_92/004.jpg",
-        "/tours/excursions/tour_92/005.jpg"
+        "/tours/excursions/tour_92/001.webp",
+        "/tours/excursions/tour_92/002.webp",
+        "/tours/excursions/tour_92/003.webp",
+        "/tours/excursions/tour_92/004.webp",
+        "/tours/excursions/tour_92/005.webp"
       ]
     },
     {
@@ -2507,7 +2507,7 @@
       "rating": 4,
       "reviews": 434,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_93/001.jpg",
+      "image": "/tours/excursions/tour_93/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2517,11 +2517,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_93/001.jpg",
-        "/tours/excursions/tour_93/002.jpg",
-        "/tours/excursions/tour_93/003.jpg",
-        "/tours/excursions/tour_93/004.jpg",
-        "/tours/excursions/tour_93/005.jpg"
+        "/tours/excursions/tour_93/001.webp",
+        "/tours/excursions/tour_93/002.webp",
+        "/tours/excursions/tour_93/003.webp",
+        "/tours/excursions/tour_93/004.webp",
+        "/tours/excursions/tour_93/005.webp"
       ]
     },
     {
@@ -2534,7 +2534,7 @@
       "rating": 4.2,
       "reviews": 522,
       "tag": "Parasail",
-      "image": "/tours/excursions/tour_94/001.jpg",
+      "image": "/tours/excursions/tour_94/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2544,11 +2544,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_94/001.jpg",
-        "/tours/excursions/tour_94/002.jpg",
-        "/tours/excursions/tour_94/003.jpg",
-        "/tours/excursions/tour_94/004.jpg",
-        "/tours/excursions/tour_94/005.jpg"
+        "/tours/excursions/tour_94/001.webp",
+        "/tours/excursions/tour_94/002.webp",
+        "/tours/excursions/tour_94/003.webp",
+        "/tours/excursions/tour_94/004.webp",
+        "/tours/excursions/tour_94/005.webp"
       ]
     },
     {
@@ -2561,7 +2561,7 @@
       "rating": 4.7,
       "reviews": 250,
       "tag": "Parasail",
-      "image": "/tours/excursions/tour_95/001.jpg",
+      "image": "/tours/excursions/tour_95/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2571,11 +2571,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_95/001.jpg",
-        "/tours/excursions/tour_95/002.jpg",
-        "/tours/excursions/tour_95/003.jpg",
-        "/tours/excursions/tour_95/004.jpg",
-        "/tours/excursions/tour_95/005.jpg"
+        "/tours/excursions/tour_95/001.webp",
+        "/tours/excursions/tour_95/002.webp",
+        "/tours/excursions/tour_95/003.webp",
+        "/tours/excursions/tour_95/004.webp",
+        "/tours/excursions/tour_95/005.webp"
       ]
     },
     {
@@ -2588,7 +2588,7 @@
       "rating": 4.4,
       "reviews": 377,
       "tag": "Parasail",
-      "image": "/tours/excursions/tour_96/001.jpg",
+      "image": "/tours/excursions/tour_96/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2598,11 +2598,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_96/001.jpg",
-        "/tours/excursions/tour_96/002.jpg",
-        "/tours/excursions/tour_96/003.jpg",
-        "/tours/excursions/tour_96/004.jpg",
-        "/tours/excursions/tour_96/005.jpg"
+        "/tours/excursions/tour_96/001.webp",
+        "/tours/excursions/tour_96/002.webp",
+        "/tours/excursions/tour_96/003.webp",
+        "/tours/excursions/tour_96/004.webp",
+        "/tours/excursions/tour_96/005.webp"
       ]
     },
     {
@@ -2615,7 +2615,7 @@
       "rating": 4.7,
       "reviews": 178,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_97/001.jpg",
+      "image": "/tours/excursions/tour_97/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2625,11 +2625,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_97/001.jpg",
-        "/tours/excursions/tour_97/002.jpg",
-        "/tours/excursions/tour_97/003.jpg",
-        "/tours/excursions/tour_97/004.jpg",
-        "/tours/excursions/tour_97/005.jpg"
+        "/tours/excursions/tour_97/001.webp",
+        "/tours/excursions/tour_97/002.webp",
+        "/tours/excursions/tour_97/003.webp",
+        "/tours/excursions/tour_97/004.webp",
+        "/tours/excursions/tour_97/005.webp"
       ]
     },
     {
@@ -2642,7 +2642,7 @@
       "rating": 4.8,
       "reviews": 771,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_98/001.jpg",
+      "image": "/tours/excursions/tour_98/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2652,11 +2652,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_98/001.jpg",
-        "/tours/excursions/tour_98/002.jpg",
-        "/tours/excursions/tour_98/003.jpg",
-        "/tours/excursions/tour_98/004.jpg",
-        "/tours/excursions/tour_98/005.jpg"
+        "/tours/excursions/tour_98/001.webp",
+        "/tours/excursions/tour_98/002.webp",
+        "/tours/excursions/tour_98/003.webp",
+        "/tours/excursions/tour_98/004.webp",
+        "/tours/excursions/tour_98/005.webp"
       ]
     },
     {
@@ -2669,7 +2669,7 @@
       "rating": 4.7,
       "reviews": 516,
       "tag": "Water",
-      "image": "/tours/excursions/tour_99/001.jpg",
+      "image": "/tours/excursions/tour_99/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2679,11 +2679,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_99/001.jpg",
-        "/tours/excursions/tour_99/002.jpg",
-        "/tours/excursions/tour_99/003.jpg",
-        "/tours/excursions/tour_99/004.jpg",
-        "/tours/excursions/tour_99/005.jpg"
+        "/tours/excursions/tour_99/001.webp",
+        "/tours/excursions/tour_99/002.webp",
+        "/tours/excursions/tour_99/003.webp",
+        "/tours/excursions/tour_99/004.webp",
+        "/tours/excursions/tour_99/005.webp"
       ]
     },
     {
@@ -2696,7 +2696,7 @@
       "rating": 4.5,
       "reviews": 154,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_100/001.jpg",
+      "image": "/tours/excursions/tour_100/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2706,11 +2706,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_100/001.jpg",
-        "/tours/excursions/tour_100/002.jpg",
-        "/tours/excursions/tour_100/003.jpg",
-        "/tours/excursions/tour_100/004.jpg",
-        "/tours/excursions/tour_100/005.jpg"
+        "/tours/excursions/tour_100/001.webp",
+        "/tours/excursions/tour_100/002.webp",
+        "/tours/excursions/tour_100/003.webp",
+        "/tours/excursions/tour_100/004.webp",
+        "/tours/excursions/tour_100/005.webp"
       ]
     },
     {
@@ -2723,7 +2723,7 @@
       "rating": 4.5,
       "reviews": 548,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_101/001.jpg",
+      "image": "/tours/excursions/tour_101/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2733,11 +2733,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_101/001.jpg",
-        "/tours/excursions/tour_101/002.jpg",
-        "/tours/excursions/tour_101/003.jpg",
-        "/tours/excursions/tour_101/004.jpg",
-        "/tours/excursions/tour_101/005.jpg"
+        "/tours/excursions/tour_101/001.webp",
+        "/tours/excursions/tour_101/002.webp",
+        "/tours/excursions/tour_101/003.webp",
+        "/tours/excursions/tour_101/004.webp",
+        "/tours/excursions/tour_101/005.webp"
       ]
     },
     {
@@ -2750,7 +2750,7 @@
       "rating": 4.1,
       "reviews": 245,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_102/001.jpg",
+      "image": "/tours/excursions/tour_102/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2760,11 +2760,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_102/001.jpg",
-        "/tours/excursions/tour_102/002.jpg",
-        "/tours/excursions/tour_102/003.jpg",
-        "/tours/excursions/tour_102/004.jpg",
-        "/tours/excursions/tour_102/005.jpg"
+        "/tours/excursions/tour_102/001.webp",
+        "/tours/excursions/tour_102/002.webp",
+        "/tours/excursions/tour_102/003.webp",
+        "/tours/excursions/tour_102/004.webp",
+        "/tours/excursions/tour_102/005.webp"
       ]
     },
     {
@@ -2777,7 +2777,7 @@
       "rating": 4.5,
       "reviews": 736,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_103/001.jpg",
+      "image": "/tours/excursions/tour_103/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2787,11 +2787,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_103/001.jpg",
-        "/tours/excursions/tour_103/002.jpg",
-        "/tours/excursions/tour_103/003.jpg",
-        "/tours/excursions/tour_103/004.jpg",
-        "/tours/excursions/tour_103/005.jpg"
+        "/tours/excursions/tour_103/001.webp",
+        "/tours/excursions/tour_103/002.webp",
+        "/tours/excursions/tour_103/003.webp",
+        "/tours/excursions/tour_103/004.webp",
+        "/tours/excursions/tour_103/005.webp"
       ]
     },
     {
@@ -2804,7 +2804,7 @@
       "rating": 4.4,
       "reviews": 369,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_104/001.jpg",
+      "image": "/tours/excursions/tour_104/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2814,11 +2814,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_104/001.jpg",
-        "/tours/excursions/tour_104/002.jpg",
-        "/tours/excursions/tour_104/003.jpg",
-        "/tours/excursions/tour_104/004.jpg",
-        "/tours/excursions/tour_104/005.jpg"
+        "/tours/excursions/tour_104/001.webp",
+        "/tours/excursions/tour_104/002.webp",
+        "/tours/excursions/tour_104/003.webp",
+        "/tours/excursions/tour_104/004.webp",
+        "/tours/excursions/tour_104/005.webp"
       ]
     },
     {
@@ -2831,7 +2831,7 @@
       "rating": 4.5,
       "reviews": 206,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_105/001.jpg",
+      "image": "/tours/excursions/tour_105/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2841,11 +2841,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_105/001.jpg",
-        "/tours/excursions/tour_105/002.jpg",
-        "/tours/excursions/tour_105/003.jpg",
-        "/tours/excursions/tour_105/004.jpg",
-        "/tours/excursions/tour_105/005.jpg"
+        "/tours/excursions/tour_105/001.webp",
+        "/tours/excursions/tour_105/002.webp",
+        "/tours/excursions/tour_105/003.webp",
+        "/tours/excursions/tour_105/004.webp",
+        "/tours/excursions/tour_105/005.webp"
       ]
     },
     {
@@ -2858,7 +2858,7 @@
       "rating": 4.9,
       "reviews": 837,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_106/001.jpg",
+      "image": "/tours/excursions/tour_106/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2868,11 +2868,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_106/001.jpg",
-        "/tours/excursions/tour_106/002.jpg",
-        "/tours/excursions/tour_106/003.jpg",
-        "/tours/excursions/tour_106/004.jpg",
-        "/tours/excursions/tour_106/005.jpg"
+        "/tours/excursions/tour_106/001.webp",
+        "/tours/excursions/tour_106/002.webp",
+        "/tours/excursions/tour_106/003.webp",
+        "/tours/excursions/tour_106/004.webp",
+        "/tours/excursions/tour_106/005.webp"
       ]
     },
     {
@@ -2885,7 +2885,7 @@
       "rating": 4.2,
       "reviews": 825,
       "tag": "Water",
-      "image": "/tours/excursions/tour_107/001.jpg",
+      "image": "/tours/excursions/tour_107/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2895,11 +2895,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_107/001.jpg",
-        "/tours/excursions/tour_107/002.jpg",
-        "/tours/excursions/tour_107/003.jpg",
-        "/tours/excursions/tour_107/004.jpg",
-        "/tours/excursions/tour_107/005.jpg"
+        "/tours/excursions/tour_107/001.webp",
+        "/tours/excursions/tour_107/002.webp",
+        "/tours/excursions/tour_107/003.webp",
+        "/tours/excursions/tour_107/004.webp",
+        "/tours/excursions/tour_107/005.webp"
       ]
     },
     {
@@ -2912,7 +2912,7 @@
       "rating": 4,
       "reviews": 855,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_108/001.jpg",
+      "image": "/tours/excursions/tour_108/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2922,11 +2922,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_108/001.jpg",
-        "/tours/excursions/tour_108/002.jpg",
-        "/tours/excursions/tour_108/003.jpg",
-        "/tours/excursions/tour_108/004.jpg",
-        "/tours/excursions/tour_108/005.jpg"
+        "/tours/excursions/tour_108/001.webp",
+        "/tours/excursions/tour_108/002.webp",
+        "/tours/excursions/tour_108/003.webp",
+        "/tours/excursions/tour_108/004.webp",
+        "/tours/excursions/tour_108/005.webp"
       ]
     },
     {
@@ -2939,7 +2939,7 @@
       "rating": 4.2,
       "reviews": 258,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_109/001.jpg",
+      "image": "/tours/excursions/tour_109/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2949,11 +2949,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_109/001.jpg",
-        "/tours/excursions/tour_109/002.jpg",
-        "/tours/excursions/tour_109/003.jpg",
-        "/tours/excursions/tour_109/004.jpg",
-        "/tours/excursions/tour_109/005.jpg"
+        "/tours/excursions/tour_109/001.webp",
+        "/tours/excursions/tour_109/002.webp",
+        "/tours/excursions/tour_109/003.webp",
+        "/tours/excursions/tour_109/004.webp",
+        "/tours/excursions/tour_109/005.webp"
       ]
     },
     {
@@ -2966,7 +2966,7 @@
       "rating": 4.8,
       "reviews": 784,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_110/001.jpg",
+      "image": "/tours/excursions/tour_110/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -2976,11 +2976,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_110/001.jpg",
-        "/tours/excursions/tour_110/002.jpg",
-        "/tours/excursions/tour_110/003.jpg",
-        "/tours/excursions/tour_110/004.jpg",
-        "/tours/excursions/tour_110/005.jpg"
+        "/tours/excursions/tour_110/001.webp",
+        "/tours/excursions/tour_110/002.webp",
+        "/tours/excursions/tour_110/003.webp",
+        "/tours/excursions/tour_110/004.webp",
+        "/tours/excursions/tour_110/005.webp"
       ]
     },
     {
@@ -2993,7 +2993,7 @@
       "rating": 4.5,
       "reviews": 823,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_111/001.jpg",
+      "image": "/tours/excursions/tour_111/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3003,11 +3003,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_111/001.jpg",
-        "/tours/excursions/tour_111/002.jpg",
-        "/tours/excursions/tour_111/003.jpg",
-        "/tours/excursions/tour_111/004.jpg",
-        "/tours/excursions/tour_111/005.jpg"
+        "/tours/excursions/tour_111/001.webp",
+        "/tours/excursions/tour_111/002.webp",
+        "/tours/excursions/tour_111/003.webp",
+        "/tours/excursions/tour_111/004.webp",
+        "/tours/excursions/tour_111/005.webp"
       ]
     },
     {
@@ -3020,7 +3020,7 @@
       "rating": 4.5,
       "reviews": 502,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_112/001.jpg",
+      "image": "/tours/excursions/tour_112/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3030,11 +3030,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_112/001.jpg",
-        "/tours/excursions/tour_112/002.jpg",
-        "/tours/excursions/tour_112/003.jpg",
-        "/tours/excursions/tour_112/004.jpg",
-        "/tours/excursions/tour_112/005.jpg"
+        "/tours/excursions/tour_112/001.webp",
+        "/tours/excursions/tour_112/002.webp",
+        "/tours/excursions/tour_112/003.webp",
+        "/tours/excursions/tour_112/004.webp",
+        "/tours/excursions/tour_112/005.webp"
       ]
     },
     {
@@ -3047,7 +3047,7 @@
       "rating": 4.4,
       "reviews": 447,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_113/001.jpg",
+      "image": "/tours/excursions/tour_113/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3057,11 +3057,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_113/001.jpg",
-        "/tours/excursions/tour_113/002.jpg",
-        "/tours/excursions/tour_113/003.jpg",
-        "/tours/excursions/tour_113/004.jpg",
-        "/tours/excursions/tour_113/005.jpg"
+        "/tours/excursions/tour_113/001.webp",
+        "/tours/excursions/tour_113/002.webp",
+        "/tours/excursions/tour_113/003.webp",
+        "/tours/excursions/tour_113/004.webp",
+        "/tours/excursions/tour_113/005.webp"
       ]
     },
     {
@@ -3074,7 +3074,7 @@
       "rating": 4.1,
       "reviews": 445,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_114/001.jpg",
+      "image": "/tours/excursions/tour_114/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3084,11 +3084,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_114/001.jpg",
-        "/tours/excursions/tour_114/002.jpg",
-        "/tours/excursions/tour_114/003.jpg",
-        "/tours/excursions/tour_114/004.jpg",
-        "/tours/excursions/tour_114/005.jpg"
+        "/tours/excursions/tour_114/001.webp",
+        "/tours/excursions/tour_114/002.webp",
+        "/tours/excursions/tour_114/003.webp",
+        "/tours/excursions/tour_114/004.webp",
+        "/tours/excursions/tour_114/005.webp"
       ]
     },
     {
@@ -3101,7 +3101,7 @@
       "rating": 4.3,
       "reviews": 830,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_115/001.jpg",
+      "image": "/tours/excursions/tour_115/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3111,11 +3111,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_115/001.jpg",
-        "/tours/excursions/tour_115/002.jpg",
-        "/tours/excursions/tour_115/003.jpg",
-        "/tours/excursions/tour_115/004.jpg",
-        "/tours/excursions/tour_115/005.jpg"
+        "/tours/excursions/tour_115/001.webp",
+        "/tours/excursions/tour_115/002.webp",
+        "/tours/excursions/tour_115/003.webp",
+        "/tours/excursions/tour_115/004.webp",
+        "/tours/excursions/tour_115/005.webp"
       ]
     },
     {
@@ -3128,7 +3128,7 @@
       "rating": 4.3,
       "reviews": 814,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_116/001.jpg",
+      "image": "/tours/excursions/tour_116/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3138,11 +3138,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_116/001.jpg",
-        "/tours/excursions/tour_116/002.jpg",
-        "/tours/excursions/tour_116/003.jpg",
-        "/tours/excursions/tour_116/004.jpg",
-        "/tours/excursions/tour_116/005.jpg"
+        "/tours/excursions/tour_116/001.webp",
+        "/tours/excursions/tour_116/002.webp",
+        "/tours/excursions/tour_116/003.webp",
+        "/tours/excursions/tour_116/004.webp",
+        "/tours/excursions/tour_116/005.webp"
       ]
     },
     {
@@ -3155,7 +3155,7 @@
       "rating": 4.3,
       "reviews": 573,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_117/001.jpg",
+      "image": "/tours/excursions/tour_117/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3165,11 +3165,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_117/001.jpg",
-        "/tours/excursions/tour_117/002.jpg",
-        "/tours/excursions/tour_117/003.jpg",
-        "/tours/excursions/tour_117/004.jpg",
-        "/tours/excursions/tour_117/005.jpg"
+        "/tours/excursions/tour_117/001.webp",
+        "/tours/excursions/tour_117/002.webp",
+        "/tours/excursions/tour_117/003.webp",
+        "/tours/excursions/tour_117/004.webp",
+        "/tours/excursions/tour_117/005.webp"
       ]
     },
     {
@@ -3182,7 +3182,7 @@
       "rating": 4.5,
       "reviews": 849,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_118/001.jpg",
+      "image": "/tours/excursions/tour_118/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3192,11 +3192,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_118/001.jpg",
-        "/tours/excursions/tour_118/002.jpg",
-        "/tours/excursions/tour_118/003.jpg",
-        "/tours/excursions/tour_118/004.jpg",
-        "/tours/excursions/tour_118/005.jpg"
+        "/tours/excursions/tour_118/001.webp",
+        "/tours/excursions/tour_118/002.webp",
+        "/tours/excursions/tour_118/003.webp",
+        "/tours/excursions/tour_118/004.webp",
+        "/tours/excursions/tour_118/005.webp"
       ]
     },
     {
@@ -3209,7 +3209,7 @@
       "rating": 4.2,
       "reviews": 621,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_119/001.jpg",
+      "image": "/tours/excursions/tour_119/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3219,11 +3219,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_119/001.jpg",
-        "/tours/excursions/tour_119/002.jpg",
-        "/tours/excursions/tour_119/003.jpg",
-        "/tours/excursions/tour_119/004.jpg",
-        "/tours/excursions/tour_119/005.jpg"
+        "/tours/excursions/tour_119/001.webp",
+        "/tours/excursions/tour_119/002.webp",
+        "/tours/excursions/tour_119/003.webp",
+        "/tours/excursions/tour_119/004.webp",
+        "/tours/excursions/tour_119/005.webp"
       ]
     },
     {
@@ -3236,7 +3236,7 @@
       "rating": 4.5,
       "reviews": 613,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_120/001.jpg",
+      "image": "/tours/excursions/tour_120/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3246,11 +3246,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_120/001.jpg",
-        "/tours/excursions/tour_120/002.jpg",
-        "/tours/excursions/tour_120/003.jpg",
-        "/tours/excursions/tour_120/004.jpg",
-        "/tours/excursions/tour_120/005.jpg"
+        "/tours/excursions/tour_120/001.webp",
+        "/tours/excursions/tour_120/002.webp",
+        "/tours/excursions/tour_120/003.webp",
+        "/tours/excursions/tour_120/004.webp",
+        "/tours/excursions/tour_120/005.webp"
       ]
     },
     {
@@ -3263,7 +3263,7 @@
       "rating": 4.3,
       "reviews": 611,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_121/001.jpg",
+      "image": "/tours/excursions/tour_121/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3273,11 +3273,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_121/001.jpg",
-        "/tours/excursions/tour_121/002.jpg",
-        "/tours/excursions/tour_121/003.jpg",
-        "/tours/excursions/tour_121/004.jpg",
-        "/tours/excursions/tour_121/005.jpg"
+        "/tours/excursions/tour_121/001.webp",
+        "/tours/excursions/tour_121/002.webp",
+        "/tours/excursions/tour_121/003.webp",
+        "/tours/excursions/tour_121/004.webp",
+        "/tours/excursions/tour_121/005.webp"
       ]
     },
     {
@@ -3290,7 +3290,7 @@
       "rating": 4.2,
       "reviews": 758,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_122/001.jpg",
+      "image": "/tours/excursions/tour_122/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3300,11 +3300,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_122/001.jpg",
-        "/tours/excursions/tour_122/002.jpg",
-        "/tours/excursions/tour_122/003.jpg",
-        "/tours/excursions/tour_122/004.jpg",
-        "/tours/excursions/tour_122/005.jpg"
+        "/tours/excursions/tour_122/001.webp",
+        "/tours/excursions/tour_122/002.webp",
+        "/tours/excursions/tour_122/003.webp",
+        "/tours/excursions/tour_122/004.webp",
+        "/tours/excursions/tour_122/005.webp"
       ]
     },
     {
@@ -3317,7 +3317,7 @@
       "rating": 4.7,
       "reviews": 309,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_123/001.jpg",
+      "image": "/tours/excursions/tour_123/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3327,11 +3327,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_123/001.jpg",
-        "/tours/excursions/tour_123/002.jpg",
-        "/tours/excursions/tour_123/003.jpg",
-        "/tours/excursions/tour_123/004.jpg",
-        "/tours/excursions/tour_123/005.jpg"
+        "/tours/excursions/tour_123/001.webp",
+        "/tours/excursions/tour_123/002.webp",
+        "/tours/excursions/tour_123/003.webp",
+        "/tours/excursions/tour_123/004.webp",
+        "/tours/excursions/tour_123/005.webp"
       ]
     },
     {
@@ -3344,7 +3344,7 @@
       "rating": 4,
       "reviews": 352,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_124/001.jpg",
+      "image": "/tours/excursions/tour_124/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3354,11 +3354,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_124/001.jpg",
-        "/tours/excursions/tour_124/002.jpg",
-        "/tours/excursions/tour_124/003.jpg",
-        "/tours/excursions/tour_124/004.jpg",
-        "/tours/excursions/tour_124/005.jpg"
+        "/tours/excursions/tour_124/001.webp",
+        "/tours/excursions/tour_124/002.webp",
+        "/tours/excursions/tour_124/003.webp",
+        "/tours/excursions/tour_124/004.webp",
+        "/tours/excursions/tour_124/005.webp"
       ]
     },
     {
@@ -3371,7 +3371,7 @@
       "rating": 4.7,
       "reviews": 524,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_125/001.jpg",
+      "image": "/tours/excursions/tour_125/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3381,11 +3381,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_125/001.jpg",
-        "/tours/excursions/tour_125/002.jpg",
-        "/tours/excursions/tour_125/003.jpg",
-        "/tours/excursions/tour_125/004.jpg",
-        "/tours/excursions/tour_125/005.jpg"
+        "/tours/excursions/tour_125/001.webp",
+        "/tours/excursions/tour_125/002.webp",
+        "/tours/excursions/tour_125/003.webp",
+        "/tours/excursions/tour_125/004.webp",
+        "/tours/excursions/tour_125/005.webp"
       ]
     },
     {
@@ -3398,7 +3398,7 @@
       "rating": 4.6,
       "reviews": 812,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_126/001.jpg",
+      "image": "/tours/excursions/tour_126/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3408,11 +3408,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_126/001.jpg",
-        "/tours/excursions/tour_126/002.jpg",
-        "/tours/excursions/tour_126/003.jpg",
-        "/tours/excursions/tour_126/004.jpg",
-        "/tours/excursions/tour_126/005.jpg"
+        "/tours/excursions/tour_126/001.webp",
+        "/tours/excursions/tour_126/002.webp",
+        "/tours/excursions/tour_126/003.webp",
+        "/tours/excursions/tour_126/004.webp",
+        "/tours/excursions/tour_126/005.webp"
       ]
     },
     {
@@ -3425,7 +3425,7 @@
       "rating": 4,
       "reviews": 210,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_127/001.jpg",
+      "image": "/tours/excursions/tour_127/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3435,11 +3435,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_127/001.jpg",
-        "/tours/excursions/tour_127/002.jpg",
-        "/tours/excursions/tour_127/003.jpg",
-        "/tours/excursions/tour_127/004.jpg",
-        "/tours/excursions/tour_127/005.jpg"
+        "/tours/excursions/tour_127/001.webp",
+        "/tours/excursions/tour_127/002.webp",
+        "/tours/excursions/tour_127/003.webp",
+        "/tours/excursions/tour_127/004.webp",
+        "/tours/excursions/tour_127/005.webp"
       ]
     },
     {
@@ -3452,7 +3452,7 @@
       "rating": 4.4,
       "reviews": 752,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_128/001.jpg",
+      "image": "/tours/excursions/tour_128/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3462,11 +3462,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_128/001.jpg",
-        "/tours/excursions/tour_128/002.jpg",
-        "/tours/excursions/tour_128/003.jpg",
-        "/tours/excursions/tour_128/004.jpg",
-        "/tours/excursions/tour_128/005.jpg"
+        "/tours/excursions/tour_128/001.webp",
+        "/tours/excursions/tour_128/002.webp",
+        "/tours/excursions/tour_128/003.webp",
+        "/tours/excursions/tour_128/004.webp",
+        "/tours/excursions/tour_128/005.webp"
       ]
     },
     {
@@ -3479,7 +3479,7 @@
       "rating": 4.4,
       "reviews": 742,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_129/001.jpg",
+      "image": "/tours/excursions/tour_129/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3489,11 +3489,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_129/001.jpg",
-        "/tours/excursions/tour_129/002.jpg",
-        "/tours/excursions/tour_129/003.jpg",
-        "/tours/excursions/tour_129/004.jpg",
-        "/tours/excursions/tour_129/005.jpg"
+        "/tours/excursions/tour_129/001.webp",
+        "/tours/excursions/tour_129/002.webp",
+        "/tours/excursions/tour_129/003.webp",
+        "/tours/excursions/tour_129/004.webp",
+        "/tours/excursions/tour_129/005.webp"
       ]
     },
     {
@@ -3506,7 +3506,7 @@
       "rating": 4.7,
       "reviews": 872,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_130/001.jpg",
+      "image": "/tours/excursions/tour_130/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3516,11 +3516,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_130/001.jpg",
-        "/tours/excursions/tour_130/002.jpg",
-        "/tours/excursions/tour_130/003.jpg",
-        "/tours/excursions/tour_130/004.jpg",
-        "/tours/excursions/tour_130/005.jpg"
+        "/tours/excursions/tour_130/001.webp",
+        "/tours/excursions/tour_130/002.webp",
+        "/tours/excursions/tour_130/003.webp",
+        "/tours/excursions/tour_130/004.webp",
+        "/tours/excursions/tour_130/005.webp"
       ]
     },
     {
@@ -3533,7 +3533,7 @@
       "rating": 4.3,
       "reviews": 661,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_131/001.jpg",
+      "image": "/tours/excursions/tour_131/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3543,11 +3543,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_131/001.jpg",
-        "/tours/excursions/tour_131/002.jpg",
-        "/tours/excursions/tour_131/003.jpg",
-        "/tours/excursions/tour_131/004.jpg",
-        "/tours/excursions/tour_131/005.jpg"
+        "/tours/excursions/tour_131/001.webp",
+        "/tours/excursions/tour_131/002.webp",
+        "/tours/excursions/tour_131/003.webp",
+        "/tours/excursions/tour_131/004.webp",
+        "/tours/excursions/tour_131/005.webp"
       ]
     },
     {
@@ -3560,7 +3560,7 @@
       "rating": 4.7,
       "reviews": 371,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_132/001.jpg",
+      "image": "/tours/excursions/tour_132/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3570,11 +3570,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_132/001.jpg",
-        "/tours/excursions/tour_132/002.jpg",
-        "/tours/excursions/tour_132/003.jpg",
-        "/tours/excursions/tour_132/004.jpg",
-        "/tours/excursions/tour_132/005.jpg"
+        "/tours/excursions/tour_132/001.webp",
+        "/tours/excursions/tour_132/002.webp",
+        "/tours/excursions/tour_132/003.webp",
+        "/tours/excursions/tour_132/004.webp",
+        "/tours/excursions/tour_132/005.webp"
       ]
     },
     {
@@ -3587,7 +3587,7 @@
       "rating": 4.9,
       "reviews": 150,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_133/001.jpg",
+      "image": "/tours/excursions/tour_133/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3597,11 +3597,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_133/001.jpg",
-        "/tours/excursions/tour_133/002.jpg",
-        "/tours/excursions/tour_133/003.jpg",
-        "/tours/excursions/tour_133/004.jpg",
-        "/tours/excursions/tour_133/005.jpg"
+        "/tours/excursions/tour_133/001.webp",
+        "/tours/excursions/tour_133/002.webp",
+        "/tours/excursions/tour_133/003.webp",
+        "/tours/excursions/tour_133/004.webp",
+        "/tours/excursions/tour_133/005.webp"
       ]
     },
     {
@@ -3614,7 +3614,7 @@
       "rating": 4.3,
       "reviews": 862,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_134/001.jpg",
+      "image": "/tours/excursions/tour_134/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3624,11 +3624,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_134/001.jpg",
-        "/tours/excursions/tour_134/002.jpg",
-        "/tours/excursions/tour_134/003.jpg",
-        "/tours/excursions/tour_134/004.jpg",
-        "/tours/excursions/tour_134/005.jpg"
+        "/tours/excursions/tour_134/001.webp",
+        "/tours/excursions/tour_134/002.webp",
+        "/tours/excursions/tour_134/003.webp",
+        "/tours/excursions/tour_134/004.webp",
+        "/tours/excursions/tour_134/005.webp"
       ]
     },
     {
@@ -3641,7 +3641,7 @@
       "rating": 4.3,
       "reviews": 797,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_135/001.jpg",
+      "image": "/tours/excursions/tour_135/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3651,11 +3651,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_135/001.jpg",
-        "/tours/excursions/tour_135/002.jpg",
-        "/tours/excursions/tour_135/003.jpg",
-        "/tours/excursions/tour_135/004.jpg",
-        "/tours/excursions/tour_135/005.jpg"
+        "/tours/excursions/tour_135/001.webp",
+        "/tours/excursions/tour_135/002.webp",
+        "/tours/excursions/tour_135/003.webp",
+        "/tours/excursions/tour_135/004.webp",
+        "/tours/excursions/tour_135/005.webp"
       ]
     },
     {
@@ -3668,7 +3668,7 @@
       "rating": 4.2,
       "reviews": 642,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_136/001.jpg",
+      "image": "/tours/excursions/tour_136/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3678,11 +3678,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_136/001.jpg",
-        "/tours/excursions/tour_136/002.jpg",
-        "/tours/excursions/tour_136/003.jpg",
-        "/tours/excursions/tour_136/004.jpg",
-        "/tours/excursions/tour_136/005.jpg"
+        "/tours/excursions/tour_136/001.webp",
+        "/tours/excursions/tour_136/002.webp",
+        "/tours/excursions/tour_136/003.webp",
+        "/tours/excursions/tour_136/004.webp",
+        "/tours/excursions/tour_136/005.webp"
       ]
     },
     {
@@ -3695,7 +3695,7 @@
       "rating": 4.1,
       "reviews": 700,
       "tag": "Water",
-      "image": "/tours/excursions/tour_137/001.jpg",
+      "image": "/tours/excursions/tour_137/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3705,11 +3705,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_137/001.jpg",
-        "/tours/excursions/tour_137/002.jpg",
-        "/tours/excursions/tour_137/003.jpg",
-        "/tours/excursions/tour_137/004.jpg",
-        "/tours/excursions/tour_137/005.jpg"
+        "/tours/excursions/tour_137/001.webp",
+        "/tours/excursions/tour_137/002.webp",
+        "/tours/excursions/tour_137/003.webp",
+        "/tours/excursions/tour_137/004.webp",
+        "/tours/excursions/tour_137/005.webp"
       ]
     },
     {
@@ -3722,7 +3722,7 @@
       "rating": 4.4,
       "reviews": 820,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_138/001.jpg",
+      "image": "/tours/excursions/tour_138/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3732,11 +3732,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_138/001.jpg",
-        "/tours/excursions/tour_138/002.jpg",
-        "/tours/excursions/tour_138/003.jpg",
-        "/tours/excursions/tour_138/004.jpg",
-        "/tours/excursions/tour_138/005.jpg"
+        "/tours/excursions/tour_138/001.webp",
+        "/tours/excursions/tour_138/002.webp",
+        "/tours/excursions/tour_138/003.webp",
+        "/tours/excursions/tour_138/004.webp",
+        "/tours/excursions/tour_138/005.webp"
       ]
     },
     {
@@ -3749,7 +3749,7 @@
       "rating": 4.2,
       "reviews": 748,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_139/001.jpg",
+      "image": "/tours/excursions/tour_139/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3759,11 +3759,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_139/001.jpg",
-        "/tours/excursions/tour_139/002.jpg",
-        "/tours/excursions/tour_139/003.jpg",
-        "/tours/excursions/tour_139/004.jpg",
-        "/tours/excursions/tour_139/005.jpg"
+        "/tours/excursions/tour_139/001.webp",
+        "/tours/excursions/tour_139/002.webp",
+        "/tours/excursions/tour_139/003.webp",
+        "/tours/excursions/tour_139/004.webp",
+        "/tours/excursions/tour_139/005.webp"
       ]
     },
     {
@@ -3776,7 +3776,7 @@
       "rating": 4.2,
       "reviews": 249,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_140/001.jpg",
+      "image": "/tours/excursions/tour_140/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3786,11 +3786,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_140/001.jpg",
-        "/tours/excursions/tour_140/002.jpg",
-        "/tours/excursions/tour_140/003.jpg",
-        "/tours/excursions/tour_140/004.jpg",
-        "/tours/excursions/tour_140/005.jpg"
+        "/tours/excursions/tour_140/001.webp",
+        "/tours/excursions/tour_140/002.webp",
+        "/tours/excursions/tour_140/003.webp",
+        "/tours/excursions/tour_140/004.webp",
+        "/tours/excursions/tour_140/005.webp"
       ]
     },
     {
@@ -3803,7 +3803,7 @@
       "rating": 4.5,
       "reviews": 131,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_141/001.jpg",
+      "image": "/tours/excursions/tour_141/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3813,11 +3813,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_141/001.jpg",
-        "/tours/excursions/tour_141/002.jpg",
-        "/tours/excursions/tour_141/003.jpg",
-        "/tours/excursions/tour_141/004.jpg",
-        "/tours/excursions/tour_141/005.jpg"
+        "/tours/excursions/tour_141/001.webp",
+        "/tours/excursions/tour_141/002.webp",
+        "/tours/excursions/tour_141/003.webp",
+        "/tours/excursions/tour_141/004.webp",
+        "/tours/excursions/tour_141/005.webp"
       ]
     },
     {
@@ -3830,7 +3830,7 @@
       "rating": 4.6,
       "reviews": 227,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_142/001.jpg",
+      "image": "/tours/excursions/tour_142/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3840,11 +3840,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_142/001.jpg",
-        "/tours/excursions/tour_142/002.jpg",
-        "/tours/excursions/tour_142/003.jpg",
-        "/tours/excursions/tour_142/004.jpg",
-        "/tours/excursions/tour_142/005.jpg"
+        "/tours/excursions/tour_142/001.webp",
+        "/tours/excursions/tour_142/002.webp",
+        "/tours/excursions/tour_142/003.webp",
+        "/tours/excursions/tour_142/004.webp",
+        "/tours/excursions/tour_142/005.webp"
       ]
     },
     {
@@ -3857,7 +3857,7 @@
       "rating": 4.7,
       "reviews": 206,
       "tag": "Water",
-      "image": "/tours/excursions/tour_143/001.jpg",
+      "image": "/tours/excursions/tour_143/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3867,11 +3867,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_143/001.jpg",
-        "/tours/excursions/tour_143/002.jpg",
-        "/tours/excursions/tour_143/003.jpg",
-        "/tours/excursions/tour_143/004.jpg",
-        "/tours/excursions/tour_143/005.jpg"
+        "/tours/excursions/tour_143/001.webp",
+        "/tours/excursions/tour_143/002.webp",
+        "/tours/excursions/tour_143/003.webp",
+        "/tours/excursions/tour_143/004.webp",
+        "/tours/excursions/tour_143/005.webp"
       ]
     },
     {
@@ -3884,7 +3884,7 @@
       "rating": 4.2,
       "reviews": 291,
       "tag": "Water",
-      "image": "/tours/excursions/tour_144/001.jpg",
+      "image": "/tours/excursions/tour_144/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3894,11 +3894,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_144/001.jpg",
-        "/tours/excursions/tour_144/002.jpg",
-        "/tours/excursions/tour_144/003.jpg",
-        "/tours/excursions/tour_144/004.jpg",
-        "/tours/excursions/tour_144/005.jpg"
+        "/tours/excursions/tour_144/001.webp",
+        "/tours/excursions/tour_144/002.webp",
+        "/tours/excursions/tour_144/003.webp",
+        "/tours/excursions/tour_144/004.webp",
+        "/tours/excursions/tour_144/005.webp"
       ]
     },
     {
@@ -3911,7 +3911,7 @@
       "rating": 4.8,
       "reviews": 397,
       "tag": "Water",
-      "image": "/tours/excursions/tour_145/001.jpg",
+      "image": "/tours/excursions/tour_145/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3921,11 +3921,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_145/001.jpg",
-        "/tours/excursions/tour_145/002.jpg",
-        "/tours/excursions/tour_145/003.jpg",
-        "/tours/excursions/tour_145/004.jpg",
-        "/tours/excursions/tour_145/005.jpg"
+        "/tours/excursions/tour_145/001.webp",
+        "/tours/excursions/tour_145/002.webp",
+        "/tours/excursions/tour_145/003.webp",
+        "/tours/excursions/tour_145/004.webp",
+        "/tours/excursions/tour_145/005.webp"
       ]
     },
     {
@@ -3938,7 +3938,7 @@
       "rating": 4.2,
       "reviews": 381,
       "tag": "Water",
-      "image": "/tours/excursions/tour_146/001.jpg",
+      "image": "/tours/excursions/tour_146/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3948,11 +3948,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_146/001.jpg",
-        "/tours/excursions/tour_146/002.jpg",
-        "/tours/excursions/tour_146/003.jpg",
-        "/tours/excursions/tour_146/004.jpg",
-        "/tours/excursions/tour_146/005.jpg"
+        "/tours/excursions/tour_146/001.webp",
+        "/tours/excursions/tour_146/002.webp",
+        "/tours/excursions/tour_146/003.webp",
+        "/tours/excursions/tour_146/004.webp",
+        "/tours/excursions/tour_146/005.webp"
       ]
     },
     {
@@ -3965,7 +3965,7 @@
       "rating": 4.8,
       "reviews": 365,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_147/001.jpg",
+      "image": "/tours/excursions/tour_147/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -3975,11 +3975,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_147/001.jpg",
-        "/tours/excursions/tour_147/002.jpg",
-        "/tours/excursions/tour_147/003.jpg",
-        "/tours/excursions/tour_147/004.jpg",
-        "/tours/excursions/tour_147/005.jpg"
+        "/tours/excursions/tour_147/001.webp",
+        "/tours/excursions/tour_147/002.webp",
+        "/tours/excursions/tour_147/003.webp",
+        "/tours/excursions/tour_147/004.webp",
+        "/tours/excursions/tour_147/005.webp"
       ]
     },
     {
@@ -3992,7 +3992,7 @@
       "rating": 4.5,
       "reviews": 326,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_148/001.jpg",
+      "image": "/tours/excursions/tour_148/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4002,11 +4002,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_148/001.jpg",
-        "/tours/excursions/tour_148/002.jpg",
-        "/tours/excursions/tour_148/003.jpg",
-        "/tours/excursions/tour_148/004.jpg",
-        "/tours/excursions/tour_148/005.jpg"
+        "/tours/excursions/tour_148/001.webp",
+        "/tours/excursions/tour_148/002.webp",
+        "/tours/excursions/tour_148/003.webp",
+        "/tours/excursions/tour_148/004.webp",
+        "/tours/excursions/tour_148/005.webp"
       ]
     },
     {
@@ -4019,7 +4019,7 @@
       "rating": 4.3,
       "reviews": 125,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_149/001.jpg",
+      "image": "/tours/excursions/tour_149/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4029,11 +4029,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_149/001.jpg",
-        "/tours/excursions/tour_149/002.jpg",
-        "/tours/excursions/tour_149/003.jpg",
-        "/tours/excursions/tour_149/004.jpg",
-        "/tours/excursions/tour_149/005.jpg"
+        "/tours/excursions/tour_149/001.webp",
+        "/tours/excursions/tour_149/002.webp",
+        "/tours/excursions/tour_149/003.webp",
+        "/tours/excursions/tour_149/004.webp",
+        "/tours/excursions/tour_149/005.webp"
       ]
     },
     {
@@ -4046,7 +4046,7 @@
       "rating": 4.1,
       "reviews": 843,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_150/001.jpg",
+      "image": "/tours/excursions/tour_150/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4056,11 +4056,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_150/001.jpg",
-        "/tours/excursions/tour_150/002.jpg",
-        "/tours/excursions/tour_150/003.jpg",
-        "/tours/excursions/tour_150/004.jpg",
-        "/tours/excursions/tour_150/005.jpg"
+        "/tours/excursions/tour_150/001.webp",
+        "/tours/excursions/tour_150/002.webp",
+        "/tours/excursions/tour_150/003.webp",
+        "/tours/excursions/tour_150/004.webp",
+        "/tours/excursions/tour_150/005.webp"
       ]
     },
     {
@@ -4073,7 +4073,7 @@
       "rating": 4.6,
       "reviews": 222,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_151/001.jpg",
+      "image": "/tours/excursions/tour_151/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4083,11 +4083,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_151/001.jpg",
-        "/tours/excursions/tour_151/002.jpg",
-        "/tours/excursions/tour_151/003.jpg",
-        "/tours/excursions/tour_151/004.jpg",
-        "/tours/excursions/tour_151/005.jpg"
+        "/tours/excursions/tour_151/001.webp",
+        "/tours/excursions/tour_151/002.webp",
+        "/tours/excursions/tour_151/003.webp",
+        "/tours/excursions/tour_151/004.webp",
+        "/tours/excursions/tour_151/005.webp"
       ]
     },
     {
@@ -4100,7 +4100,7 @@
       "rating": 4,
       "reviews": 601,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_152/001.jpg",
+      "image": "/tours/excursions/tour_152/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4110,11 +4110,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_152/001.jpg",
-        "/tours/excursions/tour_152/002.jpg",
-        "/tours/excursions/tour_152/003.jpg",
-        "/tours/excursions/tour_152/004.jpg",
-        "/tours/excursions/tour_152/005.jpg"
+        "/tours/excursions/tour_152/001.webp",
+        "/tours/excursions/tour_152/002.webp",
+        "/tours/excursions/tour_152/003.webp",
+        "/tours/excursions/tour_152/004.webp",
+        "/tours/excursions/tour_152/005.webp"
       ]
     },
     {
@@ -4127,7 +4127,7 @@
       "rating": 4.6,
       "reviews": 346,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_153/001.jpg",
+      "image": "/tours/excursions/tour_153/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4137,11 +4137,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_153/001.jpg",
-        "/tours/excursions/tour_153/002.jpg",
-        "/tours/excursions/tour_153/003.jpg",
-        "/tours/excursions/tour_153/004.jpg",
-        "/tours/excursions/tour_153/005.jpg"
+        "/tours/excursions/tour_153/001.webp",
+        "/tours/excursions/tour_153/002.webp",
+        "/tours/excursions/tour_153/003.webp",
+        "/tours/excursions/tour_153/004.webp",
+        "/tours/excursions/tour_153/005.webp"
       ]
     },
     {
@@ -4154,7 +4154,7 @@
       "rating": 4.7,
       "reviews": 823,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_154/001.jpg",
+      "image": "/tours/excursions/tour_154/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4164,11 +4164,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_154/001.jpg",
-        "/tours/excursions/tour_154/002.jpg",
-        "/tours/excursions/tour_154/003.jpg",
-        "/tours/excursions/tour_154/004.jpg",
-        "/tours/excursions/tour_154/005.jpg"
+        "/tours/excursions/tour_154/001.webp",
+        "/tours/excursions/tour_154/002.webp",
+        "/tours/excursions/tour_154/003.webp",
+        "/tours/excursions/tour_154/004.webp",
+        "/tours/excursions/tour_154/005.webp"
       ]
     },
     {
@@ -4181,7 +4181,7 @@
       "rating": 4.1,
       "reviews": 135,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_155/001.jpg",
+      "image": "/tours/excursions/tour_155/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4191,11 +4191,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_155/001.jpg",
-        "/tours/excursions/tour_155/002.jpg",
-        "/tours/excursions/tour_155/003.jpg",
-        "/tours/excursions/tour_155/004.jpg",
-        "/tours/excursions/tour_155/005.jpg"
+        "/tours/excursions/tour_155/001.webp",
+        "/tours/excursions/tour_155/002.webp",
+        "/tours/excursions/tour_155/003.webp",
+        "/tours/excursions/tour_155/004.webp",
+        "/tours/excursions/tour_155/005.webp"
       ]
     },
     {
@@ -4208,7 +4208,7 @@
       "rating": 4.7,
       "reviews": 808,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_156/001.jpg",
+      "image": "/tours/excursions/tour_156/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4218,11 +4218,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_156/001.jpg",
-        "/tours/excursions/tour_156/002.jpg",
-        "/tours/excursions/tour_156/003.jpg",
-        "/tours/excursions/tour_156/004.jpg",
-        "/tours/excursions/tour_156/005.jpg"
+        "/tours/excursions/tour_156/001.webp",
+        "/tours/excursions/tour_156/002.webp",
+        "/tours/excursions/tour_156/003.webp",
+        "/tours/excursions/tour_156/004.webp",
+        "/tours/excursions/tour_156/005.webp"
       ]
     },
     {
@@ -4235,7 +4235,7 @@
       "rating": 4.7,
       "reviews": 331,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_157/001.jpg",
+      "image": "/tours/excursions/tour_157/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4245,11 +4245,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_157/001.jpg",
-        "/tours/excursions/tour_157/002.jpg",
-        "/tours/excursions/tour_157/003.jpg",
-        "/tours/excursions/tour_157/004.jpg",
-        "/tours/excursions/tour_157/005.jpg"
+        "/tours/excursions/tour_157/001.webp",
+        "/tours/excursions/tour_157/002.webp",
+        "/tours/excursions/tour_157/003.webp",
+        "/tours/excursions/tour_157/004.webp",
+        "/tours/excursions/tour_157/005.webp"
       ]
     },
     {
@@ -4262,7 +4262,7 @@
       "rating": 4.1,
       "reviews": 314,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_158/001.jpg",
+      "image": "/tours/excursions/tour_158/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4272,11 +4272,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_158/001.jpg",
-        "/tours/excursions/tour_158/002.jpg",
-        "/tours/excursions/tour_158/003.jpg",
-        "/tours/excursions/tour_158/004.jpg",
-        "/tours/excursions/tour_158/005.jpg"
+        "/tours/excursions/tour_158/001.webp",
+        "/tours/excursions/tour_158/002.webp",
+        "/tours/excursions/tour_158/003.webp",
+        "/tours/excursions/tour_158/004.webp",
+        "/tours/excursions/tour_158/005.webp"
       ]
     },
     {
@@ -4289,7 +4289,7 @@
       "rating": 4.7,
       "reviews": 424,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_159/001.jpg",
+      "image": "/tours/excursions/tour_159/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4299,11 +4299,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_159/001.jpg",
-        "/tours/excursions/tour_159/002.jpg",
-        "/tours/excursions/tour_159/003.jpg",
-        "/tours/excursions/tour_159/004.jpg",
-        "/tours/excursions/tour_159/005.jpg"
+        "/tours/excursions/tour_159/001.webp",
+        "/tours/excursions/tour_159/002.webp",
+        "/tours/excursions/tour_159/003.webp",
+        "/tours/excursions/tour_159/004.webp",
+        "/tours/excursions/tour_159/005.webp"
       ]
     },
     {
@@ -4316,7 +4316,7 @@
       "rating": 4.6,
       "reviews": 162,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_160/001.jpg",
+      "image": "/tours/excursions/tour_160/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4326,11 +4326,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_160/001.jpg",
-        "/tours/excursions/tour_160/002.jpg",
-        "/tours/excursions/tour_160/003.jpg",
-        "/tours/excursions/tour_160/004.jpg",
-        "/tours/excursions/tour_160/005.jpg"
+        "/tours/excursions/tour_160/001.webp",
+        "/tours/excursions/tour_160/002.webp",
+        "/tours/excursions/tour_160/003.webp",
+        "/tours/excursions/tour_160/004.webp",
+        "/tours/excursions/tour_160/005.webp"
       ]
     },
     {
@@ -4343,7 +4343,7 @@
       "rating": 4.8,
       "reviews": 825,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_161/001.jpg",
+      "image": "/tours/excursions/tour_161/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4353,11 +4353,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_161/001.jpg",
-        "/tours/excursions/tour_161/002.jpg",
-        "/tours/excursions/tour_161/003.jpg",
-        "/tours/excursions/tour_161/004.jpg",
-        "/tours/excursions/tour_161/005.jpg"
+        "/tours/excursions/tour_161/001.webp",
+        "/tours/excursions/tour_161/002.webp",
+        "/tours/excursions/tour_161/003.webp",
+        "/tours/excursions/tour_161/004.webp",
+        "/tours/excursions/tour_161/005.webp"
       ]
     },
     {
@@ -4370,7 +4370,7 @@
       "rating": 4.5,
       "reviews": 131,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_162/001.jpg",
+      "image": "/tours/excursions/tour_162/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4380,11 +4380,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_162/001.jpg",
-        "/tours/excursions/tour_162/002.jpg",
-        "/tours/excursions/tour_162/003.jpg",
-        "/tours/excursions/tour_162/004.jpg",
-        "/tours/excursions/tour_162/005.jpg"
+        "/tours/excursions/tour_162/001.webp",
+        "/tours/excursions/tour_162/002.webp",
+        "/tours/excursions/tour_162/003.webp",
+        "/tours/excursions/tour_162/004.webp",
+        "/tours/excursions/tour_162/005.webp"
       ]
     },
     {
@@ -4397,7 +4397,7 @@
       "rating": 4.4,
       "reviews": 313,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_163/001.jpg",
+      "image": "/tours/excursions/tour_163/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4407,11 +4407,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_163/001.jpg",
-        "/tours/excursions/tour_163/002.jpg",
-        "/tours/excursions/tour_163/003.jpg",
-        "/tours/excursions/tour_163/004.jpg",
-        "/tours/excursions/tour_163/005.jpg"
+        "/tours/excursions/tour_163/001.webp",
+        "/tours/excursions/tour_163/002.webp",
+        "/tours/excursions/tour_163/003.webp",
+        "/tours/excursions/tour_163/004.webp",
+        "/tours/excursions/tour_163/005.webp"
       ]
     },
     {
@@ -4424,7 +4424,7 @@
       "rating": 4.7,
       "reviews": 719,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_164/001.jpg",
+      "image": "/tours/excursions/tour_164/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4434,11 +4434,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_164/001.jpg",
-        "/tours/excursions/tour_164/002.jpg",
-        "/tours/excursions/tour_164/003.jpg",
-        "/tours/excursions/tour_164/004.jpg",
-        "/tours/excursions/tour_164/005.jpg"
+        "/tours/excursions/tour_164/001.webp",
+        "/tours/excursions/tour_164/002.webp",
+        "/tours/excursions/tour_164/003.webp",
+        "/tours/excursions/tour_164/004.webp",
+        "/tours/excursions/tour_164/005.webp"
       ]
     },
     {
@@ -4451,7 +4451,7 @@
       "rating": 4.3,
       "reviews": 788,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_165/001.jpg",
+      "image": "/tours/excursions/tour_165/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4461,11 +4461,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_165/001.jpg",
-        "/tours/excursions/tour_165/002.jpg",
-        "/tours/excursions/tour_165/003.jpg",
-        "/tours/excursions/tour_165/004.jpg",
-        "/tours/excursions/tour_165/005.jpg"
+        "/tours/excursions/tour_165/001.webp",
+        "/tours/excursions/tour_165/002.webp",
+        "/tours/excursions/tour_165/003.webp",
+        "/tours/excursions/tour_165/004.webp",
+        "/tours/excursions/tour_165/005.webp"
       ]
     },
     {
@@ -4478,7 +4478,7 @@
       "rating": 4.9,
       "reviews": 186,
       "tag": "Saona",
-      "image": "/tours/excursions/tour_166/001.jpg",
+      "image": "/tours/excursions/tour_166/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4488,11 +4488,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_166/001.jpg",
-        "/tours/excursions/tour_166/002.jpg",
-        "/tours/excursions/tour_166/003.jpg",
-        "/tours/excursions/tour_166/004.jpg",
-        "/tours/excursions/tour_166/005.jpg"
+        "/tours/excursions/tour_166/001.webp",
+        "/tours/excursions/tour_166/002.webp",
+        "/tours/excursions/tour_166/003.webp",
+        "/tours/excursions/tour_166/004.webp",
+        "/tours/excursions/tour_166/005.webp"
       ]
     },
     {
@@ -4505,7 +4505,7 @@
       "rating": 4.1,
       "reviews": 185,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_167/001.jpg",
+      "image": "/tours/excursions/tour_167/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4515,11 +4515,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_167/001.jpg",
-        "/tours/excursions/tour_167/002.jpg",
-        "/tours/excursions/tour_167/003.jpg",
-        "/tours/excursions/tour_167/004.jpg",
-        "/tours/excursions/tour_167/005.jpg"
+        "/tours/excursions/tour_167/001.webp",
+        "/tours/excursions/tour_167/002.webp",
+        "/tours/excursions/tour_167/003.webp",
+        "/tours/excursions/tour_167/004.webp",
+        "/tours/excursions/tour_167/005.webp"
       ]
     },
     {
@@ -4532,7 +4532,7 @@
       "rating": 4.4,
       "reviews": 284,
       "tag": "Water",
-      "image": "/tours/excursions/tour_168/001.jpg",
+      "image": "/tours/excursions/tour_168/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4542,11 +4542,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_168/001.jpg",
-        "/tours/excursions/tour_168/002.jpg",
-        "/tours/excursions/tour_168/003.jpg",
-        "/tours/excursions/tour_168/004.jpg",
-        "/tours/excursions/tour_168/005.jpg"
+        "/tours/excursions/tour_168/001.webp",
+        "/tours/excursions/tour_168/002.webp",
+        "/tours/excursions/tour_168/003.webp",
+        "/tours/excursions/tour_168/004.webp",
+        "/tours/excursions/tour_168/005.webp"
       ]
     },
     {
@@ -4559,7 +4559,7 @@
       "rating": 4.4,
       "reviews": 494,
       "tag": "Water",
-      "image": "/tours/excursions/tour_169/001.jpg",
+      "image": "/tours/excursions/tour_169/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4569,11 +4569,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_169/001.jpg",
-        "/tours/excursions/tour_169/002.jpg",
-        "/tours/excursions/tour_169/003.jpg",
-        "/tours/excursions/tour_169/004.jpg",
-        "/tours/excursions/tour_169/005.jpg"
+        "/tours/excursions/tour_169/001.webp",
+        "/tours/excursions/tour_169/002.webp",
+        "/tours/excursions/tour_169/003.webp",
+        "/tours/excursions/tour_169/004.webp",
+        "/tours/excursions/tour_169/005.webp"
       ]
     },
     {
@@ -4586,7 +4586,7 @@
       "rating": 4.2,
       "reviews": 711,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_170/001.jpg",
+      "image": "/tours/excursions/tour_170/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4596,11 +4596,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_170/001.jpg",
-        "/tours/excursions/tour_170/002.jpg",
-        "/tours/excursions/tour_170/003.jpg",
-        "/tours/excursions/tour_170/004.jpg",
-        "/tours/excursions/tour_170/005.jpg"
+        "/tours/excursions/tour_170/001.webp",
+        "/tours/excursions/tour_170/002.webp",
+        "/tours/excursions/tour_170/003.webp",
+        "/tours/excursions/tour_170/004.webp",
+        "/tours/excursions/tour_170/005.webp"
       ]
     },
     {
@@ -4613,7 +4613,7 @@
       "rating": 4.5,
       "reviews": 810,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_171/001.jpg",
+      "image": "/tours/excursions/tour_171/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4623,11 +4623,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_171/001.jpg",
-        "/tours/excursions/tour_171/002.jpg",
-        "/tours/excursions/tour_171/003.jpg",
-        "/tours/excursions/tour_171/004.jpg",
-        "/tours/excursions/tour_171/005.jpg"
+        "/tours/excursions/tour_171/001.webp",
+        "/tours/excursions/tour_171/002.webp",
+        "/tours/excursions/tour_171/003.webp",
+        "/tours/excursions/tour_171/004.webp",
+        "/tours/excursions/tour_171/005.webp"
       ]
     },
     {
@@ -4640,7 +4640,7 @@
       "rating": 4.6,
       "reviews": 416,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_172/001.jpg",
+      "image": "/tours/excursions/tour_172/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4650,11 +4650,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_172/001.jpg",
-        "/tours/excursions/tour_172/002.jpg",
-        "/tours/excursions/tour_172/003.jpg",
-        "/tours/excursions/tour_172/004.jpg",
-        "/tours/excursions/tour_172/005.jpg"
+        "/tours/excursions/tour_172/001.webp",
+        "/tours/excursions/tour_172/002.webp",
+        "/tours/excursions/tour_172/003.webp",
+        "/tours/excursions/tour_172/004.webp",
+        "/tours/excursions/tour_172/005.webp"
       ]
     },
     {
@@ -4667,7 +4667,7 @@
       "rating": 4.5,
       "reviews": 185,
       "tag": "Buggy",
-      "image": "/tours/excursions/tour_173/001.jpg",
+      "image": "/tours/excursions/tour_173/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4677,11 +4677,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_173/001.jpg",
-        "/tours/excursions/tour_173/002.jpg",
-        "/tours/excursions/tour_173/003.jpg",
-        "/tours/excursions/tour_173/004.jpg",
-        "/tours/excursions/tour_173/005.jpg"
+        "/tours/excursions/tour_173/001.webp",
+        "/tours/excursions/tour_173/002.webp",
+        "/tours/excursions/tour_173/003.webp",
+        "/tours/excursions/tour_173/004.webp",
+        "/tours/excursions/tour_173/005.webp"
       ]
     },
     {
@@ -4694,7 +4694,7 @@
       "rating": 4.6,
       "reviews": 172,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_174/001.jpg",
+      "image": "/tours/excursions/tour_174/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4704,11 +4704,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_174/001.jpg",
-        "/tours/excursions/tour_174/002.jpg",
-        "/tours/excursions/tour_174/003.jpg",
-        "/tours/excursions/tour_174/004.jpg",
-        "/tours/excursions/tour_174/005.jpg"
+        "/tours/excursions/tour_174/001.webp",
+        "/tours/excursions/tour_174/002.webp",
+        "/tours/excursions/tour_174/003.webp",
+        "/tours/excursions/tour_174/004.webp",
+        "/tours/excursions/tour_174/005.webp"
       ]
     },
     {
@@ -4721,7 +4721,7 @@
       "rating": 4.8,
       "reviews": 341,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_175/001.jpg",
+      "image": "/tours/excursions/tour_175/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4731,11 +4731,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_175/001.jpg",
-        "/tours/excursions/tour_175/002.jpg",
-        "/tours/excursions/tour_175/003.jpg",
-        "/tours/excursions/tour_175/004.jpg",
-        "/tours/excursions/tour_175/005.jpg"
+        "/tours/excursions/tour_175/001.webp",
+        "/tours/excursions/tour_175/002.webp",
+        "/tours/excursions/tour_175/003.webp",
+        "/tours/excursions/tour_175/004.webp",
+        "/tours/excursions/tour_175/005.webp"
       ]
     },
     {
@@ -4748,7 +4748,7 @@
       "rating": 4.7,
       "reviews": 173,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_176/001.jpg",
+      "image": "/tours/excursions/tour_176/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4758,11 +4758,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_176/001.jpg",
-        "/tours/excursions/tour_176/002.jpg",
-        "/tours/excursions/tour_176/003.jpg",
-        "/tours/excursions/tour_176/004.jpg",
-        "/tours/excursions/tour_176/005.jpg"
+        "/tours/excursions/tour_176/001.webp",
+        "/tours/excursions/tour_176/002.webp",
+        "/tours/excursions/tour_176/003.webp",
+        "/tours/excursions/tour_176/004.webp",
+        "/tours/excursions/tour_176/005.webp"
       ]
     },
     {
@@ -4775,7 +4775,7 @@
       "rating": 4,
       "reviews": 817,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_177/001.jpg",
+      "image": "/tours/excursions/tour_177/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4785,11 +4785,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_177/001.jpg",
-        "/tours/excursions/tour_177/002.jpg",
-        "/tours/excursions/tour_177/003.jpg",
-        "/tours/excursions/tour_177/004.jpg",
-        "/tours/excursions/tour_177/005.jpg"
+        "/tours/excursions/tour_177/001.webp",
+        "/tours/excursions/tour_177/002.webp",
+        "/tours/excursions/tour_177/003.webp",
+        "/tours/excursions/tour_177/004.webp",
+        "/tours/excursions/tour_177/005.webp"
       ]
     },
     {
@@ -4802,7 +4802,7 @@
       "rating": 4.2,
       "reviews": 499,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_178/001.jpg",
+      "image": "/tours/excursions/tour_178/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4812,11 +4812,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_178/001.jpg",
-        "/tours/excursions/tour_178/002.jpg",
-        "/tours/excursions/tour_178/003.jpg",
-        "/tours/excursions/tour_178/004.jpg",
-        "/tours/excursions/tour_178/005.jpg"
+        "/tours/excursions/tour_178/001.webp",
+        "/tours/excursions/tour_178/002.webp",
+        "/tours/excursions/tour_178/003.webp",
+        "/tours/excursions/tour_178/004.webp",
+        "/tours/excursions/tour_178/005.webp"
       ]
     },
     {
@@ -4829,7 +4829,7 @@
       "rating": 4.1,
       "reviews": 713,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_179/001.jpg",
+      "image": "/tours/excursions/tour_179/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4839,11 +4839,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_179/001.jpg",
-        "/tours/excursions/tour_179/002.jpg",
-        "/tours/excursions/tour_179/003.jpg",
-        "/tours/excursions/tour_179/004.jpg",
-        "/tours/excursions/tour_179/005.jpg"
+        "/tours/excursions/tour_179/001.webp",
+        "/tours/excursions/tour_179/002.webp",
+        "/tours/excursions/tour_179/003.webp",
+        "/tours/excursions/tour_179/004.webp",
+        "/tours/excursions/tour_179/005.webp"
       ]
     },
     {
@@ -4856,7 +4856,7 @@
       "rating": 4.3,
       "reviews": 269,
       "tag": "Transfer",
-      "image": "/tours/excursions/tour_180/001.jpg",
+      "image": "/tours/excursions/tour_180/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4866,11 +4866,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_180/001.jpg",
-        "/tours/excursions/tour_180/002.jpg",
-        "/tours/excursions/tour_180/003.jpg",
-        "/tours/excursions/tour_180/004.jpg",
-        "/tours/excursions/tour_180/005.jpg"
+        "/tours/excursions/tour_180/001.webp",
+        "/tours/excursions/tour_180/002.webp",
+        "/tours/excursions/tour_180/003.webp",
+        "/tours/excursions/tour_180/004.webp",
+        "/tours/excursions/tour_180/005.webp"
       ]
     },
     {
@@ -4883,7 +4883,7 @@
       "rating": 4.7,
       "reviews": 438,
       "tag": "Nightlife",
-      "image": "/tours/excursions/tour_181/001.jpg",
+      "image": "/tours/excursions/tour_181/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4893,11 +4893,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_181/001.jpg",
-        "/tours/excursions/tour_181/002.jpg",
-        "/tours/excursions/tour_181/003.jpg",
-        "/tours/excursions/tour_181/004.jpg",
-        "/tours/excursions/tour_181/005.jpg"
+        "/tours/excursions/tour_181/001.webp",
+        "/tours/excursions/tour_181/002.webp",
+        "/tours/excursions/tour_181/003.webp",
+        "/tours/excursions/tour_181/004.webp",
+        "/tours/excursions/tour_181/005.webp"
       ]
     },
     {
@@ -4910,7 +4910,7 @@
       "rating": 4.8,
       "reviews": 661,
       "tag": "Relax",
-      "image": "/tours/excursions/tour_182/001.jpg",
+      "image": "/tours/excursions/tour_182/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4920,11 +4920,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_182/001.jpg",
-        "/tours/excursions/tour_182/002.jpg",
-        "/tours/excursions/tour_182/003.jpg",
-        "/tours/excursions/tour_182/004.jpg",
-        "/tours/excursions/tour_182/005.jpg"
+        "/tours/excursions/tour_182/001.webp",
+        "/tours/excursions/tour_182/002.webp",
+        "/tours/excursions/tour_182/003.webp",
+        "/tours/excursions/tour_182/004.webp",
+        "/tours/excursions/tour_182/005.webp"
       ]
     },
     {
@@ -4937,7 +4937,7 @@
       "rating": 4.4,
       "reviews": 611,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_183/001.jpg",
+      "image": "/tours/excursions/tour_183/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4947,11 +4947,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_183/001.jpg",
-        "/tours/excursions/tour_183/002.jpg",
-        "/tours/excursions/tour_183/003.jpg",
-        "/tours/excursions/tour_183/004.jpg",
-        "/tours/excursions/tour_183/005.jpg"
+        "/tours/excursions/tour_183/001.webp",
+        "/tours/excursions/tour_183/002.webp",
+        "/tours/excursions/tour_183/003.webp",
+        "/tours/excursions/tour_183/004.webp",
+        "/tours/excursions/tour_183/005.webp"
       ]
     },
     {
@@ -4964,7 +4964,7 @@
       "rating": 4.1,
       "reviews": 890,
       "tag": "Adventure",
-      "image": "/tours/excursions/tour_184/001.jpg",
+      "image": "/tours/excursions/tour_184/001.webp",
       "desc": "Disfruta de esta increíble aventura en Punta Cana con los mejores guías y un servicio de primera clase. ¡Reserva ahora y vive la experiencia con Fire Tour DR!",
       "duration": "Medio Día",
       "difficulty": "Media",
@@ -4974,11 +4974,11 @@
         "Bebida de cortesía"
       ],
       "photos": [
-        "/tours/excursions/tour_184/001.jpg",
-        "/tours/excursions/tour_184/002.jpg",
-        "/tours/excursions/tour_184/003.jpg",
-        "/tours/excursions/tour_184/004.jpg",
-        "/tours/excursions/tour_184/005.jpg"
+        "/tours/excursions/tour_184/001.webp",
+        "/tours/excursions/tour_184/002.webp",
+        "/tours/excursions/tour_184/003.webp",
+        "/tours/excursions/tour_184/004.webp",
+        "/tours/excursions/tour_184/005.webp"
       ]
     }
   ],

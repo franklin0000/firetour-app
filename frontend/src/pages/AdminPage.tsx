@@ -59,6 +59,19 @@ type AdminTab = 'reservations' | 'tours' | 'reviews' | 'partners';
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<AdminTab>('reservations');
 
+  useEffect(() => {
+    const robotsMeta = document.querySelector('meta[name="robots"]');
+    const previousContent = robotsMeta?.getAttribute('content') || 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+    if (robotsMeta) {
+      robotsMeta.setAttribute('content', 'noindex, nofollow');
+    }
+    return () => {
+      if (robotsMeta) {
+        robotsMeta.setAttribute('content', previousContent);
+      }
+    };
+  }, []);
+
   // Reservations state
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [resLoading, setResLoading] = useState(true);

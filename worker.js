@@ -1678,7 +1678,20 @@ export default {
     }
 
     // 4. Default: Delegate to static assets (Frontend SPA with index.html fallback)
+    const pathnameLower = url.pathname.toLowerCase();
+    const isStaticAssetExt = /\.(jpe?g|png|webp|svg|gif|ico|woff2?|css|js|map|mp4|webm|json|xml|txt)$/i.test(pathnameLower);
+
     let res = await env.ASSETS.fetch(request);
+    const resContentType = (res.headers.get('content-type') || '').toLowerCase();
+
+    // Prevent SPA fallback HTML from being served/cached as a missing image/JS/CSS asset
+    if (isStaticAssetExt && resContentType.includes('text/html')) {
+      return new Response('Asset Not Found', {
+        status: 404,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+      });
+    }
+
     if (res.status === 404 && !url.pathname.includes('.')) {
       // First try serving exact pre-rendered .html file
       const htmlReq = new Request(new URL(url.pathname + '.html', request.url), request);
@@ -1690,19 +1703,35 @@ export default {
       }
     }
 
-    // Fix 3: Set optimal Cache-Control headers on static responses
+    // Fix 3: Set optimal Cache-Control headers on static responses (strict Content-Type guard)
     if (res && res.status < 400) {
       const newHeaders = new Headers(res.headers);
-      const pathname = url.pathname.toLowerCase();
-      if (pathname.startsWith('/assets/')) {
+      const finalContentType = (newHeaders.get('content-type') || '').toLowerCase();
+      if (pathnameLower.startsWith('/assets/') && !finalContentType.includes('text/html')) {
         // Hashed JS/CSS Vite bundles
         newHeaders.set('Cache-Control', 'public, max-age=31536000, immutable');
-      } else if (/\.(jpe?g|png|webp|svg|gif|ico|woff2?)$/i.test(pathname)) {
+      } else if (/\.(jpe?g|png|webp|svg|gif|ico|woff2?)$/i.test(pathnameLower) && !finalContentType.includes('text/html')) {
         // Static images and fonts
         newHeaders.set('Cache-Control', 'public, max-age=2592000, immutable');
-      } else if (pathname.endsWith('.html') || !pathname.includes('.')) {
+      } else if (pathnameLower.endsWith('.html') || finalContentType.includes('text/html') || !pathnameLower.includes('.')) {
         // HTML documents (keep uncached/short-cached)
         newHeaders.set('Cache-Control', 'public, max-age=0, must-revalidate');
+
+        // Block indexing on admin and private/transactional routes (HTTP header + HTML meta rewrite)
+        const isPrivateOrAdminRoute = /^\/(admin|checkout|ticket|auth|cuenta|reservations|success)(\/|$)/i.test(pathnameLower);
+        if (isPrivateOrAdminRoute && finalContentType.includes('text/html')) {
+          newHeaders.set('X-Robots-Tag', 'noindex, nofollow');
+          const htmlBody = await res.text();
+          const noindexHtml = htmlBody.replace(
+            /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/i,
+            '<meta name="robots" content="noindex, nofollow" />'
+          );
+          return new Response(noindexHtml, {
+            status: res.status,
+            statusText: res.statusText,
+            headers: newHeaders
+          });
+        }
       }
       return new Response(res.body, {
         status: res.status,

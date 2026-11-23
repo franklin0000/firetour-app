@@ -37,7 +37,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Guía Certificado en La Altagracia",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1792088865961.jpg",
+    coverImage: "/gallery/facebook_1792088865961.webp",
     relatedTourId: 1,
     content: {
       introduction: "Isla Saona es, sin duda, la excursión más codiciada por cualquier viajero que aterriza en Punta Cana. Perteneciente al Parque Nacional Cotubanamá, este santuario de arena blanca impoluta, cocoteros inclinados y aguas turquesas que parecen una piscina infinita representa la postal caribeña por excelencia. Sin embargo, no todas las experiencias son iguales: la diferencia entre un día caótico y una jornada inolvidable radica en conocer los detalles logísticos.",
@@ -95,7 +95,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Instructor de Deportes de Motor",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1791838696169.jpg",
+    coverImage: "/gallery/facebook_1791838696169.webp",
     relatedTourId: 2,
     content: {
       introduction: "Si estás cansado de estar tumbado en la tumbona del hotel y buscas liberar adrenalina pura, el tour en Buggies 4x4 o Four Wheels por los caminos rurales de Macao es la elección número uno en Punta Cana. Cruzarás plantaciones tropicales, senderos rocosos llenos de lodo y terminarás sumergiéndote en un cenote de agua dulce cristalina dentro de una cueva milenaria.",
@@ -150,7 +150,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Especialista en Operaciones Turísticas",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1792088848136.jpg",
+    coverImage: "/gallery/facebook_1792088848136.webp",
     relatedTourId: 4,
     content: {
       introduction: "El Aeropuerto Internacional de Punta Cana (PUJ) es famoso por su arquitectura tropical con techos de palmas de cana, pero también por el caos que puede suponer salir de la terminal si no tienes tu transporte previamente organizado. Decenas de taxistas informales y vendedores abordan al visitante a la salida de aduanas, a menudo cobrando tarifas desorbitadas de hasta $80 o $100 USD por distancias cortas.",
@@ -201,7 +201,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Guía Certificado en La Altagracia",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1791837976637.jpg",
+    coverImage: "/gallery/facebook_1791837976637.webp",
     content: {
       introduction: "La República Dominicana goza de un clima tropical cálido durante los doce meses del año, con temperaturas medias que oscilan entre los 25°C y 31°C. Sin embargo, factores como la brisa marina, los aguaceros vespertinos y las corrientes marinas cambian sensiblemente según el mes del año.",
       sections: [
@@ -248,7 +248,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Especialista en Operaciones Turísticas",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1792088042689.jpg",
+    coverImage: "/gallery/facebook_1792088042689.webp",
     content: {
       introduction: "La Costa del Coco en República Dominicana abarca más de 50 kilómetros ininterrumpidos de litoral caribeño y atlántico. Pero no todas las playas tienen la misma personalidad: algunas son ideales para surfistas intrépidos, otras ofrecen lujo caribeño y otras parecen sacadas de una película de náufragos.",
       sections: [
@@ -298,7 +298,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Guía Certificado en La Altagracia & Samaná",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1791838610500.jpg",
+    coverImage: "/gallery/facebook_1791838610500.webp",
     content: {
       introduction: "La Península de Samaná, situada en el noreste de la República Dominicana, ofrece una experiencia radicalmente diferente a la de los grandes resorts de Punta Cana. Aquí, densos palmerales cubren colinas que descienden directamente hacia playas vírgenes y bahías protegidas. Si buscas naturaleza pura, gastronomía caribeña con fusión europea y aventuras ecológicas, Samaná y Las Terrenas deben estar en tu itinerario.",
       sections: [
@@ -351,7 +351,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Especialista en Ecoturismo Dominicano",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1791838590171.jpg",
+    coverImage: "/gallery/facebook_1791838590171.webp",
     content: {
       introduction: "El Suroeste dominicano, conocido popularmente como el 'Sur Profundo', es el territorio de los contrastes ecológicos: desiertos de cactus que limitan con bosques nublados de pinos y costas de un azul turquesa tan intenso que parece artificial. Barahona y Pedernales albergan algunos de los tesoros naturales más puros del continente americano.",
       sections: [
@@ -404,7 +404,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: "Guía Certificado en La Altagracia & Santo Domingo",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1791838547646.jpg",
+    coverImage: "/gallery/facebook_1791838547646.webp",
     content: {
       introduction: "Santo Domingo de Guzmán, fundada a orillas del río Ozama en 1496, es el corazón histórico, político y cultural de la República Dominicana. Designada Patrimonio de la Humanidad por la UNESCO, su Ciudad Colonial conserva los primeros edificios administrativos, religiosos y militares construidos por los europeos en el Nuevo Mundo.",
       sections: [

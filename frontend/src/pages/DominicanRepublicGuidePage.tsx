@@ -40,8 +40,10 @@ export default function DominicanRepublicGuidePage() {
 
           <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-80 h-96 rounded-2xl overflow-hidden border border-white/20 shadow-2xl -rotate-2 hover:rotate-0 transition-transform duration-500">
             <img 
-              src="/gallery/facebook_1792088865961.jpg" 
+              src="/gallery/facebook_1792088865961.webp" 
               alt="Playas de República Dominicana" 
+              {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              decoding="async"
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/60 to-transparent p-4 text-xs font-bold text-white">

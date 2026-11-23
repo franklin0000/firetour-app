@@ -48,8 +48,10 @@ export default function PuntaCanaGuidePage() {
 
           <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-80 h-96 rounded-2xl overflow-hidden border border-white/20 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
             <img 
-              src="/gallery/facebook_1792088865961.jpg" 
+              src="/gallery/facebook_1792088865961.webp" 
               alt="Playa de arena blanca en Punta Cana" 
+              {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              decoding="async"
               className="w-full h-full object-cover"
             />
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/60 to-transparent p-4 text-xs font-bold text-white">
@@ -154,29 +156,37 @@ export default function PuntaCanaGuidePage() {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-xl overflow-hidden border border-white/15 h-44 sm:h-52">
               <img 
-                src="/gallery/facebook_1791837976637.jpg" 
+                src="/gallery/facebook_1791837976637.webp" 
                 alt="Chica bajo palmera en playa de Punta Cana" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="rounded-xl overflow-hidden border border-white/15 h-44 sm:h-52">
               <img 
-                src="/gallery/facebook_1792088108970.jpg" 
+                src="/gallery/facebook_1792088108970.webp" 
                 alt="Grupo de amigos bajo palmera en Punta Cana" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="rounded-xl overflow-hidden border border-white/15 h-44 sm:h-52">
               <img 
-                src="/gallery/facebook_1792088042689.jpg" 
+                src="/gallery/facebook_1792088042689.webp" 
                 alt="Chica descansando en palmera curva sobre la arena" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="rounded-xl overflow-hidden border border-white/15 h-44 sm:h-52">
               <img 
-                src="/gallery/facebook_1792088950614.jpg" 
+                src="/gallery/facebook_1792088950614.webp" 
                 alt="Turistas descansando en hamacas frente a la playa" 
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>

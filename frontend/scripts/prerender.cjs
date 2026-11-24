@@ -47,8 +47,8 @@ async function run() {
         ? 'Fire Tour DR - Excursiones Premium en Punta Cana | Mejores Tours y Traslados'
         : 'Catálogo de Excursiones en Punta Cana 2026 | Fire Tour DR';
       description = 'Reserva las mejores excursiones en Punta Cana con Fire Tour DR: Isla Saona All Inclusive VIP ($75 USD por persona), Buggy Adventure ($120 USD por 2 personas), Parasailing ($120 USD por 2 personas) y Traslados Privados Aeropuerto PUJ (cotización en WhatsApp). Confirmación inmediata.';
-      renderContext = { tours: tours.slice(0, 4) };
-      initialData = { tours: tours.slice(0, 4) };
+      renderContext = { tours: tours.slice(0, 12) };
+      initialData = { tours: tours.slice(0, 12) };
     } else if (pathname.startsWith('/excursion/')) {
       const tourId = pathname.replace('/excursion/', '');
       const tour = tours.find(t => String(t.id) === String(tourId));

@@ -64,6 +64,8 @@ export default function CatalogPage() {
   
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+  const PAGE_SIZE = 12;
 
   // 1. Fetch tours from backend paginated endpoint with fallback to static CDN tours.json
   const fetchTours = async (pageNum: number, reset: boolean = false) => {
@@ -72,7 +74,7 @@ export default function CatalogPage() {
       let fetchedTours: Tour[] = [];
       let moreAvailable = false;
 
-      const response = await fetch(`/api/tours?page=${pageNum}&limit=4&category=${category}&query=${encodeURIComponent(searchQuery)}&_t=${Date.now()}`, { cache: 'no-store' });
+      const response = await fetch(`/api/tours?page=${pageNum}&limit=${PAGE_SIZE}&category=${category}&query=${encodeURIComponent(searchQuery)}&_t=${Date.now()}`, { cache: 'no-store' });
       const contentType = response.headers.get('content-type') || '';
 
       if (response.ok && contentType.includes('application/json')) {
@@ -97,16 +99,20 @@ export default function CatalogPage() {
             const q = searchQuery.toLowerCase().trim();
             all = all.filter(t => (t.name && t.name.toLowerCase().includes(q)) || (t.desc && t.desc.toLowerCase().includes(q)));
           }
-          const start = (pageNum - 1) * 4;
-          fetchedTours = all.slice(start, start + 4);
-          moreAvailable = start + 4 < all.length;
+          const start = (pageNum - 1) * PAGE_SIZE;
+          fetchedTours = all.slice(start, start + PAGE_SIZE);
+          moreAvailable = start + PAGE_SIZE < all.length;
         }
       }
 
       if (reset) {
         setTours(fetchedTours);
       } else {
-        setTours(prev => [...prev, ...fetchedTours]);
+        setTours(prev => {
+          const existingIds = new Set(prev.map(t => t.id));
+          const uniqueNew = fetchedTours.filter(t => !existingIds.has(t.id));
+          return [...prev, ...uniqueNew];
+        });
       }
       setHasMore(moreAvailable);
     } catch (err) {
@@ -124,14 +130,18 @@ export default function CatalogPage() {
             const q = searchQuery.toLowerCase().trim();
             all = all.filter(t => (t.name && t.name.toLowerCase().includes(q)) || (t.desc && t.desc.toLowerCase().includes(q)));
           }
-          const start = (pageNum - 1) * 4;
-          const fallbackTours = all.slice(start, start + 4);
+          const start = (pageNum - 1) * PAGE_SIZE;
+          const fallbackTours = all.slice(start, start + PAGE_SIZE);
           if (reset) {
             setTours(fallbackTours);
           } else {
-            setTours(prev => [...prev, ...fallbackTours]);
+            setTours(prev => {
+              const existingIds = new Set(prev.map(t => t.id));
+              const uniqueNew = fallbackTours.filter(t => !existingIds.has(t.id));
+              return [...prev, ...uniqueNew];
+            });
           }
-          setHasMore(start + 4 < all.length);
+          setHasMore(start + PAGE_SIZE < all.length);
         }
       } catch (fallbackErr) {
         console.error("Critical: Could not load fallback tours:", fallbackErr);
@@ -141,10 +151,9 @@ export default function CatalogPage() {
     }
   };
 
-  // Trigger load when filters or search change
+  // Trigger load when filters or search change (always loads full first page of 12 tours)
   useEffect(() => {
     setPage(1);
-    if (tours.length > 0 && category === 'all' && !searchQuery) return;
     fetchTours(1, true);
   }, [category, searchQuery]);
 
@@ -155,18 +164,22 @@ export default function CatalogPage() {
     }
   }, [page]);
 
-  // 2. Setup Infinite Scroll window listener
+  // 2. Setup Infinite Scroll directly below the tour grid (not at the bottom of the footer!)
   useEffect(() => {
-    const handleInfiniteScroll = () => {
-      // Check if user is near the bottom
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 150) {
-        if (hasMore && !loading) {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+    const el = loadMoreRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && hasMore && !loading) {
           setPage(prev => prev + 1);
         }
-      }
-    };
-    window.addEventListener('scroll', handleInfiniteScroll);
-    return () => window.removeEventListener('scroll', handleInfiniteScroll);
+      },
+      { rootMargin: '300px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, [hasMore, loading]);
 
   // Force autoplay execution & reset document title
@@ -234,10 +247,10 @@ export default function CatalogPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/85" />
         </div>
 
-        {/* Hero Content */}
+        {/* Hero Content (initial={false} so SSR HTML is immediately visible at opacity: 1) */}
         <div className="relative z-10 max-w-4xl flex flex-col items-center">
           <motion.span 
-            initial={{ scale: 0.85, opacity: 0, y: -10 }}
+            initial={false}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-secondary font-black text-xs uppercase tracking-[0.35em] font-display bg-secondary/15 px-6 py-2 rounded-full border border-secondary/30 backdrop-blur-xl shadow-glow mb-6 inline-block"
@@ -246,9 +259,9 @@ export default function CatalogPage() {
           </motion.span>
 
           <motion.h1 
-            initial={{ opacity: 0, y: 25 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={{ duration: 0.7 }}
             className="text-4xl sm:text-6xl lg:text-8xl font-black font-display tracking-tight text-white leading-[0.95] drop-shadow-[0_15px_40px_rgba(0,0,0,0.85)]"
           >
             DESCUBRE EL <br/>
@@ -258,18 +271,18 @@ export default function CatalogPage() {
           </motion.h1>
 
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7 }}
             className="text-gray-200 text-sm sm:text-base lg:text-lg mt-5 sm:mt-6 leading-relaxed max-w-2xl font-medium drop-shadow-md"
           >
             Isla Saona VIP en Catamarán, Buggies Macao 4x4, Parasailing y Traslados Privados Aeropuerto PUJ con recogida directa en tu resort y cancelación gratis.
           </motion.p>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7 }}
             className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-8 w-full sm:w-auto"
           >
             <a
@@ -291,9 +304,9 @@ export default function CatalogPage() {
 
           {/* Social Proof & Trust Badges */}
           <motion.div 
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.7 }}
             className="mt-8 flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-[11px] sm:text-xs text-gray-300 backdrop-blur-md bg-black/40 px-4 sm:px-6 py-2.5 rounded-full border border-white/10 text-center"
           >
             <span>⭐ 4.9/5 (1,420+ Reseñas Verificadas)</span>
@@ -601,15 +614,11 @@ export default function CatalogPage() {
 
 
 
-        {/* Grid List */}
+        {/* Grid List (always visible immediately, zero exponential opacity:0 delay) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {tours.map((tour, index) => (
-            <motion.div
+          {tours.map((tour) => (
+            <div
               key={tour.id}
-              initial={{ opacity: 0, y: 80, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, type: "spring", bounce: 0.3, delay: index * 0.15 }}
               onClick={() => navigate(`/excursion/${tour.id}`)}
               className="group bg-surface/40 backdrop-blur-xl border border-white/5 rounded-[2rem] overflow-hidden shadow-premium hover:shadow-glow hover:border-secondary/30 hover:-translate-y-3 transition-all duration-500 cursor-pointer flex flex-col relative"
             >
@@ -681,16 +690,26 @@ export default function CatalogPage() {
                   Ver Detalles <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Loading Spinner / Empty State */}
-        <div className="mt-12 text-center flex flex-col items-center justify-center">
+        {/* Infinite Scroll Sentinel + Explicit Load More Button */}
+        <div ref={loadMoreRef} className="mt-12 text-center flex flex-col items-center justify-center gap-4">
           {loading && (
             <div className="flex items-center gap-2 text-secondary font-bold text-sm">
               <Loader className="w-5 h-5 animate-spin" /> Cargando más aventuras...
             </div>
+          )}
+
+          {!loading && hasMore && tours.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setPage(prev => prev + 1)}
+              className="px-8 py-3.5 rounded-2xl bg-white/10 hover:bg-secondary border border-white/15 hover:border-secondary text-white font-bold font-display text-sm transition-all duration-300 shadow-lg flex items-center gap-2 cursor-pointer"
+            >
+              Ver Más Excursiones <ArrowRight className="w-4 h-4" />
+            </button>
           )}
 
           {!loading && !hasMore && tours.length > 0 && (

@@ -211,6 +211,13 @@ export default function ExcursionDetailsPage() {
   const contentY = useTransform(scrollY, [0, 600], [0, 200]);
   const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
 
+  // Always scroll to top when opening or switching a tour (prevents hero opacity:0 from prior scrollY)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, [id]);
+
   useEffect(() => {
     if (tour && String(tour.id) === String(id)) return;
     const fetchTourDetails = async () => {
@@ -434,14 +441,8 @@ export default function ExcursionDetailsPage() {
       {/* Main Content Grid Container */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-24 -mt-10 relative z-30 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* Left Column: Details */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="lg:col-span-2 flex flex-col gap-8"
-        >
+        {/* Left Column: Details (always visible immediately, never trapped at opacity:0) */}
+        <div className="lg:col-span-2 flex flex-col gap-8">
 
           {/* Key Facts Dashboard (Glassmorphism row with neat highlights) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-surface/40 border border-white/10 p-5 rounded-[2rem] text-center backdrop-blur-xl shadow-premium relative overflow-hidden">
@@ -789,16 +790,10 @@ export default function ExcursionDetailsPage() {
 
           </div>
 
-        </motion.div>
+        </div>
 
-        {/* Right Column: Live Booking Calculator Sidebar (Stays sticky on desktop) */}
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="flex flex-col gap-6 relative z-30"
-        >
+        {/* Right Column: Live Booking Calculator Sidebar (always visible immediately) */}
+        <div className="flex flex-col gap-6 relative z-30">
           
           <div ref={calculatorRef} className="bg-surface/60 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 shadow-premium sticky top-32">
             <div className="flex items-center gap-3 border-b border-white/10 pb-5 mb-6">
@@ -971,7 +966,7 @@ export default function ExcursionDetailsPage() {
             </div>
           </div>
 
-        </motion.div>
+        </div>
 
       </div>
 

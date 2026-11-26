@@ -61,3 +61,4 @@ Allow: /
 # Sitemaps
 Sitemap: https://www.firetourdr.com/sitemap.xml
 Sitemap: https://firetourdr.com/sitemap.xml
+Host: www.firetourdr.com

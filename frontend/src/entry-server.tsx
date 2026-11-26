@@ -18,6 +18,7 @@ import AuthPage from './pages/AuthPage';
 import ReviewsPage from './pages/ReviewsPage';
 import PartnerTourPage from './pages/PartnerTourPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import DeleteAccountPage from './pages/DeleteAccountPage';
 import TermsPage from './pages/TermsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
@@ -61,6 +62,9 @@ export function render(url: string, contextData: ServerData = {}) {
             {/* Legal & Trust Pages */}
             <Route path="/politica-de-privacidad" element={<PrivacyPolicyPage />} />
             <Route path="/privacy" element={<Navigate to="/politica-de-privacidad" replace />} />
+            <Route path="/privacy-policy" element={<Navigate to="/politica-de-privacidad" replace />} />
+            <Route path="/eliminar-cuenta" element={<DeleteAccountPage />} />
+            <Route path="/delete-account" element={<DeleteAccountPage />} />
             <Route path="/terminos-y-condiciones" element={<TermsPage />} />
             <Route path="/terms" element={<Navigate to="/terminos-y-condiciones" replace />} />
             <Route path="/cancelaciones" element={<TermsPage />} />

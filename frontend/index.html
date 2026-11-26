@@ -12,13 +12,41 @@
       gtag('js', new Date());
       gtag('config', 'G-JVE35754LD');
 
+      // Detección de modo App (PWA standalone / Android TWA com.firetourdr.app / WebView)
+      window.__FIRETOUR_APP_MODE__ = (function detectAppMode() {
+        try {
+          var isStandalone =
+            (window.matchMedia &&
+              (window.matchMedia('(display-mode: standalone)').matches ||
+                window.matchMedia('(display-mode: fullscreen)').matches ||
+                window.matchMedia('(display-mode: minimal-ui)').matches)) ||
+            window.navigator.standalone === true;
+          var ref = document.referrer || '';
+          var isTwaRef = ref.indexOf('android-app://com.firetourdr.app') === 0;
+          var isTwaParam = /[?&]source=twa(?:&|$)/.test(window.location.search || '');
+          var ua = (window.navigator && window.navigator.userAgent) || '';
+          var isAppUa = /(;\s*wv\)|com\.firetourdr\.app|FireTourDRApp)/i.test(ua);
+          var persisted = false;
+          try { persisted = window.sessionStorage.getItem('firetour_app_mode') === '1'; } catch (e) {}
+          var detected = Boolean(isStandalone || isTwaRef || isTwaParam || isAppUa || persisted);
+          if (detected) {
+            try { window.sessionStorage.setItem('firetour_app_mode', '1'); } catch (e) {}
+          }
+          return detected;
+        } catch (e) {
+          return false;
+        }
+      })();
+
       function loadNonCriticalScripts() {
-        // 1. Google AdSense (Cargado en tiempo ocioso)
-        var adScript = document.createElement('script');
-        adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7206413484396748";
-        adScript.async = true;
-        adScript.crossOrigin = "anonymous";
-        document.head.appendChild(adScript);
+        // 1. Google AdSense (Solo en navegador web normal; desactivado en modo App PWA/TWA)
+        if (!window.__FIRETOUR_APP_MODE__) {
+          var adScript = document.createElement('script');
+          adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7206413484396748";
+          adScript.async = true;
+          adScript.crossOrigin = "anonymous";
+          document.head.appendChild(adScript);
+        }
 
         // 2. Google Analytics 4
         var gaScript = document.createElement('script');
@@ -38,13 +66,25 @@
       } else {
         window.addEventListener('load', function() { setTimeout(loadNonCriticalScripts, 500); });
       }
+
+      // Registro diferido del Service Worker PWA (sin bloquear LCP/TBT)
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function() {});
+        });
+      }
     </script>
 
-    <!-- Real Favicons (Google Search, Desktop, iOS & Android) -->
+    <!-- Real Favicons & PWA Manifest (Google Search, Desktop, iOS & Android TWA) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#07111F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Fire Tour DR" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <meta name="HandheldFriendly" content="true" />

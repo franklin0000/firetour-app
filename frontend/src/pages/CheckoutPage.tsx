@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CreditCard, Calendar, Users, ShieldCheck, Mail, Phone, User, Loader, ArrowLeft, Lock, MapPin, Tag, Sparkles, CheckCircle2 } from 'lucide-react';
 import { trackInitiateCheckout } from '../utils/analytics';
+import GoogleSignInButton from '../components/GoogleSignInButton';
+import { AUTH_CHANGE_EVENT, getStoredUser } from '../utils/auth';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
@@ -107,15 +109,17 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
   }, [checkoutData, appliedCoupon]);
 
   useEffect(() => {
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      try {
-        const user = JSON.parse(userStr);
-        setCustomerName(user.name || '');
-        setEmail(user.email || '');
+    const syncUser = () => {
+      const user = getStoredUser();
+      if (user) {
+        setCustomerName((prev) => prev || user.name || '');
+        setEmail((prev) => prev || user.email || '');
         setShowAuthGate(false);
-      } catch (e) {}
-    }
+      }
+    };
+    syncUser();
+    window.addEventListener(AUTH_CHANGE_EVENT, syncUser);
+    return () => window.removeEventListener(AUTH_CHANGE_EVENT, syncUser);
   }, []);
 
   const handleCheckoutSubmit = async (e: React.FormEvent) => {
@@ -132,21 +136,22 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
     setErrorMessage('');
 
     try {
+      const depositAmount = Number(checkoutData.depositToPay) || Number(checkoutData.totalPrice) || 25;
       const pendingCheckout = {
         tourId: checkoutData.tourId,
         tourName: checkoutData.tourName,
         tourImage: checkoutData.tourImage,
-        customerName,
-        email,
-        phone,
+        customerName: customerName.trim(),
+        email: email.trim().toLowerCase(),
+        phone: phone.trim(),
         date: checkoutData.date,
-        guests: checkoutData.adults + checkoutData.children,
-        amountPaid: checkoutData.depositToPay,
+        guests: (Number(checkoutData.adults) || 1) + (Number(checkoutData.children) || 0),
+        amountPaid: depositAmount,
         balanceDue: currentBalanceDue,
         couponApplied: appliedCoupon,
         couponDiscount: couponDiscount,
-        hotelName,
-        roomNumber
+        hotelName: hotelName.trim(),
+        roomNumber: roomNumber.trim()
       };
       localStorage.setItem('pendingCheckout', JSON.stringify(pendingCheckout));
 
@@ -155,6 +160,19 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
         await new Promise(resolve => setTimeout(resolve, 800));
         navigate(`/success?payment_intent=mock_pi_${Date.now()}`);
         return;
+      }
+
+      // Sync real customer metadata & receipt_email onto Stripe PaymentIntent before charging
+      const paymentIntentId = clientSecret.split('_secret_')[0];
+      if (paymentIntentId && paymentIntentId.startsWith('pi_')) {
+        await fetch('/api/payment/update-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            paymentIntentId,
+            ...pendingCheckout
+          })
+        }).catch((syncErr) => console.warn('[Stripe Metadata Sync Warning]', syncErr));
       }
 
       // Procesamiento de Pago con Elements
@@ -216,19 +234,32 @@ function CheckoutForm({ checkoutData, clientSecret, isMock }: { checkoutData: an
             Crea una cuenta para guardar tus tickets digitales y acceder rápidamente a tu información, o continúa sin registrarte.
           </p>
           
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => navigate('/auth?returnUrl=/checkout')}
-              className="bg-cyan hover:bg-cyan-400 text-white font-black uppercase tracking-widest py-4 px-8 rounded-xl text-xs transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] flex items-center justify-center gap-2"
-            >
-              <User className="w-4 h-4" /> Iniciar Sesión / Crear Cuenta
-            </button>
-            <button 
-              onClick={() => setShowAuthGate(false)}
-              className="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold uppercase tracking-widest py-4 px-8 rounded-xl text-xs transition-all flex items-center justify-center"
-            >
-              Continuar como Invitado
-            </button>
+          <div className="flex flex-col items-center gap-4">
+            <GoogleSignInButton
+              text="continue_with"
+              theme="filled_black"
+              size="large"
+              width={320}
+              onSuccess={(user) => {
+                setCustomerName(user.name || '');
+                setEmail(user.email || '');
+                setShowAuthGate(false);
+              }}
+            />
+            <div className="flex flex-col sm:flex-row gap-3 justify-center w-full pt-2">
+              <button 
+                onClick={() => navigate('/auth?returnUrl=/checkout')}
+                className="bg-cyan/15 hover:bg-cyan/25 border border-cyan/35 text-cyan font-black uppercase tracking-widest py-3.5 px-6 rounded-xl text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <User className="w-4 h-4" /> Entrar con Correo
+              </button>
+              <button 
+                onClick={() => setShowAuthGate(false)}
+                className="bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold uppercase tracking-widest py-3.5 px-6 rounded-xl text-xs transition-all flex items-center justify-center cursor-pointer"
+              >
+                Continuar como Invitado
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -630,15 +661,18 @@ export default function CheckoutPage() {
     setLoadingIntent(true);
     setFetchError('');
 
+    const depositAmount = Number(checkoutData.depositToPay) || Number(checkoutData.totalPrice) || 25;
     fetch('/api/payment/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        amount: Math.round(Number(checkoutData.depositToPay) * 100), // centavos
+        amount: Math.round(depositAmount * 100), // centavos
         tourId: checkoutData.tourId,
         tourName: checkoutData.tourName,
         tourImage: checkoutData.tourImage,
-        email: 'pending@checkout.com'
+        date: checkoutData.date,
+        guests: (Number(checkoutData.adults) || 1) + (Number(checkoutData.children) || 0),
+        balanceDue: Number(checkoutData.balanceDue) || 0
       })
     })
       .then(async res => {

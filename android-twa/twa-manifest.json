@@ -1,0 +1,59 @@
+{
+  "packageId": "com.firetourdr.app",
+  "host": "www.firetourdr.com",
+  "name": "Fire Tour DR",
+  "launcherName": "Fire Tour DR",
+  "display": "standalone",
+  "themeColor": "#07111F",
+  "themeColorDark": "#07111F",
+  "navigationColor": "#07111F",
+  "navigationColorDark": "#07111F",
+  "navigationDividerColor": "#07111F",
+  "navigationDividerColorDark": "#07111F",
+  "backgroundColor": "#07111F",
+  "enableNotifications": false,
+  "startUrl": "/?source=twa",
+  "iconUrl": "https://www.firetourdr.com/icons/icon-512x512.png",
+  "maskableIconUrl": "https://www.firetourdr.com/icons/icon-512x512-maskable.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./keystore/firetourdr-release.keystore",
+    "alias": "firetourdr"
+  },
+  "appVersion": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Excursiones",
+      "shortName": "Tours",
+      "url": "https://www.firetourdr.com/#catalogo-tours",
+      "chosenIconUrl": "https://www.firetourdr.com/icons/icon-192x192.png"
+    },
+    {
+      "name": "Mis Reservas",
+      "shortName": "Reservas",
+      "url": "https://www.firetourdr.com/reservations",
+      "chosenIconUrl": "https://www.firetourdr.com/icons/icon-192x192.png"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://www.firetourdr.com/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://www.firetourdr.com/",
+  "minSdkVersion": 24,
+  "orientation": "portrait",
+  "additionalTrustedOrigins": [],
+  "fingerprints": [
+    {
+      "name": "Fire Tour DR Upload Key",
+      "value": "B2:B7:36:06:41:B1:EA:7C:CC:5B:0A:5F:C2:50:40:E6:EA:50:B8:73:74:41:11:4D:68:9A:E9:29:A6:54:DE:90"
+    }
+  ]
+}

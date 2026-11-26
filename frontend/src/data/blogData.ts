@@ -18,6 +18,9 @@ export interface BlogPost {
       heading: string;
       body: string[];
       tip?: string;
+      image?: string;
+      imageAlt?: string;
+      imageCaption?: string;
     }[];
     conclusion: string;
     keyTakeaways: string[];
@@ -289,54 +292,179 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "guia-las-terrenas-samana-playas-ballenas",
-    title: "Guía de Las Terrenas y Samaná: Playas de Rincón, Cosón, Ballenas Jorobadas y Salto del Limón",
-    excerpt: "Explora la península más verde y salvaje del Caribe: santuario de ballenas jorobadas, pueblos bohemios de pescadores y ríos cristalinos que desembocan en el mar.",
+    title: "Guía Definitiva de Samaná y Las Terrenas: Todas sus Playas, Caño Frío, Ballenas Jorobadas, Los Haitises y Salto del Limón",
+    excerpt: "Recorre la península más verde y paradisíaca de República Dominicana: todas las playas de Las Terrenas y Las Galeras (Cosón, Bonita, Rincón, Frontón, Madama, Morón, Ermitaño), ballenas jorobadas, cómo llegar y dónde comer.",
     category: "Guías de Destino",
-    date: "16 de Octubre de 2024",
-    readTime: "7 min de lectura",
+    date: "25 de Noviembre de 2026",
+    publishedIso: "2026-11-25T10:00:00+00:00",
+    readTime: "13 min de lectura",
     author: {
       name: "Manuel Rosario",
       role: "Guía Certificado en La Altagracia & Samaná",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/facebook_1791838610500.webp",
+    coverImage: "/gallery/guides/rd-playa-rincon.webp?v=2",
     content: {
-      introduction: "La Península de Samaná, situada en el noreste de la República Dominicana, ofrece una experiencia radicalmente diferente a la de los grandes resorts de Punta Cana. Aquí, densos palmerales cubren colinas que descienden directamente hacia playas vírgenes y bahías protegidas. Si buscas naturaleza pura, gastronomía caribeña con fusión europea y aventuras ecológicas, Samaná y Las Terrenas deben estar en tu itinerario.",
+      introduction: "La Península de Samaná, en el noreste de la República Dominicana, es el Caribe en su estado más puro y exuberante. A diferencia de los grandes complejos hoteleros de llanura, aquí las montañas tapizadas por millones de cocoteros se desploman directo al océano Atlántico, escondiendo más de 20 playas salvajes, ríos helados de manglar, cascadas selváticas y el santuario de ballenas jorobadas más importante del Caribe. Esta guía cubre cada playa de Las Terrenas y Las Galeras, sus maravillas naturales y cómo planificar tu ruta.",
       sections: [
         {
-          heading: "1. Las Terrenas: El encanto bohemio entre palmeras",
+          heading: "1. Las Terrenas: Todas sus playas y el ambiente bohemio frente al mar",
+          image: "/gallery/guides/rd-las-terrenas.webp?v=2",
+          imageAlt: "Botes coloridos de pescadores y palmeras en la playa de Las Terrenas, Samaná",
+          imageCaption: "Playa de Las Terrenas, Samaná: botes de pescadores artesanales y palmerales frente al Atlántico.",
           body: [
-            "Las Terrenas pasó de ser un pequeño poblado de pescadores a uno de los destinos playeros con más personalidad del Caribe. Su famoso Pueblo de los Pescadores alberga restaurantes y bistrós frente al agua donde se combinan mariscos frescos con cocina francesa e italiana.",
-            "Playa Cosón y Playa Bonita destacan por sus extensas orillas de arena dorada bordeadas de cocoteros, ideales para largas caminatas al atardecer y sesiones de surf suave."
+            "Playa Bonita: Considerada por muchos la más encantadora de Las Terrenas. Tiene dos personalidades: su tramo central ofrece olas suaves ideales para iniciarse en el surf y hoteles boutique con restaurantes frente al mar, mientras que caminando hacia el oeste (Punta Bonita) el oleaje desaparece y forma una piscina natural de aguas calmas y transparentes.",
+            "Playa Cosón: Más de 7 kilómetros de costa virgen, arena dorada y palmeras infinitas a solo 10 minutos del centro de Las Terrenas. Es perfecta para largas caminatas sin multitudes, boogie boarding, ver atardeceres espectaculares y comer pescado fresco con coco a la orilla del mar.",
+            "Playa Las Ballenas y Playa Punta Popy: Las Ballenas es una bahía amplia, tranquila y familiar frente a tres islotes rocosos que se asemejan a ballenas emergiendo del agua; en su extremo oeste desemboca el pequeño río Marico. Al otro lado del pueblo, Punta Popy es el punto favorito de kitesurfistas, paddleboard y clubes de playa relajados.",
+            "Playa Portillo, Playa El Limón y Playa Morón: Conduciendo hacia el este desde Las Terrenas encontrarás Playa Portillo (arrecifes para snorkel y aguas mansas), la extensa y solitaria Playa El Limón y la joya oculta de Playa Morón, célebre por su selva intacta y los antiguos cañones franceses del siglo XVIII que descansan entre las palmeras.",
+            "El Pueblo de los Pescadores y vida local: El corazón gastronómico y nocturno de Las Terrenas. Sus coloridas casetas frente a la playa fusionan mariscos recién pescados (pescado con coco estilo samaná, lambí y langosta) con panaderías francesas, pizzerías italianas auténticas y bares con bachata y música en vivo sobre la arena."
           ],
-          tip: "En Playa Bonita, camina hasta Punta Bonita para disfrutar de una piscina natural de aguas cristalinas totalmente protegida del oleaje."
+          tip: "Renta una pasola (scooter), four wheel (ATV) o carro compacto en Las Terrenas para recorrer en un solo día Playa Cosón, Playa Bonita, Las Ballenas y Punta Popy a tu propio ritmo."
         },
         {
-          heading: "2. Playa Rincón y Caño Frío: Entre las mejores playas del mundo",
+          heading: "2. Las Galeras y las playas vírgenes más famosas de Samaná",
           body: [
-            "Ubicada cerca de Las Galeras, Playa Rincón cuenta con más de 3 kilómetros de costa virgen flanqueada por acantilados de 600 metros de altura cubiertos de vegetación tropical.",
-            "En un extremo de la playa se encuentra Caño Frío, un río de manglar de aguas heladas y transparentes donde puedes darte un refrescante baño de agua dulce antes de volver al calor del mar."
+            "Playa Rincón y Caño Frío: Clasificada repetidamente entre las 10 playas más hermosas del planeta. Sus casi 4 km en forma de media luna combinan mar turquesa calmo en un extremo, oleaje suave en el centro y palmeras salvajes frente a los acantilados del Cabo Cabrón. En el costado oeste desemboca Caño Frío, un río de aguas heladas y cristalinas rodeado de manglares donde puedes bañarte o remar en kayak antes de volver al mar tibio.",
+            "Playa Frontón: Una de las postales más dramáticas de toda República Dominicana. Protegida por un imponente acantilado vertical de mármol y piedra caliza de 90 metros, sus aguas albergan un arrecife de coral espectacular para hacer snorkel. Se accede en bote desde Las Galeras (20 min) o mediante una caminata exigente por sendero selvático.",
+            "Playa Madama y Playa La Playita: Playa Madama es una diminuta cala virgen encajada entre acantilados con una cueva marina en un extremo, perfecta para combinar en el mismo bote que visita Playa Frontón. Por su parte, La Playita (a 5 minutos de Las Galeras) ofrece aguas poco profundas de color verde turquesa, ideal para niños.",
+            "Playa El Ermitaño y Playa Onda: Accesibles únicamente en lancha desde El Valle o El Limón (o caminata por bosque tropical), representan el nivel máximo de playa desierta en Samaná: cero hoteles, arena suave y montaña verde cubriendo toda la bahía."
+          ],
+          tip: "Desde el muelle de Las Galeras puedes contratar una excursión de día completo en lancha que une Playa Frontón, Playa Madama y Playa Rincón + Caño Frío con almuerzo típico incluido."
+        },
+        {
+          heading: "3. Salto del Limón, Cayo Levantado y Parque Nacional Los Haitises",
+          image: "/gallery/guides/rd-salto-limon.webp?v=2",
+          imageAlt: "Cascada del Monumento Natural Salto del Limón en la selva de Samaná",
+          imageCaption: "Monumento Natural Salto del Limón: caída de más de 40 metros hacia una poza verde esmeralda en Samaná.",
+          body: [
+            "Salto del Limón: Una majestuosa catarata de más de 40 metros cayendo sobre una pared de musgo verde en el corazón de la sierra. Puedes llegar caminando (40–45 min por sendero tropical cruzando el río) o a caballo acompañado por guías comunitarios locales, para luego sumergirte en su refrescante poza natural.",
+            "Cayo Levantado (Isla Bacardí): Un islote paradisíaco en medio de la Bahía de Samaná rodeado de arena blanca fina y aguas turquesa inmóviles. Las lanchas salen constantemente desde el malecón de Santa Bárbara de Samaná (15 min de navegación).",
+            "Parque Nacional Los Haitises: Uno de los ecosistemas más impresionantes del Caribe. Se explora en embarcación desde Samaná o Sabana de la Mar navegando entre decenas de islotes kársticos ('mogotes') cubiertos de selva húmeda, extensos bosques de manglar, colonias de pelícanos y fragatas, y cavernas históricas como la Cueva de la Arena y la Cueva de la Línea con petroglifos y pictogramas taínos."
           ]
         },
         {
-          heading: "3. El Espectáculo de las Ballenas Jorobadas (Enero a Marzo)",
+          heading: "4. El Espectáculo de las Ballenas Jorobadas (15 de Enero al 30 de Marzo)",
+          image: "/gallery/guides/rd-los-haitises.webp?v=2",
+          imageAlt: "Canales de manglar y aguas tranquilas en el Parque Nacional Los Haitises, Bahía de Samaná",
+          imageCaption: "Canales naturales y manglares vírgenes en la Bahía de Samaná y el Parque Nacional Los Haitises.",
           body: [
-            "Cada invierno boreal, entre 2,500 y 3,000 ballenas jorobadas del Atlántico Norte acuden a la Bahía de Samaná para aparearse y dar a luz. Es uno de los mayores santuarios marinos del mundo.",
-            "Las excursiones en embarcaciones autorizadas permiten observar los impresionantes saltos de los machos y el tierno nado de las madres con sus crías recién nacidas."
+            "Cada invierno boreal, entre 2,500 y 3,000 ballenas jorobadas viajan desde las aguas heladas del Atlántico Norte hasta la cálida y protegida Bahía de Samaná para aparearse y dar a luz a sus crías.",
+            "Durante las excursiones reguladas por Medio Ambiente desde el puerto de Samaná, podrás presenciar saltos completos fuera del agua ('breaching'), golpes de aletas pectorales, cantos submarinos de los machos y madres protegiendo a sus ballenatos recién nacidos. También puedes observarlas desde tierra en el Observatorio Terrestre de Punta Balandra."
           ]
         },
         {
-          heading: "4. Salto del Limón: Aventura hacia la cascada oculta",
+          heading: "5. Cómo llegar, dónde hospedarte y mejores rutas por Samaná",
           body: [
-            "En el corazón de la sierra de Samaná se oculta el Salto del Limón, una imponente cascada de más de 40 metros de caída. Se llega a través de un sendero tropical a caballo o a pie, cruzando ríos y plantaciones de café y cacao, concluyendo en una profunda poza natural de agua dulce."
+            "Cómo llegar por carretera y aire: Desde Santo Domingo toma apenas 2 horas y media por la moderna Autopista Juan Pablo II (Autopista de Samaná) y el panorámico Boulevard Turístico del Atlántico (con el famoso mirador de Cosón antes de bajar a Las Terrenas). Desde Punta Cana el trayecto por carretera dura entre 4 y 4.5 horas (o mediante excursiones en avión ligero / ferry desde Miches–Sabana de la Mar). El aeropuerto más cercano es el Aeropuerto Internacional Presidente Juan Bosch (El Catey, AZS), a solo 30 minutos de Las Terrenas.",
+            "Dónde hacer base según tu viaje: Elige Las Terrenas si buscas variedad de restaurantes, vida nocturna, villas boutique y playas accesibles; elige Las Galeras si buscas calma absoluta y estar al lado de Playa Rincón, Frontón y Madama; o elige Santa Bárbara de Samaná si tu prioridad son las ballenas jorobadas, Cayo Levantado y Los Haitises."
           ]
         }
       ],
-      conclusion: "Samaná es el testimonio vivo de la exuberancia caribeña. Ya sea navegando hacia Cayo Levantado o explorando los caminos de tierra de Las Galeras, esta península te dejará grabado en la memoria el rostro más auténtico y verde de República Dominicana.",
+      conclusion: "Samaná y Las Terrenas reúnen todo lo que sueña un viajero del Caribe: playas salvajes sin masificación, ríos helados que abrazan el mar, selvas vírgenes, ballenas jorobadas y una gastronomía costera inolvidable. Dedícale al menos 3 a 5 días para explorarla sin prisas.",
       keyTakeaways: [
-        "Mejor época para ver ballenas: del 15 de enero al 30 de marzo.",
-        "Imprescindibles: Playa Rincón, Caño Frío, Cayo Levantado y Salto del Limón.",
-        "Cómo llegar desde Santo Domingo: unas 2 horas y media por la Autopista Juan Pablo II."
+        "Playas top de Las Terrenas: Playa Bonita (Punta Bonita), Playa Cosón, Playa Las Ballenas, Punta Popy, Portillo y Morón.",
+        "Playas top de Las Galeras: Playa Rincón (+ río Caño Frío), Playa Frontón, Playa Madama y El Ermitaño.",
+        "Temporada oficial de Ballenas Jorobadas: del 15 de enero al 30 de marzo.",
+        "Combina playa + naturaleza: Salto del Limón, Cayo Levantado y Parque Nacional Los Haitises."
+      ]
+    }
+  },
+  {
+    slug: "guia-mejores-playas-y-rios-naturales-republica-dominicana",
+    title: "Guía Completa de las Mejores Playas y Ríos Naturales de República Dominicana: De Samaná al Sur Profundo",
+    excerpt: "Descubre las mejores playas de toda República Dominicana por región (Samaná, Punta Cana, Miches, Costa Norte y Pedernales) junto con la lista definitiva de los ríos naturales, charcos turquesa y cascadas más lindos del país.",
+    category: "Playas y Naturaleza",
+    date: "25 de Noviembre de 2026",
+    publishedIso: "2026-11-25T11:00:00+00:00",
+    readTime: "15 min de lectura",
+    author: {
+      name: "Manuel Rosario",
+      role: "Guía Certificado & Explorador de Naturaleza en RD",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+    },
+    coverImage: "/gallery/guides/rd-bahia-aguilas.webp?v=2",
+    relatedTourId: 1,
+    content: {
+      introduction: "República Dominicana es mundialmente famosa por sus playas turquesas, pero quienes realmente conocen el país saben que guarda un segundo paraíso igual de deslumbrante tierra adentro: cientos de ríos naturales cristalinos, charcos de azul irreal, manantiales de agua helada que desembocan directo en el mar y cascadas enclavadas en la Cordillera Central. Esta guía reúne en un solo lugar las mejores playas del país de norte a sur y TODOS los ríos y balnearios naturales más lindos que debes visitar.",
+      sections: [
+        {
+          heading: "1. Las Mejores Playas de República Dominicana: Costa Este, Samaná, Costa Norte y Sur",
+          image: "/gallery/guides/rd-cayo-arena.webp?v=2",
+          imageAlt: "Cayo Levantado en la Bahía de Samaná, arena blanca y aguas turquesa en República Dominicana",
+          imageCaption: "Cayo Levantado (Bahía de Samaná): una de las postales caribeñas más icónicas de la República Dominicana.",
+          body: [
+            "Península de Samaná y Las Terrenas (Las más salvajes y verdes): Playa Rincón (con el río Caño Frío), Playa Frontón (bajo un farallón de 90 metros), Playa Madama, Playa El Ermitaño y Playa Morón lideran las playas vírgenes. En Las Terrenas destacan Playa Bonita, Playa Cosón, Playa Las Ballenas y Punta Popy, mientras Cayo Levantado brilla en medio de la bahía.",
+            "Costa Este — Punta Cana, Bayahíbe y Miches (El Caribe de postal): Isla Saona (especialmente Canto de la Playa y la Piscina Natural con estrellas de mar), Isla Catalina (el mejor arrecife de coral del Este), Playa Dominicus en Bayahíbe (Bandera Azul), Playa Juanillo en Cap Cana, Playa Bávaro, Playa Macao (surf y buggies) y Playa Esmeralda en Miches, un santuario virgen de kilómetros de cocoteros que se ha convertido en la nueva estrella del país.",
+            "Costa Norte — Cabrera, Río San Juan, Puerto Plata y Montecristi: Cayo Arena en Punta Rucia es un banco de arena blanca rodeado de corales en pleno océano; Playa Grande y Playa Preciosa (Río San Juan) deslumbran por su arena dorada y olas vigorosas; Playa Diamante y Playa Caletón (Cabrera) ofrecen aguas súper calmas y poco profundas; Playa Arroyo Salado (La Entrada) combina mar y río helado en el mismo lugar; Sosúa seduce con su bahía transparente; Cabarete es la meca del kitesurf; y El Morro en Montecristi regala atardeceres dramáticos junto a los Cayos Siete Hermanos.",
+            "Sur Profundo — Pedernales, Barahona y Baní: Bahía de las Águilas (Pedernales) es unánimemente la playa virgen más impresionante del Caribe: 8 kilómetros de arena blanca impoluta sin un solo edificio dentro del Parque Nacional Jaragua. En la carretera panorámica de Barahona destacan Playa San Rafael, Playa Los Patos y Playa Quemaito, y en Peravia sorprenden las Dunas y Playa Salinas de Baní."
+          ],
+          tip: "Si buscas aguas 100% calmas sin oleaje fuerte, prioriza Bahía de las Águilas, Isla Saona, Playa Juanillo, Bayahíbe, Playa Diamante (Cabrera), Playa La Playita (Las Galeras) y Punta Bonita (Las Terrenas)."
+        },
+        {
+          heading: "2. Ríos Naturales del Norte y el Cibao: Pozas Turquesa y Cañones",
+          image: "/gallery/guides/rd-damajagua-charcos.webp?v=2",
+          imageAlt: "Cascadas y pozas azul cristalino de los 27 Charcos de Damajagua en Puerto Plata",
+          imageCaption: "27 Charcos de Damajagua (Puerto Plata): saltos y toboganes naturales de agua cristalina en el norte del país.",
+          body: [
+            "Río Partido (Salcedo / Tenares, Provincia Hermanas Mirabal): Uno de los ríos más fotografiados de todo el Caribe. Sus minerales calcáreos tiñen las pozas de un azul turquesa casi fosforescente en medio de un bosque húmedo exuberante. Es obligatorio visitarlo con guías locales y evitar días de lluvia intensa.",
+            "27 Charcos de Damajagua (Imbert, Puerto Plata): Una aventura única de cañonismo natural donde subes por la montaña y desciendes saltando y deslizándote por toboganes de piedra natural tallados por el río en aguas transparentes (puedes elegir el circuito de 7, 12 o los 27 charcos completos).",
+            "Río Jamao al Norte (Espaillat / Moca) y Río Sonador (Yásica, Puerto Plata): Jamao al Norte ofrece kilómetros de agua color esmeralda súper limpia, ideal para kayak de río, paseos en bote ecológico y charcos profundos como Cola de Pato. Muy cerca, en Yásica, Río Sonador es un clásico refrescante rodeado de vegetación.",
+            "Río Arroyo Salado, Laguna Dudú y Río Boba (Cabrera / María Trinidad Sánchez): En La Entrada de Cabrera, el Río Arroyo Salado brota cristalino y frío justo antes de fundirse con la playa. A pocos minutos, Laguna Dudú ofrece dos cenotes de agua dulce azul profundo (incluyendo tirolina sobre el agua) y cavernas subterráneas."
+          ],
+          tip: "Para Río Partido y Cola de Pato (Jamao al Norte), sal temprano antes de las 8:30 AM: la luz del sol vertical hace brillar el color azul turquesa y disfrutas los charcos casi en privado."
+        },
+        {
+          heading: "3. Ríos y Cascadas de la Cordillera Central: Jarabacoa, Constanza y Bonao",
+          image: "/gallery/guides/rd-jarabacoa-salto.webp?v=2",
+          imageAlt: "Salto de Jimenoa rodeado de acantilados y bosque tropical en Jarabacoa",
+          imageCaption: "Salto de Jimenoa en Jarabacoa: aguas frescas de montaña bajando por la Cordillera Central.",
+          body: [
+            "Río Yaque del Norte y La Confluencia (Jarabacoa): El río más largo de la República Dominicana (casi 300 km) nace en las faldas del Pico Duarte. En Jarabacoa ofrece el único rafting comercial de todo el Caribe (rápidos clase II y III), además del famoso balneario de La Confluencia donde se une con el Río Jimenoa.",
+            "Río Jimenoa y Río Baiguate (Jarabacoa): El Río Jimenoa regala los espectaculares Saltos de Jimenoa I y II, rodeados de puentes colgantes de madera sobre cañones de pinos, mientras el Salto Baiguate ofrece una caída de 25 metros con poza natural perfecta para bañarse en aguas frescas de montaña.",
+            "Río Fula, Río Masipedro y Saltos de Jima (Bonao, Monseñor Nouel): Bonao es una de las provincias con los ríos más limpios y fríos del país. Río Fula y Río Masipedro destacan por sus pozas transparentes, casetas gastronómicas y ambiente familiar, mientras el Monumento Natural Saltos de Jima esconde una caminata por selva hacia 9 cascadas y charcos vírgenes encadenados.",
+            "Salto de Aguas Blancas y Río Tireo (Constanza): A más de 1,600 metros sobre el nivel del mar, Aguas Blancas es la cascada más alta de las Antillas (83 metros de caída libre) con aguas heladas que bajan desde Valle Nuevo. Más al sur de la cordillera destacan también las frescas aguas del Río Nizao y Río Ocoa."
+          ]
+        },
+        {
+          heading: "4. Ríos Naturales del Sur Profundo: Donde la Montaña Besa al Mar Caribe",
+          image: "/gallery/guides/rd-barahona-rios.webp?v=2",
+          imageAlt: "Acantilados y costa turquesa de Barahona en el Sur Profundo de República Dominicana",
+          imageCaption: "Costa de Barahona: el encuentro dramático entre la Sierra de Bahoruco, sus ríos helados y el mar Caribe.",
+          body: [
+            "Río Los Patos (Paraíso, Barahona): Famoso por ser considerado el río más corto del mundo (alrededor de 500 metros desde su manantial subterráneo hasta el océano). Su balneario de agua helada y cristalina está a apenas pasos de la playa de piedras blancas pulidas frente al mar Caribe.",
+            "Río y Balneario San Rafael (Barahona): Una cascada de montaña que desciende formando piscinas naturales escalonadas de agua fría antes de cruzar bajo la carretera costera y unirse a las olas turquesa de Playa San Rafael. Alrededor encontrarás las mejores enramadas de pescado frito con tostones.",
+            "Balneario La Plaza / Río Bahoruco (Barahona): Un secreto de ecoturismo en plena Sierra de Bahoruco. Tras caminar río arriba por piedras blancas pulidas aparecen pozas de agua azul celeste intenso de una transparencia asombrosa.",
+            "Río Nizaito, Villa Miriam y Balneario Mata de Maíz (Barahona): En Paraíso, el Río Nizaito nutre hermosas pozas de montaña y alimenta las piscinas naturales de agua corriente de Villa Miriam; en las alturas frescas de Polo, el manantial de Mata de Maíz brinda uno de los baños más tranquilos y puros del sur."
+          ]
+        },
+        {
+          heading: "5. Ríos del Noreste, Monte Plata, San Cristóbal y el Este",
+          image: "/gallery/guides/rd-rio-chavon.webp?v=2",
+          imageAlt: "Vista panorámica del Río Chavón rodeado de vegetación tropical desde Altos de Chavón",
+          imageCaption: "Río Chavón en La Romana: un cañón selvático navegable que conecta las montañas del Este con el Mar Caribe.",
+          body: [
+            "Caño Frío y Río El Limón (Samaná): Caño Frío es un río de agua dulce fría y cristalina que serpentea entre manglares hasta desembocar en Playa Rincón; y el Río El Limón forma la icónica cascada del Salto del Limón (40+ metros) en medio de la península.",
+            "Río Comate, Salto de Socoa y Salto Alto de Bayaguana (Monte Plata): A menos de 1 hora y 15 minutos desde Santo Domingo, Monte Plata es la capital escondida del agua dulce cerca de la capital. El Río Comate impresiona por su claridad tipo piscina, el Salto de Socoa permite bañarse a pocos minutos de la Autopista de Samaná y el Salto Alto de Bayaguana ofrece tres caídas de agua paralelas en un entorno selvático.",
+            "Río Chavón, Hoyo Azul y Ojos Indígenas (La Romana y Punta Cana): El majestuoso Río Chavón serpentea por un profundo cañón tropical que fue escenario de películas de Hollywood y se recorre en botes desde Altos de Chavón. En Punta Cana y Cap Cana, aunque no hay ríos de montaña, las aguas dulces cristalinas afloran en cenotes y lagunas subterráneas espectaculares como Hoyo Azul (Scape Park) y las 12 lagunas del Parque Ecológico Ojos Indígenas.",
+            "Balneario La Toma y Río Manyaco (San Cristóbal): A 40 minutos al oeste de Santo Domingo, La Toma es una histórica piscina natural alimentada por manantiales entre árboles centenarios, y Río Manyaco ofrece charcos tranquilos ideales para una escapada de un día."
+          ]
+        },
+        {
+          heading: "6. Consejos clave para disfrutar los ríos y playas naturales de RD",
+          body: [
+            "Calzado y equipo indispensable: Para ríos de piedra y cascadas (Los Patos, Damajagua, Río Partido, Saltos de Jima, Salto del Limón) lleva siempre zapatos de agua (aqua shoes) o tenis con buen agarre que se puedan mojar, funda impermeable para el celular y bolsa seca.",
+            "Seguridad ante lluvias de montaña: Nunca entres a ríos de montaña (especialmente Río Partido, Jimenoa, Baiguate, Bahoruco o Damajagua) si está lloviendo fuerte en las cabeceras de la cordillera, ya que las crecidas repentinas pueden ocurrir rápido. Consulta siempre a los guías locales.",
+            "Turismo responsable: Usa protector solar biodegradable, no laves vehículos en los ríos, evita jabones o champú en los balnearios y llévate el 100% de tu basura contigo para preservar intactas estas joyas naturales dominicanas."
+          ],
+          tip: "Si dispones de 7 a 10 días y quieres ver lo mejor de ambos mundos, combina 4 días en Punta Cana / Isla Saona con 3 días en Samaná y Las Terrenas (Playa Rincón + Caño Frío + Salto del Limón) o una ruta por Cabrera, Río Partido y Jarabacoa."
+        }
+      ],
+      conclusion: "República Dominicana es mucho más que una sola postal: en un mismo día puedes amanecer nadando en un río helado turquesa entre montañas y terminar viendo el atardecer en una playa virgen de arena blanca. Explorar tanto sus costas —desde Samaná y Las Terrenas hasta Bahía de las Águilas y Saona— como sus ríos naturales te revelará el corazón más auténtico y diverso del Caribe.",
+      keyTakeaways: [
+        "Mejores playas vírgenes de RD: Bahía de las Águilas, Playa Rincón, Playa Frontón, Isla Saona (Canto de la Playa), Playa Esmeralda (Miches), Cayo Arena y Playa Cosón.",
+        "Ríos naturales imperdibles: Río Partido (turquesa), 27 Charcos de Damajagua, Río Los Patos, San Rafael, Río Comate, Caño Frío, Río Fula, Saltos de Jima, Yaque del Norte y Salto de Aguas Blancas.",
+        "Mejor combinación playa + río en el mismo punto: Playa Rincón + Caño Frío (Samaná), Los Patos y San Rafael (Barahona) y Arroyo Salado (Cabrera).",
+        "Lleva siempre aqua shoes, protector biodegradable y consulta el clima antes de visitar ríos de montaña."
       ]
     }
   },
@@ -447,145 +575,195 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "guia-completa-viajar-canada-mejores-lugares-temporadas",
-    title: "Guía Completa para Viajar a Canadá: Mejores Lugares, Rutas y Actividades por Temporada",
-    excerpt: "Descubre dónde ir en Canadá, las mejores regiones del Este y el Oeste, qué actividades hacer en verano, otoño, invierno y primavera, requisitos de entrada y consejos prácticos.",
+    title: "Guía Completa para Viajar a Canadá: Todas las Provincias en Verano e Invierno, Eventos y Actividades",
+    excerpt: "Explora Canadá provincia por provincia: qué pasa en verano e invierno en las 10 provincias y los 3 territorios del norte, los mejores festivales y eventos del año, actividades imprescindibles y consejos prácticos.",
     category: "Guías de Destino",
     date: "25 de Noviembre de 2026",
     publishedIso: "2026-11-25T08:00:00+00:00",
-    readTime: "10 min de lectura",
+    readTime: "16 min de lectura",
     author: {
       name: "Manuel Rosario",
       role: "Especialista en Destinos Internacionales",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/canada-guide-cover.webp",
+    coverImage: "/gallery/guides/canada-banff-moraine.webp?v=2",
     content: {
-      introduction: "Canadá es el segundo país más grande del planeta y uno de los destinos más seguros, diversos y espectaculares del mundo. Desde los lagos turquesa de origen glaciar en las Montañas Rocosas hasta el encanto europeo francófono de Quebec, pasando por cosmopolitas metrópolis como Toronto y Vancouver, planificar bien qué región elegir y en qué estación viajar marca por completo la diferencia en tu experiencia.",
+      introduction: "Canadá es el segundo país más grande del planeta y cambia por completo de rostro entre el verano y el invierno. Mientras entre junio y septiembre sus 10 provincias y 3 territorios vibran con lagos turquesa, avistamiento de ballenas, icebergs, senderismo alpino y festivales de clase mundial, entre noviembre y marzo se transforman en un reino de esquí, auroras boreales, ríos congelados para patinar, hoteles de hielo y carnavales bajo cero. En esta guía exhaustiva te mostramos qué sucede en CADA provincia canadiense en verano e invierno, cuáles son los eventos más importantes y qué actividades no puedes perderte.",
       sections: [
         {
-          heading: "1. ¿Dónde ir en Canadá? Los mejores lugares del Oeste y del Este",
+          heading: "1. Oeste Canadiense: Columbia Británica y Alberta (Verano vs. Invierno)",
           body: [
-            "Oeste Canadiense (Naturaleza en estado puro): El Parque Nacional Banff y el Parque Nacional Jasper en Alberta son el corazón visual del país. Aquí te esperan el Lago Louise, el Lago Moraine, la carretera panorámica Icefields Parkway y el glaciar Athabasca. Muy cerca, en la costa del Pacífico, Vancouver combina rascacielos modernos, Stanley Park y playas urbanas con excursiones a la Isla de Vancouver (Victoria y Tofino) y la estación alpina de Whistler.",
-            "Este Canadiense (Ciudades icónicas, historia y cataratas): Toronto destaca por la Torre CN, sus barrios multiculturales y su cercanía a las imponentes Cataratas del Niágara (a solo 90 minutos). Siguiendo el río San Lorenzo se encuentran Ottawa (la capital monumental), Montreal (capital cultural, gastronómica y artística) y la Ciudad de Quebec, la única ciudad amurallada al norte de México con un casco antiguo Patrimonio de la Humanidad que parece sacado de Francia.",
-            "Norte y Costa Atlántica (Experiencias únicas): Yellowknife (Territorios del Noroeste) y Whitehorse (Yukón) son dos de los mejores puntos del planeta para ver auroras boreales. En el Atlántico, Nueva Escocia (Cabot Trail), la Isla del Príncipe Eduardo y Terranova ofrecen acantilados dramáticos, faros históricos y observación de icebergs y ballenas."
+            "Columbia Británica — Verano (Junio a Septiembre): Es la provincia más diversa en clima y paisajes. Lo mejor es recorrer Vancouver (Stanley Park, Granville Island y playas de Kitsilano), cruzar en ferry a la Isla de Vancouver para avistar orcas y ballenas jorobadas en Victoria y hacer surf en Tofino, hacer senderismo alpino en Whistler y el Parque Garibaldi, y catar vinos en el soleado Valle de Okanagan. Eventos top: Honda Celebration of Light (competencia internacional de fuegos artificiales en Vancouver en julio/agosto), Vancouver Pride, Pacific National Exhibition (PNE) y el festival teatral Bard on the Beach.",
+            "Columbia Británica — Invierno (Noviembre a Marzo): Whistler Blackcomb es la estación de esquí más grande de Norteamérica, acompañada de resorts de nieve polvo como Revelstoke, Big White y Sun Peaks. En Vancouver las temperaturas son suaves (3°C a 8°C) y puedes esquiar de noche en Grouse Mountain o Cypress, relajarte en aguas termales (Harrison Hot Springs) o practicar 'storm watching' frente a las tormentas del Pacífico en Tofino. Eventos top: Canyon Lights en el Puente Colgante de Capilano, Vancouver Christmas Market, festival gastronómico Dine Out Vancouver (enero/febrero) y el World Ski & Snowboard Festival en Whistler.",
+            "Alberta — Verano (Junio a Septiembre): El corazón visual de las Montañas Rocosas. En los Parques Nacionales Banff y Jasper te esperan Lake Louise, Moraine Lake, Peyto Lake, la carretera escénica Icefields Parkway y caminatas guiadas sobre el Glaciar Athabasca. También destacan el rafting en Kananaskis y el cañón de fósiles de dinosaurios en Drumheller (Badlands). Eventos top: Calgary Stampede en julio ('El espectáculo al aire libre más grande del mundo' con rodeos, desfiles y conciertos), Edmonton International Fringe Theatre Festival (agosto), Heritage Festival y el Banff Summer Arts Festival.",
+            "Alberta — Invierno (Noviembre a Marzo): Paraíso alpino con nieve seca y soleada. Destacan el esquí en las 'Big 3' (Sunshine Village, Lake Louise y Mt. Norquay) y Marmot Basin en Jasper, caminatas con crampones por las cascadas congeladas de Johnston Canyon, fotografiar las burbujas de metano congeladas en Abraham Lake, patinar sobre el Lake Louise congelado, trineos tirados por perros y sumergirse en las Banff Upper Hot Springs rodeado de nieve. Eventos top: Ice Magic Festival en Lake Louise (esculturas gigantes de hielo en enero), SnowDays en Banff, Jasper in January y el Silver Skate Festival en Edmonton."
           ],
-          tip: "Canadá es inmenso (de Toronto a Vancouver hay más de 4,300 km). Si tienes entre 7 y 12 días, elige solo una costa (Oeste o Este) en lugar de intentar cruzar todo el país en un solo viaje."
+          tip: "Si viajas a las Rocosas en verano, reserva con meses de antelación el autobús lanzadera oficial de Parks Canada para entrar a Moraine Lake, ya que el acceso a vehículos particulares está restringido todo el año."
         },
         {
-          heading: "2. ¿Qué actividades hacer en Canadá según la temporada?",
+          heading: "2. Las Praderas Canadienses: Saskatchewan y Manitoba (Verano vs. Invierno)",
+          image: "/gallery/guides/canada-prairies-churchill.webp?v=2",
+          imageAlt: "Osos polares en la nieve de Churchill, Manitoba, Canadá",
+          imageCaption: "Churchill, Manitoba: considerada la Capital Mundial del Oso Polar entre octubre y noviembre.",
           body: [
-            "Verano (Junio a Agosto — 20°C a 30°C): Es la temporada estrella para parques nacionales y actividades al aire libre. Puedes hacer senderismo en las Rocosas, remar en canoa en Lake Louise y Moraine Lake, recorrer en barco las Cataratas del Niágara (Hornblower), avistar ballenas orcas en Vancouver o Tadoussac, observar osos negros y grizzlies en libertad y disfrutar festivales al aire libre como el Festival Internacional de Jazz de Montreal.",
-            "Otoño (Septiembre a Octubre — 8°C a 18°C): Considerada por muchos viajeros la época más fotogénica del Este canadiense gracias al 'Indian Summer' y el cambio de color de los bosques de arce (rojo intenso, naranja y dorado). Las mejores actividades son rutas en auto por el Parque Algonquin (Ontario), Mont-Tremblant y la región de Charlevoix (Quebec), visitas a granjas de manzanas y sidrerías, además de disfrutar tarifas hoteleras más bajas que en julio y agosto.",
-            "Invierno (Noviembre a Marzo — -5°C a -25°C): El paraíso de la nieve y las luces del norte. Destacan el esquí y snowboard de clase mundial en Whistler Blackcomb, Banff/Lake Louise y Mont-Tremblant; expediciones de auroras boreales en Yellowknife y Whitehorse (diciembre a marzo); trineo tirado por perros (dog sledding), caminatas con raquetas de nieve, patinaje sobre el Canal Rideau congelado en Ottawa y el famoso Carnaval de Invierno de Quebec en febrero.",
-            "Primavera (Abril a Mayo — 5°C a 17°C): Época de transición ideal para presupuestos ajustados y menos multitudes. Destaca el Festival Canadiense de los Tulipanes en Ottawa (mayo), la floración de los cerezos en Vancouver (abril), las cascadas en máximo caudal por el deshielo y la temporada de cabañas de azúcar ('Cabanes à Sucre') en Quebec para probar sirope de arce recién cosechado sobre la nieve."
+            "Saskatchewan — Verano (Junio a Agosto): Conocida como la 'Tierra de los Cielos Vivos' y con más de 100,000 lagos en el norte. Lo mejor es hacer canotaje y pesca deportiva en el Parque Nacional Prince Albert (lago Waskesiu), observar manadas de bisontes y estrellas en las reservas de cielo oscuro de Grasslands National Park y Cypress Hills, y explorar las sorprendentes dunas de arena de Athabasca. Eventos top: SaskTel Saskatchewan Jazz Festival en Saskatoon (julio), Festival multicultural Folkfest, Regina Folk Festival y el festival country Country Thunder Saskatchewan.",
+            "Saskatchewan — Invierno (Noviembre a Marzo): El norte provincial es un punto privilegiado y menos concurrido para ver auroras boreales (Prince Albert y La Ronge). Las actividades estrella son la pesca en hielo (ice fishing), rutas de motos de nieve (snowmobiling) en más de 10,000 km de senderos señalizados, esquí de fondo y trineos de perros. Eventos top: Nutrien WinterShines en Saskatoon (esculturas de hielo y sopa caliente), Frost Regina (festival invernal de luces y deportes en febrero) y la gran feria ganadera Canadian Western Agribition.",
+            "Manitoba — Verano (Junio a Agosto): Entre julio y agosto ocurre uno de los mayores espectáculos marinos del planeta en Churchill (Bahía de Hudson): la llegada de más de 3,000 ballenas beluga, junto a las cuales puedes remar en kayak o pasear en zodiac. Al sur destacan las playas de arena blanca de Grand Beach en el Lago Winnipeg y el avistamiento de bisontes y osos negros en Riding Mountain National Park. Eventos top: Folklorama en Winnipeg (agosto, el festival multicultural más grande y antiguo del mundo), Winnipeg Folk Festival y Winnipeg Fringe Theatre Festival.",
+            "Manitoba — Invierno (Octubre a Marzo): Churchill es mundialmente famosa por dos hitos: entre octubre y noviembre es la 'Capital Mundial del Oso Polar' (safaris en vehículos Tundra Buggy), y de enero a marzo ofrece hasta 300 noches de auroras boreales al año. En Winnipeg, los ríos congelados forman el Nestaweya River Trail en The Forks para patinar entre casetas de diseño y relajarse en el spa nórdico Thermëa. Eventos top: Festival du Voyageur en febrero (el festival de invierno más grande del Oeste canadiense, dedicado a la historia franco-manitobana con esculturas monumentales de nieve y música celta/folk)."
           ],
-          tip: "En invierno, vístete con el sistema de 3 capas (térmica transpirable, forro polar y abrigo cortaviento impermeable) junto con botas antideslizantes con aislamiento térmico."
+          tip: "Para ver osos polares en Churchill (octubre-noviembre) o belugas en julio-agosto, reserva tren o vuelo desde Winnipeg con 6 a 10 meses de anticipación: Churchill no tiene conexión por carretera con el resto del país."
         },
         {
-          heading: "3. ¿Dónde es mejor visitar según tu perfil de viajero?",
+          heading: "3. Canadá Central: Ontario y Quebec (Verano vs. Invierno)",
+          image: "/gallery/guides/canada-quebec-winter.webp?v=2",
+          imageAlt: "Château Frontenac cubierto de nieve en invierno en el Viejo Quebec, Canadá",
+          imageCaption: "Viejo Quebec en invierno: el icónico Château Frontenac nevado durante la temporada del Carnaval de Invierno.",
           body: [
-            "Si buscas paisajes épicos de montaña, lagos y fauna salvaje: Elige Alberta y Columbia Británica (vuela a Calgary y regresa desde Vancouver) entre junio y septiembre, o en invierno si practicas esquí.",
-            "Si prefieres cultura, arquitectura europea, museos, compras y vida nocturna: Elige el corredor clásico del Este (Toronto, Niágara, Ottawa, Montreal y Ciudad de Quebec), ideal entre mayo y octubre.",
-            "Si viajas en familia por primera vez: El triángulo Toronto – Cataratas del Niágara – Montreal ofrece distancias cómodas en tren o auto, atracciones interactivas, parques temáticos y gran oferta hotelera.",
-            "Si tu sueño son las auroras boreales y la aventura ártica: Planifica una escapada de 3 a 4 noches a Yellowknife o Whitehorse entre finales de noviembre y finales de marzo, cuando las noches son más largas y despejadas."
+            "Ontario — Verano (Junio a Septiembre): Combina grandes metrópolis con naturaleza lacustre. Imprescindible subir a la Torre CN en Toronto, navegar hasta la base de las Cataratas del Niágara, recorrer viñedos en Niagara-on-the-Lake, hacer cruceros por los castillos de las Mil Islas (Thousand Islands), alquilar cabañas en los lagos de Muskoka y remar entre alces en el Parque Provincial Algonquin. Eventos top: Celebración nacional del Canada Day en Parliament Hill (Ottawa, 1 de julio), Toronto Caribbean Carnival (Caribana), Pride Toronto, Canadian National Exhibition (CNE), Ottawa Bluesfest y el Festival Internacional de Cine de Toronto (TIFF) a inicios de septiembre.",
+            "Ontario — Invierno (Diciembre a Marzo): En Ottawa, el Canal Rideau (Patrimonio de la UNESCO) se congela para convertirse en la pista de patinaje natural más grande del mundo (7.8 km). Las Cataratas del Niágara se rodean de impresionantes formaciones de hielo iluminadas cada noche, las bodegas de la península cosechan el famoso Icewine (vino de hielo) y Blue Mountain ofrece esquí a 2 horas de Toronto. Eventos top: Winterlude en Ottawa (febrero, esculturas de hielo, conciertos y carreras de camas sobre hielo), Niagara Icewine Festival (enero), Winter Festival of Lights en Niágara y The Distillery Winter Village en Toronto.",
+            "Quebec — Verano (Junio a Septiembre): Encanto europeo francófono al máximo nivel. Pasea por las calles adoquinadas del Viejo Quebec y el Viejo Montreal, haz avistamiento de ballenas azules, rorcuales y belugas en Tadoussac (fiordo de Saguenay), recorre la península de Gaspésie hasta la Roca Percé y explora parques nacionales como Jacques-Cartier y Mont-Tremblant. Eventos top: Festival Internacional de Jazz de Montreal (el más grande del mundo), Gran Premio de Fórmula 1 de Canadá (junio), Festival d'été de Québec (FEQ), Festival de Comedia Just for Laughs, Osheaga y las fiestas de Saint-Jean-Baptiste (24 de junio).",
+            "Quebec — Invierno (Diciembre a Marzo): Ninguna provincia celebra el invierno con tanta pasión. Puedes dormir en el famoso Hôtel de Glace (Hotel de Hielo) a las afueras de Quebec, esquiar en Mont-Tremblant o Le Massif de Charlevoix (con vistas al río San Lorenzo congelado), deslizarte en el tobogán centenario de la Terraza Dufferin, disfrutar spas termales al aire libre bajo la nieve y recorrer los 32 km de ciudad subterránea (RÉSO) en Montreal. Eventos top: Carnaval de Invierno de Quebec (febrero, con desfiles nocturnos, palacio de hielo y la carrera de canoas entre bloques de hielo del río San Lorenzo), Igloofest en Montreal (el festival de música electrónica más frío del mundo) y Montréal en Lumière (alta gastronomía y Nuit Blanche)."
+          ],
+          tip: "En Ontario y Quebec, aprovecha además el otoño (finales de septiembre a mediados de octubre) para el 'Indian Summer' y la primavera (marzo-abril) para visitar las 'Cabanes à Sucre' y comer sirope de arce recién hervido sobre la nieve."
+        },
+        {
+          heading: "4. Provincias Atlánticas: Nuevo Brunswick, Nueva Escocia, Isla del Príncipe Eduardo y Terranova",
+          image: "/gallery/guides/canada-atlantic-peggys.webp?v=2",
+          imageAlt: "Faro de Peggy's Cove sobre rocas de granito frente al Atlántico en Nueva Escocia, Canadá",
+          imageCaption: "Faro de Peggy's Cove en Nueva Escocia: símbolo costero de las Provincias Atlánticas de Canadá.",
+          body: [
+            "Nuevo Brunswick — Verano e Invierno: En verano, su gran maravilla natural es la Bahía de Fundy, donde ocurren las mareas más altas del planeta (hasta 16 metros): en Hopewell Rocks puedes caminar sobre el lecho marino en marea baja y horas después remar en kayak entre los mismos pilares de roca. También destacan las playas cálidas de Shediac ('Capital Mundial de la Langosta') y el avistamiento de ballenas en St. Andrews. Eventos de verano: Shediac Lobster Festival (julio), Festival Acadien de Caraquet (agosto) y Harvest Music Festival. En invierno triunfan los senderos de motos de nieve, el esquí en Crabbe Mountain, raquetas entre cascadas congeladas en Fundy National Park y eventos como FROSTival (Fredericton) y Fundy Winterfest (Saint John).",
+            "Nueva Escocia — Verano e Invierno: En verano, el Cabot Trail en la isla de Cabo Bretón es una de las carreteras costeras más bellas del mundo; súmale el icónico faro de Peggy's Cove, el casco histórico colorido de Lunenburg (UNESCO), viñedos del Valle de Annapolis y rafting sobre olas de marea ('tidal bore rafting'). Eventos de verano: Royal Nova Scotia International Tattoo, Halifax Busker Festival y Halifax Jazz Festival. En invierno el ritmo se vuelve íntimo y acogedor: esquí en Ski Wentworth, paseos costeros nevados, pubs con música celta en vivo en Halifax y el famoso Nova Scotia Lobster Crawl durante todo febrero (el mayor festival invernal de langosta y mariscos del Atlántico).",
+            "Isla del Príncipe Eduardo (PEI) — Verano e Invierno: La provincia más pequeña y pintoresca de Canadá. En verano ofrece playas de arena rojiza y dunas en PEI National Park (Cavendish y Greenwich), la casa museo de Anne of Green Gables, rutas ciclistas por el Confederation Trail y las mejores ostras, mejillones y cenas tradicionales de langosta. Eventos de verano: Cavendish Beach Music Festival (julio), Charlottetown Festival y el PEI International Shellfish Festival. En invierno destacan el Brookvale Winter Activity Park (esquí alpino, nórdico y fat biking en nieve) y festivales llenos de ambiente como Ice City Festival en Charlottetown y Jack Frost Winterfest (febrero).",
+            "Terranova y Labrador — Verano e Invierno: Entre mayo y principios de julio vive la temporada única de 'Iceberg Alley' en Twillingate y Bonavista, donde gigantescos témpanos desprendidos de Groenlandia flotan frente a la costa mientras saltan ballenas jorobadas y anidan miles de frailecillos (puffins) en Witless Bay. También es imperdible el Parque Nacional Gros Morne (fiordos y manto terrestre expuesto). Eventos de verano: Iceberg Festival (junio), George Street Festival en St. John's y la Royal St. John's Regatta (agosto, la regata más antigua de Norteamérica). En invierno es un paraíso de nieve abundante: esquí en Marble Mountain (de los mejores desniveles del Este), expediciones en moto de nieve por Gros Morne, auroras boreales en Labrador y eventos como el Corner Brook Winter Carnival y St. John's ChillFest."
+          ],
+          tip: "Las Provincias Atlánticas son ideales para un road trip de 10 a 14 días entre junio y octubre, combinando carreteras costeras sin tráfico pesado, mariscos frescos a precios muy competitivos y la hospitalidad más cálida de Canadá."
+        },
+        {
+          heading: "5. Los 3 Territorios del Norte: Yukón, Territorios del Noroeste y Nunavut",
+          image: "/gallery/guides/canada-aurora-yukon.webp?v=2",
+          imageAlt: "Auroras boreales verdes y violetas iluminando el cielo nocturno en el norte de Canadá",
+          imageCaption: "Auroras boreales en el Norte Canadiense: Yellowknife y Whitehorse ofrecen más de un 90% de avistamiento en invierno.",
+          body: [
+            "Verano Ártico (Junio a Agosto): El protagonismo absoluto lo tiene el Sol de Medianoche (casi 24 horas de luz continua alrededor del solsticio de junio). En el Yukón puedes seguir la ruta de la fiebre del oro en Dawson City y hacer trekking entre glaciares en Kluane National Park; en los Territorios del Noroeste destaca el majestuoso Parque Nacional Nahanni; y en Nunavut se realizan expediciones culturales inuit y observación de narvales y fauna polar. Eventos top: Dawson City Music Festival, Folk on the Rocks (Yellowknife) y el Great Northern Arts Festival (Inuvik).",
+            "Invierno Ártico (Noviembre a Marzo): Yellowknife (Territorios del Noroeste) y Whitehorse (Yukón) están ubicados directamente bajo el óvalo auroral, logrando más de un 90% de probabilidad de ver auroras boreales en estadías de 3 noches. Además puedes vivir carreras de trineos de perros, pescar en lagos helados y bañarte a -25°C en las aguas termales Eclipse Nordic Hot Springs. Eventos top: Snowking's Winter Festival en Yellowknife (marzo, un castillo gigante tallado completamente en nieve y hielo sobre el Great Slave Lake), Yukon Rendezvous en Whitehorse (febrero) y el festival primaveral inuit Toonik Tyme en Iqaluit."
           ]
         },
         {
-          heading: "4. Requisitos de entrada, transporte y consejos prácticos para turistas",
+          heading: "6. Requisitos de entrada, transporte, clima y consejos prácticos",
           body: [
-            "Documentación migratoria: Dependiendo de tu nacionalidad necesitarás una Autorización Electrónica de Viaje (eTA, tramitada online por 7 CAD en el portal oficial del Gobierno de Canadá) o una visa de visitante (TRV). Verifica siempre los requisitos vigentes con al menos 2 meses de antelación antes de comprar vuelos.",
-            "Cómo moverse: En el Este, la red de trenes VIA Rail conecta cómodamente Toronto, Ottawa, Montreal y Quebec sin lidiar con tráfico ni nieve. En el Oeste (Montañas Rocosas), alquilar un auto es prácticamente indispensable para moverte a tu ritmo; para acceder al Lago Moraine se requiere reservar el autobús lanzadera oficial de Parks Canada con anticipación.",
-            "Presupuesto, impuestos y propinas: En Canadá los precios mostrados en tiendas y menús NO incluyen impuestos (suman entre un 5% y un 15% según la provincia). En restaurantes con servicio a la mesa se acostumbra dejar entre 15% y 20% de propina. Contrata siempre un seguro médico internacional con amplia cobertura, ya que la atención sanitaria para extranjeros sin seguro es sumamente costosa."
+            "Documentación migratoria: Según tu pasaporte necesitarás una Autorización Electrónica de Viaje (eTA, gestionada online por 7 CAD en el portal oficial del Gobierno de Canadá) o una visa de visitante (TRV). Revisa los requisitos vigentes al menos 2 meses antes de comprar tus boletos.",
+            "Cómo moverse entre provincias: Canadá mide más de 5,500 km de costa a costa. Para saltar entre regiones (por ejemplo Toronto → Calgary o Montreal → Halifax) usa vuelos internos. Dentro del corredor Este (Toronto–Ottawa–Montreal–Quebec) el tren VIA Rail es comodísimo; en el Oeste, el Atlántico y parques nacionales, alquilar auto es la mejor opción (en invierno asegúrate de que incluya neumáticos de invierno certificados M+S o el símbolo de montaña/copo de nieve).",
+            "Ropa para invierno vs. verano: En verano lleva capas ligeras y una chaqueta cortaviento impermeable (en las montañas y costas refresca al caer el sol). En invierno aplica el sistema de 3 capas (térmica transpirable de lana merino, forro polar y parka impermeable de pluma), además de gorro, guantes térmicos y botas impermeables antideslizantes.",
+            "Impuestos, propinas y gastronomía obligatoria: Los precios exhibidos en tiendas y restaurantes no incluyen impuestos (añaden entre 5% y 15% según la provincia) y en restaurantes con servicio a la mesa la propina habitual es de 15% a 20%. No te vayas sin probar la Poutine de Quebec, el Smoked Meat y los bagels de Montreal, el salmón salvaje de Columbia Británica, los lobster rolls del Atlántico, las BeaverTails de Ottawa y el sirope de arce 100% puro."
           ],
-          tip: "Las tarjetas de crédito y débito contactless se aceptan en prácticamente el 100% de los comercios, parques y transportes; lleva solo una pequeña cantidad de dólares canadienses (CAD) en efectivo para emergencias."
-        },
-        {
-          heading: "5. Gastronomía canadiense imprescindible",
-          body: [
-            "Poutine (Quebec): El plato nacional por excelencia, compuesto por papas fritas crujientes cubiertas con queso fresco en grano ('cheese curds') y salsa gravy caliente.",
-            "Smoked Meat de Montreal y Bagels artesanales: Sándwiches generosos de carne ahumada especiada en pan de centeno y bagels horneados a leña ligeramente endulzados con miel.",
-            "Salmón salvaje del Pacífico, mariscos del Atlántico y Sirope de Arce puro: En Vancouver y las provincias marítimas prueba el salmón ahumado y los lobster rolls; y no te vayas sin degustar una BeaverTail (masa frita con canela y azúcar) o productos con jarabe de arce 100% canadiense."
-          ]
+          tip: "Contrata siempre un seguro médico internacional con alta cobertura antes de viajar a Canadá: las consultas de emergencia y hospitalizaciones para visitantes sin seguro pueden superar fácilmente varios miles de dólares."
         }
       ],
-      conclusion: "Canadá ofrece dos viajes completamente distintos en el mismo territorio según la estación que elijas: lagos turquesa y rutas de senderismo en verano, bosques encendidos en otoño, o nieve profunda y auroras boreales en invierno. Con una ruta bien enfocada en una región y reservas anticipadas para parques y trenes, vivirás una de las travesías más memorables de tu vida.",
+      conclusion: "Canadá ofrece prácticamente un continente entero de experiencias distintas según la provincia y la época del año. Ya sea que elijas ver ballenas e icebergs en el Atlántico, recorrer lagos turquesa en las Rocosas o celebrar festivales bajo cero y auroras boreales en invierno, enfocar tu itinerario en una o dos provincias vecinas te garantizará un viaje profundo, cómodo e inolvidable.",
       keyTakeaways: [
-        "Mejor época para parques nacionales y lagos: finales de junio a mediados de septiembre.",
-        "Mejor época para colores de otoño (foliage): finales de septiembre a mediados de octubre en el Este.",
-        "Mejor época para esquí y auroras boreales: diciembre a marzo.",
-        "Divide tu viaje por costa (Oeste o Este) si dispones de menos de 2 semanas."
+        "Verano estrella (Jun–Sep): Rocosas (Banff/Jasper), Calgary Stampede, Jazz y F1 en Montreal, belugas en Manitoba, mareas de Fundy e icebergs en Terranova.",
+        "Invierno estrella (Dic–Mar): Esquí en Whistler/Banff/Mont-Tremblant, Carnaval de Quebec, patinaje en el Canal Rideau (Ottawa), Festival du Voyageur (Manitoba) y auroras boreales en Yukón y Yellowknife.",
+        "Eventos imperdibles según tu estilo: Calgary Stampede y Jazz de Montreal en verano; Carnaval de Quebec, Winterlude e Ice Magic en invierno.",
+        "Planifica por regiones (Oeste, Central, Atlántico o Norte) y reserva trenes, parques nacionales y autos con antelación."
       ]
     }
   },
   {
     slug: "guia-completa-viajar-italia-destinos-itinerarios-consejos",
-    title: "Guía Completa para Viajar a Italia: Mejores Ciudades, Qué Hacer, Temporadas y Consejos",
-    excerpt: "Todo lo que necesitas para planificar tu viaje a Italia: mejores ciudades y regiones, qué hacer en cada estación, itinerarios de 7 a 15 días, transporte en tren, gastronomía y trucos clave.",
+    title: "Guía Completa para Viajar a Italia: Mejores Pueblos, Cómo Llegar, Renta de Carro e Itinerarios",
+    excerpt: "Descubre los pueblos más bonitos de Italia región por región, cómo llegar a cada uno en tren o carretera, todas las ventajas y reglas de alquilar un carro (ZTL, peajes y parqueos), temporadas ideales e itinerarios.",
     category: "Guías de Destino",
     date: "25 de Noviembre de 2026",
     publishedIso: "2026-11-25T08:00:00+00:00",
-    readTime: "11 min de lectura",
+    readTime: "17 min de lectura",
     author: {
       name: "Laura De León",
       role: "Especialista en Turismo Europeo & Itinerarios",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
     },
-    coverImage: "/gallery/italia-guide-cover.webp",
+    coverImage: "/gallery/guides/italia-positano-amalfi.webp?v=2",
     content: {
-      introduction: "Italia reúne la mayor concentración de sitios Patrimonio de la Humanidad de la UNESCO en el mundo, una gastronomía reverenciada en todos los continentes y paisajes que van desde los picos alpinos de los Dolomitas hasta las calas turquesas de Sicilia y la Costa Amalfitana. Esta guía completa te ayuda a decidir dónde ir, cuándo viajar, cómo moverte en tren de alta velocidad y cómo evitar los errores más comunes del turista primerizo.",
+      introduction: "Aunque Roma, Florencia, Venecia y Milán son las puertas icónicas de entrada, el alma verdadera de Italia late en sus pueblos históricos ('borghi'): aldeas medievales coronando colinas de cipreses, caseríos de piedra blanca frente al Adriático, pueblos de colores colgando sobre acantilados y villas alpinas entre montañas. Esta guía completa te lleva por los mejores pueblos de toda Italia de norte a sur, te explica exactamente cómo llegar a cada zona y detalla todas las facilidades, reglas y trucos para rentar un carro y moverte con total libertad.",
       sections: [
         {
-          heading: "1. ¿Cuáles son los mejores lugares para visitar en Italia?",
+          heading: "1. Los mejores pueblos del Norte de Italia (Liguria, Lagos, Alpes, Piamonte y Véneto)",
+          image: "/gallery/guides/italia-cinque-terre.webp?v=2",
+          imageAlt: "Vista al atardecer de Manarola y los acantilados de Cinque Terre en Liguria, Italia",
+          imageCaption: "Cinque Terre (Liguria): pueblos de colores colgados sobre el mar Mediterráneo al atardecer.",
           body: [
-            "El Triángulo Clásico Imprescindible (Roma, Florencia y Venecia): Roma es un museo al aire libre donde conviven el Coliseo, el Foro Romano, el Panteón, la Fontana di Trevi y la Ciudad del Vaticano (Basílica de San Pedro y Capilla Sixtina). Florencia es la cuna del Renacimiento (Duomo, Galería Uffizi, el David de Miguel Ángel y el Ponte Vecchio) y puerta de entrada a los pueblos medievales y viñedos de la Toscana (Siena, San Gimignano y Val d'Orcia). Venecia enamora con sus canales, la Plaza de San Marcos, el Puente de Rialto y las islas coloridas de Murano y Burano.",
-            "Sur de Italia y Costas de Ensueño: Nápoles ofrece autenticidad vibrante, la mejor pizza del mundo y acceso directo a las ruinas romanas de Pompeya y Herculano. Justo al sur, la Costa Amalfitana (Positano, Amalfi y Ravello) y la Isla de Capri despliegan acantilados verticales sobre el mar Tirreno. Más al sur, Sicilia (Taormina, Monte Etna, Valle de los Templos y Palermo) y Puglia (Alberobello, Polignano a Mare y Matera en Basilicata) brindan cultura mediterránea pura y precios más accesibles.",
-            "Norte Alpino, Lagos y Riviera: Milán lidera el diseño, la moda y alberga la impresionante Catedral (Duomo) y 'La Última Cena' de Leonardo da Vinci. A una hora en tren se extiende el elegante Lago de Como (Bellagio y Varenna). En Liguria, los cinco pueblos colgantes de Cinque Terre (Monterosso, Vernazza, Corniglia, Manarola y Riomaggiore) forman una de las postales más famosas de Europa, mientras que al noreste los Dolomitas (Lago di Braies, Seceda y Cortina d'Ampezzo) ofrecen montañas de clase mundial."
+            "Cinque Terre y Riviera de Liguria: Cinco pueblos de casas pastel suspendidos sobre el mar —Monterosso al Mare (el único con playa amplia de arena), Vernazza (el puerto más fotogénico), Corniglia (en lo alto de un acantilado), Manarola (famoso por sus viñedos al atardecer) y Riomaggiore—. Muy cerca destacan Portovenere (patrimonio UNESCO y más tranquilo), Camogli y la exclusiva bahía de Portofino.",
+            "Pueblos de los Lagos del Norte (Como, Garda y Orta): En el Lago de Como brillan Bellagio ('la perla del lago'), Varenna (callejones románticos y Villa Monastero) y Menaggio. En el Lago de Garda no te pierdas Sirmione (con su castillo medieval rodeado de agua y ruinas romanas), Limone sul Garda y Malcesine. Como joya escondida, Orta San Giulio en el Lago d'Orta conserva una isla monástica intacta.",
+            "Dolomitas y Alpes (Trentino-Alto Adigio): Ortisei y Santa Cristina en Val Gardena son la base perfecta para subir en teleférico a Seceda y Alpe di Siusi; Cortina d'Ampezzo combina glamour alpino y lagos como Sorapis y Braies; mientras que Castelrotto, Chiusa y Glorenza (una diminuta ciudad amurallada) mezclan arquitectura tirolesa y gastronomía italiana.",
+            "Piamonte, Véneto y Emilia-Romaña: En Piamonte, los pueblos vinícolas de Barolo, La Morra, Neive y Alba (capital de la trufa blanca) ofrecen colinas tapizadas de viñedos Patrimonio de la Humanidad. En Véneto sobresalen Burano (la isla de casas multicolores junto a Venecia), Asolo y Bassano del Grappa; y en Emilia-Romaña sorprenden Dozza (famoso por sus murales en cada fachada), Brisighella y Castell'Arquato."
           ],
-          tip: "Si es tu primera vez en Italia, prioriza Roma, Florencia y Venecia con una escapada corta a la Toscana o a la Costa Amalfitana: están perfectamente conectadas por tren de alta velocidad."
+          tip: "Para Cinque Terre y el Lago de Como no necesitas carro: el tren regional y los barcos conectan los pueblos en pocos minutos y evitan carreteras estrechas con estacionamientos casi inexistentes."
         },
         {
-          heading: "2. ¿Cuándo es la mejor época para viajar a Italia y qué hacer por temporada?",
+          heading: "2. Los mejores pueblos del Centro de Italia (Toscana, Umbría, Lacio, Abruzos y Las Marcas)",
+          image: "/gallery/guides/italia-roadtrip-toscana.webp?v=2",
+          imageAlt: "Torres medievales de piedra en la plaza histórica de San Gimignano, Toscana, Italia",
+          imageCaption: "San Gimignano, Toscana: uno de los pueblos medievales amurallados mejor conservados de Italia.",
           body: [
-            "Primavera (Abril a Junio — 16°C a 26°C): La mejor época global para recorrer Italia. Temperaturas agradables para caminar todo el día por Roma y Florencia, campos verdes y florecidos en la Toscana, días largos y menos aglomeraciones que en pleno verano.",
-            "Verano (Julio a Agosto — 28°C a 38°C): Ideal si tu objetivo principal son las playas de Cerdeña, Sicilia, Puglia, Capri y la Costa Amalfitana, o el senderismo alpino en los Dolomitas. En las grandes ciudades monumentales el calor es intenso y las multitudes son máximas, por lo que conviene visitar museos temprano en la mañana o al final de la tarde.",
-            "Otoño (Septiembre a Noviembre — 14°C a 25°C): Espectacular para amantes del vino y la gastronomía: es temporada de vendimia en Chianti y Piamonte, cosecha de aceitunas y ferias de trufa blanca en Alba. En septiembre y principios de octubre aún es posible bañarse en el mar del sur con un ambiente mucho más relajado.",
-            "Invierno (Diciembre a Marzo — 2°C a 14°C): La temporada más económica para vuelos y hoteles. Perfecta para disfrutar los museos de Roma y Florencia sin filas interminables, recorrer los mercados navideños de Bolzano y Trento, esquiar en los Dolomitas (Dolomiti Superski) y vivir el histórico Carnaval de Venecia en febrero."
+            "Toscana Clásica y Val d'Orcia (La postal perfecta): San Gimignano deslumbra con sus torres medievales y su famoso gelato; Monteriggioni es una fortaleza circular intacta; Volterra conserva raíces etruscas; y Lucca permite recorrer sus murallas renacentistas en bicicleta. En el valle de Val d'Orcia —el tramo más fotogénico de toda Italia— encadena Pienza (ciudad renacentista ideal y capital del queso pecorino), Montepulciano y Montalcino (vinos Vino Nobile y Brunello), las aguas termales al aire libre de Bagno Vignoni, Cortona y el dramático pueblo tallado en roca volcánica de Pitigliano.",
+            "Umbría (El corazón verde de Italia): Menos masificada que la Toscana e igual de mágica. Asís impresiona con la Basílica de San Francisco y sus calles de piedra rosada; Orvieto corona una meseta volcánica con una de las catedrales góticas más bellas de Europa; Spello explota de flores en cada balcón; y Gubbio, Spoleto y Montefalco mantienen intacta la vida medieval auténtica.",
+            "Lacio, Abruzos y Las Marcas (Joyas cerca de Roma y los Apeninos): A dos horas al norte de Roma emerge Civita di Bagnoregio ('la ciudad que muere'), conectada al mundo por un único puente peatonal sobre un valle erosionado. También destacan Tivoli (Villa d'Este y Villa Adriana), Castel Gandolfo y Calcata. En los Apeninos de Abruzos, Santo Stefano di Sessanio y la fortaleza de montaña Rocca Calascio ofrecen vistas de película, mientras en Las Marcas brillan el castillo romántico de Gradara y la ciudad renacentista de Urbino."
+          ],
+          tip: "Hacer base 3 o 4 noches en un agriturismo rural cerca de Pienza, Siena o Montepulciano con auto rentado es la forma más relajada y económica de descubrir 8 a 10 pueblos toscanos sin cambiar de maleta."
+        },
+        {
+          heading: "3. Los mejores pueblos del Sur de Italia e Islas (Campania, Puglia, Basilicata, Calabria, Sicilia y Cerdeña)",
+          image: "/gallery/guides/italia-alberobello-matera.webp?v=2",
+          imageAlt: "Calle empedrada con casas blancas tradicionales Trulli en Alberobello, Puglia, Italia",
+          imageCaption: "Alberobello (Puglia): sus icónicos trulli de piedra blanca son Patrimonio de la Humanidad de la UNESCO.",
+          body: [
+            "Costa Amalfitana e Islas de Campania: Positano cae en cascada vertical hasta el mar; Amalfi guarda historia marítima y su catedral árabe-normanda; Ravello domina la costa desde las alturas con los jardines de Villa Cimbrone y Villa Rufolo; y Atrani (a 10 minutos a pie de Amalfi) es uno de los pueblos más pequeños y auténticos de Italia. En el Golfo de Nápoles, la isla de Procida enamora con sus casas de pescadores color pastel y Capri ofrece vistas inolvidables desde Anacapri.",
+            "Puglia y Basilicata (El sur blanco y de ensueño): Alberobello es único en el mundo por sus 'trulli' (casas cónicas de piedra blanca); Polignano a Mare tiene playas encajadas entre acantilados y terrazas sobre el Adriático; Ostuni ('la Ciudad Blanca'), Locorotondo, Cisternino, Monopoli, Otranto y Gallipoli forman la ruta perfecta del tacón italiano. Justo al cruzar a Basilicata te espera Matera, una de las ciudades habitadas más antiguas del planeta con barrios excavados en cuevas ('Sassi'), además del pueblo alpino de Castelmezzano en los Dolomitas Lucanos.",
+            "Calabria, Sicilia y Cerdeña: En Calabria destacan Tropea (colgada sobre playas turquesas) y el barrio marinero de Chianalea en Scilla. En Sicilia no faltan joyas: Taormina con su teatro griego mirando al volcán Etna, Cefalú junto al mar, el pueblo medieval amurallado de Erice en la cima de una montaña, el barroco dorado de Noto, Modica y Ragusa Ibla, la isla histórica de Ortigia (Siracusa) y la aldea marinera de Marzamemi. En Cerdeña brillan el pueblo ribereño multicolor de Bosa, el promontorio medieval de Castelsardo y las calas de Cala Gonone."
+          ],
+          tip: "En el Sur de Italia y las islas el transporte público entre pueblos pequeños es limitado y poco frecuente; rentar carro en Bari, Brindisi, Catania, Palermo o Cagliari multiplica por tres lo que podrás ver cada día."
+        },
+        {
+          heading: "4. ¿Cómo llegar a los pueblos de Italia? Aeropuertos, trenes, ferries y rutas",
+          image: "/gallery/guides/italia-como-bellagio.webp?v=2",
+          imageAlt: "Panorámica de Varenna y los Alpes sobre el Lago de Como en el norte de Italia",
+          imageCaption: "Varenna en el Lago de Como: accesible en tren directo desde Milán y conectado por ferry con Bellagio.",
+          body: [
+            "Aeropuertos estratégicos según los pueblos que quieras visitar: Entra por Milán (MXP/BGY) para los Lagos del Norte y Piamonte; Venecia (VCE) para Véneto y Dolomitas; Pisa (PSA) o Florencia (FLR) para Cinque Terre y Toscana; Roma Fiumicino (FCO) para Lacio, Umbría y Toscana sur; Nápoles (NAP) para Costa Amalfitana, Capri y Pompeya; Bari (BRI) o Brindisi (BDS) para Puglia y Matera; y Catania (CTA) o Palermo (PMO) para Sicilia.",
+            "Cómo llegar en tren y transporte público (zonas donde funciona perfecto): Para Cinque Terre toma tren hasta La Spezia Centrale y usa el tren local Cinque Terre Express (pasa cada 15–20 min). Para el Lago de Como toma tren directo desde Milano Centrale hasta Varenna-Esino (1h 05m) y muévete en ferry público a Bellagio y Menaggio. Para la Costa Amalfitana llega en tren de alta velocidad a Nápoles o Salerno y conecta en ferry (Travelmar, la opción más rápida y panorámica entre abril y octubre) o en autobús SITA. Para Lucca, Pisa, Siena, Asís y Orvieto existen trenes regionales directos desde Florencia o Roma.",
+            "Cómo llegar en carretera (zonas donde el auto es imprescindible): Val d'Orcia (Pienza, Montalcino, Montepulciano, Bagno Vignoni, Pitigliano), la mayoría de pueblos de Umbría (Spello, Civita di Bagnoregio), los pueblos blancos de Puglia y Matera, los Dolomitas (pasos de montaña y lagos), el interior de Sicilia (Noto, Ragusa, Erice) y Cerdeña. En estas áreas las estaciones de tren quedan lejos de las colinas y los buses solo pasan un par de veces al día."
           ]
         },
         {
-          heading: "3. Itinerarios recomendados por Italia: 7, 10 y 15 días",
+          heading: "5. Facilidades y guía completa para rentar carro y moverte entre pueblos en Italia",
+          image: "/gallery/guides/italia-toscana-valdorcia.webp?v=2",
+          imageAlt: "Camino rural panorámico flanqueado por cipreses en las colinas de Val d'Orcia, Toscana",
+          imageCaption: "Carreteras panorámicas de Val d'Orcia (Toscana): la mejor experiencia para recorrer pueblos italianos en auto rentado.",
           body: [
-            "Itinerario Clásico de 7 días (Primera vez): 3 noches en Roma (incluyendo Vaticano y Coliseo), 2 noches en Florencia (con excursión de medio día a Pisa o Chianti) y 2 noches en Venecia. Todo el trayecto se realiza cómodamente en trenes de alta velocidad de 1.5 a 2 horas.",
-            "Itinerario Completo de 10 días: 3 noches en Roma, 2 noches en Nápoles/Costa Amalfitana (Pompeya, Positano y Capri), 3 noches en Florencia y Toscana, y 2 noches en Venecia.",
-            "Gran Ruta de 15 días (Norte a Sur): 2 noches en Milán y Lago de Como, 2 noches en Venecia, 2 noches en Cinque Terre, 3 noches en Florencia y pueblos de la Toscana, 3 noches en Roma y 3 noches en Nápoles y Costa Amalfitana."
+            "Ventajas reales de tener carro rentado entre pueblos: Te da libertad total de horarios para llegar al amanecer o quedarte al atardecer cuando los buses turísticos ya se marcharon; permite enlazar 3 o 4 pueblos cercanos en un solo día (por ejemplo: Siena → Monteriggioni → San Gimignano → Volterra, o Alberobello → Locorotondo → Ostuni → Polignano); te abre las puertas a dormir en agriturismos con viñedos, descubrir playas calas ocultas y parar en miradores escénicos; y viajando en pareja, familia o grupo de 3 a 4 personas resulta más económico que pagar múltiples boletos, traslados y excursiones privadas.",
+            "Requisitos y qué auto elegir: Necesitas pasaporte, licencia de conducir vigente, tarjeta de crédito física a nombre del conductor principal para el depósito de garantía (muchas agencias rechazan tarjetas de débito salvo que contrates su seguro total) y el Permiso Internacional de Conducir (IDP), obligatorio legalmente en Italia para licencias emitidas fuera de la Unión Europea. Elige siempre un auto compacto (Fiat 500, Fiat Panda, Lancia Ypsilon, VW Polo): los accesos a pueblos medievales y los espacios de parqueo son muy estrechos. Si solo conduces automático, resérvalo con semanas de antelación porque la flota estándar italiana es manual.",
+            "Autopistas (Autostrade), peajes y gasolina: Las autopistas rápidas tienen carteles verdes y peaje por distancia: al entrar recoges un ticket y al salir pagas en efectivo o tarjeta contactless en las casetas blancas o azules (NUNCA entres al carril amarillo 'Telepass' si tu auto de alquiler no incluye el dispositivo electrónico). Las carreteras secundarias y panorámicas ('Strade Statali' SS y 'Provinciali' SP, carteles azules) son gratuitas y preciosas para ir de pueblo en pueblo. En gasolineras, usa siempre los surtidores marcados como 'Self' (autoservicio), ya que 'Servito' (atendido) cuesta entre 0.20€ y 0.35€ más por litro.",
+            "Regla de oro del estacionamiento y las temidas ZTL: Casi todos los pueblos italianos protegen su casco antiguo con cámaras de Zona de Tráfico Limitado (ZTL) que multan automáticamente a cualquier matrícula no autorizada. La solución es facilísima: busca en Google Maps el 'Parcheggio' justo afuera de las murallas del pueblo y entra caminando 5 a 10 minutos. Fíjate siempre en el color de las líneas pintadas en el suelo: BLANCAS = estacionamiento gratuito (revisa si piden disco horario); AZULES = de pago (paga en el parquímetro o con la app EasyPark); AMARILLAS = prohibido para turistas (solo residentes, discapacitados o carga). Si te hospedas dentro de una ZTL, entrega tu placa al hotel al llegar para que la registren en la policía local.",
+            "Truco inteligente para combinar tren + carro sin estrés: Usa trenes de alta velocidad (Frecciarossa o Italo) entre grandes ciudades como Roma, Florencia, Venecia y Milán, y alquila el auto únicamente en el tramo de pueblos (recogiéndolo en aeropuertos o estaciones periféricas como Florencia Peretola, Siena, Bari o Catania para no manejar nunca en el centro congestionado de una gran urbe). Evita conducir en la Costa Amalfitana entre junio y septiembre por los embotellamientos en la carretera SS163 y parqueos de hasta 5€ por hora."
           ],
-          tip: "Reserva vuelos 'multi-destino' (por ejemplo, entrando por Milán o Venecia y saliendo desde Roma o Nápoles) para no perder un día completo regresando a la ciudad de llegada."
+          tip: "Antes de salir de la oficina de alquiler, graba un video completo de 360 grados del auto (incluyendo llantas, rines y parabrisas) y activa un seguro con franquicia cero o cobertura total: te dará paz absoluta al aparcar en calles estrechas de pueblos antiguos."
         },
         {
-          heading: "4. Transporte, entradas anticipadas y consejos prácticos para ahorrar",
+          heading: "6. Mejores temporadas, itinerarios recomendados y gastronomía por regiones",
           body: [
-            "Trenes de alta velocidad (la mejor forma de viajar): Trenitalia (Frecciarossa) e Italo conectan el centro de las principales ciudades a 300 km/h (Roma–Florencia en 1h 30m; Florencia–Venecia en 2h 15m). Comprando tus boletos entre 30 y 60 días antes puedes ahorrar hasta un 60% frente al precio del mismo día. En trenes regionales sin asiento asignado recuerda validar tu boleto físico o realizar check-in digital antes de abordar.",
-            "Entradas obligatorias con reserva anticipada: El Coliseo de Roma, los Museos Vaticanos, la Galería Uffizi, la Galería de la Academia (Florencia) y 'La Última Cena' (Milán) se agotan con semanas o meses de antelación. Compra siempre en los portales oficiales o con guías autorizados para evitar revendedores y colas de 3 horas.",
-            "Conducción y zonas ZTL: Solo alquila auto si vas a explorar zonas rurales como la Toscana profunda, Puglia, Sicilia o los Dolomitas. Nunca entres en auto a los centros históricos de las ciudades italianas: casi todos tienen cámaras de Zona de Tráfico Limitado (ZTL) que generan multas automáticas.",
-            "Gastos locales y trucos de viajero: La mayoría de los municipios cobran una tasa turística ('tassa di soggiorno') de 2€ a 7€ por persona y noche al hacer check-in. En restaurantes existe el 'coperto' (cargo legal de 1.5€ a 4€ por cubierto y pan; la propina adicional no es obligatoria). En Roma, lleva botella reutilizable y rellénala gratis en las fuentes públicas de agua potable ('nasoni')."
-          ]
-        },
-        {
-          heading: "5. Gastronomía italiana auténtica por regiones",
-          body: [
-            "Roma y Lacio: Prueba las cuatro pastas romanas clásicas (Carbonara, Cacio e Pepe, Amatriciana y Gricia), las alcachofas a la judía ('carciofi alla giudia') y el supplì crujiente.",
-            "Nápoles y Campania: Pizza napolitana con masa fermentada en horno de leña (Margherita o Marinara), mozzarella di bufala fresca, sfogliatella y limoncello artesanal de Sorrento y Amalfi.",
-            "Florencia, Emilia-Romaña y Norte: Bistecca alla Fiorentina, pasta fresca al ragú en Bolonia (considerada la capital gastronómica de Italia), pesto genovés en Liguria, risotto alla milanese en Milán y cicchetti con Aperol Spritz en Venecia.",
-            "Etiqueta del café y el gelato: Tomar un espresso de pie en la barra ('al banco') cuesta alrededor de 1.20€–1.50€, mientras que sentado en mesa de terraza puede duplicar o triplicar su precio. Para identificar un buen gelato artesanal, evita las montañas fluorescentes con colorantes y busca heladerías con colores naturales o botes metálicos con tapa ('pozzetti')."
+            "Cuándo viajar según tu plan: Primavera (abril a junio, 16°C–26°C) y Otoño (septiembre a octubre, 14°C–25°C) son las estaciones perfectas para combinar pueblos, carretera y clima agradable sin calor extremo ni multitudes (en otoño además hay vendimia y ferias de trufa). Verano (julio y agosto, 28°C–38°C) es ideal para playas de Sicilia, Cerdeña, Puglia y senderismo en los Dolomitas. Invierno (diciembre a marzo) ofrece los precios más bajos, museos sin filas, mercados navideños en el norte, esquí en los Dolomitas y el Carnaval de Venecia en febrero.",
+            "Itinerario 10 días (Clásico + Pueblos de Toscana en carro): 3 noches en Roma (en tren hacia Florencia), 2 noches en Florencia, recoges carro rentado para 3 noches en pueblos de la Toscana (San Gimignano, Siena, Pienza, Montepulciano y Montalcino), devuelves el carro y tomas tren para 2 noches finales en Venecia y Burano.",
+            "Itinerario 12 días (Sur de Italia en carro: Costa Amalfitana, Matera y Puglia): 2 noches en Nápoles/Pompeya, 3 noches en Sorrento/Costa Amalfitana (en ferry a Positano, Amalfi y Capri), recoges carro hacia Matera (2 noches) y continúas 5 noches recorriendo los pueblos blancos de Puglia (Alberobello, Locorotondo, Ostuni, Polignano a Mare y Otranto).",
+            "Gastronomía imprescindible al recorrer pueblos: En Roma y Lacio prueba Carbonara, Cacio e Pepe y Amatriciana; en Toscana, pasta pici al ragú de jabalí, queso pecorino de Pienza y vinos Chianti o Brunello; en Emilia-Romaña, tagliatelle al ragú y parmigiano reggiano; en Campania, pizza napolitana, mozzarella di bufala y limoncello; en Puglia, orecchiette frescas y focaccia barese; y en Sicilia, arancini, cannoli y granita con brioche. Recuerda que en mesa se cobra 'coperto' (1.5€–4€ por persona, legal) y tomar café de pie en barra ('al banco') cuesta la mitad que sentado."
           ]
         }
       ],
-      conclusion: "Italia es un destino que se disfruta sin prisas, saboreando tanto sus grandes obras maestras históricas como un café en una plaza escondida al atardecer. Planificando tus trenes y entradas clave con antelación y eligiendo la estación ideal según tu ruta, aprovecharás cada minuto de la 'Dolce Vita' sin estrés ni sobrecostos.",
+      conclusion: "Italia se disfruta al doble cuando combinas sus grandes capitales artísticas en tren de alta velocidad con la libertad de un carro rentado para perderte por sus pueblos históricos. Planificando bien qué regiones recorrer en carretera, respetando las zonas ZTL y estacionando fuera de las murallas, vivirás la auténtica 'Dolce Vita' a tu propio ritmo.",
       keyTakeaways: [
-        "Mejores meses para equilibrar clima y multitudes: abril, mayo, junio, septiembre y octubre.",
-        "Muévete entre grandes ciudades en tren de alta velocidad (Frecciarossa o Italo) reservando con 1 a 2 meses de antelación.",
-        "Reserva previamente las entradas al Coliseo, Vaticano, Uffizi y La Última Cena.",
-        "Evita conducir dentro de cascos históricos por las zonas ZTL; usa auto solo en Toscana, Sicilia, Puglia o Dolomitas."
+        "Pueblos imperdibles por zona: Cinque Terre, Bellagio y Ortisei (Norte); San Gimignano, Pienza, Montepulciano, Asís y Civita di Bagnoregio (Centro); Positano, Matera, Alberobello, Polignano a Mare, Taormina y Cefalú (Sur e Islas).",
+        "Usa tren + ferry para grandes ciudades, Cinque Terre, Lago de Como y Costa Amalfitana; alquila auto compacto para Toscana (Val d'Orcia), Umbría, Puglia, Matera, Dolomitas, Sicilia y Cerdeña.",
+        "Para rentar carro sin contratiempos: lleva Permiso Internacional de Conducir (IDP) y tarjeta de crédito, evita carriles amarillos Telepass, aparca en líneas blancas o azules fuera de las murallas y nunca entres a zonas ZTL.",
+        "Mejores meses para road trips entre pueblos: abril, mayo, junio, septiembre y octubre."
       ]
     }
   }

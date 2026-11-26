@@ -89,18 +89,21 @@ export default function BlogPostPage() {
         </div>
 
         {/* Cover Image */}
-        <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-premium max-h-[480px]">
+        <div className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden border border-white/15 shadow-premium bg-surface">
           <img 
             src={post.coverImage} 
             alt={post.title}
+            width={1200}
+            height={675}
             {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
-            decoding="async"
-            className="w-full h-full object-cover" 
+            decoding="sync"
+            className="w-full h-full object-cover object-center" 
           />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl" />
         </div>
 
         {/* Article Body */}
-        <div className="bg-surface/80 border border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-xl shadow-glass space-y-8 leading-relaxed text-gray-300 text-sm sm:text-base">
+        <div className="bg-surface/95 border border-white/10 rounded-3xl p-6 sm:p-10 shadow-glass space-y-8 leading-relaxed text-gray-300 text-sm sm:text-base">
           
           {/* Introduction */}
           <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border-l-4 border-secondary text-gray-200 text-base sm:text-lg font-light leading-relaxed">
@@ -128,16 +131,52 @@ export default function BlogPostPage() {
                 <h2 className="text-xl sm:text-2xl font-bold font-display text-white border-b border-white/10 pb-2">
                   {section.heading}
                 </h2>
-                {section.body.map((p, pIdx) => (
-                  <React.Fragment key={pIdx}>
-                    <p className="leading-relaxed">
-                      {p}
-                    </p>
-                    {idx === 0 && pIdx === 1 && (
-                      <AdSenseBanner slot="4013713188" className="my-6" />
+                {section.image && (
+                  <figure className="my-5 overflow-hidden rounded-2xl border border-white/15 bg-black/50 shadow-xl group">
+                    <div className="w-full aspect-[16/9] overflow-hidden bg-slate-900">
+                      <img
+                        src={section.image}
+                        alt={section.imageAlt || section.heading}
+                        loading={idx < 2 ? 'eager' : 'lazy'}
+                        decoding="sync"
+                        width={1200}
+                        height={675}
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                    {section.imageCaption && (
+                      <figcaption className="px-4 py-3 text-xs text-gray-300 border-t border-white/10 bg-black/60 leading-snug">
+                        <span className="text-cyan font-semibold mr-1.5">Foto:</span>
+                        {section.imageCaption}
+                      </figcaption>
                     )}
-                  </React.Fragment>
-                ))}
+                  </figure>
+                )}
+                {section.body.map((p, pIdx) => {
+                  const colonIdx = p.indexOf(':');
+                  const hasLeadLabel =
+                    colonIdx > 0 &&
+                    colonIdx <= 90 &&
+                    !p.slice(0, colonIdx).includes('.') &&
+                    !p.slice(0, colonIdx).includes('http');
+                  return (
+                    <React.Fragment key={pIdx}>
+                      <p className="leading-relaxed">
+                        {hasLeadLabel ? (
+                          <>
+                            <strong className="text-white font-semibold">{p.slice(0, colonIdx + 1)}</strong>
+                            {p.slice(colonIdx + 1)}
+                          </>
+                        ) : (
+                          p
+                        )}
+                      </p>
+                      {idx === 0 && pIdx === 1 && (
+                        <AdSenseBanner slot="4013713188" className="my-6" />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
 
                 {section.tip && (
                   <div className="mt-4 p-4 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-start gap-3 text-amber-200 text-xs sm:text-sm">

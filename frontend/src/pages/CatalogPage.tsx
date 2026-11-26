@@ -329,7 +329,7 @@ export default function CatalogPage() {
       {/* ============================================================= */}
       {/* 📅 EXCURSIONS CATALOG CONTAINER (Interactive & Infinite)     */}
       {/* ============================================================= */}
-      <div className="relative bg-black/60 backdrop-blur-[50px] py-8 md:py-20 px-3 md:px-8 max-w-7xl mx-auto z-20 md:-mt-20 rounded-t-[2rem] md:rounded-t-[3rem] border-t border-white/10 shadow-[0_-30px_100px_rgba(0,0,0,0.8)]">
+      <div className="relative bg-bgDark/95 py-8 md:py-20 px-3 md:px-8 max-w-7xl mx-auto z-20 md:-mt-20 rounded-t-[2rem] md:rounded-t-[3rem] border-t border-white/10 shadow-[0_-30px_100px_rgba(0,0,0,0.8)]">
         
         {/* 🔥 VIRAL GROUP PROMO BANNER & RESORT SELECTOR */}
         <div className="flex flex-col gap-6 mb-12">
@@ -614,50 +614,49 @@ export default function CatalogPage() {
 
 
 
-        {/* Grid List (always visible immediately, zero exponential opacity:0 delay) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        {/* Grid List — Exact 3:2 card proportions matching native 670x446 excursion photos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tours.map((tour) => (
             <div
               key={tour.id}
               onClick={() => navigate(`/excursion/${tour.id}`)}
-              className="group bg-surface/40 backdrop-blur-xl border border-white/5 rounded-[2rem] overflow-hidden shadow-premium hover:shadow-glow hover:border-secondary/30 hover:-translate-y-3 transition-all duration-500 cursor-pointer flex flex-col relative"
+              className="group bg-surface/90 border border-white/10 rounded-3xl overflow-hidden shadow-premium hover:shadow-glow hover:border-secondary/40 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer flex flex-col relative"
             >
-              {/* Subtle top glare effect */}
-              <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
-
-              {/* Image & Badge */}
-              <div className="relative h-64 overflow-hidden bg-black">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+              {/* Image & Badge — Exact 3:2 aspect ratio (zero cropping, zero head cutting, Retina sharp) */}
+              <div className="relative w-full aspect-[3/2] overflow-hidden bg-slate-900">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/15 pointer-events-none z-10" />
                 <img
                   src={tour.image}
                   alt={tour.name}
+                  width={670}
+                  height={446}
                   loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  decoding="sync"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = "data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 200 100%22 style=%22background:%230A192F;fill:%2394a3b8;font-family:Inter;font-size:12px;text-anchor:middle;%22><text x=%22100%22 y=%2255%22>Experiencia Dominicana</text></svg>";
                   }}
                 />
-                <span className={`absolute top-4 right-4 z-20 text-[10px] font-black tracking-widest uppercase font-display px-4 py-2 rounded-full border backdrop-blur-md shadow-lg ${
+                <span className={`absolute top-3.5 right-3.5 z-20 text-[10px] font-black tracking-widest uppercase font-display px-3 py-1.5 rounded-full border backdrop-blur-md shadow-lg ${
                   tour.id === 1 ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white border-amber-300/40 shadow-glow' :
                   tour.id === 2 ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white border-red-400/40 shadow-glow' :
                   tour.id === 3 ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-300/40 shadow-glow' :
                   tour.id === 4 ? 'bg-gradient-to-r from-emerald-600 to-teal-500 text-white border-emerald-400/40 shadow-glow' :
-                  'bg-black/60 text-cyan border-white/10'
+                  'bg-black/70 text-cyan border-white/15'
                 }`}>
                   {tour.badge}
                 </span>
                 
                 {/* Price tag */}
-                <div className="absolute bottom-4 left-4 z-20 bg-black/60 border border-white/10 backdrop-blur-md px-4 py-2 rounded-2xl flex items-baseline gap-1.5 shadow-lg group-hover:border-secondary/50 transition-colors duration-500">
-                  <span className="text-gray-300 text-[10px] uppercase font-bold tracking-widest">Desde</span>
-                  <span className="text-white group-hover:text-secondary transition-colors duration-300 text-2xl font-black font-display leading-none">${tour.price}</span>
+                <div className="absolute bottom-3.5 left-3.5 z-20 bg-black/75 border border-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-xl flex items-baseline gap-1.5 shadow-lg group-hover:border-secondary/50 transition-colors duration-300">
+                  <span className="text-gray-300 text-[10px] uppercase font-bold tracking-wider">Desde</span>
+                  <span className="text-white group-hover:text-secondary transition-colors duration-300 text-xl font-black font-display leading-none">${tour.price}</span>
                   <span className="text-gray-400 text-[10px] font-bold">USD</span>
                 </div>
               </div>
 
               {/* Body */}
-              <div className="p-7 flex flex-col flex-1 gap-4 relative z-20">
+              <div className="p-5 sm:p-6 flex flex-col flex-1 gap-3 relative z-20">
                 <div className="flex items-center justify-between text-xs text-gray-400">
                   <div className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-secondary" /> {tour.duration}</div>
                   <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-cyan" /> {tour.difficulty}</div>

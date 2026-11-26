@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Loader, CheckCircle } from 'lucide-react';
 import { trackPurchase } from '../utils/analytics';
@@ -7,6 +7,7 @@ export default function SuccessPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [status, setStatus] = useState('Procesando tu pago...');
+  const hasVerifiedRef = useRef(false);
   
   useEffect(() => {
     const paymentIntent = searchParams.get('payment_intent');
@@ -16,8 +17,16 @@ export default function SuccessPage() {
       return;
     }
 
+    if (hasVerifiedRef.current) return;
+    hasVerifiedRef.current = true;
+
     const pendingCheckoutStr = localStorage.getItem('pendingCheckout');
-    const fallbackMetadata = pendingCheckoutStr ? JSON.parse(pendingCheckoutStr) : {};
+    let fallbackMetadata: any = {};
+    try {
+      fallbackMetadata = pendingCheckoutStr ? JSON.parse(pendingCheckoutStr) : {};
+    } catch {
+      fallbackMetadata = {};
+    }
     
     // Llamar al backend para verificar el pago y registrar la reservación
     fetch('/api/payment/verify-and-book', {
@@ -33,15 +42,16 @@ export default function SuccessPage() {
     .then(data => {
       if (data.success && data.reservation) {
         localStorage.removeItem('pendingCheckout');
+        sessionStorage.removeItem('ftdr_checkout_session');
         trackPurchase({
           id: data.reservation.id || paymentIntent,
-          amount: Number(fallbackMetadata.amountPaid) || Number(data.reservation.amountPaid) || 25,
-          tourName: fallbackMetadata.tourName || data.reservation.tourName || 'Excursion'
+          amount: Number(data.reservation.amountPaid) || Number(fallbackMetadata.amountPaid) || 25,
+          tourName: data.reservation.tourName || fallbackMetadata.tourName || 'Excursion'
         });
         setStatus('¡Pago completado con éxito!');
         setTimeout(() => {
-          navigate(`/ticket/${data.reservation.id}`, { state: { reservation: data.reservation } });
-        }, 1500);
+          navigate(`/ticket/${data.reservation.ticketCode || data.reservation.id}`, { state: { reservation: data.reservation } });
+        }, 1200);
       } else {
         setStatus('Error al verificar el pago: ' + (data.error || 'Inténtalo de nuevo.'));
       }

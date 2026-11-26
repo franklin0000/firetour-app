@@ -15,6 +15,7 @@ const AuthPage = React.lazy(() => import('./pages/AuthPage'));
 const ReviewsPage = React.lazy(() => import('./pages/ReviewsPage'));
 const PartnerTourPage = React.lazy(() => import('./pages/PartnerTourPage'));
 const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage'));
+const DeleteAccountPage = React.lazy(() => import('./pages/DeleteAccountPage'));
 const TermsPage = React.lazy(() => import('./pages/TermsPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/ticket/:id" element={<DigitalTicketPage />} />
             <Route path="/reservations" element={<ReservationsPage />} />
+            <Route path="/mis-reservas" element={<ReservationsPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/cuenta" element={<AuthPage />} />
             <Route path="/chat" element={<ChatPage />} />
@@ -64,6 +66,9 @@ export default function App() {
             {/* Legal & Trust Pages (AdSense & E-E-A-T Compliance) */}
             <Route path="/politica-de-privacidad" element={<PrivacyPolicyPage />} />
             <Route path="/privacy" element={<Navigate to="/politica-de-privacidad" replace />} />
+            <Route path="/privacy-policy" element={<Navigate to="/politica-de-privacidad" replace />} />
+            <Route path="/eliminar-cuenta" element={<DeleteAccountPage />} />
+            <Route path="/delete-account" element={<DeleteAccountPage />} />
             <Route path="/terminos-y-condiciones" element={<TermsPage />} />
             <Route path="/terms" element={<Navigate to="/terminos-y-condiciones" replace />} />
             <Route path="/cancelaciones" element={<TermsPage />} />

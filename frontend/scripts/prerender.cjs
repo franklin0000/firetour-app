@@ -115,6 +115,9 @@ async function run() {
     } else if (pathname === '/politica-de-privacidad') {
       title = 'Política de Privacidad y Cookies | Fire Tour DR';
       description = 'Política de privacidad y protección de datos personales de Fire Tour DR. Conoce cómo protegemos tu información en reservas online.';
+    } else if (pathname === '/eliminar-cuenta') {
+      title = 'Eliminación de Cuenta / Account Deletion | Fire Tour DR';
+      description = 'Página oficial de Fire Tour DR (com.firetourdr.app) para solicitar la eliminación de tu cuenta y datos personales en español e inglés.';
     } else if (pathname === '/terminos-y-condiciones') {
       title = 'Términos y Condiciones de Reserva | Fire Tour DR';
       description = 'Términos y condiciones, políticas de cancelación flexible y garantía de servicio de Fire Tour DR en excursiones y traslados en Punta Cana.';

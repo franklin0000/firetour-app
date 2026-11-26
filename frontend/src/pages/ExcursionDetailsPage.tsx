@@ -6,9 +6,8 @@ import {
   Calendar, Users, ShieldAlert, Award, ChevronRight, CheckCircle2, 
   ArrowLeft, Loader, Map, Clock, Star, ShieldCheck, Compass, Heart, 
   Share2, Info, ChevronDown, Check, ThumbsUp, Send, Landmark, Smile, 
-  X, ZoomIn, Eye, Sparkles, TrendingUp, Languages, AlertCircle, Plus 
+  X, ZoomIn, Eye, Sparkles, TrendingUp, Languages, AlertCircle, Plus, Camera 
 } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import type { Tour } from '../types';
 import { trackViewContent } from '../utils/analytics';
 import ReviewModal from '../components/ReviewModal';
@@ -204,19 +203,30 @@ export default function ExcursionDetailsPage() {
   const calculatorRef = useRef<HTMLDivElement>(null);
   const reviewsRef = useRef<HTMLDivElement>(null);
 
-  // Framer Motion Parallax
-  const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 1000], [0, 300]);
-  const imageScale = useTransform(scrollY, [0, 1000], [1, 1.3]);
-  const contentY = useTransform(scrollY, [0, 600], [0, 200]);
-  const contentOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-
-  // Always scroll to top when opening or switching a tour (prevents hero opacity:0 from prior scrollY)
+  // Always scroll to top when opening or switching a tour
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
     }
   }, [id]);
+
+  // Lightbox keyboard navigation (ESC / Left / Right) & body scroll lock
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const total = (tour?.photos && tour.photos.length > 0) ? tour.photos.length : 1;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false);
+      else if (e.key === 'ArrowRight') setActivePhotoIndex((p) => Math.min(total - 1, p + 1));
+      else if (e.key === 'ArrowLeft') setActivePhotoIndex((p) => Math.max(0, p - 1));
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isLightboxOpen, tour]);
 
   useEffect(() => {
     if (tour && String(tour.id) === String(id)) return;
@@ -371,75 +381,173 @@ export default function ExcursionDetailsPage() {
   };
 
   return (
-    <div className="bg-bgDark text-white min-h-screen selection:bg-secondary selection:text-white relative font-sans -mt-24">
+    <div className="bg-bgDark text-white min-h-screen selection:bg-secondary selection:text-white relative font-sans pt-6 pb-20">
 
-      
-      {/* Cinematic Edge-to-Edge Hero Header with Framer Motion Parallax */}
-      <div className="relative w-full h-[70vh] min-h-[600px] overflow-hidden group">
-        <motion.div 
-          className="absolute inset-0 bg-black"
-          style={{ y: heroY, scale: imageScale }}
-        >
-          <img 
-            src={photos[0]} 
-            alt={tour.name} 
-            {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
-            decoding="async"
-            className="w-full h-full object-cover opacity-80"
-          />
-          {/* Deep gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-bgDark via-bgDark/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-bgDark/80 via-transparent to-transparent" />
-        </motion.div>
+      {/* Clean Editorial Header + 3:2 Bento Photo Gallery (Zero Upscaling, Zero Cropped Heads) */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-2 pb-8 space-y-5">
 
-        {/* Back and Share Button Overlays */}
-        <div className="absolute top-8 left-4 md:left-12 right-4 md:right-12 z-20 flex items-center justify-between pointer-events-none">
-          <button 
+        {/* Top Bar: Back & Share */}
+        <div className="flex items-center justify-between gap-4">
+          <button
+            type="button"
             onClick={() => navigate('/')}
-            className="pointer-events-auto flex items-center gap-2.5 px-4 py-2 bg-black/40 backdrop-blur-md rounded-full border border-white/10 text-white hover:bg-white/10 hover:border-white/30 text-sm font-bold transition-all duration-300 shadow-lg cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 hover:border-white/25 text-white text-xs sm:text-sm font-bold transition-all cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4 transform hover:-translate-x-1 transition-transform" /> 
-            Volver
+            <ArrowLeft className="w-4 h-4" /> Volver al Catálogo
           </button>
 
-          <button 
+          <button
+            type="button"
             onClick={() => setIsShareModalOpen(true)}
-            className="pointer-events-auto flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-md rounded-full border border-white/15 text-white hover:bg-secondary hover:border-secondary text-sm font-bold transition-all duration-300 shadow-lg cursor-pointer group"
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-secondary rounded-full border border-white/15 hover:border-secondary text-white text-xs sm:text-sm font-bold transition-all cursor-pointer group"
             title="Compartir excursión con amigos o familia"
           >
-            <Share2 className="w-4 h-4 text-secondary group-hover:text-white transition-colors" /> 
+            <Share2 className="w-4 h-4 text-secondary group-hover:text-white transition-colors" />
             <span>Compartir</span>
           </button>
         </div>
 
-        {/* Hero Content */}
-        <motion.div 
-          className="absolute bottom-0 left-0 w-full p-6 md:p-12 z-20 flex flex-col items-start max-w-7xl mx-auto"
-          style={{ y: contentY, opacity: contentOpacity }}
-        >
-          <span className={`text-[10px] md:text-xs font-black uppercase tracking-[0.2em] font-display px-4 py-2 rounded-full border backdrop-blur-md shadow-glow mb-4 ${
-            tour.id === 1 ? 'bg-secondary/90 text-white border-white/20' : 'bg-black/60 text-cyan border-white/10'
-          }`}>
-            {tour.badge}
-          </span>
-          <h1 className="text-5xl md:text-7xl font-black font-display leading-tight drop-shadow-2xl text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70 max-w-4xl">
+        {/* Title & Quick Trust Row (Above gallery — never overlaps photos) */}
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className={`text-[10px] md:text-xs font-black uppercase tracking-[0.18em] font-display px-3.5 py-1.5 rounded-full border ${
+              tour.id === 1 ? 'bg-secondary/90 text-white border-white/20' : 'bg-cyan/15 text-cyan border-cyan/30'
+            }`}>
+              {tour.badge}
+            </span>
+            <button
+              type="button"
+              onClick={handleScrollToReviews}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 bg-amber-400/10 border border-amber-400/25 px-3 py-1 rounded-full hover:bg-amber-400/20 transition cursor-pointer"
+            >
+              ★ {tour.rating} <span className="text-gray-300 font-medium">({tour.reviews || 100} reseñas)</span>
+            </button>
+            <span className="inline-flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 rounded-full font-semibold">
+              <ShieldCheck className="w-3.5 h-3.5" /> Cancelación Gratuita 24h
+            </span>
+          </div>
+
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black font-display leading-tight text-white max-w-5xl tracking-tight">
             {tour.name}
           </h1>
-          
-          {/* Mini Gallery Trigger */}
-          <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12 flex gap-3">
-            <button 
-              onClick={() => { setActivePhotoIndex(0); setIsLightboxOpen(true); }}
-              className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl text-sm font-bold text-white hover:bg-white/20 hover:border-white/40 transition-all duration-300 shadow-lg"
-            >
-              <ZoomIn className="w-4 h-4" /> Ver Galería Completa
-            </button>
+        </div>
+
+        {/* Proportional 3:2 Bento Photo Gallery (matches native 670x446 tour photos 1:1) */}
+        {photos.length >= 5 ? (
+          <div className="space-y-3">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+              {/* Main 3:2 Showcase Photo */}
+              <button
+                type="button"
+                onClick={() => { setActivePhotoIndex(0); setIsLightboxOpen(true); }}
+                className="lg:col-span-6 relative w-full aspect-[3/2] rounded-2xl lg:rounded-3xl overflow-hidden border border-white/10 bg-slate-900 group cursor-pointer shadow-premium text-left"
+              >
+                <img
+                  src={photos[0]}
+                  alt={tour.name}
+                  width={670}
+                  height={446}
+                  {...({ fetchpriority: 'high' } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                  decoding="sync"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="lg:hidden absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/75 border border-white/20 text-white text-xs font-bold backdrop-blur-md">
+                  <Camera className="w-3.5 h-3.5 text-secondary" /> 1 / {photos.length}
+                </span>
+              </button>
+
+              {/* Right 2x2 Grid of 3:2 Secondary Photos (Desktop) */}
+              <div className="hidden lg:grid lg:col-span-6 grid-cols-2 gap-3">
+                {photos.slice(1, 5).map((photo, idx) => {
+                  const photoIndex = idx + 1;
+                  const isLast = idx === 3;
+                  return (
+                    <button
+                      type="button"
+                      key={photoIndex}
+                      onClick={() => { setActivePhotoIndex(photoIndex); setIsLightboxOpen(true); }}
+                      className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border border-white/10 bg-slate-900 group cursor-pointer shadow-lg"
+                    >
+                      <img
+                        src={photo}
+                        alt={`${tour.name} - Foto ${photoIndex + 1}`}
+                        width={670}
+                        height={446}
+                        loading="eager"
+                        decoding="sync"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                      {isLast && (
+                        <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/80 hover:bg-secondary border border-white/20 text-white text-xs font-bold backdrop-blur-md shadow-lg transition-colors">
+                          <ZoomIn className="w-3.5 h-3.5" /> Ver todas ({photos.length})
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile Thumbnail Strip */}
+            <div className="grid grid-cols-4 gap-2 lg:hidden">
+              {photos.slice(1, 5).map((photo, idx) => {
+                const photoIndex = idx + 1;
+                return (
+                  <button
+                    type="button"
+                    key={photoIndex}
+                    onClick={() => { setActivePhotoIndex(photoIndex); setIsLightboxOpen(true); }}
+                    className="relative w-full aspect-[3/2] rounded-xl overflow-hidden border border-white/10 bg-slate-900"
+                  >
+                    <img
+                      src={photo}
+                      alt={`${tour.name} - Miniatura ${photoIndex + 1}`}
+                      loading="lazy"
+                      decoding="sync"
+                      className="w-full h-full object-cover object-center"
+                    />
+                    {idx === 3 && (
+                      <div className="absolute inset-0 bg-black/55 flex items-center justify-center text-[11px] font-bold text-white">
+                        +{photos.length} fotos
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </motion.div>
+        ) : (
+          <div className={`grid grid-cols-1 ${photos.length > 1 ? 'md:grid-cols-2' : 'max-w-3xl'} gap-3`}>
+            {photos.slice(0, 2).map((photo, idx) => (
+              <button
+                type="button"
+                key={idx}
+                onClick={() => { setActivePhotoIndex(idx); setIsLightboxOpen(true); }}
+                className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden border border-white/10 bg-slate-900 group cursor-pointer shadow-premium"
+              >
+                <img
+                  src={photo}
+                  alt={`${tour.name} - Foto ${idx + 1}`}
+                  width={670}
+                  height={446}
+                  decoding="sync"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                />
+                {idx === 0 && (
+                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/75 border border-white/20 text-white text-xs font-bold backdrop-blur-md">
+                    <ZoomIn className="w-3.5 h-3.5" /> Ampliar Foto
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Main Content Grid Container */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-24 -mt-10 relative z-30 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-24 relative z-20 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Left Column: Details (always visible immediately, never trapped at opacity:0) */}
         <div className="lg:col-span-2 flex flex-col gap-8">
@@ -972,63 +1080,87 @@ export default function ExcursionDetailsPage() {
 
       {/* Modern Lightbox Gallery Overlay Modal */}
       {isLightboxOpen && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-8 animate-fadeIn">
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 md:p-6 animate-fadeIn"
+          onClick={() => setIsLightboxOpen(false)}
+        >
           {/* Lightbox Header */}
-          <div className="flex justify-between items-center max-w-6xl mx-auto w-full border-b border-white/10 pb-4">
-            <span className="font-display font-bold text-white/60 text-xs md:text-sm uppercase tracking-widest flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-cyan animate-spin" /> Galería Multimedia de Fire Tour DR
-            </span>
-            <button 
+          <div
+            className="flex justify-between items-center max-w-5xl mx-auto w-full border-b border-white/10 pb-3 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="min-w-0 pr-4">
+              <span className="font-display font-bold text-cyan text-[11px] uppercase tracking-widest flex items-center gap-2">
+                <Camera className="w-3.5 h-3.5" /> Galería de Excursión • {activePhotoIndex + 1} / {photos.length}
+              </span>
+              <p className="text-white text-xs sm:text-sm font-bold truncate mt-0.5">{tour.name}</p>
+            </div>
+            <button
+              type="button"
               onClick={() => setIsLightboxOpen(false)}
-              className="text-white hover:text-secondary bg-white/5 hover:bg-white/10 border border-white/10 p-2.5 rounded-full transition duration-300"
+              aria-label="Cerrar galería"
+              className="text-white hover:text-secondary bg-white/10 hover:bg-white/20 border border-white/15 p-2.5 rounded-full transition duration-200 cursor-pointer shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Big Showcase Slider */}
-          <div className="flex-1 flex items-center justify-center relative max-w-5xl mx-auto w-full my-6">
-            <button 
+          {/* Crisp Centered Showcase (never stretches past native crisp size) */}
+          <div
+            className="flex-1 min-h-0 flex items-center justify-center relative max-w-4xl mx-auto w-full my-4 px-10 md:px-14"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
               disabled={activePhotoIndex === 0}
               onClick={() => setActivePhotoIndex(prev => prev - 1)}
-              className="absolute left-2 md:left-4 z-10 text-white bg-white/5 hover:bg-white/10 border border-white/10 disabled:opacity-20 p-3 rounded-full transition"
+              aria-label="Foto anterior"
+              className="absolute left-0 md:left-2 z-10 text-white bg-white/10 hover:bg-secondary border border-white/15 disabled:opacity-20 p-2.5 md:p-3 rounded-full transition cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <img 
-              src={photos[activePhotoIndex]} 
-              alt="expanded-tour-gallery" 
-              className="max-h-[70vh] max-w-full object-contain rounded-2xl border border-white/5 shadow-2xl select-none"
-            />
-            <button 
+
+            <div className="w-full max-w-[780px] aspect-[3/2] max-h-[68vh] rounded-2xl overflow-hidden border border-white/15 bg-black shadow-2xl flex items-center justify-center">
+              <img
+                src={photos[activePhotoIndex]}
+                alt={`${tour.name} - Foto ${activePhotoIndex + 1}`}
+                decoding="sync"
+                className="w-full h-full object-contain select-none"
+              />
+            </div>
+
+            <button
+              type="button"
               disabled={activePhotoIndex === photos.length - 1}
               onClick={() => setActivePhotoIndex(prev => prev + 1)}
-              className="absolute right-2 md:right-4 z-10 text-white bg-white/5 hover:bg-white/10 border border-white/10 disabled:opacity-20 p-3 rounded-full transition"
+              aria-label="Foto siguiente"
+              className="absolute right-0 md:right-2 z-10 text-white bg-white/10 hover:bg-secondary border border-white/15 disabled:opacity-20 p-2.5 md:p-3 rounded-full transition cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
 
           {/* Navigating thumbnails slider at the bottom */}
-          <div className="max-w-4xl mx-auto w-full">
-            <div className="flex gap-3 justify-center overflow-x-auto pb-4">
+          <div
+            className="max-w-3xl mx-auto w-full shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex gap-2.5 justify-center overflow-x-auto pb-2">
               {photos.map((photo, i) => (
-                <button 
+                <button
+                  type="button"
                   key={i}
                   onClick={() => setActivePhotoIndex(i)}
-                  className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
-                    activePhotoIndex === i 
-                      ? 'border-secondary scale-105 shadow-[0_0_10px_rgba(249,115,22,0.4)]' 
-                      : 'border-white/10 opacity-55 hover:opacity-100'
+                  className={`w-20 aspect-[3/2] rounded-xl overflow-hidden border-2 transition-all flex-shrink-0 cursor-pointer ${
+                    activePhotoIndex === i
+                      ? 'border-secondary scale-105 shadow-[0_0_12px_rgba(249,115,22,0.5)]'
+                      : 'border-white/15 opacity-55 hover:opacity-100'
                   }`}
                 >
-                  <img src={photo} alt={`nav-thumb-${i}`} loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                  <img src={photo} alt={`Miniatura ${i + 1}`} loading="lazy" decoding="sync" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
-            <p className="text-center text-xs text-gray-500 font-bold font-display mt-2 uppercase tracking-widest">
-              Foto {activePhotoIndex + 1} de {photos.length}
-            </p>
           </div>
         </div>
       )}

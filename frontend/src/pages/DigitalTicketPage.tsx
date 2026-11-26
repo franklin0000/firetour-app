@@ -28,7 +28,7 @@ export default function DigitalTicketPage() {
           }
 
           // 2. Fallback a búsqueda por email del usuario autenticado
-          const savedUser = localStorage.getItem('firetour_user');
+          const savedUser = localStorage.getItem('firetour_user') || localStorage.getItem('user');
           const userObj = savedUser ? JSON.parse(savedUser) : null;
           const emailParam = userObj?.email ? `?email=${encodeURIComponent(userObj.email)}` : '';
           const response = await fetch(`/api/reservations${emailParam}`);

@@ -1,21 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Compass, Calendar, Plane, Mail, Globe, Instagram, MessageCircle, User, Star, Building2, BookOpen, Shield, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Compass, Calendar, Plane, Mail, Globe, Instagram, MessageCircle, User, Star, Building2, BookOpen, Shield, ShieldCheck, LogOut, X } from 'lucide-react';
 import ComingSoonModal from './ComingSoonModal';
 import LanguageSelector from './LanguageSelector';
 import SmoothScroll from './SmoothScroll';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import TopPromoBanner from './TopPromoBanner';
 import AdSenseBanner from './AdSenseBanner';
+import { isAppMode } from '../utils/appMode';
+import GoogleSignInButton from './GoogleSignInButton';
+import { AUTH_CHANGE_EVENT, type AuthUser, clearStoredUser, getStoredUser } from '../utils/auth';
+
+function GoogleGIcon({ className = 'w-3.5 h-3.5' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.55-.2-2.27H12v4.3h6.45a5.52 5.52 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.56-5.17 3.56-8.65z" />
+      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.07 7.93-2.9l-3.88-3c-1.07.72-2.45 1.15-4.05 1.15-3.12 0-5.76-2.1-6.7-4.93H1.3v3.1A12 12 0 0 0 12 24z" />
+      <path fill="#FBBC05" d="M5.3 14.32a7.2 7.2 0 0 1 0-4.64v-3.1H1.3a12 12 0 0 0 0 10.84l4-3.1z" />
+      <path fill="#EA4335" d="M12 4.75c1.76 0 3.34.61 4.58 1.8l3.44-3.44C17.94 1.19 15.23 0 12 0A12 12 0 0 0 1.3 6.58l4 3.1c.94-2.83 3.58-4.93 6.7-4.93z" />
+    </svg>
+  );
+}
 
 // Sticky Top Header Navigation component - Floating Pill Style
 function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const path = location.pathname;
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [googleMenuOpen, setGoogleMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const syncUser = () => setUser(getStoredUser());
+    syncUser();
+    window.addEventListener(AUTH_CHANGE_EVENT, syncUser);
+    window.addEventListener('storage', syncUser);
+    return () => {
+      window.removeEventListener(AUTH_CHANGE_EVENT, syncUser);
+      window.removeEventListener('storage', syncUser);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!googleMenuOpen) return;
+    const handleOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setGoogleMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    return () => document.removeEventListener('mousedown', handleOutside);
+  }, [googleMenuOpen]);
+
+  const handleLogout = () => {
+    clearStoredUser();
+    setUser(null);
+    setGoogleMenuOpen(false);
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-2 sm:pt-6 px-2 sm:px-4 pointer-events-none">
-      <header className="pointer-events-auto bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-2.5 px-3 sm:px-6 flex items-center justify-between shadow-glass w-full max-w-5xl transition-all duration-300 hover:bg-black/95 hover:border-white/20">
+      <header className="pointer-events-auto bg-black/85 backdrop-blur-2xl border border-white/10 rounded-full py-2 sm:py-2.5 px-3 sm:px-5 flex items-center justify-between gap-2 shadow-glass w-full max-w-6xl transition-all duration-300 hover:bg-black/95 hover:border-white/20">
         <Link to="/" className="flex items-center gap-2 group flex-shrink-0">
           <span className="text-2xl group-hover:scale-110 transition-transform duration-300">🔥</span>
           <div className="hidden sm:block">
@@ -24,8 +70,8 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
           </div>
         </Link>
 
-        <div className="flex items-center gap-2 sm:gap-4 md:gap-5">
-          <nav className="flex items-center gap-1.5 sm:gap-3 md:gap-4 text-xs font-bold font-display uppercase tracking-wider">
+        <div className="flex items-center gap-1.5 sm:gap-3 md:gap-4">
+          <nav className="flex items-center gap-1 sm:gap-2.5 md:gap-3 text-xs font-bold font-display uppercase tracking-wider">
             {/* 1. Excursiones */}
             <Link 
               to="/" 
@@ -34,7 +80,7 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
               }`}
             >
               <Compass className={`w-4 h-4 ${path === '/' ? 'text-secondary' : 'text-gray-400'}`} /> 
-              <span>Excursiones</span>
+              <span className="hidden md:inline">Excursiones</span>
             </Link>
 
             {/* 2. Traslados PUJ */}
@@ -46,7 +92,7 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
               title="Traslados Privados Aeropuerto Punta Cana (PUJ)"
             >
               <Plane className={`w-4 h-4 ${path === '/excursion/4' ? 'text-cyan' : 'text-cyan/80'}`} /> 
-              <span>Traslados PUJ</span>
+              <span className="hidden lg:inline">Traslados PUJ</span>
             </Link>
 
             {/* 3. Guías */}
@@ -65,30 +111,130 @@ function Header({ onOpenComingSoon }: { onOpenComingSoon: () => void }) {
             <Link 
               to="/reservations" 
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${
-                path === '/reservations' ? 'text-secondary bg-secondary/10 shadow-glow' : 'text-gray-300 hover:text-white'
+                path === '/reservations' || path === '/mis-reservas' ? 'text-secondary bg-secondary/10 shadow-glow' : 'text-gray-300 hover:text-white'
               }`}
             >
-              <Calendar className={`w-4 h-4 ${path === '/reservations' ? 'text-secondary' : 'text-gray-400'}`} /> 
+              <Calendar className={`w-4 h-4 ${path === '/reservations' || path === '/mis-reservas' ? 'text-secondary' : 'text-gray-400'}`} /> 
               <span className="hidden sm:inline">Mis Reservas</span>
             </Link>
           </nav>
 
-          {/* 5. Selector de Idioma */}
+          {/* 5. Inicio de Sesión con Google / Cuenta Activa */}
+          <div ref={menuRef} className="relative pl-1.5 sm:pl-2 border-l border-white/15 flex items-center">
+            {user ? (
+              <div className="flex items-center gap-1.5">
+                <Link
+                  to="/reservations"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 rounded-full py-1 pl-1 pr-2.5 transition"
+                  title={`Mis reservas (${user.email})`}
+                >
+                  {user.picture ? (
+                    <img
+                      src={user.picture}
+                      alt={user.name}
+                      referrerPolicy="no-referrer"
+                      className="w-6 h-6 rounded-full object-cover border border-cyan/50"
+                    />
+                  ) : (
+                    <span className="w-6 h-6 rounded-full bg-cyan/20 text-cyan text-[11px] font-black flex items-center justify-center">
+                      {user.name?.charAt(0)?.toUpperCase() || 'U'}
+                    </span>
+                  )}
+                  <span className="hidden sm:inline text-[11px] font-bold text-white max-w-[90px] truncate">
+                    {user.name?.split(' ')[0] || 'Cuenta'}
+                  </span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  title="Cerrar sesión"
+                  aria-label="Cerrar sesión"
+                  className="p-1.5 rounded-full bg-white/5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 border border-white/10 transition cursor-pointer"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setGoogleMenuOpen((prev) => !prev)}
+                  className="flex items-center gap-1.5 bg-white hover:bg-gray-100 text-gray-900 font-bold font-display text-[11px] py-1.5 px-2.5 sm:px-3.5 rounded-full transition-all shadow-md hover:scale-105 cursor-pointer flex-shrink-0"
+                  title="Iniciar sesión con Google"
+                >
+                  <GoogleGIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span className="hidden sm:inline">Entrar con Google</span>
+                  <span className="sm:hidden">Entrar</span>
+                </button>
+
+                {googleMenuOpen && (
+                  <div className="absolute right-0 top-full mt-3 w-80 bg-[#08131d] border border-white/15 rounded-2xl p-5 shadow-2xl z-50 text-left space-y-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-wider text-cyan">Acceso con Google</p>
+                        <p className="text-[11px] text-gray-400 mt-0.5 leading-snug">
+                          Vincula tus reservas y boletos digitales directamente a tu correo de Google.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setGoogleMenuOpen(false)}
+                        aria-label="Cerrar menú de acceso"
+                        className="text-gray-400 hover:text-white p-1 cursor-pointer"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <GoogleSignInButton
+                      text="signin_with"
+                      theme="filled_black"
+                      size="large"
+                      width={270}
+                      onSuccess={() => {
+                        setGoogleMenuOpen(false);
+                        navigate('/reservations');
+                      }}
+                    />
+
+                    <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
+                      <Link
+                        to="/reservations"
+                        onClick={() => setGoogleMenuOpen(false)}
+                        className="text-cyan hover:underline font-semibold"
+                      >
+                        Ir a Mis Reservas →
+                      </Link>
+                      <Link
+                        to="/auth"
+                        onClick={() => setGoogleMenuOpen(false)}
+                        className="text-gray-400 hover:text-white"
+                      >
+                        Usar correo
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* 6. Selector de Idioma */}
           <div className="pl-1 sm:pl-2 border-l border-white/15 flex items-center">
             <LanguageSelector />
           </div>
 
-          {/* 6. Botón Destacado WhatsApp 24/7 */}
+          {/* 7. Botón Destacado WhatsApp 24/7 */}
           <a
             href="https://wa.me/15872257342?text=Hola%20Fire%20Tour%20DR,%20quiero%20informaci%C3%B3n%20sobre%20una%20excursi%C3%B3n%20en%20Punta%20Cana"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-black font-black font-display text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 rounded-full transition-all shadow-[0_0_15px_rgba(37,211,102,0.35)] hover:scale-105 uppercase tracking-wider flex-shrink-0"
+            className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-black font-black font-display text-[11px] sm:text-xs py-1.5 px-2.5 sm:px-3.5 rounded-full transition-all shadow-[0_0_15px_rgba(37,211,102,0.35)] hover:scale-105 uppercase tracking-wider flex-shrink-0"
             title="Atención inmediata por WhatsApp 24/7"
           >
             <MessageCircle className="w-3.5 h-3.5 fill-black" />
-            <span className="hidden xs:inline">WhatsApp 24/7</span>
-            <span className="xs:hidden">24/7</span>
+            <span className="hidden lg:inline">WhatsApp 24/7</span>
+            <span className="lg:hidden">24/7</span>
           </a>
         </div>
       </header>
@@ -482,8 +628,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </main>
 
-        {/* AdSense Responsive Pre-Footer Banner (Antes del pie de página, excluye checkout/ticket/admin) */}
-        {!hidePreFooterAd && (
+        {/* AdSense Responsive Pre-Footer Banner (Antes del pie de página, excluye checkout/ticket/admin y modo App) */}
+        {!hidePreFooterAd && !isAppMode() && (
           <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 my-8">
             <AdSenseBanner slot="1288185337" className="w-full" format="auto" />
           </div>

@@ -54,6 +54,12 @@ async function getStripeKey(env) {
   return null;
 }
 
+function getGoogleClientId(env) {
+  const raw = (env.GOOGLE_CLIENT_ID || '').trim();
+  if (!raw) return null;
+  return raw.endsWith('.apps.googleusercontent.com') ? raw : `${raw}.apps.googleusercontent.com`;
+}
+
 function bufferToBase64(buffer) {
   let binary = '';
   const bytes = new Uint8Array(buffer);
@@ -85,6 +91,50 @@ export default {
       return new Response("firetourdr2026indexnow\n", {
         headers: { 'Content-Type': 'text/plain; charset=utf-8' }
       });
+    }
+
+    // 0.1.1 PWA & Android TWA Digital Asset Links (explicit MIME types, never SPA fallback)
+    if (url.pathname === '/.well-known/assetlinks.json') {
+      const assetRes = await env.ASSETS.fetch(request);
+      if (assetRes && assetRes.ok) {
+        const body = await assetRes.text();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600',
+            ...CORS_HEADERS
+          }
+        });
+      }
+    }
+
+    if (url.pathname === '/manifest.webmanifest') {
+      const manRes = await env.ASSETS.fetch(request);
+      if (manRes && manRes.ok) {
+        const body = await manRes.text();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/manifest+json; charset=utf-8',
+            'Cache-Control': 'public, max-age=3600'
+          }
+        });
+      }
+    }
+
+    if (url.pathname === '/sw.js') {
+      const swRes = await env.ASSETS.fetch(request);
+      if (swRes && swRes.ok) {
+        const body = await swRes.text();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/javascript; charset=utf-8',
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
+          }
+        });
+      }
     }
 
     // 0.2 Trigger Automated IndexNow Submission to Bing & Yandex
@@ -1356,29 +1406,46 @@ export default {
     if (url.pathname === '/api/payment/create-payment-intent' && request.method === 'POST') {
       try {
         const body = await request.json();
-        const { amount, tourId, email, customerName, phone, date, guests, tourName } = body;
-        
+        const {
+          amount, tourId, email, customerName, phone, date, guests,
+          tourName, tourImage, balanceDue, hotelName, roomNumber,
+          couponApplied, couponDiscount
+        } = body;
+
+        const amountCents = Math.round(Number(amount));
+        if (!Number.isFinite(amountCents) || amountCents < 50) {
+          return jsonResponse({ error: "Monto de pago inválido (mínimo $0.50 USD)." }, 400);
+        }
+
         const stripeKey = await getStripeKey(env);
         if (!stripeKey) {
           console.error('[Stripe] STRIPE_SECRET_KEY secret is not configured on this Worker.');
           return jsonResponse({ error: "La pasarela de pago no está disponible en este momento. Contáctanos por WhatsApp para completar tu reserva." }, 503);
         }
-        
+
+        const cleanEmail = (email && email !== 'pending@checkout.com' && email !== 'guest@firetour.dr' && email.includes('@'))
+          ? email.trim().toLowerCase()
+          : '';
+
         const stripeParams = new URLSearchParams();
-        stripeParams.append('amount', Math.round(amount).toString());
+        stripeParams.append('amount', String(amountCents));
         stripeParams.append('currency', 'usd');
         stripeParams.append('automatic_payment_methods[enabled]', 'true');
-        if (email) stripeParams.append('receipt_email', email);
+        if (cleanEmail) stripeParams.append('receipt_email', cleanEmail);
         if (tourName) stripeParams.append('description', `Fire Tour DR - ${tourName}`);
-        if (tourId) stripeParams.append('metadata[tourId]', String(tourId));
-        if (customerName) stripeParams.append('metadata[customerName]', customerName);
-        if (phone) stripeParams.append('metadata[phone]', phone);
-        if (date) stripeParams.append('metadata[date]', date);
+        if (tourId !== undefined && tourId !== null) stripeParams.append('metadata[tourId]', String(tourId));
+        if (cleanEmail) stripeParams.append('metadata[email]', cleanEmail);
+        if (customerName) stripeParams.append('metadata[customerName]', String(customerName));
+        if (phone) stripeParams.append('metadata[phone]', String(phone));
+        if (date) stripeParams.append('metadata[date]', String(date));
         if (guests) stripeParams.append('metadata[guests]', String(guests));
-
+        if (tourName) stripeParams.append('metadata[tourName]', String(tourName));
         if (tourImage) stripeParams.append('metadata[tourImage]', String(tourImage));
-        if (body.hotelName) stripeParams.append('metadata[hotelName]', String(body.hotelName));
-        if (body.roomNumber) stripeParams.append('metadata[roomNumber]', String(body.roomNumber));
+        if (hotelName) stripeParams.append('metadata[hotelName]', String(hotelName));
+        if (roomNumber) stripeParams.append('metadata[roomNumber]', String(roomNumber));
+        if (balanceDue !== undefined && balanceDue !== null) stripeParams.append('metadata[balanceDue]', String(balanceDue));
+        if (couponApplied) stripeParams.append('metadata[couponApplied]', String(couponApplied));
+        if (couponDiscount) stripeParams.append('metadata[couponDiscount]', String(couponDiscount));
 
         const stripeRes = await fetch('https://api.stripe.com/v1/payment_intents', {
           method: 'POST',
@@ -1396,52 +1463,92 @@ export default {
 
         return jsonResponse({
           clientSecret: stripeData.client_secret,
-          paymentIntentId: stripeData.id
+          paymentIntentId: stripeData.id,
+          isMock: false
         });
       } catch (err) {
         return jsonResponse({ error: err.message }, 500);
       }
     }
 
-    // 3.1 Verify and Book (Stripe Confirmation & Ticket Issuance)
-    if (url.pathname === '/api/payment/verify-and-book' && request.method === 'POST') {
+    // 3.0.1 Update Stripe Payment Intent Metadata before Confirmation
+    if (url.pathname === '/api/payment/update-payment-intent' && request.method === 'POST') {
       try {
         const body = await request.json();
-        const { payment_intent, fallbackMetadata, fallbackAmount } = body;
+        const {
+          paymentIntentId, customerName, email, phone, date, guests,
+          tourId, tourName, tourImage, hotelName, roomNumber,
+          balanceDue, couponApplied, couponDiscount
+        } = body;
 
-        if (!payment_intent) {
-          return jsonResponse({ error: "No se proporcionó el payment_intent de Stripe." }, 400);
+        if (!paymentIntentId || !String(paymentIntentId).startsWith('pi_')) {
+          return jsonResponse({ error: "paymentIntentId inválido." }, 400);
         }
 
         const stripeKey = await getStripeKey(env);
+        if (!stripeKey) {
+          return jsonResponse({ error: "Pasarela de pago no configurada." }, 503);
+        }
+
+        const stripeParams = new URLSearchParams();
+        const cleanEmail = (email && email.includes('@')) ? email.trim().toLowerCase() : '';
+        if (cleanEmail) {
+          stripeParams.append('receipt_email', cleanEmail);
+          stripeParams.append('metadata[email]', cleanEmail);
+        }
+        if (customerName) stripeParams.append('metadata[customerName]', String(customerName).trim());
+        if (phone) stripeParams.append('metadata[phone]', String(phone).trim());
+        if (date) stripeParams.append('metadata[date]', String(date));
+        if (guests) stripeParams.append('metadata[guests]', String(guests));
+        if (tourId !== undefined && tourId !== null) stripeParams.append('metadata[tourId]', String(tourId));
+        if (tourName) stripeParams.append('metadata[tourName]', String(tourName));
+        if (tourImage) stripeParams.append('metadata[tourImage]', String(tourImage));
+        if (hotelName) stripeParams.append('metadata[hotelName]', String(hotelName).trim());
+        if (roomNumber) stripeParams.append('metadata[roomNumber]', String(roomNumber).trim());
+        if (balanceDue !== undefined && balanceDue !== null) stripeParams.append('metadata[balanceDue]', String(balanceDue));
+        if (couponApplied) stripeParams.append('metadata[couponApplied]', String(couponApplied));
+        if (couponDiscount !== undefined && couponDiscount !== null) stripeParams.append('metadata[couponDiscount]', String(couponDiscount));
+
+        const stripeRes = await fetch(`https://api.stripe.com/v1/payment_intents/${encodeURIComponent(paymentIntentId)}`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${stripeKey}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: stripeParams.toString()
+        });
+
+        const updated = await stripeRes.json();
+        if (updated.error) {
+          return jsonResponse({ error: updated.error.message }, 400);
+        }
+        return jsonResponse({ success: true, paymentIntentId: updated.id });
+      } catch (err) {
+        return jsonResponse({ error: "Error al actualizar datos de pago: " + err.message }, 500);
+      }
+    }
+
+    // 3.1 Verify and Book (Strict Stripe Confirmation, Idempotency & Ticket Issuance)
+    if (url.pathname === '/api/payment/verify-and-book' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const { payment_intent, fallbackMetadata } = body;
+
+        if (!payment_intent || !String(payment_intent).startsWith('pi_')) {
+          return jsonResponse({ error: "Identificador de pago de Stripe inválido." }, 400);
+        }
+
+        const stripeKey = await getStripeKey(env);
+        if (!stripeKey) {
+          return jsonResponse({ error: "La pasarela de pago no está configurada en producción." }, 503);
+        }
+
         const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
 
-        // Si es un mock / test simulado
-        if (payment_intent.includes('mock') || !stripeKey) {
-          const meta = fallbackMetadata || {};
-          const ticketCode = `FT-${Date.now().toString().slice(-6)}`;
-          const mockReservation = {
-            id: Date.now(),
-            ticketCode,
-            tourId: parseInt(meta.tourId) || 0,
-            tourName: meta.tourName || "Reserva Confirmada Fire Tour DR",
-            tourImage: meta.tourImage || "",
-            customerName: meta.customerName || "Cliente",
-            email: (meta.email || "reservas@firetourdr.com").toLowerCase().trim(),
-            phone: meta.phone || "",
-            date: meta.date || new Date().toISOString().split('T')[0],
-            guests: parseInt(meta.guests) || 1,
-            amountPaid: fallbackAmount || meta.amountPaid || 0,
-            paymentMethod: 'Stripe Seguro (Confirmado)',
-            paymentStatus: 'Aprobado y Garantizado',
-            status: 'Confirmado',
-            hotelName: meta.hotelName || '',
-            roomNumber: meta.roomNumber || '',
-            createdAt: new Date().toISOString()
-          };
-          allReservations.push(mockReservation);
-          await setKVData(env, 'reservations_data', allReservations);
-          return jsonResponse({ success: true, reservation: mockReservation });
+        // Idempotency: return existing booking if this PaymentIntent was already verified
+        const existingReservation = allReservations.find(r => r.stripePaymentIntentId === payment_intent);
+        if (existingReservation) {
+          return jsonResponse({ success: true, reservation: existingReservation, deduplicated: true });
         }
 
         // Verificación oficial con Stripe API
@@ -1460,26 +1567,39 @@ export default {
           return jsonResponse({ error: `El estado del pago es '${intent.status}'. Debe ser 'succeeded' para emitir el boleto.` }, 400);
         }
 
-        const meta = intent.metadata || fallbackMetadata || {};
+        const fb = fallbackMetadata || {};
+        const im = intent.metadata || {};
+        const pick = (a, b, fallback = '') => {
+          const valid = (v) => v !== undefined && v !== null && String(v).trim() !== '' && v !== 'pending@checkout.com' && v !== 'guest@firetour.dr';
+          if (valid(a)) return a;
+          if (valid(b)) return b;
+          return fallback;
+        };
+
+        const chargeBilling = intent.charges?.data?.[0]?.billing_details || {};
         const ticketCode = `FT-${Date.now().toString().slice(-6)}`;
+        const resolvedBalance = Number(pick(im.balanceDue, fb.balanceDue, 0)) || 0;
 
         const newReservation = {
           id: Date.now(),
           ticketCode,
-          tourId: parseInt(meta.tourId) || 0,
-          tourName: meta.tourName || intent.description || "Excursión Oficial Fire Tour DR",
-          tourImage: meta.tourImage || fallbackMetadata?.tourImage || "",
-          customerName: meta.customerName || (intent.charges?.data?.[0]?.billing_details?.name) || "Cliente Fire Tour DR",
-          email: (meta.email || intent.receipt_email || intent.charges?.data?.[0]?.billing_details?.email || "reservas@firetourdr.com").toLowerCase().trim(),
-          phone: meta.phone || intent.charges?.data?.[0]?.billing_details?.phone || "",
-          date: meta.date || new Date().toISOString().split('T')[0],
-          guests: parseInt(meta.guests) || 1,
-          amountPaid: (intent.amount_received || intent.amount) / 100,
+          tourId: parseInt(pick(im.tourId, fb.tourId, 0), 10) || 0,
+          tourName: pick(im.tourName, fb.tourName, intent.description || "Excursión Oficial Fire Tour DR"),
+          tourImage: pick(im.tourImage, fb.tourImage, ""),
+          customerName: pick(im.customerName, fb.customerName, chargeBilling.name || "Cliente Fire Tour DR"),
+          email: String(pick(im.email, fb.email, intent.receipt_email || chargeBilling.email || "reservas@firetourdr.com")).toLowerCase().trim(),
+          phone: pick(im.phone, fb.phone, chargeBilling.phone || ""),
+          date: pick(im.date, fb.date, new Date().toISOString().split('T')[0]),
+          guests: parseInt(pick(im.guests, fb.guests, 1), 10) || 1,
+          amountPaid: Number(((intent.amount_received || intent.amount) / 100).toFixed(2)),
+          balanceDue: resolvedBalance,
+          couponApplied: pick(im.couponApplied, fb.couponApplied, null),
+          couponDiscount: Number(pick(im.couponDiscount, fb.couponDiscount, 0)) || 0,
           paymentMethod: 'Stripe Tarjeta de Crédito / Débito (Oficial 256-bit)',
           paymentStatus: 'Aprobado y Garantizado',
           status: 'Confirmado',
-          hotelName: meta.hotelName || fallbackMetadata?.hotelName || '',
-          roomNumber: meta.roomNumber || fallbackMetadata?.roomNumber || '',
+          hotelName: pick(im.hotelName, fb.hotelName, ''),
+          roomNumber: pick(im.roomNumber, fb.roomNumber, ''),
           stripePaymentIntentId: intent.id,
           createdAt: new Date().toISOString()
         };
@@ -1493,23 +1613,84 @@ export default {
       }
     }
 
-    // 3.2 Secure Internal KV Secret Provisioning (One-time secure vault sync)
-    if (url.pathname === '/api/payment/sync-vault-key' && request.method === 'POST') {
+    // 3.4 Google OAuth Runtime Config & Server-Side ID Token Verification
+    if (url.pathname === '/api/auth/google/config' && request.method === 'GET') {
+      const clientId = getGoogleClientId(env);
+      return new Response(JSON.stringify({ enabled: Boolean(clientId), clientId }), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'public, max-age=300',
+          ...CORS_HEADERS
+        }
+      });
+    }
+
+    if (url.pathname === '/api/auth/google' && request.method === 'POST') {
       try {
+        const expectedClientId = getGoogleClientId(env);
+        if (!expectedClientId) {
+          return jsonResponse({ error: "Inicio de sesión con Google no está configurado en el servidor." }, 503);
+        }
+
         const body = await request.json();
-        const { authPass, secretKey } = body;
-        if (authPass !== 'ftdr_prod_vault_9381749281749182749') {
-          return jsonResponse({ error: "No autorizado." }, 401);
+        const credential = (body && body.credential) ? String(body.credential).trim() : '';
+        if (!credential) {
+          return jsonResponse({ error: "Falta el token de Google." }, 400);
         }
-        if (!secretKey || (!secretKey.startsWith('sk_') && !secretKey.startsWith('rk_'))) {
-          return jsonResponse({ error: "Formato de clave inválido." }, 400);
+
+        const tokenRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`);
+        if (!tokenRes.ok) {
+          return jsonResponse({ error: "Token de Google inválido o expirado." }, 401);
         }
-        if (env.FIRETOUR_DB) {
-          await env.FIRETOUR_DB.put('stripe_secret_key', secretKey.trim());
+
+        const tokenInfo = await tokenRes.json();
+        const validIss = tokenInfo.iss === 'https://accounts.google.com' || tokenInfo.iss === 'accounts.google.com';
+        const validAud = tokenInfo.aud === expectedClientId;
+        const verifiedEmail = tokenInfo.email_verified === true || tokenInfo.email_verified === 'true';
+        const notExpired = !tokenInfo.exp || Number(tokenInfo.exp) * 1000 > Date.now();
+
+        if (!validIss || !validAud || !verifiedEmail || !notExpired || !tokenInfo.email) {
+          return jsonResponse({ error: "La credencial de Google no superó la verificación de seguridad." }, 401);
         }
-        return jsonResponse({ success: true, message: "Stripe key synchronized into secure Cloudflare KV vault." });
-      } catch (e) {
-        return jsonResponse({ error: e.message }, 500);
+
+        const cleanEmail = String(tokenInfo.email).toLowerCase().trim();
+        const displayName = String(tokenInfo.name || cleanEmail.split('@')[0]).trim();
+        const picture = tokenInfo.picture ? String(tokenInfo.picture) : '';
+
+        const users = await getKVData(env, 'users_data', database.users || []);
+        let user = users.find(u => u.email && u.email.toLowerCase().trim() === cleanEmail);
+        if (user) {
+          user.name = displayName || user.name;
+          user.picture = picture || user.picture || '';
+          user.authProvider = 'google';
+          user.lastLoginAt = new Date().toISOString();
+        } else {
+          user = {
+            id: Date.now(),
+            createdAt: new Date().toISOString(),
+            lastLoginAt: new Date().toISOString(),
+            name: displayName,
+            email: cleanEmail,
+            picture,
+            authProvider: 'google'
+          };
+          users.push(user);
+        }
+        await setKVData(env, 'users_data', users);
+
+        return jsonResponse({
+          success: true,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            picture: user.picture || '',
+            authProvider: 'google'
+          }
+        });
+      } catch (err) {
+        return jsonResponse({ error: "Error al iniciar sesión con Google: " + err.message }, 500);
       }
     }
 
@@ -1589,12 +1770,14 @@ export default {
         return jsonResponse({ error: "No autorizado. Inicie sesión para ver sus reservas." }, 401);
       }
 
-      // Acceso de administrador
+      // Acceso de administrador (correo oficial de reservas: booking.inf@firetourdr.com)
       if (email === 'familiafabian@yandex.com' || email === 'booking.inf@firetourdr.com') {
-        return jsonResponse(allReservations);
+        return jsonResponse([...allReservations].sort((a, b) => Number(b.id || 0) - Number(a.id || 0)));
       }
 
-      const userRes = allReservations.filter(r => r.email && r.email.toLowerCase().trim() === email);
+      const userRes = allReservations
+        .filter(r => r.email && r.email.toLowerCase().trim() === email)
+        .sort((a, b) => Number(b.id || 0) - Number(a.id || 0));
       return jsonResponse(userRes);
     }
 
@@ -1637,10 +1820,21 @@ export default {
     }
 
     if (url.pathname.startsWith('/api/reservations/') && request.method === 'GET') {
-      const idStr = url.pathname.replace('/api/reservations/', '').trim();
+      const rawPath = url.pathname.replace('/api/reservations/', '').trim();
+      const isPdfRequest = rawPath.endsWith('/pdf');
+      const idStr = decodeURIComponent(isPdfRequest ? rawPath.replace(/\/pdf$/, '') : rawPath);
       const allReservations = await getKVData(env, 'reservations_data', database.reservations || []);
       const resFound = allReservations.find(r => String(r.id) === idStr || r.ticketCode === idStr);
       if (!resFound) return jsonResponse({ error: "Reserva no encontrada." }, 404);
+      if (isPdfRequest) {
+        const escapeHtml = (s) => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const pnr = escapeHtml(resFound.ticketCode || resFound.id);
+        const voucherHtml = `<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"/><title>Voucher Oficial ${pnr} | Fire Tour DR</title><style>body{font-family:Segoe UI,Arial,sans-serif;background:#0a0f1c;color:#111827;margin:0;padding:24px}.card{max-width:680px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 35px rgba(0,0,0,.35)}.hdr{background:#0a192f;color:#fff;padding:28px 32px;border-bottom:4px solid #f97316;display:flex;justify-content:space-between;align-items:center}.hdr h1{margin:0;font-size:22px}.badge{background:#10b981;color:#fff;padding:6px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase}.body{padding:28px 32px}.code{background:#f1f5f9;border:1px dashed #94a3b8;padding:16px;text-align:center;border-radius:12px;margin-bottom:20px}.code strong{font-family:monospace;font-size:26px;letter-spacing:4px;color:#0284c7}table{width:100%;border-collapse:collapse;font-size:14px}td{padding:9px 0;border-bottom:1px solid #e2e8f0}td:first-child{color:#64748b;width:190px;font-weight:600}.amt{margin-top:20px;background:#ecfdf5;border:1px solid #a7f3d0;padding:16px;border-radius:12px;display:flex;justify-content:space-between;font-weight:800;color:#065f46}.btn{margin-top:20px;text-align:center}.btn button{background:#f97316;color:#fff;border:0;padding:12px 24px;border-radius:10px;font-weight:700;cursor:pointer}@media print{body{background:#fff;padding:0}.btn{display:none}}</style></head><body><div class="card"><div class="hdr"><div><h1>FIRE TOUR DR</h1><div style="font-size:12px;color:#94a3b8">Voucher Oficial de Reserva • Punta Cana</div></div><span class="badge">Confirmado</span></div><div class="body"><div class="code"><div style="font-size:11px;color:#64748b;text-transform:uppercase;margin-bottom:4px">Código Oficial del Ticket</div><strong>${pnr}</strong></div><table><tr><td>Servicio</td><td><strong>${escapeHtml(resFound.tourName)}</strong></td></tr><tr><td>Titular</td><td>${escapeHtml(resFound.customerName)}</td></tr><tr><td>Correo</td><td>${escapeHtml(resFound.email)}</td></tr><tr><td>WhatsApp / Teléfono</td><td>${escapeHtml(resFound.phone || 'No provisto')}</td></tr><tr><td>Fecha</td><td><strong>${escapeHtml(resFound.date)}</strong></td></tr><tr><td>Participantes</td><td>${escapeHtml(resFound.guests || 1)} Persona(s)</td></tr>${resFound.hotelName ? `<tr><td>Hotel / Recogida</td><td>${escapeHtml(resFound.hotelName)} (Hab: ${escapeHtml(resFound.roomNumber || 'Lobby')})</td></tr>` : ''}<tr><td>Método de Pago</td><td>${escapeHtml(resFound.paymentMethod || 'Stripe Seguro')}</td></tr></table><div class="amt"><span>Depósito Pagado (Stripe SSL)</span><span>$${Number(resFound.amountPaid || 0).toFixed(2)} USD</span></div>${resFound.balanceDue > 0 ? `<div style="margin-top:10px;font-size:13px;color:#334155;text-align:right">Saldo a pagar el día del tour: <strong>$${Number(resFound.balanceDue).toFixed(2)} USD</strong></div>` : ''}<div class="btn"><button onclick="window.print()">Imprimir / Guardar como PDF</button></div></div></div></body></html>`;
+        return new Response(voucherHtml, {
+          status: 200,
+          headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' }
+        });
+      }
       return jsonResponse(resFound);
     }
 
@@ -1679,7 +1873,7 @@ export default {
 
     // 4. Default: Delegate to static assets (Frontend SPA with index.html fallback)
     const pathnameLower = url.pathname.toLowerCase();
-    const isStaticAssetExt = /\.(jpe?g|png|webp|svg|gif|ico|woff2?|css|js|map|mp4|webm|json|xml|txt)$/i.test(pathnameLower);
+    const isStaticAssetExt = /\.(jpe?g|png|webp|svg|gif|ico|woff2?|css|js|map|mp4|webm|json|webmanifest|xml|txt)$/i.test(pathnameLower);
 
     let res = await env.ASSETS.fetch(request);
     const resContentType = (res.headers.get('content-type') || '').toLowerCase();
@@ -1718,7 +1912,7 @@ export default {
         newHeaders.set('Cache-Control', 'public, max-age=0, must-revalidate');
 
         // Block indexing on admin and private/transactional routes (HTTP header + HTML meta rewrite)
-        const isPrivateOrAdminRoute = /^\/(admin|checkout|ticket|auth|cuenta|reservations|success)/i.test(pathnameLower);
+        const isPrivateOrAdminRoute = /^\/(admin|checkout|ticket|auth|cuenta|reservations|mis-reservas|success)/i.test(pathnameLower);
         if (isPrivateOrAdminRoute && finalContentType.includes('text/html')) {
           newHeaders.set('X-Robots-Tag', 'noindex, nofollow');
           const htmlBody = await res.text();

@@ -17,9 +17,9 @@ const { generateTicketPdfBuffer } = require('./pdfGenerator');
 // -------------------------------------------------------
 // EMAIL NOTIFIER SETUP (Yandex SMTP)
 // -------------------------------------------------------
-const ADMIN_BOOKING_EMAIL = 'booking.inf@firetourdr.com';
-const ADMIN_SENDER_EMAIL = process.env.SMTP_USER || 'familiafabian@yandex.com';
-const ADMIN_SENDER_PASS = process.env.SMTP_PASS || 'Chulo02@';
+const ADMIN_BOOKING_EMAIL = process.env.ADMIN_BOOKING_EMAIL || 'booking.inf@firetourdr.com';
+const ADMIN_SENDER_EMAIL = process.env.SMTP_USER || '';
+const ADMIN_SENDER_PASS = process.env.SMTP_PASS || '';
 
 const mailer = nodemailer.createTransport({
   host: 'smtp.yandex.com',
@@ -516,16 +516,18 @@ const stripe = require('stripe')(stripeKey);
 
 app.post('/api/payment/create-payment-intent', async (req, res) => {
   try {
-    const { 
-      amount, tourId, email, customerName, phone, date, guests, 
-      tourName, tourImage, balanceDue, hotelName, roomNumber 
+    const {
+      amount, tourId, email, customerName, phone, date, guests,
+      tourName, tourImage, balanceDue, hotelName, roomNumber,
+      couponApplied, couponDiscount
     } = req.body;
 
-    if (!amount || !tourId) {
-      return res.status(400).json({ error: "Faltan campos obligatorios para generar la intención de pago." });
+    const amountCents = Math.round(Number(amount));
+    if (!Number.isFinite(amountCents) || amountCents < 50 || tourId === undefined || tourId === null) {
+      return res.status(400).json({ error: "Faltan campos obligatorios o monto inválido (mínimo $0.50 USD)." });
     }
 
-    console.log(`[Stripe Checkout] Creating Payment Intent for Tour ID: ${tourId}, Amount: $${(amount / 100).toFixed(2)} USD`);
+    console.log(`[Stripe Checkout] Creating Payment Intent for Tour ID: ${tourId}, Amount: $${(amountCents / 100).toFixed(2)} USD`);
 
     // Si la clave es un mock de prueba explícito
     if (stripeKey.includes('mock')) {
@@ -535,12 +537,18 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
       });
     }
 
+    const cleanEmail = (email && email !== 'pending@checkout.com' && email !== 'guest@firetour.dr' && email.includes('@'))
+      ? email.trim().toLowerCase()
+      : undefined;
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(Number(amount)),
+      amount: amountCents,
       currency: 'usd',
-      metadata: { 
-        tourId: String(tourId), 
-        email: email || 'guest@firetour.dr',
+      ...(cleanEmail ? { receipt_email: cleanEmail } : {}),
+      description: tourName ? `Fire Tour DR - ${tourName}` : undefined,
+      metadata: {
+        tourId: String(tourId),
+        ...(cleanEmail ? { email: cleanEmail } : {}),
         customerName: customerName || '',
         phone: phone || '',
         date: date || '',
@@ -549,7 +557,9 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
         tourImage: tourImage || '',
         balanceDue: String(balanceDue || 0),
         hotelName: hotelName || '',
-        roomNumber: roomNumber || ''
+        roomNumber: roomNumber || '',
+        couponApplied: couponApplied || '',
+        couponDiscount: String(couponDiscount || 0)
       },
       automatic_payment_methods: { enabled: true }
     });
@@ -557,6 +567,7 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
     console.log(`[Stripe Success] PaymentIntent created: ${paymentIntent.id}`);
     res.json({
       clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id,
       isMock: false
     });
   } catch (err) {
@@ -569,10 +580,53 @@ app.post('/api/payment/create-payment-intent', async (req, res) => {
   }
 });
 
-// 3.1 Verify and Book (Para Redirecciones de Pago Cripto / Apple Pay)
+// 3.0.1 Update Payment Intent Metadata before Confirmation
+app.post('/api/payment/update-payment-intent', async (req, res) => {
+  try {
+    const {
+      paymentIntentId, customerName, email, phone, date, guests,
+      tourId, tourName, tourImage, hotelName, roomNumber,
+      balanceDue, couponApplied, couponDiscount
+    } = req.body;
+
+    if (!paymentIntentId || !String(paymentIntentId).startsWith('pi_')) {
+      return res.status(400).json({ error: "paymentIntentId inválido." });
+    }
+    if (stripeKey.includes('mock')) {
+      return res.json({ success: true, paymentIntentId });
+    }
+
+    const cleanEmail = (email && email.includes('@')) ? email.trim().toLowerCase() : undefined;
+    const updated = await stripe.paymentIntents.update(paymentIntentId, {
+      ...(cleanEmail ? { receipt_email: cleanEmail } : {}),
+      metadata: {
+        ...(tourId !== undefined && tourId !== null ? { tourId: String(tourId) } : {}),
+        ...(tourName ? { tourName: String(tourName) } : {}),
+        ...(tourImage ? { tourImage: String(tourImage) } : {}),
+        ...(customerName ? { customerName: String(customerName).trim() } : {}),
+        ...(cleanEmail ? { email: cleanEmail } : {}),
+        ...(phone ? { phone: String(phone).trim() } : {}),
+        ...(date ? { date: String(date) } : {}),
+        ...(guests ? { guests: String(guests) } : {}),
+        ...(hotelName ? { hotelName: String(hotelName).trim() } : {}),
+        ...(roomNumber ? { roomNumber: String(roomNumber).trim() } : {}),
+        ...(balanceDue !== undefined && balanceDue !== null ? { balanceDue: String(balanceDue) } : {}),
+        ...(couponApplied ? { couponApplied: String(couponApplied) } : {}),
+        ...(couponDiscount !== undefined && couponDiscount !== null ? { couponDiscount: String(couponDiscount) } : {})
+      }
+    });
+
+    res.json({ success: true, paymentIntentId: updated.id });
+  } catch (err) {
+    console.error("[Stripe Update Error]", err.message);
+    res.status(400).json({ error: "Error al actualizar datos de pago: " + err.message });
+  }
+});
+
+// 3.1 Verify and Book (Strict Stripe Validation + Idempotency)
 app.post('/api/payment/verify-and-book', async (req, res) => {
   try {
-    const { payment_intent } = req.body;
+    const { payment_intent, fallbackMetadata } = req.body;
 
     if (!payment_intent) {
       return res.status(400).json({ error: "No se proporcionó el payment_intent de Stripe." });
@@ -580,10 +634,12 @@ app.post('/api/payment/verify-and-book', async (req, res) => {
 
     console.log(`[Stripe Verify] Validating payment intent: ${payment_intent}`);
 
-    // Si es un mock, lo aceptamos directamente (para entorno de desarrollo/fallback)
-    if (payment_intent.includes('mock')) {
-      // Usaremos metadata mock enviada desde el front
-      const metadata = req.body.fallbackMetadata || {};
+    // Solo aceptar mock cuando el servidor corre explícitamente con clave mock
+    if (String(payment_intent).includes('mock')) {
+      if (!stripeKey.includes('mock')) {
+        return res.status(400).json({ error: "No se permiten pagos simulados en modo producción." });
+      }
+      const metadata = fallbackMetadata || {};
       const mockRes = database.addReservation({
         tourId: parseInt(metadata.tourId) || 0,
         tourName: metadata.tourName || "Reserva de Prueba Local",
@@ -594,6 +650,7 @@ app.post('/api/payment/verify-and-book', async (req, res) => {
         date: metadata.date || new Date().toISOString().split('T')[0],
         guests: parseInt(metadata.guests) || 1,
         amountPaid: req.body.fallbackAmount || 0,
+        balanceDue: Number(metadata.balanceDue) || 0,
         paymentMethod: 'Test Local Mock',
         status: 'Confirmado',
         hotelName: metadata.hotelName || '',
@@ -603,33 +660,50 @@ app.post('/api/payment/verify-and-book', async (req, res) => {
       return res.json({ success: true, reservation: mockRes });
     }
 
+    if (!String(payment_intent).startsWith('pi_')) {
+      return res.status(400).json({ error: "Identificador de pago de Stripe inválido." });
+    }
+
+    // Idempotency: evitar doble reserva al recargar /success
+    const existing = (database.getReservations() || []).find(r => r.stripePaymentIntentId === payment_intent);
+    if (existing) {
+      return res.json({ success: true, reservation: existing, deduplicated: true });
+    }
+
     // Entorno Real: Verificamos en Stripe
     const intent = await stripe.paymentIntents.retrieve(payment_intent);
 
     if (intent.status !== 'succeeded') {
-      return res.status(400).json({ error: "El pago no se ha completado correctamente en Stripe." });
+      return res.status(400).json({ error: `El pago no se ha completado en Stripe (estado: ${intent.status}).` });
     }
 
-    // Extraemos toda la metadata que inyectamos al crear el PaymentIntent
-    const { 
-      tourId, tourName, tourImage, customerName, email, phone, 
-      date, guests, hotelName, roomNumber 
-    } = intent.metadata;
+    const fb = fallbackMetadata || {};
+    const im = intent.metadata || {};
+    const pick = (a, b, def = '') => {
+      const valid = (v) => v !== undefined && v !== null && String(v).trim() !== '' && v !== 'pending@checkout.com' && v !== 'guest@firetour.dr';
+      if (valid(a)) return a;
+      if (valid(b)) return b;
+      return def;
+    };
 
     const reservation = database.addReservation({
-      tourId: parseInt(tourId),
-      tourName: tourName || "Reserva Segura vía Stripe",
-      tourImage: tourImage || "",
-      customerName: customerName || "Invitado",
-      email: email || "reservas@firetour.dr",
-      phone: phone || "",
-      date: date || new Date().toISOString().split('T')[0],
-      guests: parseInt(guests) || 1,
-      amountPaid: intent.amount / 100, // Lo volvemos a dólares
+      tourId: parseInt(pick(im.tourId, fb.tourId, 0), 10) || 0,
+      tourName: pick(im.tourName, fb.tourName, "Reserva Segura vía Stripe"),
+      tourImage: pick(im.tourImage, fb.tourImage, ""),
+      customerName: pick(im.customerName, fb.customerName, "Invitado"),
+      email: String(pick(im.email, fb.email, intent.receipt_email || "reservas@firetour.dr")).toLowerCase().trim(),
+      phone: pick(im.phone, fb.phone, ""),
+      date: pick(im.date, fb.date, new Date().toISOString().split('T')[0]),
+      guests: parseInt(pick(im.guests, fb.guests, 1), 10) || 1,
+      amountPaid: Number(((intent.amount_received || intent.amount) / 100).toFixed(2)),
+      balanceDue: Number(pick(im.balanceDue, fb.balanceDue, 0)) || 0,
+      couponApplied: pick(im.couponApplied, fb.couponApplied, null),
+      couponDiscount: Number(pick(im.couponDiscount, fb.couponDiscount, 0)) || 0,
       paymentMethod: intent.payment_method_types ? (intent.payment_method_types.includes('crypto') ? 'Criptomonedas Seguras' : 'Stripe Seguro') : 'Stripe Seguro',
       status: 'Confirmado',
-      hotelName: hotelName || '',
-      roomNumber: roomNumber || ''
+      hotelName: pick(im.hotelName, fb.hotelName, ''),
+      roomNumber: pick(im.roomNumber, fb.roomNumber, ''),
+      stripePaymentIntentId: intent.id
     });
 
     console.log(`[Stripe Verify] Validated successfully! Created Booking: ${reservation.ticketCode}`);
@@ -639,6 +713,76 @@ app.post('/api/payment/verify-and-book', async (req, res) => {
   } catch (err) {
     console.error("[Stripe Verify Error] ", err.message);
     res.status(500).json({ error: "Error interno al verificar el pago." });
+  }
+});
+
+// 3.4 Google OAuth Config & Server-Side Verification (reads GOOGLE_CLIENT_ID from .env only)
+function getGoogleClientId() {
+  const raw = (process.env.GOOGLE_CLIENT_ID || '').trim();
+  if (!raw) return null;
+  return raw.endsWith('.apps.googleusercontent.com') ? raw : `${raw}.apps.googleusercontent.com`;
+}
+
+app.get('/api/auth/google/config', (req, res) => {
+  const clientId = getGoogleClientId();
+  res.setHeader('Cache-Control', 'public, max-age=300');
+  res.json({ enabled: Boolean(clientId), clientId });
+});
+
+app.post('/api/auth/google', async (req, res) => {
+  try {
+    const expectedClientId = getGoogleClientId();
+    if (!expectedClientId) {
+      return res.status(503).json({ error: "Inicio de sesión con Google no está configurado en el servidor." });
+    }
+
+    const credential = req.body && req.body.credential ? String(req.body.credential).trim() : '';
+    if (!credential) {
+      return res.status(400).json({ error: "Falta el token de Google." });
+    }
+
+    const tokenRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`);
+    if (!tokenRes.ok) {
+      return res.status(401).json({ error: "Token de Google inválido o expirado." });
+    }
+
+    const tokenInfo = await tokenRes.json();
+    const validIss = tokenInfo.iss === 'https://accounts.google.com' || tokenInfo.iss === 'accounts.google.com';
+    const validAud = tokenInfo.aud === expectedClientId;
+    const verifiedEmail = tokenInfo.email_verified === true || tokenInfo.email_verified === 'true';
+    const notExpired = !tokenInfo.exp || Number(tokenInfo.exp) * 1000 > Date.now();
+
+    if (!validIss || !validAud || !verifiedEmail || !notExpired || !tokenInfo.email) {
+      return res.status(401).json({ error: "La credencial de Google no superó la verificación de seguridad." });
+    }
+
+    const cleanEmail = String(tokenInfo.email).toLowerCase().trim();
+    const displayName = String(tokenInfo.name || cleanEmail.split('@')[0]).trim();
+    const picture = tokenInfo.picture ? String(tokenInfo.picture) : '';
+
+    let user = database.getUserByEmail(cleanEmail);
+    if (!user) {
+      user = database.addUser({
+        name: displayName,
+        email: cleanEmail,
+        picture,
+        authProvider: 'google'
+      });
+    }
+
+    res.json({
+      success: true,
+      user: {
+        id: user.id,
+        name: displayName || user.name,
+        email: cleanEmail,
+        picture: picture || user.picture || '',
+        authProvider: 'google'
+      }
+    });
+  } catch (err) {
+    console.error("[Google Auth Error]", err.message);
+    res.status(500).json({ error: "Error al verificar sesión con Google." });
   }
 });
 

@@ -113,10 +113,14 @@ export default function PrivacyPolicyPage() {
           {/* Section 6 */}
           <section className="space-y-3">
             <h2 className="text-xl sm:text-2xl font-bold font-display text-white flex items-center gap-2">
-              <FileText className="w-5 h-5 text-secondary" /> 6. Derechos del Usuario (ARCO y GDPR)
+              <FileText className="w-5 h-5 text-secondary" /> 6. Derechos del Usuario (ARCO, GDPR y Eliminación de Cuenta)
             </h2>
             <p>
-              Usted tiene derecho en todo momento a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Si desea solicitar una copia de los datos que tenemos sobre usted o pedir su eliminación definitiva de nuestros registros, puede comunicarse directamente con nuestro oficial de privacidad en <strong className="text-white">booking.inf@firetourdr.com</strong>.
+              Usted tiene derecho en todo momento a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Si desea solicitar una copia de los datos que tenemos sobre usted o pedir la eliminación definitiva de su cuenta y sus datos asociados, puede hacerlo a través de nuestra{' '}
+              <Link to="/eliminar-cuenta" className="text-cyan underline hover:text-cyan/80 font-semibold">
+                Página Oficial de Eliminación de Cuenta (/eliminar-cuenta)
+              </Link>{' '}
+              o escribiendo directamente a <strong className="text-white">booking.inf@firetourdr.com</strong>.
             </p>
           </section>
 

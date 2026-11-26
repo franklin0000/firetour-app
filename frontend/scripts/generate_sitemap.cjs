@@ -52,6 +52,7 @@ function generateSitemap() {
     { loc: "https://www.firetourdr.com/contacto", priority: "0.8", freq: "monthly" },
     { loc: "https://www.firetourdr.com/vuelos", priority: "0.8", freq: "weekly" },
     { loc: "https://www.firetourdr.com/politica-de-privacidad", priority: "0.3", freq: "yearly" },
+    { loc: "https://www.firetourdr.com/eliminar-cuenta", priority: "0.3", freq: "yearly" },
     { loc: "https://www.firetourdr.com/terminos-y-condiciones", priority: "0.3", freq: "yearly" }
   ];
 

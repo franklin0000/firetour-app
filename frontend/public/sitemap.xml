@@ -67,6 +67,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://www.firetourdr.com/eliminar-cuenta</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://www.firetourdr.com/terminos-y-condiciones</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>yearly</changefreq>
@@ -104,6 +110,12 @@
   </url>
   <url>
     <loc>https://www.firetourdr.com/blog/guia-las-terrenas-samana-playas-ballenas</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://www.firetourdr.com/blog/guia-mejores-playas-y-rios-naturales-republica-dominicana</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.92</priority>

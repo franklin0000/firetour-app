@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { User, Mail, Lock, ArrowRight, ShieldCheck, LogOut, Calendar } from 'lucide-react';
+import GoogleSignInButton from '../components/GoogleSignInButton';
+import { clearStoredUser, getStoredUser, setStoredUser } from '../utils/auth';
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -33,18 +35,30 @@ export default function AuthPage() {
   };
 
   useEffect(() => {
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      const user = JSON.parse(userStr);
+    const user = getStoredUser();
+    if (user) {
       setCurrentUser(user);
       fetchUserReservations(user.email);
     }
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    clearStoredUser();
     setCurrentUser(null);
     setUserReservations([]);
+  };
+
+  const handleAuthSuccess = (userData: any) => {
+    setStoredUser(userData);
+    setCurrentUser(userData);
+    fetchUserReservations(userData.email);
+    if (returnUrl !== '/') {
+      if (returnUrl === '/checkout') {
+        navigate(-1);
+      } else {
+        navigate(returnUrl);
+      }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -69,17 +83,7 @@ export default function AuthPage() {
         return;
       }
 
-      localStorage.setItem('user', JSON.stringify(data));
-      setCurrentUser(data);
-      fetchUserReservations(data.email);
-      
-      if (returnUrl !== '/') {
-        if (returnUrl === '/checkout') {
-          navigate(-1);
-        } else {
-          navigate(returnUrl);
-        }
-      }
+      handleAuthSuccess(data);
       setLoading(false);
     } catch (err) {
       setError('Error de conexión con el servidor.');
@@ -165,6 +169,11 @@ export default function AuthPage() {
                   </div>
                 )}
               </div>
+              <div className="mt-4 text-right">
+                <Link to="/eliminar-cuenta" className="text-[11px] text-gray-500 hover:text-red-400 underline transition-colors">
+                  Solicitar eliminación de cuenta / Request account deletion
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -197,6 +206,22 @@ export default function AuthPage() {
             {error}
           </div>
         )}
+
+        <div className="mb-6 space-y-4">
+          <GoogleSignInButton
+            text="continue_with"
+            theme="filled_black"
+            size="large"
+            width={340}
+            onSuccess={handleAuthSuccess}
+            onError={(msg) => setError(msg)}
+          />
+          <div className="flex items-center gap-3 text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+            <div className="flex-1 h-px bg-white/10" />
+            <span>o continúa con correo</span>
+            <div className="flex-1 h-px bg-white/10" />
+          </div>
+        </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           {!isLogin && (
@@ -247,7 +272,7 @@ export default function AuthPage() {
           </button>
         </form>
 
-        <div className="mt-8 text-center border-t border-white/10 pt-6">
+        <div className="mt-8 text-center border-t border-white/10 pt-6 space-y-3">
           <p className="text-sm text-gray-400">
             {isLogin ? '¿No tienes una cuenta?' : '¿Ya tienes una cuenta?'}
             <button 
@@ -256,6 +281,11 @@ export default function AuthPage() {
             >
               {isLogin ? 'Regístrate aquí' : 'Inicia Sesión'}
             </button>
+          </p>
+          <p>
+            <Link to="/eliminar-cuenta" className="text-[11px] text-gray-500 hover:text-red-400 underline transition-colors">
+              Solicitar eliminación de cuenta / Request account deletion
+            </Link>
           </p>
         </div>
 

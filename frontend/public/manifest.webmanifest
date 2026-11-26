@@ -1,0 +1,59 @@
+{
+  "id": "/",
+  "name": "Fire Tour DR — Excursiones en Punta Cana",
+  "short_name": "Fire Tour DR",
+  "description": "Reserva excursiones en Punta Cana, Isla Saona VIP, Buggies Macao 4x4, Parasailing y Traslados Privados Aeropuerto PUJ con confirmación inmediata.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#07111F",
+  "theme_color": "#07111F",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["travel", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Excursiones",
+      "short_name": "Tours",
+      "description": "Explora excursiones VIP en Punta Cana",
+      "url": "/#catalogo-tours",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mis Reservas",
+      "short_name": "Reservas",
+      "description": "Consulta tus boletos y códigos QR",
+      "url": "/reservations",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Guías de Viaje",
+      "short_name": "Guías",
+      "description": "Guías de República Dominicana, Canadá e Italia",
+      "url": "/blog",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

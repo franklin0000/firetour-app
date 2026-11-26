@@ -67,13 +67,15 @@ export default function BlogPage() {
 
         {/* Featured Hero Article */}
         {selectedCategory === 'Todos' && !searchTerm && featuredPost && (
-          <div className="bg-surface border border-white/10 rounded-3xl overflow-hidden shadow-premium hover:border-secondary/40 transition-all duration-300">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative h-64 sm:h-80 lg:h-auto overflow-hidden">
+          <div className="bg-surface border border-white/10 rounded-3xl overflow-hidden shadow-premium hover:border-secondary/40 transition-all duration-300 group">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+              <div className="relative aspect-[16/10] lg:aspect-auto lg:h-[400px] overflow-hidden bg-slate-900">
                 <img 
                   src={featuredPost.coverImage} 
                   alt={featuredPost.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  width={1200}
+                  height={675}
+                  className="w-full h-full object-cover object-[center_28%] group-hover:scale-105 transition-transform duration-700" 
                 />
                 <div className="absolute top-4 left-4">
                   <span className="bg-secondary text-white text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
@@ -145,13 +147,15 @@ export default function BlogPage() {
                 className="bg-surface/90 border border-white/10 rounded-2xl overflow-hidden hover:border-secondary/40 transition-all duration-300 flex flex-col justify-between group shadow-glass"
               >
                 <div>
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-900">
                     <img 
                       src={post.coverImage} 
                       alt={post.title} 
+                      width={1200}
+                      height={675}
                       loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      decoding="sync"
+                      className="w-full h-full object-cover object-[center_30%] group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md text-cyan text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-white/10">
                       {post.category}

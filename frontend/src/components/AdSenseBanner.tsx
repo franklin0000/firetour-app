@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { isAppMode } from '../utils/appMode';
 
 interface AdSenseBannerProps {
   slot?: string;
@@ -19,6 +20,7 @@ export default function AdSenseBanner({
   responsive = true,
   className = ''
 }: AdSenseBannerProps) {
+  const appMode = isAppMode();
   const adRef = useRef<HTMLModElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const pushedRef = useRef(false);
@@ -34,7 +36,7 @@ export default function AdSenseBanner({
 
   // Lazy-trigger AdSense request only when user scrolls within 250px (boosts Active View >75%)
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (appMode || typeof window === 'undefined') return;
     if (!('IntersectionObserver' in window)) {
       setIsVisible(true);
       return;
@@ -55,10 +57,10 @@ export default function AdSenseBanner({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [appMode]);
 
   useEffect(() => {
-    if (!isVisible || pushedRef.current) return;
+    if (appMode || !isVisible || pushedRef.current) return;
     try {
       if (typeof window !== 'undefined') {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -67,7 +69,11 @@ export default function AdSenseBanner({
     } catch (err) {
       console.warn('AdSense push error:', err);
     }
-  }, [isVisible]);
+  }, [appMode, isVisible]);
+
+  if (appMode) {
+    return null;
+  }
 
   return (
     <div

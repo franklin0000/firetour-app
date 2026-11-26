@@ -21,3 +21,16 @@ server/*.sqlite
 backend/uploads/
 server/uploads/
 .playwright-mcp/
+android-twa/keystore/
+*.keystore
+*.jks
+*.p12
+KEYSTORE_CREDENTIALS_BACKUP.txt
+android-twa/app/build/
+android-twa/.gradle/
+android-twa/local.properties
+android-twa/*.aab
+android-twa/*.apk
+android-twa/*.idsig
+android-twa/KEYSTORE_CREDENTIALS_BACKUP.txt
+__pycache__/

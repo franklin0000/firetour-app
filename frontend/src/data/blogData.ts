@@ -4,6 +4,7 @@ export interface BlogPost {
   excerpt: string;
   category: string;
   date: string;
+  publishedIso?: string;
   readTime: string;
   author: {
     name: string;
@@ -441,6 +442,150 @@ export const BLOG_POSTS: BlogPost[] = [
         "Duración ideal: 1 a 2 días completos de visita.",
         "Puntos clave: Catedral Primada, Alcázar de Colón, Calle Las Damas, Los Tres Ojos.",
         "Transporte desde Punta Cana: 2 horas y cuarto por la moderna Autopista del Coral."
+      ]
+    }
+  },
+  {
+    slug: "guia-completa-viajar-canada-mejores-lugares-temporadas",
+    title: "Guía Completa para Viajar a Canadá: Mejores Lugares, Rutas y Actividades por Temporada",
+    excerpt: "Descubre dónde ir en Canadá, las mejores regiones del Este y el Oeste, qué actividades hacer en verano, otoño, invierno y primavera, requisitos de entrada y consejos prácticos.",
+    category: "Guías de Destino",
+    date: "25 de Noviembre de 2026",
+    publishedIso: "2026-11-25T08:00:00+00:00",
+    readTime: "10 min de lectura",
+    author: {
+      name: "Manuel Rosario",
+      role: "Especialista en Destinos Internacionales",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+    },
+    coverImage: "/gallery/canada-guide-cover.webp",
+    content: {
+      introduction: "Canadá es el segundo país más grande del planeta y uno de los destinos más seguros, diversos y espectaculares del mundo. Desde los lagos turquesa de origen glaciar en las Montañas Rocosas hasta el encanto europeo francófono de Quebec, pasando por cosmopolitas metrópolis como Toronto y Vancouver, planificar bien qué región elegir y en qué estación viajar marca por completo la diferencia en tu experiencia.",
+      sections: [
+        {
+          heading: "1. ¿Dónde ir en Canadá? Los mejores lugares del Oeste y del Este",
+          body: [
+            "Oeste Canadiense (Naturaleza en estado puro): El Parque Nacional Banff y el Parque Nacional Jasper en Alberta son el corazón visual del país. Aquí te esperan el Lago Louise, el Lago Moraine, la carretera panorámica Icefields Parkway y el glaciar Athabasca. Muy cerca, en la costa del Pacífico, Vancouver combina rascacielos modernos, Stanley Park y playas urbanas con excursiones a la Isla de Vancouver (Victoria y Tofino) y la estación alpina de Whistler.",
+            "Este Canadiense (Ciudades icónicas, historia y cataratas): Toronto destaca por la Torre CN, sus barrios multiculturales y su cercanía a las imponentes Cataratas del Niágara (a solo 90 minutos). Siguiendo el río San Lorenzo se encuentran Ottawa (la capital monumental), Montreal (capital cultural, gastronómica y artística) y la Ciudad de Quebec, la única ciudad amurallada al norte de México con un casco antiguo Patrimonio de la Humanidad que parece sacado de Francia.",
+            "Norte y Costa Atlántica (Experiencias únicas): Yellowknife (Territorios del Noroeste) y Whitehorse (Yukón) son dos de los mejores puntos del planeta para ver auroras boreales. En el Atlántico, Nueva Escocia (Cabot Trail), la Isla del Príncipe Eduardo y Terranova ofrecen acantilados dramáticos, faros históricos y observación de icebergs y ballenas."
+          ],
+          tip: "Canadá es inmenso (de Toronto a Vancouver hay más de 4,300 km). Si tienes entre 7 y 12 días, elige solo una costa (Oeste o Este) en lugar de intentar cruzar todo el país en un solo viaje."
+        },
+        {
+          heading: "2. ¿Qué actividades hacer en Canadá según la temporada?",
+          body: [
+            "Verano (Junio a Agosto — 20°C a 30°C): Es la temporada estrella para parques nacionales y actividades al aire libre. Puedes hacer senderismo en las Rocosas, remar en canoa en Lake Louise y Moraine Lake, recorrer en barco las Cataratas del Niágara (Hornblower), avistar ballenas orcas en Vancouver o Tadoussac, observar osos negros y grizzlies en libertad y disfrutar festivales al aire libre como el Festival Internacional de Jazz de Montreal.",
+            "Otoño (Septiembre a Octubre — 8°C a 18°C): Considerada por muchos viajeros la época más fotogénica del Este canadiense gracias al 'Indian Summer' y el cambio de color de los bosques de arce (rojo intenso, naranja y dorado). Las mejores actividades son rutas en auto por el Parque Algonquin (Ontario), Mont-Tremblant y la región de Charlevoix (Quebec), visitas a granjas de manzanas y sidrerías, además de disfrutar tarifas hoteleras más bajas que en julio y agosto.",
+            "Invierno (Noviembre a Marzo — -5°C a -25°C): El paraíso de la nieve y las luces del norte. Destacan el esquí y snowboard de clase mundial en Whistler Blackcomb, Banff/Lake Louise y Mont-Tremblant; expediciones de auroras boreales en Yellowknife y Whitehorse (diciembre a marzo); trineo tirado por perros (dog sledding), caminatas con raquetas de nieve, patinaje sobre el Canal Rideau congelado en Ottawa y el famoso Carnaval de Invierno de Quebec en febrero.",
+            "Primavera (Abril a Mayo — 5°C a 17°C): Época de transición ideal para presupuestos ajustados y menos multitudes. Destaca el Festival Canadiense de los Tulipanes en Ottawa (mayo), la floración de los cerezos en Vancouver (abril), las cascadas en máximo caudal por el deshielo y la temporada de cabañas de azúcar ('Cabanes à Sucre') en Quebec para probar sirope de arce recién cosechado sobre la nieve."
+          ],
+          tip: "En invierno, vístete con el sistema de 3 capas (térmica transpirable, forro polar y abrigo cortaviento impermeable) junto con botas antideslizantes con aislamiento térmico."
+        },
+        {
+          heading: "3. ¿Dónde es mejor visitar según tu perfil de viajero?",
+          body: [
+            "Si buscas paisajes épicos de montaña, lagos y fauna salvaje: Elige Alberta y Columbia Británica (vuela a Calgary y regresa desde Vancouver) entre junio y septiembre, o en invierno si practicas esquí.",
+            "Si prefieres cultura, arquitectura europea, museos, compras y vida nocturna: Elige el corredor clásico del Este (Toronto, Niágara, Ottawa, Montreal y Ciudad de Quebec), ideal entre mayo y octubre.",
+            "Si viajas en familia por primera vez: El triángulo Toronto – Cataratas del Niágara – Montreal ofrece distancias cómodas en tren o auto, atracciones interactivas, parques temáticos y gran oferta hotelera.",
+            "Si tu sueño son las auroras boreales y la aventura ártica: Planifica una escapada de 3 a 4 noches a Yellowknife o Whitehorse entre finales de noviembre y finales de marzo, cuando las noches son más largas y despejadas."
+          ]
+        },
+        {
+          heading: "4. Requisitos de entrada, transporte y consejos prácticos para turistas",
+          body: [
+            "Documentación migratoria: Dependiendo de tu nacionalidad necesitarás una Autorización Electrónica de Viaje (eTA, tramitada online por 7 CAD en el portal oficial del Gobierno de Canadá) o una visa de visitante (TRV). Verifica siempre los requisitos vigentes con al menos 2 meses de antelación antes de comprar vuelos.",
+            "Cómo moverse: En el Este, la red de trenes VIA Rail conecta cómodamente Toronto, Ottawa, Montreal y Quebec sin lidiar con tráfico ni nieve. En el Oeste (Montañas Rocosas), alquilar un auto es prácticamente indispensable para moverte a tu ritmo; para acceder al Lago Moraine se requiere reservar el autobús lanzadera oficial de Parks Canada con anticipación.",
+            "Presupuesto, impuestos y propinas: En Canadá los precios mostrados en tiendas y menús NO incluyen impuestos (suman entre un 5% y un 15% según la provincia). En restaurantes con servicio a la mesa se acostumbra dejar entre 15% y 20% de propina. Contrata siempre un seguro médico internacional con amplia cobertura, ya que la atención sanitaria para extranjeros sin seguro es sumamente costosa."
+          ],
+          tip: "Las tarjetas de crédito y débito contactless se aceptan en prácticamente el 100% de los comercios, parques y transportes; lleva solo una pequeña cantidad de dólares canadienses (CAD) en efectivo para emergencias."
+        },
+        {
+          heading: "5. Gastronomía canadiense imprescindible",
+          body: [
+            "Poutine (Quebec): El plato nacional por excelencia, compuesto por papas fritas crujientes cubiertas con queso fresco en grano ('cheese curds') y salsa gravy caliente.",
+            "Smoked Meat de Montreal y Bagels artesanales: Sándwiches generosos de carne ahumada especiada en pan de centeno y bagels horneados a leña ligeramente endulzados con miel.",
+            "Salmón salvaje del Pacífico, mariscos del Atlántico y Sirope de Arce puro: En Vancouver y las provincias marítimas prueba el salmón ahumado y los lobster rolls; y no te vayas sin degustar una BeaverTail (masa frita con canela y azúcar) o productos con jarabe de arce 100% canadiense."
+          ]
+        }
+      ],
+      conclusion: "Canadá ofrece dos viajes completamente distintos en el mismo territorio según la estación que elijas: lagos turquesa y rutas de senderismo en verano, bosques encendidos en otoño, o nieve profunda y auroras boreales en invierno. Con una ruta bien enfocada en una región y reservas anticipadas para parques y trenes, vivirás una de las travesías más memorables de tu vida.",
+      keyTakeaways: [
+        "Mejor época para parques nacionales y lagos: finales de junio a mediados de septiembre.",
+        "Mejor época para colores de otoño (foliage): finales de septiembre a mediados de octubre en el Este.",
+        "Mejor época para esquí y auroras boreales: diciembre a marzo.",
+        "Divide tu viaje por costa (Oeste o Este) si dispones de menos de 2 semanas."
+      ]
+    }
+  },
+  {
+    slug: "guia-completa-viajar-italia-destinos-itinerarios-consejos",
+    title: "Guía Completa para Viajar a Italia: Mejores Ciudades, Qué Hacer, Temporadas y Consejos",
+    excerpt: "Todo lo que necesitas para planificar tu viaje a Italia: mejores ciudades y regiones, qué hacer en cada estación, itinerarios de 7 a 15 días, transporte en tren, gastronomía y trucos clave.",
+    category: "Guías de Destino",
+    date: "25 de Noviembre de 2026",
+    publishedIso: "2026-11-25T08:00:00+00:00",
+    readTime: "11 min de lectura",
+    author: {
+      name: "Laura De León",
+      role: "Especialista en Turismo Europeo & Itinerarios",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
+    },
+    coverImage: "/gallery/italia-guide-cover.webp",
+    content: {
+      introduction: "Italia reúne la mayor concentración de sitios Patrimonio de la Humanidad de la UNESCO en el mundo, una gastronomía reverenciada en todos los continentes y paisajes que van desde los picos alpinos de los Dolomitas hasta las calas turquesas de Sicilia y la Costa Amalfitana. Esta guía completa te ayuda a decidir dónde ir, cuándo viajar, cómo moverte en tren de alta velocidad y cómo evitar los errores más comunes del turista primerizo.",
+      sections: [
+        {
+          heading: "1. ¿Cuáles son los mejores lugares para visitar en Italia?",
+          body: [
+            "El Triángulo Clásico Imprescindible (Roma, Florencia y Venecia): Roma es un museo al aire libre donde conviven el Coliseo, el Foro Romano, el Panteón, la Fontana di Trevi y la Ciudad del Vaticano (Basílica de San Pedro y Capilla Sixtina). Florencia es la cuna del Renacimiento (Duomo, Galería Uffizi, el David de Miguel Ángel y el Ponte Vecchio) y puerta de entrada a los pueblos medievales y viñedos de la Toscana (Siena, San Gimignano y Val d'Orcia). Venecia enamora con sus canales, la Plaza de San Marcos, el Puente de Rialto y las islas coloridas de Murano y Burano.",
+            "Sur de Italia y Costas de Ensueño: Nápoles ofrece autenticidad vibrante, la mejor pizza del mundo y acceso directo a las ruinas romanas de Pompeya y Herculano. Justo al sur, la Costa Amalfitana (Positano, Amalfi y Ravello) y la Isla de Capri despliegan acantilados verticales sobre el mar Tirreno. Más al sur, Sicilia (Taormina, Monte Etna, Valle de los Templos y Palermo) y Puglia (Alberobello, Polignano a Mare y Matera en Basilicata) brindan cultura mediterránea pura y precios más accesibles.",
+            "Norte Alpino, Lagos y Riviera: Milán lidera el diseño, la moda y alberga la impresionante Catedral (Duomo) y 'La Última Cena' de Leonardo da Vinci. A una hora en tren se extiende el elegante Lago de Como (Bellagio y Varenna). En Liguria, los cinco pueblos colgantes de Cinque Terre (Monterosso, Vernazza, Corniglia, Manarola y Riomaggiore) forman una de las postales más famosas de Europa, mientras que al noreste los Dolomitas (Lago di Braies, Seceda y Cortina d'Ampezzo) ofrecen montañas de clase mundial."
+          ],
+          tip: "Si es tu primera vez en Italia, prioriza Roma, Florencia y Venecia con una escapada corta a la Toscana o a la Costa Amalfitana: están perfectamente conectadas por tren de alta velocidad."
+        },
+        {
+          heading: "2. ¿Cuándo es la mejor época para viajar a Italia y qué hacer por temporada?",
+          body: [
+            "Primavera (Abril a Junio — 16°C a 26°C): La mejor época global para recorrer Italia. Temperaturas agradables para caminar todo el día por Roma y Florencia, campos verdes y florecidos en la Toscana, días largos y menos aglomeraciones que en pleno verano.",
+            "Verano (Julio a Agosto — 28°C a 38°C): Ideal si tu objetivo principal son las playas de Cerdeña, Sicilia, Puglia, Capri y la Costa Amalfitana, o el senderismo alpino en los Dolomitas. En las grandes ciudades monumentales el calor es intenso y las multitudes son máximas, por lo que conviene visitar museos temprano en la mañana o al final de la tarde.",
+            "Otoño (Septiembre a Noviembre — 14°C a 25°C): Espectacular para amantes del vino y la gastronomía: es temporada de vendimia en Chianti y Piamonte, cosecha de aceitunas y ferias de trufa blanca en Alba. En septiembre y principios de octubre aún es posible bañarse en el mar del sur con un ambiente mucho más relajado.",
+            "Invierno (Diciembre a Marzo — 2°C a 14°C): La temporada más económica para vuelos y hoteles. Perfecta para disfrutar los museos de Roma y Florencia sin filas interminables, recorrer los mercados navideños de Bolzano y Trento, esquiar en los Dolomitas (Dolomiti Superski) y vivir el histórico Carnaval de Venecia en febrero."
+          ]
+        },
+        {
+          heading: "3. Itinerarios recomendados por Italia: 7, 10 y 15 días",
+          body: [
+            "Itinerario Clásico de 7 días (Primera vez): 3 noches en Roma (incluyendo Vaticano y Coliseo), 2 noches en Florencia (con excursión de medio día a Pisa o Chianti) y 2 noches en Venecia. Todo el trayecto se realiza cómodamente en trenes de alta velocidad de 1.5 a 2 horas.",
+            "Itinerario Completo de 10 días: 3 noches en Roma, 2 noches en Nápoles/Costa Amalfitana (Pompeya, Positano y Capri), 3 noches en Florencia y Toscana, y 2 noches en Venecia.",
+            "Gran Ruta de 15 días (Norte a Sur): 2 noches en Milán y Lago de Como, 2 noches en Venecia, 2 noches en Cinque Terre, 3 noches en Florencia y pueblos de la Toscana, 3 noches en Roma y 3 noches en Nápoles y Costa Amalfitana."
+          ],
+          tip: "Reserva vuelos 'multi-destino' (por ejemplo, entrando por Milán o Venecia y saliendo desde Roma o Nápoles) para no perder un día completo regresando a la ciudad de llegada."
+        },
+        {
+          heading: "4. Transporte, entradas anticipadas y consejos prácticos para ahorrar",
+          body: [
+            "Trenes de alta velocidad (la mejor forma de viajar): Trenitalia (Frecciarossa) e Italo conectan el centro de las principales ciudades a 300 km/h (Roma–Florencia en 1h 30m; Florencia–Venecia en 2h 15m). Comprando tus boletos entre 30 y 60 días antes puedes ahorrar hasta un 60% frente al precio del mismo día. En trenes regionales sin asiento asignado recuerda validar tu boleto físico o realizar check-in digital antes de abordar.",
+            "Entradas obligatorias con reserva anticipada: El Coliseo de Roma, los Museos Vaticanos, la Galería Uffizi, la Galería de la Academia (Florencia) y 'La Última Cena' (Milán) se agotan con semanas o meses de antelación. Compra siempre en los portales oficiales o con guías autorizados para evitar revendedores y colas de 3 horas.",
+            "Conducción y zonas ZTL: Solo alquila auto si vas a explorar zonas rurales como la Toscana profunda, Puglia, Sicilia o los Dolomitas. Nunca entres en auto a los centros históricos de las ciudades italianas: casi todos tienen cámaras de Zona de Tráfico Limitado (ZTL) que generan multas automáticas.",
+            "Gastos locales y trucos de viajero: La mayoría de los municipios cobran una tasa turística ('tassa di soggiorno') de 2€ a 7€ por persona y noche al hacer check-in. En restaurantes existe el 'coperto' (cargo legal de 1.5€ a 4€ por cubierto y pan; la propina adicional no es obligatoria). En Roma, lleva botella reutilizable y rellénala gratis en las fuentes públicas de agua potable ('nasoni')."
+          ]
+        },
+        {
+          heading: "5. Gastronomía italiana auténtica por regiones",
+          body: [
+            "Roma y Lacio: Prueba las cuatro pastas romanas clásicas (Carbonara, Cacio e Pepe, Amatriciana y Gricia), las alcachofas a la judía ('carciofi alla giudia') y el supplì crujiente.",
+            "Nápoles y Campania: Pizza napolitana con masa fermentada en horno de leña (Margherita o Marinara), mozzarella di bufala fresca, sfogliatella y limoncello artesanal de Sorrento y Amalfi.",
+            "Florencia, Emilia-Romaña y Norte: Bistecca alla Fiorentina, pasta fresca al ragú en Bolonia (considerada la capital gastronómica de Italia), pesto genovés en Liguria, risotto alla milanese en Milán y cicchetti con Aperol Spritz en Venecia.",
+            "Etiqueta del café y el gelato: Tomar un espresso de pie en la barra ('al banco') cuesta alrededor de 1.20€–1.50€, mientras que sentado en mesa de terraza puede duplicar o triplicar su precio. Para identificar un buen gelato artesanal, evita las montañas fluorescentes con colorantes y busca heladerías con colores naturales o botes metálicos con tapa ('pozzetti')."
+          ]
+        }
+      ],
+      conclusion: "Italia es un destino que se disfruta sin prisas, saboreando tanto sus grandes obras maestras históricas como un café en una plaza escondida al atardecer. Planificando tus trenes y entradas clave con antelación y eligiendo la estación ideal según tu ruta, aprovecharás cada minuto de la 'Dolce Vita' sin estrés ni sobrecostos.",
+      keyTakeaways: [
+        "Mejores meses para equilibrar clima y multitudes: abril, mayo, junio, septiembre y octubre.",
+        "Muévete entre grandes ciudades en tren de alta velocidad (Frecciarossa o Italo) reservando con 1 a 2 meses de antelación.",
+        "Reserva previamente las entradas al Coliseo, Vaticano, Uffizi y La Última Cena.",
+        "Evita conducir dentro de cascos históricos por las zonas ZTL; usa auto solo en Toscana, Sicilia, Puglia o Dolomitas."
       ]
     }
   }

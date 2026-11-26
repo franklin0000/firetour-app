@@ -229,6 +229,16 @@ function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/blog/guia-completa-viajar-canada-mejores-lugares-temporadas" className="hover:text-white transition-colors line-clamp-1">
+                🇨🇦 Guía Completa de Viaje a Canadá
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/guia-completa-viajar-italia-destinos-itinerarios-consejos" className="hover:text-white transition-colors line-clamp-1">
+                🇮🇹 Guía Completa de Viaje a Italia
+              </Link>
+            </li>
+            <li>
               <Link to="/blog/clima-punta-cana-mejor-epoca-viajar-sargazo" className="hover:text-white transition-colors line-clamp-1">
                 Clima y Mejor Época para Viajar
               </Link>

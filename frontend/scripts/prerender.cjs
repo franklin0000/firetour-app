@@ -175,7 +175,7 @@ async function run() {
           "headline": post.title,
           "description": post.excerpt,
           "image": [blogImg],
-          "datePublished": "2024-10-12T08:00:00+00:00",
+          "datePublished": post.publishedIso || "2024-10-12T08:00:00+00:00",
           "dateModified": new Date().toISOString(),
           "author": {
             "@type": "Person",
